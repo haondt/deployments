@@ -7,3 +7,4 @@ services:
     command: sh -c "pip install Flask && python app.py"
     ports:
       - "8000:8000"
+

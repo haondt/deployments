@@ -1,0 +1,9 @@
+include:
+  - project: 'haondt/CICD/pipelines'
+    ref: deploy-v2
+    file: 'generate.yml'
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "push"
