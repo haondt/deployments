@@ -54,7 +54,7 @@ services:
   elysium-stage-redis:
     image: redis
     networks:
-      - elysium
+      - elysium-stage
 
 networks:
   elysium-stage:
