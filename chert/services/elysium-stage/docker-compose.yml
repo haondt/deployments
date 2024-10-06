@@ -58,7 +58,6 @@ services:
 
 networks:
   elysium-stage:
-  nginx:
 
 volumes:
   elysium-postgres-data:
