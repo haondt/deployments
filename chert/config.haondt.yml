@@ -1,0 +1,2 @@
+key: $CHERT_SSH_KEY
+target: $CHERT_HOST

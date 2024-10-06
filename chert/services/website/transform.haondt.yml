@@ -1,0 +1,8 @@
+- src:
+    path: website.env.yml
+    type: yaml
+  dst:
+    path: website.env
+    type: env
+
+

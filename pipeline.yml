@@ -1,0 +1,5 @@
+tasks:
+  - type: docker-deploy-v2
+    auto:
+      - source: push
+        branch: main
