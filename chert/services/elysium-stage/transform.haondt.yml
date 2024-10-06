@@ -7,6 +7,7 @@
 - src:
     path: shared.env.yml
     type: yaml
+    hydrate: true
   dst:
     path: shared.env
     type: env

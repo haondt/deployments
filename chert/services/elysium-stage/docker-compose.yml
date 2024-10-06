@@ -10,15 +10,9 @@ services:
       VIRTUAL_HOST: elysium-stage.haondt.dev
       VIRTUAL_PORT: 8080
       # LETSENCRYPT_HOST: "*.haondt.dev"
-      HostingSettings__Host: elysium-stage.haondt.dev
-      InstanceActorSettings__PrivateKey: "{{ elysium__stage__instanceActor__privateKey }}"
-      InstanceActorSettings__PublicKey: "{{ elysium__stage__instanceActor__publicKey }}"
-      Elysium__PersistenceSettings__PostgresqlStorageSettings__Username: "{{ elysium__stage__postgres__user }}"
-      Elysium__PersistenceSettings__PostgresqlStorageSettings__Password: "{{ elysium__stage__postgres__password }}"
-      UserCryptoSettings__ActorDataEncryptionKeySettings__Keys__0: "{{ elysium__stage__encryptionKeys__actorData__key_0 }}"
     env_file:
-      - ./elysium/elysium.env
-      - ./elysium/shared.env
+      - ./elysium-stage/elysium.env
+      - ./elysium-stage/shared.env
   elysium-stage-silo:
     networks:
       - nginx
@@ -30,14 +24,8 @@ services:
     environment:
       VIRTUAL_HOST: "elysium-stage-silo.chert"
       VIRTUAL_PORT: 8080
-      HostingSettings__Host: elysium-stage.haondt.dev
-      InstanceActorSettings__PrivateKey: "{{ elysium__stage__instanceActor__privateKey }}"
-      InstanceActorSettings__PublicKey: "{{ elysium__stage__instanceActor__publicKey }}"
-      Elysium__PersistenceSettings__PostgresqlStorageSettings__Username: "{{ elysium__stage__postgres__user }}"
-      Elysium__PersistenceSettings__PostgresqlStorageSettings__Password: "{{ elysium__stage__postgres__password }}"
-      UserCryptoSettings__ActorDataEncryptionKeySettings__Keys__0: "{{ elysium__stage__encryptionKeys__actorData__key_0 }}"
     env_file:
-      - ./elysium/shared.env
+      - ./elysium-stage/shared.env
     # deploy:
     #   replicas: 2
   elysium-stage-postgres:
@@ -50,7 +38,7 @@ services:
       PGDATA: /data/pgdata
     volumes:
       - elysium-postgres-data:/data
-      - ./elysium/postgresql-init.sql:/docker-entrypoint-initdb.d/postgresql-init.sql
+      - ./elysium-stage/postgresql-init.sql:/docker-entrypoint-initdb.d/postgresql-init.sql
   elysium-stage-redis:
     image: redis
     networks:
