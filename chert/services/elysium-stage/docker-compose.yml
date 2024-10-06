@@ -9,7 +9,6 @@ services:
     environment:
       VIRTUAL_HOST: elysium-stage.haondt.dev
       VIRTUAL_PORT: 8080
-      # LETSENCRYPT_HOST: "*.haondt.dev"
     env_file:
       - ./elysium-stage/elysium.env
       - ./elysium-stage/shared.env
