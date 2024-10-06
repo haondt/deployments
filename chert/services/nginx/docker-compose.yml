@@ -1,0 +1,31 @@
+services:
+  nginx:
+    networks:
+      - nginx
+    image: nginxproxy/nginx-proxy
+    ports:
+      - 443:443
+      - 80:80
+    volumes: 
+      - nginx-certs:/etc/nginx/certs
+      - nginx-vhost:/etc/nginx/vhost.d
+      - nginx-html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  nginx-acme:
+    networks:
+      - nginx
+    image: nginxproxy/acme-companion
+    volumes_from:
+      - nginx
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - nginx-acmesh:/etc/acme.sh
+
+networks:
+  nginx:
+
+volumes:
+  nginx-certs:
+  nginx-vhost:
+  nginx-html:
+  nginx-acmesh:

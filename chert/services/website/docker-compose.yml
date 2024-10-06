@@ -1,9 +1,13 @@
 services:
-  helloworld:
-    image: python:3.11-slim
+  website:
+    image: registry.gitlab.com/haondt/cicd/registry/website:latest
+    networks:
+      - nginx
+    env_file:
+      - ./website/website.env
     volumes:
-      - ./website/app.py:/app/app.py
-    working_dir: /app
-    command: sh -c "pip install Flask && python app.py"
-    ports:
-      - "8000:8000"
+      - ./website/assets:/assets
+    environment:
+      VIRTUAL_HOST: noahburghardt.ca
+      LETSENCRYPT_HOST: noahburghardt.ca
+      VIRTUAL_PORT: 8080
