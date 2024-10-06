@@ -1,6 +1,6 @@
 include:
   - project: 'haondt/CICD/pipelines'
-    ref: deploy-v2
+    ref: main
     file: 'generate.yml'
 
 workflow:

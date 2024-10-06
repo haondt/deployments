@@ -1,0 +1,64 @@
+services:
+  elysium-stage:
+    networks:
+      - nginx
+      - elysium-stage
+    image: registry.gitlab.com/haondt/cicd/registry/elysium:main-4c9b6f4c
+    depends_on:
+      - elysium-stage-silo
+    environment:
+      VIRTUAL_HOST: elysium-stage.haondt.dev
+      VIRTUAL_PORT: 8080
+      # LETSENCRYPT_HOST: "*.haondt.dev"
+      HostingSettings__Host: elysium-stage.haondt.dev
+      InstanceActorSettings__PrivateKey: "{{ elysium__stage__instanceActor__privateKey }}"
+      InstanceActorSettings__PublicKey: "{{ elysium__stage__instanceActor__publicKey }}"
+      Elysium__PersistenceSettings__PostgresqlStorageSettings__Username: "{{ elysium__stage__postgres__user }}"
+      Elysium__PersistenceSettings__PostgresqlStorageSettings__Password: "{{ elysium__stage__postgres__password }}"
+      UserCryptoSettings__ActorDataEncryptionKeySettings__Keys__0: "{{ elysium__stage__encryptionKeys__actorData__key_0 }}"
+    env_file:
+      - ./elysium/elysium.env
+      - ./elysium/shared.env
+  elysium-stage-silo:
+    networks:
+      - nginx
+      - elysium-stage
+    image: registry.gitlab.com/haondt/cicd/registry/elysium-silo:main-4c9b6f4c
+    depends_on:
+      - elysium-stage-postgres
+      - elysium-stage-redis
+    environment:
+      VIRTUAL_HOST: "elysium-stage-silo.chert"
+      VIRTUAL_PORT: 8080
+      HostingSettings__Host: elysium-stage.haondt.dev
+      InstanceActorSettings__PrivateKey: "{{ elysium__stage__instanceActor__privateKey }}"
+      InstanceActorSettings__PublicKey: "{{ elysium__stage__instanceActor__publicKey }}"
+      Elysium__PersistenceSettings__PostgresqlStorageSettings__Username: "{{ elysium__stage__postgres__user }}"
+      Elysium__PersistenceSettings__PostgresqlStorageSettings__Password: "{{ elysium__stage__postgres__password }}"
+      UserCryptoSettings__ActorDataEncryptionKeySettings__Keys__0: "{{ elysium__stage__encryptionKeys__actorData__key_0 }}"
+    env_file:
+      - ./elysium/shared.env
+    # deploy:
+    #   replicas: 2
+  elysium-stage-postgres:
+    networks:
+      - elysium-stage
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: "{{ elysium__stage__postgres__user }}"
+      POSTGRES_PASSWORD: "{{ elysium__stage__postgres__password }}"
+      PGDATA: /data/pgdata
+    volumes:
+      - elysium-postgres-data:/data
+      - ./elysium/postgresql-init.sql:/docker-entrypoint-initdb.d/postgresql-init.sql
+  elysium-stage-redis:
+    image: redis
+    networks:
+      - elysium
+
+networks:
+  elysium-stage:
+  nginx:
+
+volumes:
+  elysium-postgres-data:

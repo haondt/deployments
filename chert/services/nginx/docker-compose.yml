@@ -10,6 +10,8 @@ services:
       - nginx-certs:/etc/nginx/certs
       - nginx-vhost:/etc/nginx/vhost.d
       - nginx-html:/usr/share/nginx/html
+      - ./nginx/elysium-stage.location.conf:/etc/nginx/vhost.d/elysium-stage.haondt.dev_42099b4af021e53fd8fd4e056c2568d7c2e3ffa8_location_override
+      - ./nginx/elysium-stage-silo.location.conf:/etc/nginx/vhost.d/elysium-stage-silo.chert_42099b4af021e53fd8fd4e056c2568d7c2e3ffa8_location_override
       - /var/run/docker.sock:/tmp/docker.sock:ro
   nginx-acme:
     networks:
