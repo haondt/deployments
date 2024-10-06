@@ -2,7 +2,7 @@ services:
   helloworld:
     image: python:3.11-slim
     volumes:
-      - ./website/app.py:/app
+      - ./website/app.py:/app/app.py
     working_dir: /app
     command: sh -c "pip install Flask && python app.py"
     ports:
