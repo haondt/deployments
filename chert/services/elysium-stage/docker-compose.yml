@@ -21,7 +21,7 @@ services:
       - elysium-stage-postgres
       - elysium-stage-redis
     environment:
-      VIRTUAL_HOST: "elysium-stage-silo.chert"
+      VIRTUAL_HOST: elysium-stage-silo.chert
       VIRTUAL_PORT: 8080
     env_file:
       - ./elysium-stage/shared.env
