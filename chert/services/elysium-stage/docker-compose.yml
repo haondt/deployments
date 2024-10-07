@@ -30,6 +30,7 @@ services:
   elysium-stage-postgres:
     networks:
       - elysium-stage
+      - wireguard
     image: postgres:16-alpine
     environment:
       POSTGRES_USER: "{{ elysium__stage__postgres__user }}"

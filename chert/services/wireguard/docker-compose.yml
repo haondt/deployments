@@ -1,6 +1,8 @@
 services:
   wireguard:
     image: lscr.io/linuxserver/wireguard
+    networks:
+      - wireguard
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -16,3 +18,6 @@ services:
 
 volumes:
   wireguard-data:
+
+networks:
+  - wireguard
