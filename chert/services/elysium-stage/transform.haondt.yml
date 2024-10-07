@@ -1,6 +1,7 @@
 - src:
     path: elysium.env.yml
     type: yaml
+    hydrate: true
   dst:
     path: elysium.env
     type: env
