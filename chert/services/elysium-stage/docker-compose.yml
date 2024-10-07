@@ -49,4 +49,3 @@ networks:
 
 volumes:
   elysium-postgres-data:
-

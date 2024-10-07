@@ -20,4 +20,4 @@ volumes:
   wireguard-data:
 
 networks:
-  - wireguard
+  wireguard:
