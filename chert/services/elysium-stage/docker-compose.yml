@@ -3,7 +3,7 @@ services:
     networks:
       - nginx
       - elysium-stage
-    image: registry.gitlab.com/haondt/cicd/registry/elysium:0.0.4
+    image: registry.gitlab.com/haondt/cicd/registry/elysium:0.0.5
     depends_on:
       - elysium-stage-silo
     environment:
@@ -16,7 +16,7 @@ services:
     networks:
       - nginx
       - elysium-stage
-    image: registry.gitlab.com/haondt/cicd/registry/elysium-silo:0.0.4
+    image: registry.gitlab.com/haondt/cicd/registry/elysium-silo:0.0.5
     depends_on:
       - elysium-stage-postgres
       - elysium-stage-redis
