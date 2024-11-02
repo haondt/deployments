@@ -1,5 +1,5 @@
 services:
-  website:
+  website-haondt:
     image: registry.gitlab.com/haondt/cicd/registry/website:3.0.0
     networks:
       - nginx
