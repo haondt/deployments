@@ -5,5 +5,4 @@ services:
       - nginx
     environment:
       VIRTUAL_HOST: haondt.dev
-      LETSENCRYPT_HOST: haondt.dev
       VIRTUAL_PORT: 8000
