@@ -1,0 +1,42 @@
+services:
+  nginx:
+    image: nginxproxy/nginx-proxy
+    restart: always
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - nginx-certs:/etc/nginx/certs
+      - nginx-vhost:/etc/nginx/vhost.d
+      - nginx-html:/usr/share/nginx/html
+    networks:
+      - nginx
+
+  nginx-acme:
+    image: nginxproxy/acme-companion
+    volumes_from:
+      - nginx
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - nginx-acmesh:/etc/acme.sh
+    environment:
+      DEFAULT_EMAIL: "{{ cf__default_email }}"
+      ACME_CHALLENGE: DNS-01
+      ACMESH_DNS_API_CONFIG: |-
+        DNS_API: dns_cf
+        CF_Token: {{ cf__token }}
+        CF_Zone_ID: {{ cf__zone_id }}
+        CF_Account_ID: {{ cf__account_id }}
+
+networks:
+  nginx:
+
+volumes:
+  nginx-certs:
+  nginx-vhost:
+  nginx-html:
+  nginx-acmesh:
+
+

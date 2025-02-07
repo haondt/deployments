@@ -1,0 +1,10 @@
+services:
+  gabbro-bot:
+    image: registry.gitlab.com/haondt/cicd/registry/gabbro-bot:latest
+    container_name: gabbro_bot
+    environment:
+      COM_GABBRO_DISCORD_TOKEN: "{{ DISCORD_TOKEN }}"
+      COM_GABBRO_DOCKER_HOST: "{{ TARGET_HOST }}"
+      COM_GABBRO_DOCKER_USER: "{{ TARGET_USER }}"
+      COM_GABBRO_DOCKER_PASSWORD: "{{ TARGET_PASSWORD }}"
+      COM_GABBRO_DOCKER_PATH: /srv/deploy/gabbro

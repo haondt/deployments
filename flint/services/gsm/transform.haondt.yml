@@ -1,0 +1,8 @@
+- src:
+    path: gsm.env.yml
+    type: yaml
+  dst:
+    path: gsm.env
+    type: env
+
+
