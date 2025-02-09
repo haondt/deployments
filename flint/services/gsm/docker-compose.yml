@@ -1,6 +1,6 @@
 services:
   gsm:
-    image: registry.gitlab.com/haondt/cicd/registry/gsm:v2-067e5d82
+    image: registry.gitlab.com/haondt/cicd/registry/gsm:v2-04dcca91
     container_name: gsm
     networks:
       - nginx
