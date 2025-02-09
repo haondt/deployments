@@ -10,7 +10,7 @@ services:
       - ./gsm/gsm.env
     environment:
       VITRUAL_PORT: 8080
-      VIRTUAL_HOST: "gsm.{{ haondt__host }},gsm.{{ flint__letsencrypt_host }}"
+      VIRTUAL_HOST: "gsm.{{ haondt__host }},gsm.{{ haondt__letsencrypt_host }}"
       LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
 
 volumes:
