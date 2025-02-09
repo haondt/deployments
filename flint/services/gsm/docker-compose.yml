@@ -8,10 +8,22 @@ services:
       - gsm-data:/data
     env_file:
       - ./gsm/gsm.env
+    depends_on:
+      - gsm-data-init
     environment:
       VITRUAL_PORT: 8080
       VIRTUAL_HOST: "gsm.{{ haondt__host }},gsm.{{ haondt__letsencrypt_host }}"
       LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
+  gsm-data-init:
+    volumes:
+      - gsm-data:/data
+    user: root
+    image: alpine
+    command: >
+      sh -c "
+        if [ ! -f /data/.initialized ]; then
+          chgrp -R {{ haondt__pgid }} /data && chmod -R 775 /data && touch /data/.initialized;
+        fi"
 
 volumes:
   gsm-data:
