@@ -1,0 +1,14 @@
+services:
+  {{ COM_HAONDT_CONTAINER }}:
+    container_name: "{{ COM_HAONDT_CONTAINER }}"
+    labels:
+      com.haondt.host: "{{ haondt__host }}"
+      com.haondt.service: "{{ COM_HAONDT_CONTAINER }}"
+    group_add:
+      - "{{ haondt__pgid }}"
+    environment:
+      PGID: "{{ haondt__pgid }}"
+      PUID: "{{ haondt__puid }}"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+
