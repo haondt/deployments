@@ -17,7 +17,7 @@ services:
       - ./nginx/website-haondt-cloudflare-cert.key:/etc/nginx/certs/haondt.dev.key
       - ./nginx/website-haondt-cloudflare-cert.crt:/etc/nginx/certs/haondt.dev.crt
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - /srv/logs/chert/nginx/:var/log/nginx
+      - /srv/logs/chert/nginx/:/var/log/nginx
   nginx-acme:
     networks:
       - nginx
