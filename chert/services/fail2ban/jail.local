@@ -1,0 +1,13 @@
+[sshd]
+enabled = true
+chain = INPUT
+port = 22
+
+[elysium-stage]
+enabled = true
+port = http,https
+logpath = %(nginx_access_log)s
+maxretry = 5
+chain = DOCKER-USER
+bantime = 60  # Ban for 1 hour
+findtime = 600  # Look back for 10 minutes
