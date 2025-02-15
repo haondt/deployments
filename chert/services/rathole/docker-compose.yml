@@ -10,6 +10,7 @@ services:
     # ports:
     #   - "{{ rathole__server__port }}:{{ rathole__server__port}}"
     environment:
+      VIRTUAL_HOST: rathole.haondt.dev
       VIRTUAL_HOST_MULTIPORTS: |-
         *.cloud.haondt.dev:
           "/":
