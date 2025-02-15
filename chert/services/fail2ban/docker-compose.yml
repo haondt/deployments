@@ -9,10 +9,6 @@ services:
       PUID: 1000
       PGID: 1000
       TZ: Etc/UTC
-      VERBOSITY: -vv
-    ports:
-      - 443:443
-      - 80:80
     volumes: 
       - fail2ban-config:/config
       - /var/log:/var/log:ro
