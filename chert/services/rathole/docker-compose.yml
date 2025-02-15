@@ -20,7 +20,7 @@ services:
     ports:
       - "{{ rathole__server__port }}:{{ rathole__server__port}}"
     volumes:
-      - ./rathole/nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+      - ./rathole/nginx.conf:/etc/nginx/nginx.conf:ro
 networks:
   rathole:
 
