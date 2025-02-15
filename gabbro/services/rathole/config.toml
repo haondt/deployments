@@ -1,0 +1,7 @@
+[client]
+remote_addr = "{{ rathole__server__host }}:{{ rathole__server__port }}"
+
+[client.services.haondt]
+token = "{{ rathole__haondt__token }}"
+local_addr = "website-haondt:8000"
+

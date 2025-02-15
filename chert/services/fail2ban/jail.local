@@ -2,16 +2,3 @@
 enabled = true
 chain = INPUT
 port = 22
-logpath = /var/log/auth.log
-maxretry = 3
-bantime = 3600
-findtime = 600
-
-[elysium-stage]
-enabled = true
-port = http,https
-logpath = /remotelogs/nginx/*access.log
-maxretry = 5
-chain = DOCKER-USER
-bantime = 60  # Ban for 1 hour
-findtime = 600  # Look back for 10 minutes

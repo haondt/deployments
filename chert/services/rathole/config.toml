@@ -1,0 +1,6 @@
+[server]
+bind_addr = "0.0.0.0:{{ rathole__server__port }}"
+
+[server.services.haondt]
+token = "{{ rathole__haondt__token }}"
+bind_addr = "0.0.0.0:8080"
