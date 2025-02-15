@@ -6,7 +6,7 @@ port = 22
 [elysium-stage]
 enabled = true
 port = http,https
-logpath = %(nginx_access_log)s
+logpath = /remotelogs/nginx
 maxretry = 5
 chain = DOCKER-USER
 bantime = 60  # Ban for 1 hour
