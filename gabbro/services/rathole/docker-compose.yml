@@ -1,6 +1,6 @@
 services:
   rathole-client:
-    image: rapiz1/rathole
+    image: rapiz1/rathole:v0.5.0
     command: --client /app/config.toml
     networks:
       - rathole
