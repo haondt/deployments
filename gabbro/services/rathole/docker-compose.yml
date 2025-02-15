@@ -19,7 +19,7 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./rathole/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro
-      - ./rathole/nginx:/etc/nginx
+      - /mnt/celery/gabbro/rathole/nginx:/etc/nginx
     command: -watch /etc/docker-gen/templates/nginx.tmpl /etc/nginx/nginx.conf
 
 networks:
