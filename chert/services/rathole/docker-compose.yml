@@ -11,6 +11,7 @@ services:
       - "{{ rathole__server__port }}:{{ rathole__server__port}}"
     environment:
       VIRTUAL_HOST: "*.cloud.haondt.dev"
+      HTTPS_METHOD: nohttp
       VIRTUAL_PORT: 8080
 
 networks:

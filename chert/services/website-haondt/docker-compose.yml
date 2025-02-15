@@ -6,4 +6,5 @@ services:
     environment:
       VIRTUAL_HOST: haondt.dev
       VIRTUAL_PORT: 8000
+      HTTPS_METHOD: nohttp
 
