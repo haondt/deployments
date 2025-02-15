@@ -8,4 +8,4 @@ remote_public_key = "{{ rathole__server__public_key }}"
 
 [client.services.haondt]
 token = "{{ rathole__haondt__token }}"
-local_addr = "nginx:80"
+local_addr = "rathole-nginx:80"
