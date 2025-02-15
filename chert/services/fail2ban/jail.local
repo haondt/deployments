@@ -2,6 +2,10 @@
 enabled = true
 chain = INPUT
 port = 22
+logpath = /var/log/auth.log
+maxretry = 3
+bantime = 3600
+findtime = 600
 
 [elysium-stage]
 enabled = true
