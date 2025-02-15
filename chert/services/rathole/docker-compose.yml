@@ -7,20 +7,12 @@ services:
       - nginx
     volumes:
       - ./rathole/config.toml:/app/config.toml
-    # ports:
-    #   - "{{ rathole__server__port }}:{{ rathole__server__port}}"
+    ports:
+      - "{{ rathole__server__port }}:{{ rathole__server__port}}"
     environment:
-      VIRTUAL_HOST: rathole.haondt.dev
-      VIRTUAL_HOST_MULTIPORTS: |-
-        *.cloud.haondt.dev:
-          "/":
-            port: 8080
-            proto: https
-        rathole.haondt.dev:
-          "/":
-            port: {{ rathole__server__port }}
-            proto: http
-      # HTTPS_METHOD: nohttp
+      VIRTUAL_HOST: "*.cloud.haondt.dev"
+      VIRTUAL_PORT: 8080
+      HTTPS_METHOD: nohttp
       LETSENCRYPT_HOST: "*.cloud.haondt.dev"
 networks:
   rathole:
