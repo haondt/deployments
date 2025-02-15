@@ -3,3 +3,4 @@ services:
     image: registry.gitlab.com/haondt/cicd/registry/website:3.0.2
     networks:
       - rathole
+
