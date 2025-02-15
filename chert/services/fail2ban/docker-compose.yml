@@ -18,3 +18,4 @@ services:
       - ./fail2ban/filter.d/elysium-stage.conf:/config/fail2ban/filter.d/elysium-stage.conf
 volumes:
   fail2ban-config:
+
