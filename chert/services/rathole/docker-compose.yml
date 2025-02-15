@@ -12,7 +12,8 @@ services:
     environment:
       VIRTUAL_HOST: "*.cloud.haondt.dev"
       VIRTUAL_PORT: 8080
-
+      HTTPS_METHOD: nohttp
+      LETSENCRYPT_HOST: "*.cloud.haondt.dev"
 networks:
   rathole:
 
