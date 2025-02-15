@@ -1,1 +1,25 @@
-{{ toPrettyJson $ }}
+event {}
+
+http {
+  {{- range $container := . }}
+  {{- $host := index $container.Env "RATHOLE_VIRTUAL_HOST" }}
+  {{- $port := index $container.Env "RATHOLE_VIRTUAL_PORT" }}
+  {{- $include := index $container.Env "RATHOLE_INCLUDE" }}
+  {{- if hasKey $container.Env "RATHOLE_INCLUDE" }}
+  # {{ $host }}
+  server {
+    listen 80;
+    server_name {{ $host }};
+    access_log /var/log/nginx/access.log vhost;
+    http2 on;
+    location / {
+      proxy_pass http://{{ $container.Name }}:{{ $port }};
+      set $upstream_keepalive false;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+  }
+  {{ end }}
+  {{- end }}
+}

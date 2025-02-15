@@ -6,4 +6,5 @@ services:
     environment:
       RATHOLE_VIRTUAL_HOST: haondt.cloud.haondt.dev
       RATHOLE_VIRTUAL_PORT: 8000
+      RATHOLE_INCLUDE:
 
