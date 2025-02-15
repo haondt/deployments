@@ -1,7 +1,7 @@
 services:
   rathole-server:
     image: rapiz1/rathole
-    command: rathole --server /app/config.toml
+    command: --server /app/config.toml
     networks:
       - rathole
       - nginx

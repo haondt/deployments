@@ -1,7 +1,7 @@
 services:
   rathole-client:
     image: rapiz1/rathole
-    command: rathole --client /app/config.toml
+    command: --client /app/config.toml
     networks:
       - rathole
     volumes:
