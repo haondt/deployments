@@ -35,7 +35,7 @@ services:
         DNS_API: dns_cf
         CF_Token: {{ cloudflare__token }}
         CF_Zone_ID: {{ cloudflare__zone_id }}
-        CF_Account_ID: {{ cloudflare__acount_id }}
+        CF_Account_ID: {{ cloudflare__account_id }}
 
 networks:
   nginx:
