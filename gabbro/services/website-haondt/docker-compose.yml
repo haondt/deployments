@@ -3,4 +3,7 @@ services:
     image: registry.gitlab.com/haondt/cicd/registry/website:3.0.2
     networks:
       - rathole
+    environment:
+      VIRTUAL_HOST: haondt.cloud.haondt.dev
+      VIRTUAL_PORT: 8000
 
