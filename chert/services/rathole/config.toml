@@ -1,6 +1,13 @@
 [server]
 bind_addr = "0.0.0.0:{{ rathole__server__port }}"
 
+[server.transport]
+type = "noise"
+[server.transport.noise]
+local_private_key = "{{ rathole__server__private_key }}"
+
+
 [server.services.haondt]
 token = "{{ rathole__haondt__token }}"
 bind_addr = "0.0.0.0:8080"
+

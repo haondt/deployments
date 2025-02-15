@@ -1,7 +1,11 @@
 [client]
 remote_addr = "{{ rathole__server__host }}:{{ rathole__server__port }}"
 
+[client.transport]
+type = "noise"
+[client.transport.noise]
+remote_public_key = "{{ rathole__server__public_key }}"
+
 [client.services.haondt]
 token = "{{ rathole__haondt__token }}"
 local_addr = "website-haondt:8000"
-
