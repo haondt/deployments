@@ -5,9 +5,9 @@ port = 22
 
 [rathole]
 enabled = true
-port = 0:65535
+port = {{ rathole_port }}
 logpath = /var/log/syslog
-maxretry = 3
+maxretry = 5
 chain = DOCKER-USER
 bantime = 60  # Ban for 1 hour
 findtime = 600  # Look back for 10 minutes
