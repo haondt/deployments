@@ -2,3 +2,5 @@
 - elysium-stage-cloudflare-cert.key
 - website-haondt-cloudflare-cert.crt
 - website-haondt-cloudflare-cert.key
+- authelia-cf-cert.crt
+- authelia-cf-cert.key

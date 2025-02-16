@@ -16,6 +16,8 @@ services:
       - ./nginx/elysium-stage-cloudflare-cert.key:/etc/nginx/certs/elysium-stage.haondt.dev.key
       - ./nginx/website-haondt-cloudflare-cert.key:/etc/nginx/certs/haondt.dev.key
       - ./nginx/website-haondt-cloudflare-cert.crt:/etc/nginx/certs/haondt.dev.crt
+      - ./nginx/authelia-cf-cert.key:/etc/nginx/certs/auth.haondt.dev.key
+      - ./nginx/authelia-cf-cert.crt:/etc/nginx/certs/auth.haondt.dev.crt
       - /var/run/docker.sock:/tmp/docker.sock:ro
   nginx-acme:
     networks:
