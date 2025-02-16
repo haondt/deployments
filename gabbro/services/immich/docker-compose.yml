@@ -6,7 +6,7 @@ services:
     environment:
       RATHOLE_INCLUDE:
       RATHOLE_VIRTUAL_PORT: 2283
-      RATHOLE_VRITUAL_HOST: immich.cloud.haondt.dev
+      RATHOLE_VIRTUAL_HOST: immich.cloud.haondt.dev
       DB_PASSWORD: "{{ immich__postgres_password }}"
       DB_USERNAME: postgres
       DB_DATABASE_NAME: immich
