@@ -22,6 +22,7 @@ services:
     environment:
       LLDAP_JWT_SECRET:  "{{ lldap__jwt_secret }}"
       LLDAP_KEY_SEED: "{{ lldap__key_seed }}"
+      LLDAP_BASE_DN: dc=haondt,dc=dev
 
 networks:
   authelia:

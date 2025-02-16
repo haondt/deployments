@@ -11,14 +11,12 @@ identity_validation:
 authentication_backend:
   password_reset:
     disable: false
-  # ldap:
-  #   implementation: lldap
-  #   address: ldap://lldap:3890
-  #   base_dn: dc=haondt,dc=dev
-  #   user: TODO
-  #   password: TODO
-  file:
-    path: /config/users.yml
+  ldap:
+    implementation: lldap
+    address: ldap://lldap:3890
+    base_dn: dc=haondt,dc=dev
+    user: uid={{ authelia__lldap_username }},ou=people,dc=haondt,dc=dev
+    password: "{{ authelia__lldap_password }}"
 
 storage:
   encryption_key: "{{ authelia__encryption_key }}"
