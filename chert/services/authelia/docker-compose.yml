@@ -6,9 +6,10 @@ services:
       - ./authelia/config.yml:/config/configuration.yml
     networks:
       - authelia
+      - nginx
     environment:
       VIRTUAL_HOST: "auth.haondt.dev"
-      VIRTUAL_PORT: 443
+      VIRTUAL_PORT: 9091
       HTTPS_METHOD: nohttp
       LETSENCRYPT_HOST: "auth.haondt.dev"
 

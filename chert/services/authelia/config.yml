@@ -31,7 +31,7 @@ session:
 
 notifier:
   smtp:
-    address: 'smtp.mailgun.org'
+    address: 'smtp.mailgun.org:2525'
     username: 'authelia@notify.haondt.dev'
     password: "{{ authelia__mailgun__password }}"
     sender: 'Authelia <authelia@notify.haondt.dev>'
