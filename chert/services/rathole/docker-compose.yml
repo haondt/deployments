@@ -1,7 +1,7 @@
 services:
   rathole-server:
     image: rapiz1/rathole:v0.5.0
-    command: --server /app/config.toml
+    command: --server /app/config.toml 
     networks:
       - rathole
       - nginx
@@ -12,6 +12,10 @@ services:
       VIRTUAL_PORT: 8080
       HTTPS_METHOD: nohttp
       LETSENCRYPT_HOST: "*.cloud.haondt.dev"
+    logging:
+      driver: syslog
+      options:
+        tag: rathole-server
 
   rathole-nginx:
     image: nginx:latest
