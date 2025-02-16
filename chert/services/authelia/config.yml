@@ -1,0 +1,45 @@
+# yamllint disable rule:comments-indentation
+---
+###############################################################################
+##                           Authelia Configuration                          ##
+###############################################################################
+
+identity_validation:
+  reset_password:
+    jwt_secret: "{{ authelia__jwt_secret }}"
+
+authentication_backend:
+  password_reset:
+    disable: false
+  # ldap:
+  #   implementation: lldap
+  #   address: ldap://lldap:3890
+  #   base_dn: dc=haondt,dc=dev
+  #   user: TODO
+  #   password: TODO
+  file:
+    path: /config/users.yml
+
+storage:
+  encryption_key: "{{ authelia__encryption_key }}"
+  local:
+    path: /config/db.sqlite3
+
+session:
+  secret: "{{ authelia__session_secret }}"
+  cookies:
+    - domain: immich.cloud.haondt.dev
+      authelia_url: https://auth.haondt.dev
+
+notifier:
+  smtp:
+    address: 'smtp.mailgun.org'
+    username: 'authelia@notify.haondt.dev'
+    password: "{{ authelia__mailgun__password }}"
+    sender: 'Authelia <authelia@notify.haondt.dev>'
+
+access_control:
+  default_policy: deny
+  rules:
+    - domain: '*.cloud.haondt.dev'
+      policy: one_factor
