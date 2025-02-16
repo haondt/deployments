@@ -3,10 +3,11 @@ services:
     image: rapiz1/rathole:v0.5.0
     command: --server /app/config.toml 
     networks:
-      - rathole
       - nginx
     volumes:
       - ./rathole/config.toml:/app/config.toml
+    ports:
+      - "{{ rathole__server__port }}:{{ rathole__server__port}}"
     environment:
       VIRTUAL_HOST: "*.cloud.haondt.dev"
       VIRTUAL_PORT: 8080
@@ -16,15 +17,4 @@ services:
       driver: syslog
       options:
         tag: rathole-server
-
-  rathole-nginx:
-    image: nginx:latest
-    networks:
-      - rathole
-    ports:
-      - "{{ rathole__server__port }}:{{ rathole__server__port}}"
-    volumes:
-      - ./rathole/nginx.conf:/etc/nginx/nginx.conf:ro
-networks:
-  rathole:
 
