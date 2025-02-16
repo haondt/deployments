@@ -26,7 +26,7 @@ storage:
 session:
   secret: "{{ authelia__session_secret }}"
   cookies:
-    - domain: immich.cloud.haondt.dev
+    - domain: haondt.dev
       authelia_url: https://auth.haondt.dev
 
 notifier:
