@@ -9,7 +9,7 @@ services:
       PUID: 1000
       PGID: 1000
       TZ: Etc/UTC
-      VERBOSITY: -vvvv
+      VERBOSITY: -vv
     volumes: 
       - fail2ban-config:/config
       - /var/log:/var/log:ro
