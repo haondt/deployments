@@ -11,7 +11,7 @@ services:
       DB_USERNAME: postgres
       DB_DATABASE_NAME: immich
       DB_HOSTNAME: immich-db
-      REDISE_HOSTNAME: immich-redis
+      REDIS_HOSTNAME: immich-redis
     depends_on:
       - immich-redis
       - immich-db
