@@ -9,11 +9,12 @@ services:
       PUID: 1000
       PGID: 1000
       TZ: Etc/UTC
-      VERBOSITY: -vv
+      VERBOSITY: -vvvv
     volumes: 
       - fail2ban-config:/config
       - /var/log:/var/log:ro
       - /srv/logs/chert/nginx:/remotelogs/nginx:ro
       - ./fail2ban/jail.local:/config/fail2ban/jail.local
+      - ./fail2ban/filter.d/rathole.conf:/config/fail2ban/filter.d/rathole.conf
 volumes:
   fail2ban-config:

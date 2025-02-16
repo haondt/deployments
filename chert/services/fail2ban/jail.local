@@ -2,3 +2,13 @@
 enabled = true
 chain = INPUT
 port = 22
+
+[rathole]
+enabled = true
+port = 0:65535
+logpath = /var/log/syslog
+maxretry = 3
+chain = DOCKER-USER
+bantime = 60  # Ban for 1 hour
+findtime = 600  # Look back for 10 minutes
+
