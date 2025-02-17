@@ -46,4 +46,4 @@ access_control:
     - domain: '*.cloud.haondt.dev'
       policy: two_factor
     - subject: ["{{ authelia__lldap_username }}", "admin"]
-      policy: bypass
+      policy: deny
