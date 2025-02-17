@@ -8,6 +8,10 @@ identity_validation:
   reset_password:
     jwt_secret: "{{ authelia__jwt_secret }}"
 
+totp:
+  disable: false
+  issuer: auth.haondt.dev
+
 authentication_backend:
   password_reset:
     disable: false
