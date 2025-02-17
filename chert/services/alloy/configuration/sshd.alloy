@@ -20,8 +20,14 @@ loki.process "sshd_process" {
         }
     }
 
+    stage.template {
+        source = "drop"
+        template = "{{ if contains .Value \"Accepted\" }}false{{ else }}true{{ end }}"
+    }
+
     stage.drop {
-        expression = "^(?!.*\bAccepted\b).*$"
+        source = "drop"
+        value = "true"
     }
     
     stage.regex {
