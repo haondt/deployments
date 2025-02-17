@@ -75,8 +75,6 @@ proxy_set_header X-Forwarded-Ssl $proxy_x_forwarded_ssl;
 proxy_set_header X-Forwarded-Port $proxy_x_forwarded_port;
 proxy_set_header X-Original-URI $request_uri;
 
-
-
 server {
     listen 80;
     server_name _;
@@ -95,10 +93,17 @@ server {
     server_name {{ $host }};
     http2 on;
 
-    # todo: max size
-    proxy_read_timeout 600s;
-    proxy_send_timeout 600s;
-    send_timeout       600s;
+    {{ $max_body_size := index $container.Env "RATHOLE_MAX_BODY_SIZE" }}
+    {{- if $max_body_size -}}
+    client_max_body_size {{ $max_body_size }};
+    {{ end -}}
+    
+    {{ $connection_timeout := index $container.Env "RATHOLE_CONNECTION_TIMEOUT" }}
+    {{- if $connection_timeout -}}
+    proxy_read_timeout {{ $connection_timeout }};
+    proxy_send_timeout {{ $connection_timeout }};
+    send_timeout       {{ $connection_timeout }};
+    {{ end -}}
 
     location / {
         proxy_pass http://{{ $container.Name }}:{{ $port }};
