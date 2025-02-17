@@ -1,1 +1,3 @@
 - config.yml
+- oidc-jwks-certificate.crt
+- oidc-jwks-certificate.key
