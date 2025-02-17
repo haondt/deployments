@@ -12,6 +12,5 @@ services:
 
 
 networks:
-  rathole:
   gabbro_grafana:
     external: true
