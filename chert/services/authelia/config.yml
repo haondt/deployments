@@ -45,3 +45,41 @@ access_control:
   rules:
     - domain: '*.cloud.haondt.dev'
       policy: two_factor
+
+identity_providers:
+  oidc:
+    hmac_secret: "{{ authelia__oidc__hmac_secret }}"
+    jwks:
+      - key_id: 'authelia'
+        algorithm: 'RS256'
+        use: 'sig'
+        key: |
+          {{ authelia__oidc__jwks_private_key }}
+        certificate_chain: |
+          {{ authelia__oidc__jwks_certificate }}
+    cors:
+      allowed_origins:
+        - 'https://immich.cloud.haondt.dev'
+    clients:
+      - client_id: immich
+        client_name: Immich OIDC
+        client_secret: "{{ authelia__oidc__immich__client_secret }}"
+        redirect_uris:
+          - https://auth.haondt.dev/
+          - https://auth.haondt.dev/oauth2/callback
+          - https://immich.cloud.haondt.dev/oauth2/callback
+          - https://immich.cloud.haondt.dev/auth/login
+          - https://immich.cloud.haondt.dev/user-settings
+          - https://immich.cloud.haondt.dev
+          - app.immich:/ # required for immich < v1.113.0
+          - app.immich:///oauth-callback # required since immich v1.113.0
+          - https://immich.cloud.haondt.dev/api/oauth/mobile-redirect
+        grant_types:
+          - refresh_token
+          - authorization_code
+        response_modes:
+          - form_post
+          - query
+          - fragment
+        authorization_policy: two_factor
+
