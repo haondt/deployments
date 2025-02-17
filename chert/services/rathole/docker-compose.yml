@@ -16,5 +16,5 @@ services:
     logging:
       driver: syslog
       options:
-        tag: rathole-server
+        tag: docker-rathole-server
 
