@@ -1,6 +1,6 @@
 services:
   loki:
-    image: rapiz1/rathole:v0.5.0
+    image: grafana/loki:latest
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - rathole
