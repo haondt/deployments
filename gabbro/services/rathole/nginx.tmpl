@@ -1,3 +1,66 @@
+map $http_x_forwarded_proto $proxy_x_forwarded_proto {
+    default $http_x_forwarded_proto;
+    '' $scheme;
+}
+map $http_x_forwarded_host $proxy_x_forwarded_host {
+    default $http_x_forwarded_host;
+    '' $host;
+}
+# If we receive X-Forwarded-Port, pass it through; otherwise, pass along the
+# server port the client connected to
+map $http_x_forwarded_port $proxy_x_forwarded_port {
+    default $http_x_forwarded_port;
+    '' $server_port;
+}
+# Include the port in the Host header sent to the container if it is non-standard
+map $server_port $host_port {
+    default :$server_port;
+    80 '';
+    443 '';
+}
+# If the request from the downstream client has an "Upgrade:" header (set to any
+# non-empty value), pass "Connection: upgrade" to the upstream (backend) server.
+# Otherwise, the value for the "Connection" header depends on whether the user
+# has enabled keepalive to the upstream server.
+map $http_upgrade $proxy_connection {
+    default upgrade;
+    '' $proxy_connection_noupgrade;
+}
+map $upstream_keepalive $proxy_connection_noupgrade {
+    # Preserve nginx's default behavior (send "Connection: close").
+    default close;
+    # Use an empty string to cancel nginx's default behavior.
+    true '';
+}
+# Abuse the map directive (see <https://stackoverflow.com/q/14433309>) to ensure
+# that $upstream_keepalive is always defined.  This is necessary because:
+#   - The $proxy_connection variable is indirectly derived from
+#     $upstream_keepalive, so $upstream_keepalive must be defined whenever
+#     $proxy_connection is resolved.
+#   - The $proxy_connection variable is used in a proxy_set_header directive in
+#     the http block, so it is always fully resolved for every request -- even                                                                                                                                                #     those where proxy_pass is not used (e.g., unknown virtual host).
+map "" $upstream_keepalive {
+    # The value here should not matter because it should always be overridden in
+    # a location block (see the "location" template) for all requests where the
+    # value actually matters.
+    default false;
+}
+
+# HTTP 1.1 support
+proxy_http_version 1.1;
+proxy_set_header Host $host$host_port;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection $proxy_connection;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Host $proxy_x_forwarded_host;
+proxy_set_header X-Forwarded-Proto $proxy_x_forwarded_proto;
+proxy_set_header X-Forwarded-Ssl $proxy_x_forwarded_ssl;
+proxy_set_header X-Forwarded-Port $proxy_x_forwarded_port;
+proxy_set_header X-Original-URI $request_uri;
+
+
+
 server {
     listen 80;
     server_name _;
@@ -14,24 +77,16 @@ server {
 server {
     listen 80;
     server_name {{ $host }};
+    http2 on;
 
-    proxy_set_header X-Forwarded-Proto $scheme;
-
-    proxy_http_version 1.1;
-    proxy_set_header   Upgrade    $http_upgrade;
-    proxy_set_header   Connection "upgrade";
-    proxy_redirect     off;
-
+    # todo: max size
     proxy_read_timeout 600s;
     proxy_send_timeout 600s;
     send_timeout       600s;
 
     location / {
         proxy_pass http://{{ $container.Name }}:{{ $port }};
-        set $upstream_keepalive false;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        set $upstream_keepalive true;
     }
 }
 {{ end }}
