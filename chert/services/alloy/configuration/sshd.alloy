@@ -1,0 +1,45 @@
+
+local.file_match "sshd_files" {
+    path_targets = [
+        {"__path__" = "/var/log/auth.log"},
+    ]
+    sync_period = "5s"
+}
+
+loki.source.file "sshd_scrape" {
+    targets    = local.file_match.sshd_files.targets
+    forward_to = [loki.process.sshd_process.receiver]
+    tail_from_end = true
+}
+
+loki.process "sshd_process" {
+    stage.static_labels {
+        values = {
+            instance = "chert",
+            service_name = "sshd",
+        }
+    }
+
+    stage.drop {
+        expression = "^(?!.*\bAccepted\b).*$"
+    }
+    
+    stage.regex {
+        expression = "^.*Accepted.*for (?P<user>\\S+) from (?P<ip>\\S+).*$"
+    }
+
+    stage.template {
+        source = "level"
+        template = "{{ if contains .Value \"Accepted\" }}warn{{ else }}info{{ end }}"
+    }
+
+    stage.labels {
+        values = {
+            "user" = "",
+            "ip" = "",
+            "level" = "",
+        }
+    }
+
+    forward_to = [loki.write.default.receiver]
+}
