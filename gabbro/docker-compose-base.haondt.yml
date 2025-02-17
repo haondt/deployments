@@ -1,4 +1,11 @@
 services:
   {{ COM_HAONDT_CONTAINER }}:
     container_name: "{{ COM_HAONDT_CONTAINER }}"
+    labels:
+      com.gabbro.host: gabbro
+      com.gabbro.service: "{{ COM_HAONDT_CONTAINER }}"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+
+ 
 
