@@ -5,11 +5,6 @@ services:
     networks:
       - rathole
       - gabbro_grafana
-    ports:
-      - 3100:3100
-
-
-
 
 networks:
   gabbro_grafana:
