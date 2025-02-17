@@ -19,10 +19,6 @@ services:
       - ./nginx/authelia-cf-cert.key:/etc/nginx/certs/auth.haondt.dev.key
       - ./nginx/authelia-cf-cert.crt:/etc/nginx/certs/auth.haondt.dev.crt
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    logging:
-      driver: syslog
-      options:
-        tag: docker-nginx
   nginx-acme:
     networks:
       - nginx

@@ -6,7 +6,7 @@ port = 22
 [rathole]
 enabled = true
 port = {{ rathole_port }}
-logpath = /var/log/syslog
+logpath = /var/log/docker/rathole.log
 maxretry = 5
 chain = DOCKER-USER
 bantime = 3600  # Ban for 1 hour

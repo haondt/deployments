@@ -15,9 +15,5 @@ services:
       - /var/log:/var/log:ro
       - ./fail2ban/jail.local:/config/fail2ban/jail.local
       - ./fail2ban/filter.d/rathole.conf:/config/fail2ban/filter.d/rathole.conf
-    logging:
-      driver: syslog
-      options:
-        tag: docker-fail2ban
 volumes:
   fail2ban-config:

@@ -13,8 +13,4 @@ services:
       VIRTUAL_PORT: 8080
       HTTPS_METHOD: nohttp
       LETSENCRYPT_HOST: "*.cloud.haondt.dev"
-    logging:
-      driver: syslog
-      options:
-        tag: docker-rathole-server
 
