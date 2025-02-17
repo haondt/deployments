@@ -15,11 +15,12 @@ loki.process "fail2ban_process" {
     stage.static_labels {
         values = {
             instance = "chert",
+            service_name = "fail2ban",
         }
     }
     
     stage.regex {
-        expression - "^\\s*(?:\\S+\\s+){3}(?P<level>\\S+)\\s+(?P<jail>\\[[^]]+\\])\\s+(?P<action>[^\\s]+)\\s(?P<ip>[^\\s]+).*$"
+        expression = "^\\s*(?:\\S+\\s+){3}(?P<level>\\S+)\\s+(?P<jail>\\[[^]]+\\])\\s+(?P<action>[^\\s]+)\\s(?P<ip>[^\\s]+).*$"
     }
 
     stage.template {
