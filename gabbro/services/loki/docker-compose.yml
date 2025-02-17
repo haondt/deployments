@@ -1,0 +1,17 @@
+services:
+  loki:
+    image: rapiz1/rathole:v0.5.0
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - rathole
+      - gabbro_grafana
+    ports:
+      - 3100:3100
+
+
+
+
+networks:
+  rathole:
+  gabbro_grafana:
+    external: true
