@@ -7,3 +7,4 @@ services:
     volumes:
       - ./alloy/config.alloy:/etc/alloy/config.alloy
       - /srv/data/fail2ban:/mnt/fail2ban:ro
+      - /var/log:/var/log:ro
