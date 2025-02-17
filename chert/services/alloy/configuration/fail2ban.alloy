@@ -19,13 +19,25 @@ loki.process "fail2ban_process" {
     }
     
     stage.regex {
-        expression = "^[^[]+(?P<jail>[^]]+])\\s+(?P<action>[^\\s]+)\\s(?P<ip>[^\\s]+).*$"
+        expression - "^\\s*(?:\\S+\\s+){3}(?P<level>\\S+)\\s+(?P<jail>\\[[^]]+\\])\\s+(?P<action>[^\\s]+)\\s(?P<ip>[^\\s]+).*$"
+    }
+
+    stage.template {
+        source = "level"
+        template = "{{ ToLower .Value }}"
+    }
+
+    stage.template {
+        source = "action"
+        template = "{{ ToLower .Value }}"
     }
 
     stage.labels {
         values = {
             "jail" = "",
             "action" = "",
+            "ip" = "",
+            "level" = ""
         }
     }
 
