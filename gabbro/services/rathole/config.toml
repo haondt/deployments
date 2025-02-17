@@ -9,3 +9,7 @@ remote_public_key = "{{ rathole__server__public_key }}"
 [client.services.haondt]
 token = "{{ rathole__haondt__token }}"
 local_addr = "rathole-nginx:80"
+
+[client.services.loki]
+token = "{{ rathole__loki__token }}"
+local_addr = "loki:3100"

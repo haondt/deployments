@@ -1,0 +1,9 @@
+services:
+  alloy:
+    image: grafana/alloy:latest
+    command: run --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+    networks:
+      - rathole
+    volumes:
+      - ./alloy/config.allow:/etc/alloy/config.alloy
+      - /srv/data/fail2ban:/mnt/fail2ban:ro
