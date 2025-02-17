@@ -19,6 +19,9 @@ services:
       - ./nginx/authelia-cf-cert.key:/etc/nginx/certs/auth.haondt.dev.key
       - ./nginx/authelia-cf-cert.crt:/etc/nginx/certs/auth.haondt.dev.crt
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      NO_COLOR: yes
+
   nginx-acme:
     networks:
       - nginx
