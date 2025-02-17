@@ -45,5 +45,7 @@ access_control:
   rules:
     - domain: '*.cloud.haondt.dev'
       policy: two_factor
-    - subject: ["{{ authelia__lldap_username }}", "admin"]
+    - subject:
+      - "user:{{ authelia__lldap_username }}"
+      - "user:admin"
       policy: deny
