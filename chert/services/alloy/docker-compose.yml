@@ -5,5 +5,5 @@ services:
     networks:
       - rathole
     volumes:
-      - ./alloy/config.allow:/etc/alloy/config.alloy
+      - ./alloy/config.alloy:/etc/alloy/config.alloy
       - /srv/data/fail2ban:/mnt/fail2ban:ro
