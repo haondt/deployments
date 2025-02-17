@@ -37,7 +37,7 @@ loki.process "fail2ban_process" {
             "jail" = "",
             "action" = "",
             "ip" = "",
-            "level" = ""
+            "level" = "",
         }
     }
 
