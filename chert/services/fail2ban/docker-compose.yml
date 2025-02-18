@@ -17,5 +17,7 @@ services:
       - ./fail2ban/filter.d/rathole.conf:/config/fail2ban/filter.d/rathole.conf
       - ./fail2ban/filter.d/immich.conf:/config/fail2ban/filter.d/immich.conf
       - ./fail2ban/filter.d/authelia.conf:/config/fail2ban/filter.d/authelia.conf
+      - ./fail2ban/action.d/cloudflare-list.conf:/config/fail2ban/action.d/cloudflare-list.conf
+      - ./fail2ban/action.d/cloudflare-list.local:/config/fail2ban/action.d/cloudflare-list.local
 volumes:
   fail2ban-config:

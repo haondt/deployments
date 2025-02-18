@@ -1,0 +1,4 @@
+[Init]
+cfapitoken = {{ cf__api_token }}
+cfaccountid = {{ cf__account_id }}
+cfbanlistid = {{ cf__fail2ban_list_id }}

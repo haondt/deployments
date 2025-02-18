@@ -1,1 +1,3 @@
 - jail.local
+- action.d/cloudflare-list.conf
+- action.d/cloudflare-list.local
