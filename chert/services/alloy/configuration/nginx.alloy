@@ -20,7 +20,7 @@ loki.process "nginx_process" {
     }
 
     stage.regex {
-        expression = "^(?P<timestamp>[^ ]+)\\s+.*docker-nginx\\[\\d+\\]: nginx.\\d*\\s+\\|\\s*(?P<proxy_ip>\\S+)\\s+(?P<client_ip>\\S+)\\s+(?P<remote_user>\\S+)\\s+(?P<auth_user>\\S+)\\s+\\[[^]]+\\] "(?P<method>\\S+)(?:\\s+(?P<path>\\S+)(?:\\s+(?P<connection>\\S+))?)?[^"]*" (?P<status_code>\\d+)\\s+\\d+\\s+"(?P<referrer>[^"]+)+"\\s+"(?P<user_agent>[^"]+)+"\\s+"(?P<extra>[^"]+)+".*$"
+        expression = "^(?P<timestamp>[^ ]+)\\s+.*docker-nginx\\[\\d+\\]: nginx.\\d*\\s+\\|\\s*(?P<proxy_ip>\\S+)\\s+(?P<client_ip>\\S+)\\s+(?P<remote_user>\\S+)\\s+(?P<auth_user>\\S+)\\s+\\[[^\\]]+\\] \"(?P<method>\\S+)(?:\\s+(?P<path>\\S+)(?:\\s+(?P<connection>\\S+))?)?[^\"]*\" (?P<status_code>\\d+)\\s+\\d+\\s+\"(?P<referrer>[^\"]+)+\"\\s+\"(?P<user_agent>[^\"]+)+\"\\s+\"(?P<extra>[^\"]+)+\".*$"
     }
 
     stage.timestamp {
