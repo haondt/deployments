@@ -20,7 +20,7 @@ loki.process "fail2ban_process" {
     }
     
     stage.regex {
-        expression = "^\\s*(?:\\S+\\s+){3}(?P<level>\\S+)\\s+(?P<jail>\\[[^]]+\\])\\s+(?P<action>(?:Found)|(?:Ban)|(?:Found)|(?:Unban)|(?:Restore Ban))\\s(?P<ip>[^\\s]+).*$"
+        expression = "^\\s*(?:\\S+\\s+){3}(?P<level>\\S+)\\s+(?P<jail>\\[[^]]+\\])\\s+(?P<action>(?:Found)|(?:Ban)|(?:Found)|(?:Unban)|(?:Restore Ban)|(?:Increase Ban))\\s(?P<ip>[^\\s]+).*$"
     }
 
     stage.template {
