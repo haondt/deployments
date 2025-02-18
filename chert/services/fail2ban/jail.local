@@ -12,3 +12,11 @@ chain = DOCKER-USER
 bantime = 3600  # Ban for 1 hour
 findtime = 600  # Look back for 10 minutes
 
+[immich]
+enabled = true
+port = http,https
+logpath = /var/log/docker/nginx.log
+maxretry = 3
+chain = DOCKER-USER
+bantime = 60  # Ban for 1 hour
+findtime = 600  # Look back for 10 minutes
