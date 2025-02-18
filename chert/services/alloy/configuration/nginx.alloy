@@ -1,0 +1,48 @@
+local.file_match "nginx_files" {
+    path_targets = [
+        {"__path__" = "/var/log/docker/nginx.log"},
+    ]
+    sync_period = "5s"
+}
+
+loki.source.file "nginx_scrape" {
+    targets    = local.file_match.nginx_files.targets
+    forward_to = [loki.process.nginx_process.receiver]
+    tail_from_end = true
+}
+
+loki.process "nginx_process" {
+    stage.static_labels {
+        values = {
+            instance = "chert",
+            service_name = "nginx",
+        }
+    }
+
+    stage.regex {
+        expression = "^(?P<timestamp>[^ ]+)\\s+.*docker-nginx\\[\\d+\\]: nginx.\\d*\\s+\\|\\s*(?P<proxy_ip>\\S+)\\s+(?P<client_ip>\\S+)\\s+(?P<remote_user>\\S+)\\s+(?P<auth_user>\\S+)\\s+\\[[^]]+\\] "(?P<method>\\S+)(?:\\s+(?P<path>\\S+)(?:\\s+(?P<connection>\\S+))?)?[^"]*" (?P<status_code>\\d+)\\s+\\d+\\s+"(?P<referrer>[^"]+)+"\\s+"(?P<user_agent>[^"]+)+"\\s+"(?P<extra>[^"]+)+".*$"
+    }
+
+    stage.timestamp {
+        source = "timestamp"
+        format = "RFC3339Nano"
+    }
+
+    stage.labels {
+        values = {
+            "proxy_ip" = "",
+            "client_ip" = "",
+            "remote_user" = "",
+            "auth_user" = "",
+            "method" = "",
+            "path" = "",
+            "connection" = "",
+            "status_code" = "",
+            "referrer" = "",
+            "user_agent" = "",
+            "extra" = "",
+        }
+    }
+
+    forward_to = [loki.write.default.receiver]
+}
