@@ -21,13 +21,13 @@ loki.process "sshd_process" {
     }
 
     stage.template {
-        source = "drop"
-        template = "{{ if contains .Value \"Accepted\" }}false{{ else }}true{{ end }}"
+        source = "has_accepted"
+        template = "{{ if contains \"Accepted\" .Entry }}true{{ else }}false{{ end }}"
     }
 
     stage.drop {
-        source = "drop"
-        value = "true"
+        source = "has_accepted"
+        value = "false"
     }
     
     stage.regex {
@@ -36,7 +36,7 @@ loki.process "sshd_process" {
 
     stage.template {
         source = "level"
-        template = "{{ if contains .Value \"Accepted\" }}warn{{ else }}info{{ end }}"
+        template = "{{ if eq \"true\" .has_accepted }}warn{{ else }}info{{ end }}"
     }
 
     stage.labels {
@@ -44,6 +44,7 @@ loki.process "sshd_process" {
             "user" = "",
             "ip" = "",
             "level" = "",
+            "has_accepted" = "",
         }
     }
 
