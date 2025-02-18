@@ -1,3 +1,10 @@
+[DEFAULT]
+bantime.increment = true
+bantime.factor = 1
+# 1m, 5m, 30m, 1h, 8h, 1d, 2d, 1w, 6w
+bantime = 1m
+bantime.multipliers = 1 5 30 60 480 1440 2880 10080 60480
+
 [sshd]
 enabled = true
 chain = INPUT
@@ -7,16 +14,10 @@ port = 22
 enabled = true
 port = {{ rathole_port }}
 logpath = /var/log/docker/rathole-server.log
-maxretry = 5
 chain = DOCKER-USER
-bantime = 3600  # Ban for 1 hour
-findtime = 600  # Look back for 10 minutes
 
 [immich]
 enabled = true
 port = http,https
 logpath = /var/log/docker/nginx.log
-maxretry = 3
 chain = DOCKER-USER
-bantime = 60  # Ban for 1 hour
-findtime = 600  # Look back for 10 minutes
