@@ -21,3 +21,10 @@ enabled = true
 port = http,https
 logpath = /var/log/docker/nginx.log
 chain = DOCKER-USER
+
+[authelia]
+enabled = true
+port = http,https
+logpath = /var/log/docker/authelia.log
+maxretry = 5
+chain = DOCKER-USER

@@ -16,5 +16,6 @@ services:
       - ./fail2ban/jail.local:/config/fail2ban/jail.local
       - ./fail2ban/filter.d/rathole.conf:/config/fail2ban/filter.d/rathole.conf
       - ./fail2ban/filter.d/immich.conf:/config/fail2ban/filter.d/immich.conf
+      - ./fail2ban/filter.d/authelia.conf:/config/fail2ban/filter.d/authelia.conf
 volumes:
   fail2ban-config:
