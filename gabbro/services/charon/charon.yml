@@ -101,14 +101,3 @@ jobs:
         path: immich
     schedule:
       cron: "0 12 1,15 * 2" # 2x per month
-  test_backup:
-    source: *vaultwarden_source
-    repository:
-      password: *restic_password
-      create: false
-      backend:
-        <<: *gcs_backend
-        path: test_backup
-    schedule:
-      after: 0s
-      every: 5m
