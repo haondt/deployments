@@ -1,0 +1,24 @@
+repositories:
+  gcs_bucket: &gcs_backend
+    type: gcs_bucket
+    bucket: "{{ gcs__bucket }}"
+    credentials: /config/gcs/credentials.json
+
+jobs:
+  gsm:
+    source:
+      type: http
+      url: https://gsm.flint.local.haondt.dev/api/export-data
+      method: get
+      ext: json
+      auth:
+        bearer: "{{ gsm__api_key }}"
+    repository: 
+      password: "{{ restic__password }}"
+      backend:
+        <<: *gcs_backend
+        path: gsm
+    schedule:
+      after: 0s
+      cron: "0 0 * * *"
+
