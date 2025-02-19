@@ -15,6 +15,8 @@ repositories:
 
 restic:
   common_password: &restic_password "{{ restic__password }}"
+  small_data_max_snapshots: &small_mss 10
+  large_data_max_snapshots: &large_mss 5
 
 jobs:
   gsm:
@@ -27,6 +29,7 @@ jobs:
         bearer: "{{ gsm__api_key }}"
     repository:
       password: *restic_password
+      max_snapshots: *small_mss
       backend:
         <<: *gcs_backend
         path: gsm
@@ -36,9 +39,57 @@ jobs:
     source: *gsm_source
     repository:
       password: *restic_password
+      max_snapshots: *small_mss
       backend:
         <<: *hzsb_backend
         path: gsm
+    schedule:
+      cron: "0 6 * * 2" # weekly
+  syncthing:
+    source: &syncthing_source
+      type: local
+      path: /backup/syncthing
+    repository:
+      password: *restic_password
+      max_snapshots: *small_mss
+      backend:
+        <<: *gcs_backend
+        path: syncthing
+    schedule:
+      after: 0s
+      cron: "0 0 * * *" # daily
+  syncthing_hz:
+    source: *syncthing_source
+    repository:
+      password: *restic_password
+      max_snapshots: *small_mss
+      backend:
+        <<: *hzsb_backend
+        path: syncthing
+    schedule:
+      after: 0s
+      cron: "0 6 * * 2" # weekly
+  vaultwarden:
+    source: &vaultwarden_source
+      type: sqlite
+      db_path: /backup/vaultwarden/db.sqlite3
+    repository:
+      password: *restic_password
+      max_snapshots: *small_mss
+      backend:
+        <<: *gcs_backend
+        path: vaultwarden
+    schedule:
+      after: 0s
+      cron: "0 0 * * *" # daily
+  vaultwarden_hz:
+    source: *vaultwarden_source
+    repository:
+      password: *restic_password
+      max_snapshots: *small_mss
+      backend:
+        <<: *hzsb_backend
+        path: vaultwarden
     schedule:
       after: 0s
       cron: "0 6 * * 2" # weekly
