@@ -1,0 +1,9 @@
+services:
+  alloy:
+    image: grafana/alloy:latest
+    command: run --storage.path=/var/lib/alloy/data /etc/alloy/configuration
+    networks:
+      - loki
+    volumes:
+      - ./alloy/configuration:/etc/alloy/configuration
+      - /var/log:/var/log:ro
