@@ -39,7 +39,7 @@ loki.process "charon_v2_process" {
     }
 
     stage.regex {
-        expression = "^[^ ]+\\s+.*docker-charon-v2\\[\\d+\\]:\\s+\\[[^]]+\\]\\s+\\[\\S+\\]\\s+charon\\.restic:\\s+\\[(?P<job>[^]]+)\\]\\s+(?P<restic_command>.*)$"
+        expression = "^[^ ]+\\s+.*docker-charon-v2\\[\\d+\\]:\\s+\\[[^\\]]+\\]\\s+\\[\\S+\\]\\s+charon\\.restic:\\s+\\[(?P<job>[^\\]]+)\\]\\s+(?P<restic_command>.*)$"
     }
 
 
