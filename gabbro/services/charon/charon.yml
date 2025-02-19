@@ -100,4 +100,15 @@ jobs:
         <<: *hzsb_backend
         path: immich
     schedule:
+      cron: "0 12 1,15 * 2" # 2x per month
+  test_backup:
+    source: *vaultwarden_source
+    repository:
+      password: *restic_password
+      max_snapshots: *small_mss
+      backend:
+        <<: *gcs_backend
+        path: vaultwarden
+    schedule:
       after: 0s
+      every: 5m

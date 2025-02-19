@@ -5,7 +5,9 @@ services:
     networks:
       - rathole
       - gabbro_grafana
+      - loki
 
 networks:
   gabbro_grafana:
     external: true
+  loki:

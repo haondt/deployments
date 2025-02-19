@@ -12,3 +12,7 @@ services:
       - /mnt/celery/gabbro/immich/upload/library:/backup/immich/library
       - /mnt/celery/gabbro/immich/upload/upload:/backup/immich/upload
       - /mnt/celery/gabbro/immich/upload/profile:/backup/immich/profile
+    logging:
+      driver: syslog
+      options:
+        tag: docker-{{ COM_HAONDT_CONTAINER }}
