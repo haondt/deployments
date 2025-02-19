@@ -15,4 +15,4 @@ services:
     logging:
       driver: syslog
       options:
-        tag: docker-{{ COM_HAONDT_CONTAINER }}
+        tag: docker-charon-v2
