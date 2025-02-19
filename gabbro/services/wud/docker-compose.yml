@@ -1,0 +1,9 @@
+services:
+  wud:
+    image: getwud/wud
+    container_name: wud
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      VIRTUAL_HOST: wud.gabbro
+      VIRTUAL_PORT: 3000
