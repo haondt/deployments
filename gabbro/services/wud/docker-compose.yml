@@ -9,3 +9,6 @@ services:
     environment:
       VIRTUAL_HOST: wud.gabbro
       VIRTUAL_PORT: 3000
+networks:
+  gabbro_nginx:
+    external: true
