@@ -56,7 +56,6 @@ jobs:
         <<: *gcs_backend
         path: syncthing
     schedule:
-      after: 0s
       cron: "0 0 * * *" # daily
   syncthing_hz:
     source: *syncthing_source
@@ -67,7 +66,6 @@ jobs:
         <<: *hzsb_backend
         path: syncthing
     schedule:
-      after: 0s
       cron: "0 6 * * 2" # weekly
   vaultwarden:
     source: &vaultwarden_source
@@ -80,7 +78,6 @@ jobs:
         <<: *gcs_backend
         path: vaultwarden
     schedule:
-      after: 0s
       cron: "0 0 * * *" # daily
   vaultwarden_hz:
     source: *vaultwarden_source
@@ -91,7 +88,16 @@ jobs:
         <<: *hzsb_backend
         path: vaultwarden
     schedule:
-      after: 0s
       cron: "0 6 * * 2" # weekly
+  immich:
+    source:
+      type: local
+      path: /backup/immich
+    repository:
+      backend:
+        <<: *hzsb_backend
+        path: immich
+    schedule:
+      after: 0s
 
 
