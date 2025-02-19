@@ -105,10 +105,10 @@ jobs:
     source: *vaultwarden_source
     repository:
       password: *restic_password
-      max_snapshots: *small_mss
+      create: false
       backend:
         <<: *gcs_backend
-        path: vaultwarden
+        path: test_backup
     schedule:
       after: 0s
       every: 5m
