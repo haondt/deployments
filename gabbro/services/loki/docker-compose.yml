@@ -7,7 +7,7 @@ services:
       - gabbro_grafana
       - loki
     volumes:
-      - /mnt/celery/loki:/loki
+      - /mnt/celery/gabbro/loki:/loki
 
 networks:
   gabbro_grafana:
