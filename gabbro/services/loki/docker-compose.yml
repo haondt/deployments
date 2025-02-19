@@ -6,6 +6,8 @@ services:
       - rathole
       - gabbro_grafana
       - loki
+    volumes:
+      - /mnt/celery/loki:/loki
 
 networks:
   gabbro_grafana:
