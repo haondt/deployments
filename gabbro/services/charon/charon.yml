@@ -3,22 +3,44 @@ repositories:
     type: gcs_bucket
     bucket: "{{ gcs__bucket }}"
     credentials: /config/gcs/credentials.json
+  hzsb: &hzsb_backend
+  type: rclone
+  rclone_config:
+    type: ftp
+    host: "{{ hzsb__host }}"
+    user: "{{ hzsb__user }}"
+    pass: "{{ hzsb__password }}"
+    port: 21
+    explicit_tls: "true"
+
+restic:
+  common_password: &restic_password "{{ restic__password }}"
 
 jobs:
   gsm:
-    source:
+    source: &gsm_source
       type: http
       url: https://gsm.flint.local.haondt.dev/api/export-data
       method: get
       ext: json
       auth:
         bearer: "{{ gsm__api_key }}"
-    repository: 
-      password: "{{ restic__password }}"
+    repository:
+      password: *restic_password
       backend:
         <<: *gcs_backend
         path: gsm
     schedule:
+      cron: "0 0 * * *" # daily
+  gsm_hz:
+    source: *gsm_source
+    repository:
+      password: *restic_password
+      backend:
+        <<: *hzsb_backend
+        path: gsm
+    schedule:
       after: 0s
-      cron: "0 0 * * *"
+      cron: "0 6 * * 2" # weekly
+
 
