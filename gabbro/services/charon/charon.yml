@@ -94,10 +94,10 @@ jobs:
       type: local
       path: /backup/immich
     repository:
+      password: *restic_password
+      max_snapshots: *large_mss
       backend:
         <<: *hzsb_backend
         path: immich
     schedule:
       after: 0s
-
-
