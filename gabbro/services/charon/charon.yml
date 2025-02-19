@@ -4,14 +4,14 @@ repositories:
     bucket: "{{ gcs__bucket }}"
     credentials: /config/gcs/credentials.json
   hzsb: &hzsb_backend
-  type: rclone
-  rclone_config:
-    type: ftp
-    host: "{{ hzsb__host }}"
-    user: "{{ hzsb__user }}"
-    pass: "{{ hzsb__password }}"
-    port: 21
-    explicit_tls: "true"
+    type: rclone
+    rclone_config:
+      type: ftp
+      host: "{{ hzsb__host }}"
+      user: "{{ hzsb__user }}"
+      pass: "{{ hzsb__password }}"
+      port: 21
+      explicit_tls: "true"
 
 restic:
   common_password: &restic_password "{{ restic__password }}"
