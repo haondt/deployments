@@ -101,3 +101,27 @@ jobs:
         path: immich
     schedule:
       cron: "0 12 1,15 * 2" # 2x per month
+  grafana:
+    source:
+      type: http
+      targets:
+        access_logs: &grafana_dashboard
+          url: http://grafana:3000/api/dashboards/uid/eeddz8aq0epdsf
+          ext: json
+          auth:
+            bearer: "{{ grafana__api_key }}"
+          transform:
+            - jq: .dashboard
+        charon_ops: 
+          <<: *grafana_dashboard
+          url: http://grafana:3000/api/dashboards/uid/dedkhah824zr4d
+    repository:
+      password: *restic_password
+      max_snapshots: *small_mss
+      backend:
+        <<: *gcs_backend
+        path: grafana
+    schedule:
+      after: 0s
+      cron: "0 0 * * *" # daily
+
