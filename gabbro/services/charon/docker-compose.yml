@@ -1,6 +1,6 @@
 services:
   charon-v2:
-    image: registry.gitlab.com/haondt/cicd/registry/charon:2.0.1
+    image: registry.gitlab.com/haondt/cicd/registry/charon:2.1.0
     networks:
       - gabbro_grafana
     volumes:
