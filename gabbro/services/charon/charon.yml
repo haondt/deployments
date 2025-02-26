@@ -102,7 +102,7 @@ jobs:
     schedule:
       cron: "0 12 1,15 * 2" # 2x per month
   grafana:
-    source:
+    source: &grafana_source
       type: http
       targets:
         access_logs: &grafana_dashboard
@@ -115,6 +115,12 @@ jobs:
         charon_ops: 
           <<: *grafana_dashboard
           url: http://grafana:3000/api/dashboards/uid/dedkhah824zr4d
+        docker: 
+          <<: *grafana_dashboard
+          url: http://grafana:3000/api/dashboards/uid/e5c36297-e6f1-459b-bd72-ef478562dea1
+        docker_over_time: 
+          <<: *grafana_dashboard
+          url: http://grafana:3000/api/dashboards/uid/eb99bfbb-369f-43d9-8987-89aee5035c26
     repository:
       password: *restic_password
       max_snapshots: *small_mss
@@ -122,6 +128,15 @@ jobs:
         <<: *gcs_backend
         path: grafana
     schedule:
-      after: 0s
-      cron: "0 0 * * *" # daily
+      cron: "0 0 */2 * *" # every other day
+  grafana_hz:
+    source: *grafana_source
+    repository:
+      password: *restic_password
+      max_snapshots: *small_mss
+      backend:
+        <<: *hzsb_backend
+        path: grafana
+    schedule:
+      cron: "0 3 */2 * *" # every other day
 
