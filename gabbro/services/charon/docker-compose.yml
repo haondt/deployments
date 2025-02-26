@@ -1,6 +1,8 @@
 services:
   charon-v2:
     image: registry.gitlab.com/haondt/cicd/registry/charon:2.0.1
+    networks:
+      - gabbro_grafana
     volumes:
       - ./charon/credentials.json:/config/gcs/credentials.json
       - ./charon/charon.yml:/config/charon.yml
