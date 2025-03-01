@@ -4,7 +4,9 @@ services:
     networks:
       - rathole
     environment:
-      RATHOLE_VIRTUAL_HOST: haondt.cloud.haondt.dev
+      RATHOLE_VIRTUAL_HOST: api.haondt.dev
       RATHOLE_VIRTUAL_PORT: 8000
       RATHOLE_INCLUDE:
+      RATHOLE_VIRTUAL_PATH: /talos/webhooks/
+      RATHOLE_VIRTUAL_DEST: /
 

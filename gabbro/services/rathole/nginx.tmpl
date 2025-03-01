@@ -85,9 +85,21 @@ server {
 
 {{- range $container := . }}
 {{- $host := index $container.Env "RATHOLE_VIRTUAL_HOST" }}
-{{- $port := index $container.Env "RATHOLE_VIRTUAL_PORT" }}
+{{- $port := index $container.Env "RATHOLE_VIRTUAL_PORT" | default "80" }}
+{{- $path := index $container.Env "RATHOLE_VIRTUAL_PATH" } }
+{{- $dest := index $container.Env "RATHOLE_VIRTUAL_DEST" }}
+{{- if and (ne $path "/") (ne $path "") }}
+    {{- $path_hash := sha1sum $path }}
+{{- else }}
+    {{- $path_hash := "root" }}
+{{- end }}
+
 {{- if contains $container.Env "RATHOLE_INCLUDE" }}
-# {{ $host }}
+# {{ $host }}{{ $path | default "" }}
+upstream {{ $host }}-{{ $path_hash }} {
+    server {{ $container.Name }}:{{ $port }}
+    keepalive 2;
+}
 server {
     listen 80;
     server_name {{ $host }};
@@ -105,10 +117,24 @@ server {
     send_timeout       {{ $connection_timeout }};
     {{ end -}}
 
-    location / {
+    {{- if $path -}}
+    location {{ $path }} {
+        {{- if $dest -}}
+        proxy_pass http://{{ $container.Name }}:{{ $port }}{{ $dest }};
+        {{- else -}}
         proxy_pass http://{{ $container.Name }}:{{ $port }};
+        {{- end }}
         set $upstream_keepalive true;
     }
+    location / {
+        return 404;
+    }
+    {{- else -}}
+    location / {
+        proxy_pass http://{{ $host }}-{{ $path_hash }}
+        set $upstream_keepalive true;
+    }
+    {{- end }}
 }
 {{ end }}
 {{- end }}
