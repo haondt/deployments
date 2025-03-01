@@ -86,17 +86,16 @@ server {
 {{- range $container := . }}
 {{- $host := index $container.Env "RATHOLE_VIRTUAL_HOST" }}
 {{- $port := index $container.Env "RATHOLE_VIRTUAL_PORT" | default "80" }}
-{{- $path := index $container.Env "RATHOLE_VIRTUAL_PATH" } }
+{{- $path := index $container.Env "RATHOLE_VIRTUAL_PATH" | default "" }}
 {{- $dest := index $container.Env "RATHOLE_VIRTUAL_DEST" }}
+{{ $alias := $host }}
 {{- if and (ne $path "/") (ne $path "") }}
-    {{- $path_hash := sha1sum $path }}
-{{- else }}
-    {{- $path_hash := "root" }}
+    {{- $alias = printf "%s-%s" $host (sha1sum $path) }}
 {{- end }}
 
 {{- if contains $container.Env "RATHOLE_INCLUDE" }}
 # {{ $host }}{{ $path | default "" }}
-upstream {{ $host }}-{{ $path_hash }} {
+upstream {{ $alias }} {
     server {{ $container.Name }}:{{ $port }}
     keepalive 2;
 }
@@ -117,13 +116,9 @@ server {
     send_timeout       {{ $connection_timeout }};
     {{ end -}}
 
-    {{- if $path -}}
+    {{ if $path -}}
     location {{ $path }} {
-        {{- if $dest -}}
-        proxy_pass http://{{ $container.Name }}:{{ $port }}{{ $dest }};
-        {{- else -}}
-        proxy_pass http://{{ $container.Name }}:{{ $port }};
-        {{- end }}
+        proxy_pass http://{{ $alias }}{{ $dest }};
         set $upstream_keepalive true;
     }
     location / {
@@ -131,7 +126,7 @@ server {
     }
     {{- else -}}
     location / {
-        proxy_pass http://{{ $host }}-{{ $path_hash }}
+        proxy_pass http://{{ $alias }}{{ $dest }};
         set $upstream_keepalive true;
     }
     {{- end }}
