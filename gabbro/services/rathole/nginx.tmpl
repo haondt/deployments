@@ -96,7 +96,7 @@ server {
 {{- if contains $container.Env "RATHOLE_INCLUDE" }}
 # {{ $host }}{{ $path | default "" }}
 upstream {{ $alias }} {
-    server {{ $container.Name }}:{{ $port }}
+    server {{ $container.Name }}:{{ $port }};
 }
 server {
     listen 80;

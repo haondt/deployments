@@ -4,3 +4,5 @@
 - website-haondt-cloudflare-cert.key
 - authelia-cf-cert.crt
 - authelia-cf-cert.key
+- api-cf-cert.crt
+- api-cf-cert.key
