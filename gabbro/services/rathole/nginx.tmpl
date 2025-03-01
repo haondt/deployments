@@ -97,7 +97,6 @@ server {
 # {{ $host }}{{ $path | default "" }}
 upstream {{ $alias }} {
     server {{ $container.Name }}:{{ $port }}
-    keepalive 2;
 }
 server {
     listen 80;
