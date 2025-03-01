@@ -31,7 +31,7 @@ loki.process "sshd_process" {
     }
     
     stage.regex {
-        expression = "^.*\bAccepted\b.* for (?P<user>\\S+) from (?P<ip>\\S+).*$"
+        expression = "^.*\\bAccepted\\b.* for (?P<user>\\S+) from (?P<ip>\\S+).*$"
     }
 
     stage.template {
