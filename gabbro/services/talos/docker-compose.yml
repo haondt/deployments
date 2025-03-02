@@ -1,13 +1,27 @@
 services:
   talos:
-    build:
-      context: ./talos
+    image: registry.gitlab.com/haondt/cicd/registry/talos:0.0.1
+    user: talos
+    group_add:
+      - "{{ gabbro__docker_group }}"
     networks:
       - rathole
+      - talos
+    env_file:
+      - ./talos/talos.env
     environment:
       RATHOLE_VIRTUAL_HOST: api.haondt.dev
-      RATHOLE_VIRTUAL_PORT: 5000
+      RATHOLE_VIRTUAL_PORT: 8080
       RATHOLE_INCLUDE:
-      RATHOLE_VIRTUAL_PATH: /talos/webhooks/
+      RATHOLE_VIRTUAL_PATH: /talos/
       RATHOLE_VIRTUAL_DEST: /
+    volumes:
+      - ./talos/id_rsa:/config/id_rsa
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  talos-redis:
+    networks:
+      - talos
+    image: redis
 
+networks:
+  talos:

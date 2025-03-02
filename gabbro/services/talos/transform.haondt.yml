@@ -1,0 +1,7 @@
+- src:
+    path: talos.env.yml
+    type: yaml
+    hydrate: true
+  dst:
+    path: talos.env
+    type: env
