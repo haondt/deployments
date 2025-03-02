@@ -17,7 +17,7 @@ services:
       RATHOLE_VIRTUAL_DEST: /
     volumes:
       - ./talos/id_rsa:/config/id_rsa
-      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     logging:
       driver: syslog
       options:
