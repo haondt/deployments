@@ -8,6 +8,7 @@ services:
       - loki
     volumes:
       - /mnt/celery/gabbro/loki:/loki
+      - ./loki/config.yaml:/etc/loki/local-config.yaml
 
 networks:
   gabbro_grafana:
