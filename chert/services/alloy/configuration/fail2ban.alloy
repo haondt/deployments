@@ -33,11 +33,16 @@ loki.process "fail2ban_process" {
         template = "{{ ToLower .Value }}"
     }
 
+    stage.structured_metadata {
+        values = {
+            "ip" = "",
+        }
+    }
+
     stage.labels {
         values = {
             "jail" = "",
             "action" = "",
-            "ip" = "",
             "level" = "",
         }
     }

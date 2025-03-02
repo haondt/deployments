@@ -28,19 +28,24 @@ loki.process "nginx_process" {
         format = "RFC3339Nano"
     }
 
-    stage.labels {
+    stage.structured_metadata {
         values = {
             "proxy_ip" = "",
             "client_ip" = "",
             "remote_user" = "",
             "auth_user" = "",
-            "method" = "",
             "path" = "",
-            "connection" = "",
-            "status_code" = "",
             "referrer" = "",
             "user_agent" = "",
             "extra" = "",
+        }
+    }
+
+    stage.labels {
+        values = {
+            "method" = "",
+            "connection" = "",
+            "status_code" = "",
         }
     }
 

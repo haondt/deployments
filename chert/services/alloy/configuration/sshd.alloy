@@ -39,10 +39,15 @@ loki.process "sshd_process" {
         template = "{{ if eq \"true\" .has_accepted }}warn{{ else }}info{{ end }}"
     }
 
+    stage.structured_metadata {
+        values = {
+            "ip" = "",
+        }
+    }
+
     stage.labels {
         values = {
             "user" = "",
-            "ip" = "",
             "level" = "",
             "has_accepted" = "",
         }
