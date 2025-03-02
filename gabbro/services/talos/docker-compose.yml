@@ -18,6 +18,10 @@ services:
     volumes:
       - ./talos/id_rsa:/config/id_rsa
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    logging:
+      driver: syslog
+      options:
+        tag: docker-talos
   talos-redis:
     networks:
       - talos
