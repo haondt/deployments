@@ -42,7 +42,7 @@ loki.process "talos_process" {
 
     stage.template {
         source = "level"
-        template = "{{ if .Value | eq \"\" }}Info{{ else }}{{ .Value }}{{ end }}"
+        template = "{{ or .Value \"Info\" }}"
     }
 
     stage.timestamp {
