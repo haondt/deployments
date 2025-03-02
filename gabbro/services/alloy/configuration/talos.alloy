@@ -20,7 +20,29 @@ loki.process "talos_process" {
     }
 
     stage.regex {
-        expression = "^(?P<timestamp>[^ ]+)\\s+.*docker-talos\\[\\d+\\]:\\s+(?P<json>.*)$"
+        expression = "^(?P<syslog_timestamp>[^ ]+)\\s+.*docker-talos\\[\\d+\\]:\\s+(?P<json>.*)$"
+    }
+
+    stage.output {
+        source = "json"
+    }
+
+    stage.json {
+        expressions = {
+            timestamp = "\"@t\"",
+            message_template = "\"@mt\"",
+            message = "\"@m\"",
+            trace_id = "\"@tr\"",
+            level = "\"@l\"",
+            exception = "\"@x\"",
+            span_id = "\"@sp\"",
+            sourceContext = "SourceContext",
+        }
+    }
+
+    stage.template {
+        source = "level"
+        template = "{{ if .Value | eq \"\" }}Info{{ else }}{{ .Value }}{{ end }}"
     }
 
     stage.timestamp {
@@ -28,32 +50,22 @@ loki.process "talos_process" {
         format = "RFC3339Nano"
     }
 
-    stage.output {
-        source = json
+    stage.structured_metadata {
+        values = {
+            "message" = "",
+            "trace_id" = "",
+            "span_id" = "",
+            "exception" = "",
+        }
     }
 
-//    stage.json {
-//        expressions = {
-//            timestamp = "\"@t\""
-//            message_template = "\"@mt\""
-//            message = "\"@m\""
-//            trace_id = "\"@tr\""
-//            level = "\"@l\""
-//            exception = "\"@x\""
-//            span_id = "\"@sp\"",
-//            SourceContext = "SourceContext"
-//        }
-//    }
-
-
-//    stage.labels {
-//        values = {
-//            "level" = "",
-//            "module" = "",
-//            "job" = "",
-//            "restic_command" = "",
-//        }
-//    }
+    stage.labels {
+        values = {
+            "level" = "",
+            "message_template" = "",
+            "sourceContext" = "",
+        }
+    }
 
     forward_to = [loki.write.default.receiver]
 }
