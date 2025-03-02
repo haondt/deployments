@@ -36,7 +36,7 @@ loki.process "talos_process" {
             level = "\"@l\"",
             exception = "\"@x\"",
             span_id = "\"@sp\"",
-            sourceContext = "SourceContext",
+            source_context = "SourceContext",
         }
     }
 
@@ -63,7 +63,7 @@ loki.process "talos_process" {
         values = {
             "level" = "",
             "message_template" = "",
-            "sourceContext" = "",
+            "source_context" = "",
         }
     }
 
