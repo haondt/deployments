@@ -30,7 +30,6 @@ loki.process "nginx_process" {
 
     stage.structured_metadata {
         values = {
-            "proxy_ip" = "",
             "client_ip" = "",
             "remote_user" = "",
             "auth_user" = "",
@@ -43,6 +42,7 @@ loki.process "nginx_process" {
 
     stage.labels {
         values = {
+            "proxy_ip" = "",
             "method" = "",
             "connection" = "",
             "status_code" = "",
