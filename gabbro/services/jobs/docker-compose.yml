@@ -2,7 +2,6 @@ services:
   jobs:
     networks:
       - nginx
-      - midas
     build:
       context: jobs
     volumes:

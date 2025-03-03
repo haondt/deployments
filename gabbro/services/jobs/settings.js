@@ -123,7 +123,6 @@ module.exports = {
              * added to the end of the palette.
              * If not set, the following default order is used:
              */
-            categories: ['midas'],
         },
 
         projects: {
