@@ -9,9 +9,9 @@ services:
       - ./jobs/settings.js:/data/settings.js
       - /mnt/celery/gabbro/jobs/nodered_data/:/data
     environment:
-      VIRTUAL_HOST: "jobs.{{ LETSENCRYPT_HOST }}"
+      VIRTUAL_HOST: jobs.gabbro.local.haondt.dev
       VIRTUAL_PORT: 1880
-      LETSENCRYPT_HOST: "*.{{ LETSENCRYPT_HOST }}"
+      LETSENCRYPT_HOST: "*.gabbro.local.haondt.dev"
   jobs-redis: 
     image: redis
     networks:
