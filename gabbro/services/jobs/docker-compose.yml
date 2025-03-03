@@ -1,7 +1,8 @@
 services:
   jobs:
     networks:
-      - nginx
+      - jobs
+      - gabbro_nginx
     build:
       context: jobs
     volumes:
@@ -18,4 +19,6 @@ services:
 
 
 networks:
+  gabbro_nginx:
+    external: true
   jobs:
