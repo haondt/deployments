@@ -20,6 +20,7 @@ services:
       - ./nginx/authelia-cf-cert.crt:/etc/nginx/certs/auth.haondt.dev.crt
       - ./nginx/api-cf-cert.key:/etc/nginx/certs/api.haondt.dev.key
       - ./nginx/api-cf-cert.crt:/etc/nginx/certs/api.haondt.dev.crt
+      - ./nginx/authelia.conf:/etc/nginx/vhost.d/auth.haondt.dev
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       NO_COLOR: yes
