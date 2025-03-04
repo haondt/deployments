@@ -6,4 +6,4 @@
 - authelia-cf-cert.key
 - api-cf-cert.crt
 - api-cf-cert.key
-- authelia.conf
+- proxy.conf
