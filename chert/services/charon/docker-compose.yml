@@ -1,0 +1,11 @@
+services:
+  charon:
+    image: registry.gitlab.com/haondt/cicd/registry/charon:2.1.1
+    volumes:
+      - ./charon/credentials.json:/config/gcs/credentials.json
+      - ./charon/charon.yml:/config/charon.yml
+      - /srv/data/lldap/users.db:/backup/lldap/users.db
+    logging:
+      driver: syslog
+      options:
+        tag: docker-charon
