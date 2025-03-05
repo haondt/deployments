@@ -30,5 +30,16 @@ jobs:
         <<: *gcs_backend
         path: lldap
     schedule:
-      after: 0s
+      after: 5m
+      cron: "0 0 * * *" # daily
+  lldap_hz:
+    source: *lldap_source
+    repository:
+      password: *restic_password
+      max_snapshots: *small_mss
+      backend:
+        <<: *hzsb_backend
+        path: lldap
+    schedule:
+      after: 5m
       cron: "0 0 * * *" # daily

@@ -1,0 +1,61 @@
+local.file_match "charon_v2_files" {
+    path_targets = [
+        {"__path__" = "/var/log/docker/charon.log"},
+    ]
+    sync_period = "5s"
+}
+
+loki.source.file "charon_scrape" {
+    targets    = local.file_match.charon_files.targets
+    forward_to = [loki.process.charon_process.receiver]
+    tail_from_end = true
+}
+
+loki.process "charon_process" {
+    stage.static_labels {
+        values = {
+            instance = "chert",
+            service_name = "charon",
+        }
+    }
+
+    stage.regex {
+        expression = "^(?P<timestamp>[^ ]+)\\s+.*docker-charon\\[\\d+\\]:\\s+\\[[^]]+\\]\\s+\\[(?P<level>\\S+)\\]\\s+(?P<module>\\S+):\\s+.*$"
+    }
+
+    stage.template {
+        source = "has_level"
+        template = "{{ if .level }}true{{ else }}false{{ end }}"
+    }
+
+    stage.drop {
+        source = "has_level"
+        value = "false"
+    }
+
+    stage.timestamp {
+        source = "timestamp"
+        format = "RFC3339Nano"
+    }
+
+    stage.regex {
+        expression = "^[^ ]+\\s+.*docker-charon\\[\\d+\\]:\\s+\\[[^\\]]+\\]\\s+\\[\\S+\\]\\s+charon\\.restic:\\s+\\[(?P<job>[^\\]]+)\\]\\s+(?P<restic_command>.*)$"
+    }
+
+
+    stage.template {
+        source = "level"
+        template = "{{ ToLower .Value }}"
+    }
+
+    stage.labels {
+        values = {
+            "level" = "",
+            "module" = "",
+            "job" = "",
+            "restic_command" = "",
+        }
+    }
+
+    forward_to = [loki.write.default.receiver]
+}
