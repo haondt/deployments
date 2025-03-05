@@ -30,7 +30,6 @@ jobs:
         <<: *gcs_backend
         path: lldap
     schedule:
-      after: 5m
       cron: "0 0 * * *" # daily
   lldap_hz:
     source: *lldap_source
@@ -41,5 +40,4 @@ jobs:
         <<: *hzsb_backend
         path: lldap
     schedule:
-      after: 5m
       cron: "0 0 * * *" # daily
