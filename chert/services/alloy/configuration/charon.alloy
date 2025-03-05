@@ -1,4 +1,4 @@
-local.file_match "charon_v2_files" {
+local.file_match "charon_files" {
     path_targets = [
         {"__path__" = "/var/log/docker/charon.log"},
     ]
