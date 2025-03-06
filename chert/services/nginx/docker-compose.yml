@@ -24,7 +24,7 @@ services:
       - ./nginx/authelia.location.conf:/etc/nginx/vhost.d/auth.haondt.dev_location
       - ./nginx/proxy.conf:/etc/nginx/proxy.conf
       - ./nginx/microbin-cloud.conf:/etc/nginx/vhost.d/microbin.cloud.haondt.dev
-      - ./nginx/microbin-cloud.location.conf:/etc/nginx/vhost.d/microbin.cloud.haondt.dev_location
+      - ./nginx/microbin-cloud.location.conf:/etc/nginx/vhost.d/microbin.cloud.haondt.dev_location_override
       - ./nginx/snippets:/config/nginx/snippets
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
