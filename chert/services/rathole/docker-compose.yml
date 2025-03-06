@@ -10,10 +10,11 @@ services:
     ports:
       - "{{ rathole__server__port }}:{{ rathole__server__port}}"
     environment:
-      VIRTUAL_HOST: "*.cloud.haondt.dev,api.haondt.dev"
+      # VIRTUAL_HOST: "*.cloud.haondt.dev,api.haondt.dev"
+      VIRTUAL_HOST: "immich.cloud.haondt.dev,microbin.cloud.haondt.dev,api.haondt.dev"
       VIRTUAL_PORT: 8080
       HTTPS_METHOD: nohttp
-      LETSENCRYPT_HOST: "*.cloud.haondt.dev"
+      LETSENCRYPT_HOST: "*.cloud.haondt.dev,api.haondt.dev"
 
 networks:
   rathole:
