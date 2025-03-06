@@ -81,3 +81,10 @@ identity_providers:
           - fragment
         authorization_policy: two_factor
 
+server:
+  endpoints:
+    authz:
+      auth-request:
+        implementation: 'AuthRequest'
+
+
