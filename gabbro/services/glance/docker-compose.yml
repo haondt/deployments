@@ -6,7 +6,7 @@ services:
       - gabbro_nginx
       - glance
     volumes:
-      - ./glance/glance.yml:/app/config/glance.yml:ro
+      - ./glance/config/:/app/config:ro
     environment:
       VIRTUAL_PORT: 8080
       VIRTUAL_HOST: "glance.{{ haondt__letsencrypt_host }}"

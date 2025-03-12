@@ -1,0 +1,36 @@
+server:
+  assets-path: /app/assets
+branding:
+  hide-footer: true
+  logo-text: " "
+
+theme:
+  # Note: assets are cached by the browser, changes to the CSS file
+  # will not be reflected until the browser cache is cleared (Ctrl+F5)
+  custom-css-file: /assets/user.css
+
+pages:
+  # It's not necessary to create a new file for each page and include it, you can simply
+  # put its contents here, though multiple pages are easier to manage when separated
+  - name: Home
+    # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+    hide-desktop-navigation: true
+    columns:
+      - size: small
+        widgets:
+          - type: calendar
+            first-day-of-week: monday
+          - type: weather
+            location: Edmonton, Canada
+            units: metric # alternatively "imperial"
+            hour-format: 12h # alternatively "24h"
+            hide-location: true
+          !include: twitch.yml
+      - size: full
+        widgets:
+          !include: youtube.yml
+          - type: split-column
+            max-columns: 3
+            widgets:
+              !include: linkding.yml
+

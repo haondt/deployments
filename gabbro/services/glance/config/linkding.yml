@@ -1,0 +1,25 @@
+- &linkding
+  type: custom-api
+  title: bookmarks
+  cache: 30s
+  url: https://linkding:9090/api/bookmarks/?q=%23favorite
+  template: |
+    <div class="flex flex-wrap gap-10">
+    {{ range .JSON.Array "results" }}
+      <a class="size-h3 color-positive" href="{{ .String "url" }}">{{ .String "title" }}</a>
+    {{- end }}
+    </div>
+  headers:
+    Authorization: Bearer {{ linkding__api_key }}
+- title: plex
+  url: https://linkding:9090/api/bookmarks/?q=%23plex
+  <<: *linkding
+- title: dev tools
+  url: https://linkding:9090/api/bookmarks/?q=%23devtools
+  <<: *linkding
+- title: server tools
+  url: https://linkding:9090/api/bookmarks/?q=%23servertools
+  <<: *linkding
+- title: repositories
+  url: https://linkding:9090/api/bookmarks/?q=%23repos
+  <<: *linkding
