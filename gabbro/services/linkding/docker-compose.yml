@@ -16,3 +16,6 @@ services:
       HTTPS_METHOD: nohttp
 volumes:
   linkding-data:
+networks:
+  gabbro_nginx:
+    external: true
