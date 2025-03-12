@@ -3,6 +3,7 @@ services:
     networks:
       - jobs
       - gabbro_nginx
+      - glance
     build:
       context: jobs
     x-tl: x

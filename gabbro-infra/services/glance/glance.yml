@@ -1,0 +1,69 @@
+- name: Home
+  hide-desktop-navigation: true
+  columns:
+    - size: small
+      widgets:
+        - type: calendar
+          first-day-of-week: monday
+        - type: weather
+          location: Edmonton, Canada
+          units: metric # alternatively "imperial"
+          hour-format: 12h # alternatively "24h"
+          hide-location: true
+
+{{ twitch_yaml }}
+
+    - size: full
+      widgets:
+        - type: videos
+          channels:
+            - UCsBjURrPoezykLs9EqgamOA # Fireship
+            - UCi8C7TNs2ohrc6hnRQ5Sn2w # programmers are also human
+            - UCqVEHtQoXHmUCfJ-9smpTSg # answer in progress
+            - UChHxJaKDqH4bOs0pX3hkKnA # basically homeless
+            - UC2Xd-TjJByJyK2w1zNwY0zQ # beyond fireship
+            - UCr3cBLTYmIK9kY0F_OdFWFQ # casually explained
+            - UC2C_jShtL725hvbm1arSV9w # cgp grey
+            - UCJLZe_NoiG0hT7QCX_9vmqw # idat
+            - UC2avWDLN1EI3r1RZ_dlSxCw # integza
+            - UCuPgdqQKpq4T4zeqmTelnFg # kaptainkristian
+            - UCUHW94eEFW7hkUMVaZz4eDg # minute physics
+            - UC6IxnFzHofFJ5X2PycSMsww # xkcd's what if
+            - UCSdma21fnJzgmPodhC9SJ3g # nakeyjakey
+            - UCFhXFikryT4aFcLkLw2LBLA # nilered
+            - UCbochVIwBCzJb9I2lLGXGjQ # rhett and link
+            - UC1DTYW241WD64ah5BFWn4JA # sam o'nella
+            - UCj1VqrHhDte54oLgPG4xpuQ # stuff made here
+            - UCVk4b-svNJoeytrrlOixebQ # vimeagen
+            - UC0G7e3uCtTyKQy2vZbRaKxg # works by design
+
+        - type: split-column
+          max-columns: 3
+          widgets:
+
+            - &linkding
+              type: custom-api
+              title: bookmarks
+              cache: 30s
+              url: http://linkding:9090/api/bookmarks/?q=%23favorite
+              template: |
+                <div class="flex flex-wrap gap-10">
+                {{ range .JSON.Array "results" }}
+                  <a class="size-h3 color-positive" href="{{ .String "url" }}">{{ .String "title" }}</a>
+                {{ end }}
+                </div>
+              headers:
+                Authorization: Bearer {{ linkding__api_key }}
+            - title: plex
+              url: https://linkding:9090/api/bookmarks/?q=%23plex
+              <<: *linkding
+            - title: dev tools
+              url: https://linkding:9090/api/bookmarks/?q=%23devtools
+              <<: *linkding
+            - title: server tools
+              url: https://linkding:9090/api/bookmarks/?q=%23servertools
+              <<: *linkding
+            - title: repositories
+              url: https://linkding:9090/api/bookmarks/?q=%23repos
+              <<: *linkding
+

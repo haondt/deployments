@@ -1,0 +1,17 @@
+services:
+  glance:
+    image: docker.io/glanceapp/glance:latest@sha256:ecf8c49224cff1264fc028eea9a91cd8fb5aab39ab75c0bebd30235ef42d0cab
+    x-tl: +!
+    networks:
+      - gabbro_nginx
+      - glance
+    volumes:
+      - ./glance/glance.yml:/app/config/glance.yml:ro
+    environment:
+      VIRTUAL_PORT: 8080
+      VIRTUAL_HOST: "glance.{{ haondt__letsencrypt_host }}"
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
+      HTTPS_METHOD: nohttp
+
+networks:
+  glance:

@@ -4,7 +4,7 @@ services:
     x-tl: +!
     networks:
       - gabbro_nginx
-      # - glance
+      - glance
     volumes:
       - linkding-data:/etc/linkding/data
     env_file:
