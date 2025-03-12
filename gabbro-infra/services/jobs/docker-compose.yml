@@ -48,4 +48,3 @@ networks:
     external: true
 volumes:
   jobs-redis-insight-data:
-
