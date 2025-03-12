@@ -2,7 +2,7 @@
   type: custom-api
   title: bookmarks
   cache: 30s
-  url: https://linkding:9090/api/bookmarks/?q=%23favorite
+  url: http://linkding:9090/api/bookmarks/?q=%23favorite
   template: |
     <div class="flex flex-wrap gap-10">
     {{ range .JSON.Array "results" }}
@@ -12,14 +12,14 @@
   headers:
     Authorization: Bearer {{ linkding__api_key }}
 - title: plex
-  url: https://linkding:9090/api/bookmarks/?q=%23plex
+  url: http://linkding:9090/api/bookmarks/?q=%23plex
   <<: *linkding
 - title: dev tools
-  url: https://linkding:9090/api/bookmarks/?q=%23devtools
+  url: http://linkding:9090/api/bookmarks/?q=%23devtools
   <<: *linkding
 - title: server tools
-  url: https://linkding:9090/api/bookmarks/?q=%23servertools
+  url: http://linkding:9090/api/bookmarks/?q=%23servertools
   <<: *linkding
 - title: repositories
-  url: https://linkding:9090/api/bookmarks/?q=%23repos
+  url: http://linkding:9090/api/bookmarks/?q=%23repos
   <<: *linkding
