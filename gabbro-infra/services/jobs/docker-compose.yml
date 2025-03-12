@@ -30,7 +30,7 @@ services:
     x-tl: +!
     networks:
       - jobs
-      - nginx
+      - gabbro_nginx
     environment:
       VIRTUAL_PORT: 5540
       VIRTUAL_HOST: "jobs-redis.{{ haondt__letsencrypt_host }}"
