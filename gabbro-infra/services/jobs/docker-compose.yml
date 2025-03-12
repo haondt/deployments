@@ -11,8 +11,8 @@ services:
       - /mnt/celery/gabbro/jobs/nodered_data/:/data
     environment:
       VIRTUAL_PORT: 1880
-      VIRTUAL_HOST: "jobs.{{ LETSENCRYPT_HOST }}"
-      LETSENCRYPT_HOST: "*.{{ LETSENCRYPT_HOST }}"
+      VIRTUAL_HOST: "jobs.{{ haondt__letsencrypt_host }}"
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
       HTTPS_METHOD: nohttp
       GSM_API_KEY: "{{ jobs__gsm__api_key }}"
       GCP_HEALTHCHECK_URL: "{{ jobs__gcp__healthcheck_url }}"
@@ -33,8 +33,8 @@ services:
       - nginx
     environment:
       VIRTUAL_PORT: 5540
-      VIRTUAL_HOST: "jobs-redis.{{ LETSENCRYPT_HOST }}"
-      LETSENCRYPT_HOST: "*.{{ LETSENCRYPT_HOST }}"
+      VIRTUAL_HOST: "jobs-redis.{{ haondt__letsencrypt_host }}"
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
       HTTPS_METHOD: nohttp
     volumes:
       - jobs-redis-insight-data:/data
