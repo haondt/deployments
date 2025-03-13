@@ -1,0 +1,13 @@
+services:
+  healthchecks:
+    image: healthchecks/healthchecks:v3.9
+    x-tl: +:!!!?
+    networks:
+      - nginx
+    restart: unless-stopped
+    environment:
+      VITRUAL_PORT: 8000
+      VIRTUAL_HOST: hc.{{ haondt__host }}
+      LETSENCRYPT_HOST: hc.{{ haondt_host }}
+
+
