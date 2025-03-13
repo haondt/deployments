@@ -3,6 +3,7 @@ services:
     networks:
       - nginx
     image: nginxproxy/nginx-proxy
+    x-tl: +!
     ports:
       - 443:443
       - 80:80
@@ -25,6 +26,14 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - nginx-acmesh:/etc/acme.sh
+    environment:
+      DEFAULT_EMAIL: "{{ cloudflare__default_email }}"
+      ACME_CHALLENGE: DNS-01
+      ACMESH_DNS_API_CONFIG: |-
+        DNS_API: dns_cf
+        CF_Token: {{ cloudflare__token }}
+        CF_Zone_ID: {{ cloudflare__zone_id }}
+        CF_Account_ID: {{ cloudflare__account_id }}
 
 networks:
   nginx:
