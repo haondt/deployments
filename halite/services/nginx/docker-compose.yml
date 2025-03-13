@@ -10,8 +10,8 @@ services:
       - nginx-vhost:/etc/nginx/vhost.d
       - nginx-html:/usr/share/nginx/html
       - ./nginx/healthchecks.location.conf:/etc/nginx/vhost.d/hc.haondt.dev_location_override
-      - ./nginx/healthchecks-cloudflare-cert.crt:/etc/nginx/certs/hc.haondt.dev.crt
-      - ./nginx/healthchecks-cloudflare-cert.key:/etc/nginx/certs/hc.haondt.dev.key
+      - ./nginx/healthchecks-cf-cert.crt:/etc/nginx/certs/hc.haondt.dev.crt
+      - ./nginx/healthchecks-cf-cert.key:/etc/nginx/certs/hc.haondt.dev.key
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       NO_COLOR: yes
