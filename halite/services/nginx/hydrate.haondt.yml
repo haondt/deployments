@@ -1,0 +1,3 @@
+- healthchecks-cloudflare-cert.crt
+- healthchecks-cloudflare-cert.key
+- healthchecks.location.conf
