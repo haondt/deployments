@@ -16,9 +16,10 @@ services:
       NO_COLOR: yes
 
   nginx-acme:
+    image: nginxproxy/acme-companion
+    x-tl: +!
     networks:
       - nginx
-    image: nginxproxy/acme-companion
     volumes_from:
       - nginx
     volumes:
