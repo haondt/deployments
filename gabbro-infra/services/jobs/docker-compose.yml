@@ -15,13 +15,12 @@ services:
       VIRTUAL_HOST: "jobs.{{ haondt__letsencrypt_host }}"
       LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
       HTTPS_METHOD: nohttp
-      GSM_API_KEY: "{{ jobs__gsm__api_key }}"
-      GCP_HEALTHCHECK_URL: "{{ jobs__gcp__healthcheck_url }}"
       TWITCH_CLIENT_ID: "{{ jobs__twitch__client_id }}"
       TWITCH_CLIENT_SECRET: "{{ jobs__twitch__client_secret }}"
       TWITCH_REDIRECT_URL: "http://localhost"
       HC_PING_KEY: "{{ hc__ping_key }}"
       HC_BASE_URL: "{{ hc__base_url }}"
+      GITLAB_TOKEN: "{{ jobs__gitlab_token }}"
 
   jobs-redis: 
     image: docker.io/library/redis:latest@sha256:6aafb7f25fc93c4ff74e99cff8e85899f03901bc96e61ba12cd3c39e95503c73
