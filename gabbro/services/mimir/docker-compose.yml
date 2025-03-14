@@ -13,6 +13,8 @@ services:
     volumes:
       - ./mimir/mimir.yml:/etc/mimir/mimir.yml
       - mimir-data:/mimir
+    depends_on:
+      - mimir-minio
     environment:
       VIRTUAL_PORT: 9009
       VIRTUAL_HOST: "mimir.{{ haondt__letsencrypt_host }}"
