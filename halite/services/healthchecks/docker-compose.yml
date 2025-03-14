@@ -17,7 +17,7 @@ services:
       DEBUG: "False"
       APPRISE_ENABLED: "True"
       PING_ENDPOINT: https://hc.{{ haondt__host }}/ping/
-      # REGISTRATION_OPEN: "False"
+      REGISTRATION_OPEN: "False"
       SECRET_KEY: "{{ healthchecks__secret_key }}"
       DB: sqlite
       DB_NAME: /data/hc.sqlite
