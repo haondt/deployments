@@ -1,5 +1,5 @@
 prometheus.exporter.cadvisor "local" {
-    docker_host = "unix:///ver/run/docker.sock"
+    docker_host = "unix:///var/run/docker.sock"
 }
 
 prometheus.scrape "cadvisor_scrape" {
