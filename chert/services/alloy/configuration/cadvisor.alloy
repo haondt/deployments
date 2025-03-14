@@ -1,8 +1,8 @@
-prometheus.exporter.self "self_metrics" {
-    
+prometheus.exporter.cadvisor "local" {
+    docker_host = "unix:///ver/run/docker.sock"
 }
 
-prometheus.scrape "self_scrape" {
-    targets = prometheus.exporter.self.self_metrics.targets
+prometheus.scrape "cadvisor_scrape" {
+    targets = prometheus.exporter.cadvisor.local.targets
     forward_to = [prometheus.remote_write.mimir.receiver]
 }
