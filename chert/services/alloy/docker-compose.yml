@@ -9,6 +9,14 @@ services:
       - ./alloy/configuration:/etc/alloy/configuration
       - /srv/data/fail2ban:/mnt/fail2ban:ro
       - /var/log:/var/log:ro
+
+      # cadvisor
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /dev/disk/:/dev/disk:ro
+    privileged: true
 networks:
   alloy:
