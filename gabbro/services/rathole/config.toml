@@ -16,4 +16,4 @@ local_addr = "loki:3100"
 
 [client.services.mimir]
 token = "{{ rathole__mimir__token }}"
-local_addr = "mimir:9009"
+local_addr = "mimir:8080"
