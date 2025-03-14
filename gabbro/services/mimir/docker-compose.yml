@@ -1,0 +1,43 @@
+services:
+  mimir:
+    image: grafana/mimir:2.15.1
+    x-tl: +:.!!*
+    command:
+      - '--config.file=/etc/mimir/mimir.yml'
+    networks:
+      - rathole
+      - gabbro_grafana
+      - gabbro_nginx
+      - mimir
+      - mimir-minio
+    volumes:
+      - ./mimir/mimir.yml:/etc/mimir/mimir.yml
+      - mimir-data:/mimir
+    environment:
+      VIRTUAL_PORT: 9009
+      VIRTUAL_HOST: "mimir.{{ haondt__letsencrypt_host }}"
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
+      HTTPS_METHOD: nohttp
+
+  mimir-minio:
+    image: minio/minio
+    x-tl: +!
+    entrypoint: [""]
+    command: ["sh", "-c", "mkdir -p /data/mimir && minio server --quiet /data"]
+    networks:
+      - mimir-minio
+    volumes:
+      - minio-data:/data
+    environment:
+      MINIO_ROOT_USER: mimir
+      MINIO_ROOT_PASSWORD: mimir
+      VIRTUAL_PORT: 9000
+      VIRTUAL_HOST: "minio.{{ haondt__letsencrypt_host }}"
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
+      HTTPS_METHOD: nohttp
+
+networks:
+  mimir:
+  mimir-minio:
+volumes:
+  mimir-data:

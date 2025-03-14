@@ -13,3 +13,7 @@ local_addr = "rathole-nginx:80"
 [client.services.loki]
 token = "{{ rathole__loki__token }}"
 local_addr = "loki:3100"
+
+[client.services.mimir]
+token = "{{ rathole__mimir__token }}"
+local_addr = "mimir:9009"
