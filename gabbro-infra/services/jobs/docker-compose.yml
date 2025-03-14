@@ -4,6 +4,7 @@ services:
       - jobs
       - gabbro_nginx
       - deployments-gabbro_glance
+      - jobs-health
     build:
       context: jobs
     x-tl: x
@@ -47,5 +48,6 @@ networks:
     external: true
   deployments-gabbro_glance:
     external: true
+  jobs-health:
 volumes:
   jobs-redis-insight-data:
