@@ -4,6 +4,7 @@ services:
     command: run --storage.path=/var/lib/alloy/data /etc/alloy/configuration
     networks:
       - loki
+      - mimir
     volumes:
       - ./alloy/configuration:/etc/alloy/configuration
       - /var/log:/var/log:ro
