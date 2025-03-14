@@ -9,34 +9,16 @@ services:
       - gabbro_grafana
       - gabbro_nginx
       - mimir
-      - mimir-minio
     volumes:
       - ./mimir/mimir.yml:/etc/mimir/mimir.yml
       - mimir-data:/mimir
-    depends_on:
-      - mimir-minio
     environment:
       VIRTUAL_PORT: 8080
       VIRTUAL_HOST: "mimir.{{ haondt__letsencrypt_host }}"
       LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
       HTTPS_METHOD: nohttp
 
-  mimir-minio:
-    image: minio/minio
-    x-tl: +!
-    entrypoint: [""]
-    command: ["sh", "-c", "mkdir -p /data/mimir && minio server --quiet /data"]
-    networks:
-      - mimir-minio
-    volumes:
-      - mimir-minio-data:/data
-    environment:
-      MINIO_ROOT_USER: mimir
-      MINIO_ROOT_PASSWORD: mimirmimir
-
 networks:
   mimir:
-  mimir-minio:
 volumes:
-  mimir-minio-data:
   mimir-data:

@@ -1,23 +1,44 @@
 target: all
 
-# Configure Mimir to use Minio as object storage backend.
-common:
-  storage:
-    backend: s3
-    s3:
-      endpoint: mimir-minio:9000
-      access_key_id: mimir
-      secret_access_key: mimirmimir
-      insecure: true
-      bucket_name: mimir
+multitenancy_enabled: false
 
-# Blocks storage requires a prefix when using a common object storage bucket.
 blocks_storage:
-  storage_prefix: blocks
+  backend: filesystem
+  bucket_store:
+    sync_dir: /tmp/mimir/tsdb-sync
+  filesystem:
+    dir: /tmp/mimir/data/tsdb
   tsdb:
-    dir: /data/ingester
+    dir: /tmp/mimir/tsdb
+
+compactor:
+  data_dir: /tmp/mimir/compactor
+  sharding_ring:
+    kvstore:
+      store: memberlist
+
+distributor:
+  ring:
+    instance_addr: 127.0.0.1
+    kvstore:
+      store: memberlist
+
+ingester:
+  ring:
+    instance_addr: 127.0.0.1
+    kvstore:
+      store: memberlist
+    replication_factor: 1
+
+ruler_storage:
+  backend: filesystem
+  filesystem:
+    dir: /tmp/mimir/rules
 
 server:
-  log_level: warn
+  http_listen_port: 8080
+  log_level: error
 
-multitenancy_enabled: false
+store_gateway:
+  sharding_ring:
+    replication_factor: 1
