@@ -9,4 +9,8 @@ loki.write "default" {
     }
 }
 
-
+prometheus.remote_write "mimir" {
+    endpoint {
+        url = "http://rathole-server:9009/api/v1/push"
+    }
+}

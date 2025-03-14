@@ -4,7 +4,10 @@ services:
     command: run --storage.path=/var/lib/alloy/data /etc/alloy/configuration
     networks:
       - rathole
+      - alloy
     volumes:
       - ./alloy/configuration:/etc/alloy/configuration
       - /srv/data/fail2ban:/mnt/fail2ban:ro
       - /var/log:/var/log:ro
+networks:
+  alloy:
