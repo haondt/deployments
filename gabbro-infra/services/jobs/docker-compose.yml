@@ -4,10 +4,15 @@ services:
       - jobs
       - gabbro_nginx
       - deployments-gabbro_glance
-      - jobs-health
     build:
       context: jobs
     x-tl: x
+    healthcheck:
+      test: curl --fail http://localhost:1880/api/hc || exit 1
+      interval: 40s
+      timeout: 30s
+      retries: 3
+      start_period: 60s
     volumes:
       - ./jobs/settings.js:/data/settings.js
       - /mnt/celery/gabbro/jobs/nodered_data/:/data
@@ -48,6 +53,5 @@ networks:
     external: true
   deployments-gabbro_glance:
     external: true
-  jobs-health:
 volumes:
   jobs-redis-insight-data:
