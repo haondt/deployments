@@ -19,3 +19,5 @@ blocks_storage:
 
 server:
   log_level: warn
+
+multitenancy_enabled: false
