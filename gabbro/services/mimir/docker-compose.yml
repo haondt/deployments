@@ -43,3 +43,4 @@ networks:
   mimir-minio:
 volumes:
   mimir-minio-data:
+  mimir-data:
