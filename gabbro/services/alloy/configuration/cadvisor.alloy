@@ -1,0 +1,9 @@
+prometheus.exporter.cadvisor "local" {
+    docker_host = "unix:///var/run/docker.sock"
+    docker_only = true
+}
+
+prometheus.scrape "cadvisor_scrape" {
+    targets = prometheus.exporter.cadvisor.local.targets
+    forward_to = [prometheus.remote_write.mimir.receiver]
+}

@@ -4,6 +4,8 @@ services:
     labels:
       com.gabbro.host: gabbro
       com.gabbro.service: "{{ COM_HAONDT_CONTAINER }}"
+      dev.haondt.host: gabbro
+      dev.haondt.service: "{{ COM_HAONDT_CONTAINER }}"
     volumes:
       - /etc/localtime:/etc/localtime:ro
 

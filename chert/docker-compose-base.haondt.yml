@@ -1,6 +1,9 @@
 services:
   {{ COM_HAONDT_CONTAINER }}:
     container_name: "{{ COM_HAONDT_CONTAINER }}"
+    labels:
+      dev.haondt.host: chert
+      dev.haondt.service: "{{ COM_HAONDT_CONTAINER }}"
     logging:
       driver: syslog
       options:
