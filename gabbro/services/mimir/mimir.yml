@@ -37,7 +37,7 @@ ruler_storage:
 
 server:
   http_listen_port: 8080
-  log_level: error
+  log_level: info
 
 store_gateway:
   sharding_ring:
