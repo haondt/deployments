@@ -5,5 +5,27 @@ prometheus.exporter.cadvisor "local" {
 
 prometheus.scrape "cadvisor_scrape" {
     targets = prometheus.exporter.cadvisor.local.targets
+    forward_to = [prometheus.relabel.cadvisor.receiver]
+}
+
+prometheus.relabel "cadvisor" {
     forward_to = [prometheus.remote_write.mimir.receiver]
+
+    rule {
+        action = "replace"
+        source_labels = ["container_label_com_docker_compose_project"]
+        target_label = "container_label_dev_haondt_project"
+    }
+
+    rule {
+        action = "replace"
+        regex = "container_label_(.*)"
+        target_label = "$1"
+    }
+
+    rule {
+        action = "labelkeep"
+        regex = "dev_haondt_.*"
+    }
+
 }
