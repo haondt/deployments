@@ -5,6 +5,7 @@ services:
     networks:
       - loki
       - mimir
+      - alloy
     volumes:
       - ./alloy/configuration:/etc/alloy/configuration
       - /var/log:/var/log:ro
@@ -17,3 +18,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /dev/disk/:/dev/disk:ro
     privileged: true
+
+networks:
+  alloy:

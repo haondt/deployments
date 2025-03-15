@@ -39,7 +39,7 @@ prometheus.relabel "cadvisor" {
 
     rule {
         action = "labeldrop"
-        regex = "container_label_(maintainter|authors)"
+        regex = "container_label_(maintainer)|(authors)"
     }
 
     rule {

@@ -1,0 +1,12 @@
+services:
+  docker_slim_exporter:
+    image: haumea/docker_slim_exporter:latest
+    x-tl: +!
+    networks:
+      - alloy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      INCLUDE_STOPPED: true
+      DISABLE_DEFAULT_METRICS: true
+      INCLUDE_LABELS: true
