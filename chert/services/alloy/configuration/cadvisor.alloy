@@ -17,4 +17,11 @@ prometheus.relabel "cadvisor" {
         target_label = "container_label_dev_haondt_project"
     }
 
+    rule {
+        action = "replace"
+        regex = "container_label_(.*)"
+        target_label = "$1"
+    }
+
+
 }
