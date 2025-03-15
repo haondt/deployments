@@ -23,5 +23,9 @@ prometheus.relabel "cadvisor" {
         target_label = "$1"
     }
 
+    rule {
+        action = "labelkeep"
+        regex = "dev_haondt_.*"
+    }
 
 }
