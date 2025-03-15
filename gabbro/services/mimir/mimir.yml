@@ -42,6 +42,3 @@ server:
 store_gateway:
   sharding_ring:
     replication_factor: 1
-
-validation:
-  max-label-names-per-series: 50
