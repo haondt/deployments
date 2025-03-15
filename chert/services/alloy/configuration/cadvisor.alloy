@@ -18,8 +18,13 @@ prometheus.relabel "cadvisor" {
     }
 
     rule {
-        action = "labelkeep"
-        regex = "container_label_(dev_haondt_.*)"
+        action = "labeldrop"
+        regex = "container_label_com_docker_compose_.*"
+    }
+
+    rule {
+        action = "labeldrop"
+        regex = "container_label_org_opencontainers_image_.*"
     }
 
 }
