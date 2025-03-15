@@ -42,4 +42,9 @@ prometheus.relabel "cadvisor" {
         regex = "container_label_maintainter"
     }
 
+    rule {
+        action = "labeldrop"
+        regex = "container_label_com_gabbro_.*"
+    }
+
 }
