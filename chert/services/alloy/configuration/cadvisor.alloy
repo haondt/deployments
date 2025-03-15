@@ -27,4 +27,19 @@ prometheus.relabel "cadvisor" {
         regex = "container_label_org_opencontainers_image_.*"
     }
 
+    rule {
+        action = "labeldrop"
+        regex = "container_label_org_label_schema_.*"
+    }
+
+    rule {
+        action = "labeldrop"
+        regex = "container_label_build_version"
+    }
+
+    rule {
+        action = "labeldrop"
+        regex = "container_label_maintainter"
+    }
+
 }
