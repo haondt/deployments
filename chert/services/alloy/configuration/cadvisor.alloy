@@ -25,7 +25,7 @@ prometheus.relabel "cadvisor" {
 
     rule {
         action = "labelkeep"
-        regex = "dev_haondt_.*"
+        regex = "(dev_haondt_.*)"
     }
 
 }
