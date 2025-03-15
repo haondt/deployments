@@ -1,8 +1,3 @@
-prometheus.exporter.cadvisor "local" {
-    docker_host = "unix:///var/run/docker.sock"
-    docker_only = true
-}
-
 prometheus.scrape "docker_slim_scraper" {
     targets = [{"__address__" = "docker_slim_exporter:9090"}]
     forward_to = [prometheus.relabel.docker_slim.receiver]
