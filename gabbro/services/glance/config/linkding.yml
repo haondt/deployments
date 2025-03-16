@@ -6,7 +6,7 @@
   template: |
     <div class="flex flex-wrap gap-10">
     {{ range .JSON.Array "results" }}
-      <a class="size-h3 color-positive" href="{{ .String "url" }}">{{ .String "title" }}</a>
+      <a class="size-h3 color-primary" href="{{ .String "url" }}">{{ .String "title" }}</a>
     {{- end }}
     </div>
   headers:
