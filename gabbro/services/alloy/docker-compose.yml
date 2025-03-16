@@ -1,6 +1,7 @@
 services:
   alloy:
     image: grafana/alloy:latest
+    x-tl: +!
     command: run --storage.path=/var/lib/alloy/data /etc/alloy/configuration
     networks:
       - loki
@@ -17,6 +18,11 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /dev/disk/:/dev/disk:ro
+
+      # node_exporter
+      - /proc:/proc:ro
+      - /etc:/etc:ro
+
     privileged: true
 
 networks:

@@ -1,0 +1,11 @@
+prometheus.exporter.unix "unix_exporter" {
+    set_collectors = [
+        "zfs",
+        "cpu",
+    ]
+}
+
+prometheus.scrape "unix_scrape" {
+    targets = prometheus.exporter.unix.unix_exporter.targets
+    forward_to = [prometheus.remote_write.mimir.receiver]
+}
