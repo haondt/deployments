@@ -23,3 +23,6 @@
 - title: repositories
   url: http://linkding:9090/api/bookmarks/?q=%23repos
   <<: *linkding
+- title: ai
+  url: http://linkding:9090/api/bookmarks/?q=%23ai
+  <<: *linkding
