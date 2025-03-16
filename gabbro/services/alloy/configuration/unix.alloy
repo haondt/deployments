@@ -14,5 +14,15 @@ prometheus.exporter.unix "unix_exporter" {
 
 prometheus.scrape "unix_scrape" {
     targets = prometheus.exporter.unix.unix_exporter.targets
+    forward_to = [prometheus.relabel.add_instance_label.receiver]
+}
+
+prometheus.relabel "add_instance_label" {
+    rule {
+        action = "replace"
+        target_label = "dev_haondt_instance"
+        replacement = "gabbro"
+    }
+
     forward_to = [prometheus.remote_write.mimir.receiver]
 }
