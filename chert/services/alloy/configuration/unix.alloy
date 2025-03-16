@@ -5,7 +5,7 @@ prometheus.exporter.unix "unix_exporter" {
         "filesystem",
         "meminfo",
         "stat",
-        "boottime"
+        "boottime",
     ]
 
     procfs_path = "/rootfs/proc"
