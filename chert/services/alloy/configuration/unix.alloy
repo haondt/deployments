@@ -1,6 +1,5 @@
 prometheus.exporter.unix "unix_exporter" {
     set_collectors = [
-        "zfs",
         "cpu",
         "diskstats",
         "filesystem",
@@ -23,7 +22,7 @@ prometheus.relabel "add_instance_label" {
     rule {
         action = "replace"
         target_label = "dev_haondt_instance"
-        replacement = "gabbro"
+        replacement = "chert"
     }
 
     forward_to = [prometheus.remote_write.mimir.receiver]
