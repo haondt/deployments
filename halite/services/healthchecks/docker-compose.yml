@@ -1,26 +1,20 @@
 services:
   healthchecks:
-    image: healthchecks/healthchecks:v3.9
-    x-tl: +:!!!?
-    networks:
-      - nginx
+    build:
+      context: healthchecks
+    x-tl: x
     restart: unless-stopped
     volumes:
       - healthchecks-data:/data
     environment:
-      VIRTUAL_PORT: 8000
+      VIRTUAL_PORT: 9090
       VIRTUAL_HOST: hc.{{ haondt__host }}
       LETSENCRYPT_HOST: hc.{{ haondt__host }}
       HTTPS_METHOD: nohttp
-      ALLOWED_HOSTS: hc.{{ haondt__host }}
-      SITE_ROOT: https://hc.{{ haondt__host }}
-      DEBUG: "False"
-      APPRISE_ENABLED: "True"
-      PING_ENDPOINT: https://hc.{{ haondt__host }}/ping/
-      REGISTRATION_OPEN: "False"
-      SECRET_KEY: "{{ healthchecks__secret_key }}"
-      DB: sqlite
-      DB_NAME: /data/hc.sqlite
+
+      DISCORD_WEBHOOK_URL: "{{ discord__webhook_url }}"
+      PING_TIMEOUT_MS: 5000
+      PING_KEY: "{{ healthchecks__ping_key }}"
 
 volumes:
   healthchecks-data:
