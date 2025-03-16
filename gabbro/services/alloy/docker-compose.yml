@@ -21,7 +21,6 @@ services:
 
       # node_exporter
       - /proc:/proc:ro
-      - /etc:/etc:ro
 
     privileged: true
 
