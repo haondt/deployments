@@ -2,7 +2,14 @@ prometheus.exporter.unix "unix_exporter" {
     set_collectors = [
         "zfs",
         "cpu",
+        "diskstats",
+        "filesystem",
+        "meminfo",
     ]
+
+    procfs_path = "/rootfs/proc"
+    rootfs_path = "/rootfs"
+    sysfs_path = "/sys"
 }
 
 prometheus.scrape "unix_scrape" {

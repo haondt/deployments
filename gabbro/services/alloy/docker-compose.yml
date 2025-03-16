@@ -19,9 +19,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /dev/disk/:/dev/disk:ro
 
-      # node_exporter
-      - /proc:/proc:ro
-
     privileged: true
 
 networks:
