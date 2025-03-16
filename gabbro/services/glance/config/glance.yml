@@ -26,4 +26,5 @@ pages:
             max-columns: 3
             widgets:
               !include: linkding.yml
+          !include: serverstates.yml
 
