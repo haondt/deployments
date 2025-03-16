@@ -4,6 +4,7 @@ services:
       - jobs
       - gabbro_nginx
       - deployments-gabbro_glance
+      - deployments-gabbro_mimir
     build:
       context: jobs
     x-tl: x
@@ -59,6 +60,8 @@ networks:
   gabbro_nginx:
     external: true
   deployments-gabbro_glance:
+    external: true
+  deployments-gabbro_mimir:
     external: true
 volumes:
   jobs-redis-insight-data:
