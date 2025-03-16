@@ -10,8 +10,8 @@ services:
     x-tl: x
     healthcheck:
       test: curl --fail http://localhost:1880/hc || exit 1
-      interval: 40s
-      timeout: 30s
+      interval: 10s
+      timeout: 1s
       retries: 3
       start_period: 60s
     volumes:
