@@ -21,4 +21,4 @@ storage:
 
 compactor:
   compaction:
-    block_retention: 14d
+    block_retention: 336h # 14d
