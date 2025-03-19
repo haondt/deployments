@@ -14,3 +14,19 @@ prometheus.remote_write "mimir" {
         url = "http://mimir:8080/api/v1/push"
     }
 }
+
+otelcol.processor.batch "default" {
+    output {
+        traces = [otelcol.exporter.otlp.tempo.input]
+    }
+}
+
+otelcol.exporter.otlp "tempo" {
+  client {
+    endpoint = "tempo:4317"
+    tls { insecure = true }
+    compression = "gzip"
+  }
+}
+
+

@@ -1,6 +1,6 @@
 services:
   talos:
-    image: registry.gitlab.com/haondt/cicd/registry/talos:0.0.6
+    image: registry.gitlab.com/haondt/cicd/registry/talos:0.0.7
     user: talos
     group_add:
       - "{{ gabbro__docker_group }}"
@@ -22,6 +22,7 @@ services:
       driver: syslog
       options:
         tag: docker-talos
+
   talos-redis:
     networks:
       - talos

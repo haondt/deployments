@@ -69,3 +69,30 @@ loki.process "talos_process" {
 
     forward_to = [loki.write.default.receiver]
 }
+
+otelcol.receiver.otlp "talos" {
+  grpc {
+      endpoint = "0.0.0.0:4317"
+  }
+  output {
+        traces = [otelcol.processor.tail_sampling.talos.input]
+  }
+}
+
+otelcol.processor.tail_sampling "talos" {
+    policy {
+        name = "drop_verbose_traces"
+        type = "string_attribute"
+        string_attribute {
+            key = "Level"
+            values = ["Verbose",]
+            invert_match = true
+        }
+    }
+
+    output {
+        traces = [otelcol.processor.batch.default.input]
+    }
+}
+
+

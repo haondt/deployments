@@ -1,0 +1,28 @@
+services:
+  tempo-init:
+    image: &tempoImage grafana/tempo:latest
+    container_name: tempo-init
+    user: root
+    entrypoint:
+      - "chown"
+      - "10001:10001"
+      - "/var/tempo"
+    volumes:
+      - /mnt/celery/gabbro/tempo:/var/tempo
+
+  tempo:
+    image: *tempoImage
+    container_name: tempo
+    networks:
+      - gabbro_grafana
+      - tempo
+    command: -config.file=/etc/tempo.yaml
+    volumes:
+      - ./tempo/config.yaml:/etc/tempo.yaml
+      - /mnt/celery/gabbro/tempo:/var/tempo
+    depends_on:
+      - tempo-init
+
+networks:
+  tempo:
+
