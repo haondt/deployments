@@ -1,6 +1,6 @@
 services:
   talos:
-    image: registry.gitlab.com/haondt/cicd/registry/talos:0.0.7
+    image: registry.gitlab.com/haondt/cicd/registry/talos:0.0.8
     user: talos
     group_add:
       - "{{ gabbro__docker_group }}"
