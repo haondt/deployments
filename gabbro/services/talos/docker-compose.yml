@@ -21,7 +21,7 @@ services:
       - type: tmpfs
         target: /var/talos/git
         tmpfs:
-          mode: 777
+          mode: 0777
           size: 64M
     logging:
       driver: syslog
