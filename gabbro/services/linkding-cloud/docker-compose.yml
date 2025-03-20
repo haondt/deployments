@@ -1,21 +1,34 @@
 services:
-  linkding:
-    image: docker.io/sissbruecker/linkding:latest@sha256:f663de3765a89c96af5381e38cfbf8a75cabbb257716653a52163000421ca45a
-    x-tl: +!
-    networks:
-      - gabbro_nginx
-      - glance
+  linkding-cloud-init:
+    image: &linkding-cloud-image docker.io/sissbruecker/linkding:latest@sha256:f663de3765a89c96af5381e38cfbf8a75cabbb257716653a52163000421ca45a
+    x-tl: x
+    command: >
+      sh -c '
+        if [ ! -f /etc/linkding/data/.initialized ]; then
+          python manage.py createsuperuser --noinput --username="{{ superuser__name }}" --email="{{ superuser__email }}" \
+          && touch /etc/linkding/data/.initialized;
+        fi'
     volumes:
-      - linkding-data:/etc/linkding/data
+      - linkding-cloud-data:/etc/linkding/data
     env_file:
-      - ./linkding/linkding.env
+      - ./linkding-cloud/linkding.env
+
+  linkding-cloud:
+    image: *linkding-cloud-image
+    x-tl: x
+    networks:
+      - rathole
+    volumes:
+      - linkding-cloud-data:/etc/linkding/data
+    env_file:
+      - ./linkding-cloud/linkding.env
+    depends_on:
+      - linkding-cloud-init
+    ports:
+      - 9090:9090
     environment:
-      VIRTUAL_PORT: 9090
-      VIRTUAL_HOST: "linkding.{{ haondt__letsencrypt_host }}"
-      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
-      HTTPS_METHOD: nohttp
+      RATHOLE_INCLUDE:
+      RATHOLE_VIRTUAL_PORT: 9090
+      RATHOLE_VIRTUAL_HOST: linkding.cloud.haondt.dev
 volumes:
-  linkding-data:
-networks:
-  gabbro_nginx:
-    external: true
+  linkding-cloud-data:

@@ -10,9 +10,10 @@ services:
     env_file:
       - ./linkding/linkding.env
     environment:
-      RATHOLE_INCLUDE:
-      RATHOLE_VIRTUAL_PORT: 9090
-      RATHOLE_VIRTUAL_HOST: linkding.cloud.haondt.dev
+      VIRTUAL_PORT: 9090
+      VIRTUAL_HOST: "linkding.{{ haondt__letsencrypt_host }}"
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
+      HTTPS_METHOD: nohttp
 volumes:
   linkding-data:
 networks:
