@@ -24,8 +24,6 @@ services:
       - ./linkding-cloud/linkding.env
     depends_on:
       - linkding-cloud-init
-    ports:
-      - 9090:9090
     environment:
       RATHOLE_INCLUDE:
       RATHOLE_VIRTUAL_PORT: 9090
