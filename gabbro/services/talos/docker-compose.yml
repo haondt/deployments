@@ -1,6 +1,6 @@
 services:
   talos:
-    image: registry.gitlab.com/haondt/cicd/registry/talos:0.0.8
+    image: registry.gitlab.com/haondt/cicd/registry/talos:0.0.9
     user: talos
     group_add:
       - "{{ gabbro__docker_group }}"
@@ -18,6 +18,11 @@ services:
     volumes:
       - ./talos/id_rsa:/config/id_rsa
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - type: tmpfs
+        target: /var/talos/git
+        tmpfs:
+          mode: 777
+          size: 64M
     logging:
       driver: syslog
       options:
