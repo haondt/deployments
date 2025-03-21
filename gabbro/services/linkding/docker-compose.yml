@@ -14,7 +14,6 @@ services:
       VIRTUAL_HOST: "linkding.{{ haondt__letsencrypt_host }}"
       LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
       HTTPS_METHOD: nohttp
-      LD_ENABLE_AUTH_PROXY: "True"
 volumes:
   linkding-data:
 networks:
