@@ -1,6 +1,6 @@
 services:
   docker_slim_exporter:
-    image: haumea/docker_slim_exporter:latest
+    image: haumea/docker_slim_exporter:0.0.2
     x-tl: +!
     networks:
       - alloy
