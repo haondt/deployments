@@ -5,14 +5,14 @@ multitenancy_enabled: false
 blocks_storage:
   backend: filesystem
   bucket_store:
-    sync_dir: /tmp/mimir/tsdb-sync
+    sync_dir: /mimir/tsdb-sync
   filesystem:
-    dir: /tmp/mimir/data/tsdb
+    dir: /mimir/data/tsdb
   tsdb:
-    dir: /tmp/mimir/tsdb
+    dir: /mimir/tsdb
 
 compactor:
-  data_dir: /tmp/mimir/compactor
+  data_dir: /mimir/compactor
   sharding_ring:
     kvstore:
       store: memberlist
@@ -35,7 +35,7 @@ ingester:
 ruler_storage:
   backend: filesystem
   filesystem:
-    dir: /tmp/mimir/rules
+    dir: /mimir/rules
 
 server:
   http_listen_port: 8080
