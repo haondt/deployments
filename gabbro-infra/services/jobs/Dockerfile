@@ -1,4 +1,5 @@
-FROM nodered/node-red:4.0.9@sha256:7a3e18f29578feb271bb8daab4379e4ebd355b87ea64b699ce74e6ff49d907aa
+# FROM nodered/node-red:4.0.9@sha256:7a3e18f29578feb271bb8daab4379e4ebd355b87ea64b699ce74e6ff49d907aa
+FROM nodered/node-red:4.0.9-minimal
 
 WORKDIR /usr/src/node-red
 
