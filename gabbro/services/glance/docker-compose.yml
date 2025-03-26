@@ -13,13 +13,6 @@ services:
       VIRTUAL_HOST: "glance.{{ haondt__letsencrypt_host }}"
       LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
       HTTPS_METHOD: nohttp
-  glance-linktiles-proxy:
-    image: nginx:mainline-alpine
-    x-tl: +!
-    networks:
-      - glance
-    volumes:
-      - ./glance/linktiles-nginx.conf:/etc/nginx/nginx.conf
 
 networks:
   glance:

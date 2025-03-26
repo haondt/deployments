@@ -1,6 +1,6 @@
 services:
   linktiles:
-    image: haumea/linktiles:latest
+    image: haumea/linktiles:0.0.2
     x-tl: x
     networks:
       - linktiles
