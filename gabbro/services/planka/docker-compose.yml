@@ -16,7 +16,7 @@ services:
       HTTPS_METHOD: nohttp
       BASE_URL: "planka.{{ haondt__letsencrypt_host }}"
       DATABASE_URL: postgresql://postgres@planka-postgres/planka
-      SECRET_KEY: {{ planka__secret_key }}
+      SECRET_KEY: "{{ planka__secret_key }}"
 
       # - TRUST_PROXY=0
       # - TOKEN_EXPIRES_IN=365 # In days
