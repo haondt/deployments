@@ -1,2 +1,3 @@
 - config/linkding.yml
 - config/twitch.yml
+- linktiles-nginx.conf
