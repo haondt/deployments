@@ -1,3 +1,5 @@
 - type: extension
-  url: http://glance-linktiles-proxy/integrations/glance
+  url: https://linktiles.cloud.haondt.dev
+  headers:
+    Authorization: "Bearer {{ linktiles__glance_token }}"
   allow-potentially-dangerous-html: true
