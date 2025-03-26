@@ -25,6 +25,8 @@ services:
       - ./nginx/proxy.conf:/etc/nginx/proxy.conf
       - ./nginx/microbin-cloud.conf:/etc/nginx/vhost.d/microbin.cloud.haondt.dev
       - ./nginx/microbin-cloud.location.conf:/etc/nginx/vhost.d/microbin.cloud.haondt.dev_location_override
+      - ./nginx/linktiles.conf:/etc/nginx/vhost.d/linktiles.cloud.haondt.dev
+      - ./nginx/linktiles.location.conf:/etc/nginx/vhost.d/linktiles.cloud.haondt.dev_location_override
       - ./nginx/snippets:/config/nginx/snippets
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
