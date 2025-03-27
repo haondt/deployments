@@ -1,6 +1,6 @@
 services:
   website-haondt:
-    image: registry.gitlab.com/haondt/cicd/registry/website:3.0.2
+    image: registry.gitlab.com/haondt/cicd/registry/website:3.0.3
     networks:
       - nginx
     environment:
