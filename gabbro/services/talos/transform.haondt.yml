@@ -5,3 +5,10 @@
   dst:
     path: talos.env
     type: env
+- src:
+    path: talos-beta.env.yml
+    type: yaml
+    hydrate: true
+  dst:
+    path: talos-beta.env
+    type: env

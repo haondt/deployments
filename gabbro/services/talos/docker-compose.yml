@@ -27,6 +27,33 @@ services:
       driver: syslog
       options:
         tag: docker-talos
+  talos-beta:
+    image: registry.gitlab.com/haondt/cicd/registry/talos:main-ef80bec1
+    user: talos
+    group_add:
+      - "{{ gabbro__docker_group }}"
+    networks:
+      - gabbro_nginx
+      - talos
+    env_file:
+      - ./talos/talos-beta.env
+    environment:
+      VIRTUAL_PORT: 8080
+      VIRTUAL_HOST: "talos-beta.{{ haondt__letsencrypt_host }}"
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
+      HTTPS_METHOD: nohttp
+    volumes:
+      - ./talos/id_rsa:/config/id_rsa
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - type: tmpfs
+        target: /var/talos/git
+        tmpfs:
+          mode: 0777
+          size: 64M
+    logging:
+      driver: syslog
+      options:
+        tag: docker-talos-beta
 
   talos-redis:
     networks:
