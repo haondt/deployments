@@ -41,6 +41,7 @@ services:
       timeout: 30s
       retries: 3
       start_period: 60s
+
   jobs-redis-insight:
     image: docker.io/redis/redisinsight:latest@sha256:e3af8fca1272243632adba175af4db0c439618f83649d8a12bbf617d3c9ff284
     x-tl: +!

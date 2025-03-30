@@ -28,7 +28,7 @@ services:
       options:
         tag: docker-talos
   talos-beta:
-    image: registry.gitlab.com/haondt/cicd/registry/talos:main-ef80bec1
+    image: registry.gitlab.com/haondt/cicd/registry/talos:main-135a1832
     user: talos
     group_add:
       - "{{ gabbro__docker_group }}"
@@ -54,6 +54,19 @@ services:
       driver: syslog
       options:
         tag: docker-talos-beta
+  talos-redis-insight:
+    image: docker.io/redis/redisinsight:latest@sha256:e3af8fca1272243632adba175af4db0c439618f83649d8a12bbf617d3c9ff284
+    x-tl: +!
+    networks:
+      - talos
+      - gabbro_nginx
+    environment:
+      VIRTUAL_PORT: 5540
+      VIRTUAL_HOST: "talos-redis.{{ haondt__letsencrypt_host }}"
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
+      HTTPS_METHOD: nohttp
+    volumes:
+      - talos-redis-insight-data:/data
 
   talos-redis:
     networks:
@@ -62,4 +75,6 @@ services:
 
 networks:
   talos:
+volumes:
+  talos-redis-insight-data:
 
