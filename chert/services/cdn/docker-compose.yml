@@ -1,0 +1,15 @@
+services:
+  cdn-cache:
+    image: docker.io/library/nginx:mainline-alpine
+    x-tl: +!
+    volumes:
+      - ./cdn/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /mnt/celery/gabbro/cdn/cache_data/:/var/cache/nginx
+    networks:
+      - nginx
+    environment:
+      VIRTUAL_HOST: cdn.haondt.dev
+      VIRTUAL_PORT: 80
+      LETSENCRYPT_HOST: cdn.haondt.dev
+      HTTPS_METHOD: nohttp
+
