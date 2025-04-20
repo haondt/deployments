@@ -8,7 +8,7 @@ theme:
   # will not be reflected until the browser cache is cleared (Ctrl+F5)
   custom-css-file: /assets/user.css
   primary-color: "0 74 82"
-  positive-color: "121 50 70"
+  positive-color: "103 30 55"
   negative-color: "4 62 55"
   background-color: "220 13 9"
 
