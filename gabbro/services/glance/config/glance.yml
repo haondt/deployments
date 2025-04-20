@@ -7,6 +7,10 @@ theme:
   # Note: assets are cached by the browser, changes to the CSS file
   # will not be reflected until the browser cache is cleared (Ctrl+F5)
   custom-css-file: /assets/user.css
+  primary-color: "0 74 82"
+  positive-color: "121 50 70"
+  negative-color: "4 62 55"
+  background-color: "220 13 9"
 
 pages:
   # It's not necessary to create a new file for each page and include it, you can simply
