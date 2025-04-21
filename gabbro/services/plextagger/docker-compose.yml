@@ -5,7 +5,7 @@ services:
     networks:
       - gabbro_plex
     environment:
-      PLEX_URL: plex
+      PLEX_URL: http://plex:32400
       PLEX_TOKEN: "{{ plex_token }}"
       TMDB_API_KEY: "{{ tmdb_api_key }}"
       SECTION_BATCH_SIZE: "25"
