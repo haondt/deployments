@@ -11,7 +11,7 @@ services:
       PLEX_TOKEN: "{{ plex_token }}"
       TMDB_API_KEY: "{{ tmdb_api_key }}"
       SECTION_BATCH_SIZE: "25"
-      SCHEDULE_MINUTES: "1"
+      SCHEDULE_MINUTES: "60"
       DB_PATH: /data
 
 networks:
