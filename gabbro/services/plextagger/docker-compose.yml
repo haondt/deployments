@@ -1,0 +1,16 @@
+services:
+  plextagger:
+    image: registry.gitlab.com/haondt/cicd/registry/plextagger:0.0.1
+    x-tl: x
+    networks:
+      - gabbro_plex
+    environment:
+      PLEX_URL: plex
+      PLEX_TOKEN: "{{ plex_token }}"
+      TMDB_API_KEY: "{{ tmdb_api_key }}"
+      SECTION_BATCH_SIZE: "25"
+      SCHEDULE_MINUTES: "1"
+
+networks:
+  gabbro_plex:
+    external: true
