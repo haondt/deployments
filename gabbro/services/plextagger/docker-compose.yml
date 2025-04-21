@@ -1,15 +1,18 @@
 services:
   plextagger:
-    image: registry.gitlab.com/haondt/cicd/registry/plextagger:0.0.1
+    image: registry.gitlab.com/haondt/cicd/registry/plextagger:0.0.2
     x-tl: x
     networks:
       - gabbro_plex
+    volumes:
+      - /mnt/celery/gabbro/plextagger:/data
     environment:
       PLEX_URL: http://plex:32400
       PLEX_TOKEN: "{{ plex_token }}"
       TMDB_API_KEY: "{{ tmdb_api_key }}"
       SECTION_BATCH_SIZE: "25"
       SCHEDULE_MINUTES: "1"
+      DB_PATH: /data
 
 networks:
   gabbro_plex:
