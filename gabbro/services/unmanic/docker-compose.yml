@@ -3,6 +3,10 @@ services:
     container_name: unmanic
     image: josh5/unmanic:latest
     x-tl: +!
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
     networks:
       - gabbro_nginx
     environment:
