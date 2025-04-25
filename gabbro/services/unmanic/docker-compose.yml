@@ -1,0 +1,17 @@
+services:
+  unmanic:
+    container_name: unmanic
+    image: josh5/unmanic:latest
+    environment:
+      PUID: "{{ haondt__puid }}"
+      PGID: "{{ haondt__pgid }}"
+      VIRTUAL_PORT: 8888
+      VIRTUAL_HOST: "unmanic.{{ haondt__letsencrypt_host }}"
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
+      HTTPS_METHOD: nohttp
+
+    volumes:
+      - "{{ media__plex_dirs__0 }}/movies_hd:/library/hd_movies0"
+      - "{{ media__plex_dirs__1 }}/movies_hd:/library/hd_movies1"
+      - /mnt/tomato/gabbro/unmanic/transcode:/tmp/unmanic
+      - /mnt/celery/gabbro/unmanic/config/:/config
