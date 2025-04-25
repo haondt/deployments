@@ -2,6 +2,9 @@ services:
   unmanic:
     container_name: unmanic
     image: josh5/unmanic:latest
+    x-tl: +!
+    networks:
+      - gabbro_nginx
     environment:
       PUID: "{{ haondt__puid }}"
       PGID: "{{ haondt__pgid }}"
@@ -9,7 +12,6 @@ services:
       VIRTUAL_HOST: "unmanic.{{ haondt__letsencrypt_host }}"
       LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
       HTTPS_METHOD: nohttp
-
     volumes:
       - "{{ media__plex_dirs__0 }}/movies_hd:/library/hd_movies0"
       - "{{ media__plex_dirs__1 }}/movies_hd:/library/hd_movies1"
