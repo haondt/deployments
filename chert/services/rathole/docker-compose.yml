@@ -1,6 +1,19 @@
 services:
   rathole-server:
     image: rapiz1/rathole:v0.5.0
+    x-talos:
+      skip: false
+      bump: Minor
+      strategy:
+        digest: Push
+        patch: Push
+        minor: Push
+      sync:
+        role: parent
+        group: rathole
+        id: server
+        children: [gabbro]
+        digest: true
     command: --server /app/config.toml 
     networks:
       - nginx

@@ -1,6 +1,20 @@
 services:
   immich-server:
-    image: ghcr.io/immich-app/immich-server:{{ immich__version }}
+    image: ghcr.io/immich-app/immich-server:v1.128.0
+    x-talos:
+      skip: false
+      bump: Major
+      strategy:
+        digest: Skip
+        patch: Push
+        minor: Push
+        major: Prompt
+      sync:
+        role: parent
+        group: immich
+        id: server
+        children: [ml]
+        digest: false
     volumes:
       - /mnt/celery/gabbro/immich/upload:/usr/src/app/upload
     environment:
@@ -22,7 +36,13 @@ services:
       - immich
 
   immich-machine-learning:
-    image: ghcr.io/immich-app/immich-machine-learning:{{ immich__version }}
+    image: ghcr.io/immich-app/immich-machine-learning:v1.128.0
+    x-talos:
+      skip: false
+      sync:
+        role: child
+        group: immich
+        id: ml
     networks:
       - immich
     volumes:

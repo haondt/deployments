@@ -1,6 +1,7 @@
 services:
   alloy:
     image: grafana/alloy:latest
+    x-tl: +!
     command: run --storage.path=/var/lib/alloy/data /etc/alloy/configuration
     networks:
       - rathole

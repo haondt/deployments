@@ -1,6 +1,7 @@
 services:
   nginx:
     image: nginxproxy/nginx-proxy
+    x-tl: +!
     restart: always
     container_name: nginx
     ports:
@@ -16,6 +17,7 @@ services:
 
   nginx-acme:
     image: nginxproxy/acme-companion
+    x-tl: +!
     volumes_from:
       - nginx
     volumes:

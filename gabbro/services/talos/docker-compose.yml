@@ -1,6 +1,6 @@
 services:
   talos:
-    image: registry.gitlab.com/haondt/cicd/registry/talos:0.0.10
+    image: registry.gitlab.com/haondt/cicd/registry/talos:0.1.0
     user: talos
     group_add:
       - "{{ gabbro__docker_group }}"
@@ -28,6 +28,7 @@ services:
       options:
         tag: docker-talos
   talos-beta:
+    profiles: [disabled]
     image: registry.gitlab.com/haondt/cicd/registry/talos:main-71f4e923
     user: talos
     group_add:

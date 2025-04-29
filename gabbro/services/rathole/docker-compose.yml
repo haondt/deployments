@@ -1,6 +1,11 @@
 services:
   rathole-client:
     image: rapiz1/rathole:v0.5.0
+    x-talos:
+      sync:
+        role: child
+        group: rathole
+        id: gabbro
     command: --client /app/config.toml
     networks:
       - rathole
