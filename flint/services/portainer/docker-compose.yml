@@ -1,6 +1,6 @@
 services:
   portainer:
-    image: portainer/agent:2.29.2
+    image: portainer/portainer-ce:2.29.2
     x-tl: ^:.!!?
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
