@@ -31,7 +31,7 @@ services:
 
 
   jobs-redis: 
-    image: docker.io/library/redis:latest@sha256:6aafb7f25fc93c4ff74e99cff8e85899f03901bc96e61ba12cd3c39e95503c73
+    image: docker.io/library/redis:latest@sha256:7df1eeff67eb0ba84f6b9d2940765a6bb1158081426745c185a03b1507de6a09
     x-tl: +!
     networks:
       - jobs

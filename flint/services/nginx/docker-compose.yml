@@ -16,7 +16,7 @@ services:
       - nginx
 
   nginx-acme:
-    image: nginxproxy/acme-companion
+    image: docker.io/nginxproxy/acme-companion:latest@sha256:967f8fe06c1a5cd76fb0059729ef33cce043d003d51235f10cdd54598028c2eb
     x-tl: +!
     volumes_from:
       - nginx
