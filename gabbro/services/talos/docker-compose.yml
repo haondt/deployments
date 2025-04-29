@@ -27,34 +27,33 @@ services:
       driver: syslog
       options:
         tag: docker-talos
-  talos-beta:
-    profiles: [disabled]
-    image: registry.gitlab.com/haondt/cicd/registry/talos:main-71f4e923
-    user: talos
-    group_add:
-      - "{{ gabbro__docker_group }}"
-    networks:
-      - gabbro_nginx
-      - talos
-    env_file:
-      - ./talos/talos-beta.env
-    environment:
-      VIRTUAL_PORT: 8080
-      VIRTUAL_HOST: "talos-beta.{{ haondt__letsencrypt_host }}"
-      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
-      HTTPS_METHOD: nohttp
-    volumes:
-      - ./talos/id_rsa:/config/id_rsa
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - type: tmpfs
-        target: /var/talos/git
-        tmpfs:
-          mode: 0777
-          size: 64M
-    logging:
-      driver: syslog
-      options:
-        tag: docker-talos-beta
+  # talos-beta:
+  #   image: registry.gitlab.com/haondt/cicd/registry/talos:main-71f4e923
+  #   user: talos
+  #   group_add:
+  #     - "{{ gabbro__docker_group }}"
+  #   networks:
+  #     - gabbro_nginx
+  #     - talos
+  #   env_file:
+  #     - ./talos/talos-beta.env
+  #   environment:
+  #     VIRTUAL_PORT: 8080
+  #     VIRTUAL_HOST: "talos-beta.{{ haondt__letsencrypt_host }}"
+  #     LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
+  #     HTTPS_METHOD: nohttp
+  #   volumes:
+  #     - ./talos/id_rsa:/config/id_rsa
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #     - type: tmpfs
+  #       target: /var/talos/git
+  #       tmpfs:
+  #         mode: 0777
+  #         size: 64M
+  #   logging:
+  #     driver: syslog
+  #     options:
+  #       tag: docker-talos-beta
   talos-redis-insight:
     image: docker.io/redis/redisinsight:latest@sha256:019fcf7746316312474c2f347a9ee21797a8cb48ebaacb50f3000b4be08a468e
     x-tl: +!
