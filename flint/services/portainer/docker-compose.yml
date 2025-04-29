@@ -1,6 +1,7 @@
 services:
   portainer:
-    image: portainer/portainer-ce:latest
+    image: portainer/agent:2.29.2
+    x-tl: ^:.!!?
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/volumes:/var/lib/docker/volumes
@@ -8,9 +9,8 @@ services:
     networks:
       - nginx
     environment:
-      VIRTUAL_HOST: "portainer.flint"
+      VIRTUAL_HOST: "portainer.{{ haondt__host }},portainer.{{ haondt__letsencrypt_host }}"
       VIRTUAL_PORT: 9000
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
 volumes:
   portainer-data:
-
-
