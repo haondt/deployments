@@ -1,7 +1,7 @@
 services:
   unmanic:
     container_name: unmanic
-    image: josh5/unmanic:latest
+    image: docker.io/josh5/unmanic:latest@sha256:d24fa03c1155e78c76ed5b24c46ec120aa1a58bde1c3f2a4a835c24ebd15a07d
     x-tl: +!
     deploy:
       resources:

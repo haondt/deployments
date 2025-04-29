@@ -1,6 +1,6 @@
 services:
   planka:
-    image: ghcr.io/plankanban/planka:latest
+    image: ghcr.io/plankanban/planka:latest@sha256:14c846d0d156db67d278a087880eb481798b5e57c31ecbbac66c1ea0d8ded85f
     x-tl: +!
     networks:
       - planka
