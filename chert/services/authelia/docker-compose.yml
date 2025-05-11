@@ -1,6 +1,6 @@
 services:
   authelia:
-    image: docker.io/authelia/authelia:4.39@sha256:7422c90751d71e68667eb33185b7900ec57bd7d03895d1102cb76ff0e7969ad0
+    image: docker.io/authelia/authelia:4.39@sha256:7045ca3c14731634e0c05e1afff03aba66b12b4f518c839c32a65d5c59a56b12
     x-tl: ^!
     volumes:
       - /srv/data/authelia:/config
