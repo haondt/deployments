@@ -75,6 +75,8 @@ services:
 
 networks:
   talos:
+  gabbro_nginx:
+    external: true
 volumes:
   talos-redis-insight-data:
 
