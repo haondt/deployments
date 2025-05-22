@@ -24,10 +24,10 @@ services:
       - "{{ rathole__server__port }}:{{ rathole__server__port}}"
     environment:
       # VIRTUAL_HOST: "*.cloud.haondt.dev,api.haondt.dev"
-      VIRTUAL_HOST: "linktiles.cloud.haondt.dev,linkding.cloud.haondt.dev,immich.cloud.haondt.dev,microbin.cloud.haondt.dev,api.haondt.dev"
+      VIRTUAL_HOST: "linktiles.cloud.haondt.dev,linkding.cloud.haondt.dev,immich.cloud.haondt.dev,microbin.cloud.haondt.dev,api.haondt.dev,jellyfin.haondt.dev"
       VIRTUAL_PORT: 8080
       HTTPS_METHOD: nohttp
-      LETSENCRYPT_HOST: "*.cloud.haondt.dev,api.haondt.dev"
+      LETSENCRYPT_HOST: "*.cloud.haondt.dev,api.haondt.dev,jellyfin.haondt.dev"
 
 networks:
   rathole:
