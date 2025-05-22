@@ -22,7 +22,6 @@ services:
       # - ./nginx/website-haondt-cloudflare-cert.crt:/etc/nginx/certs/haondt.dev.crt
       - ./nginx/haondt-cf-cert.key:/etc/nginx/certs/haondt.dev.key
       - ./nginx/haondt-cf-cert.crt:/etc/nginx/certs/haondt.dev.crt
-      - ./nginx/haondt-gateway.conf:/etc/nginx/vhost.d/jellyfin.haondt.dev
       - ./nginx/authelia.conf:/etc/nginx/vhost.d/auth.haondt.dev
       - ./nginx/authelia.location.conf:/etc/nginx/vhost.d/auth.haondt.dev_location
       - ./nginx/proxy.conf:/etc/nginx/proxy.conf
