@@ -7,3 +7,5 @@
 - api-cf-cert.crt
 - api-cf-cert.key
 - proxy.conf
+- haondt-cf-cert.crt
+- haondt-cf-cert.key
