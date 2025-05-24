@@ -21,6 +21,7 @@ services:
       # - ./nginx/website-haondt-cloudflare-cert.key:/etc/nginx/certs/haondt.dev.key
       # - ./nginx/website-haondt-cloudflare-cert.crt:/etc/nginx/certs/haondt.dev.crt
       - ./nginx/jellyfin.location.conf:/etc/nginx/vhost.d/jellyfin.haondt.dev_location_override
+      - ./nginx/emby.location.conf:/etc/nginx/vhost.d/emby.haondt.dev_location_override
       - ./nginx/haondt-cf-cert.key:/etc/nginx/certs/haondt.dev.key
       - ./nginx/haondt-cf-cert.crt:/etc/nginx/certs/haondt.dev.crt
       - ./nginx/authelia.conf:/etc/nginx/vhost.d/auth.haondt.dev
