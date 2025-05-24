@@ -9,3 +9,4 @@
 - proxy.conf
 - haondt-cf-cert.crt
 - haondt-cf-cert.key
+- snippets/whitelist.conf
