@@ -55,7 +55,7 @@ services:
   #     options:
   #       tag: docker-talos-beta
   talos-redis-insight:
-    image: docker.io/redis/redisinsight:latest@sha256:019fcf7746316312474c2f347a9ee21797a8cb48ebaacb50f3000b4be08a468e
+    image: docker.io/redis/redisinsight:latest@sha256:d9f6c54d4a3dcfcdfd54659bd88b66ae883251cea0f6e73ae70ed74811f227f5
     x-tl: +!
     networks:
       - talos
