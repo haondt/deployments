@@ -4,6 +4,7 @@ services:
       - nginx
       - elysium-stage
     image: registry.gitlab.com/haondt/cicd/registry/elysium:0.0.5
+    x-tl: x
     depends_on:
       - elysium-stage-silo
     environment:
@@ -17,6 +18,7 @@ services:
       - nginx
       - elysium-stage
     image: registry.gitlab.com/haondt/cicd/registry/elysium-silo:0.0.5
+    x-tl: x
     depends_on:
       - elysium-stage-postgres
       - elysium-stage-redis
@@ -32,6 +34,7 @@ services:
       - elysium-stage
       - wireguard
     image: postgres:16-alpine
+    x-tl: x
     environment:
       POSTGRES_USER: "{{ elysium__stage__postgres__user }}"
       POSTGRES_PASSWORD: "{{ elysium__stage__postgres__password }}"
@@ -41,6 +44,7 @@ services:
       - ./elysium-stage/postgresql-init.sql:/docker-entrypoint-initdb.d/postgresql-init.sql
   elysium-stage-redis:
     image: redis
+    x-tl: x
     networks:
       - elysium-stage
 
