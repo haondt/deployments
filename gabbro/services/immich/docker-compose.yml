@@ -50,6 +50,7 @@ services:
 
   immich-redis:
     image: docker.io/redis:6.2-alpine@sha256:905c4ee67b8e0aa955331960d2aa745781e6bd89afc44a8584bfd13bc890f0ae
+    x-tl: ^!
     networks:
       - immich
     healthcheck:
@@ -57,6 +58,7 @@ services:
 
   immich-db:
     image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
+    x-tl: "@!"
     networks:
       - immich
     environment:
