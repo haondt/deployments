@@ -1,6 +1,7 @@
 services:
   fail2ban:
     image: lscr.io/linuxserver/fail2ban:latest
+    x-tl: +!
     cap_add:
       - NET_ADMIN
       - NET_RAW
