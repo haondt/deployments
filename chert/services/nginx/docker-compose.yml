@@ -3,6 +3,7 @@ services:
     networks:
       - nginx
     image: nginxproxy/nginx-proxy
+    x-tl: +!
     ports:
       - 443:443
       - 80:80
@@ -40,6 +41,7 @@ services:
     networks:
       - nginx
     image: nginxproxy/acme-companion
+    x-tl: +!
     volumes_from:
       - nginx
     volumes:
