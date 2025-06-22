@@ -1,6 +1,7 @@
 services:
   gabbro-bot:
     image: registry.gitlab.com/haondt/cicd/registry/gabbro-bot:latest
+    x-tl: +!
     container_name: gabbro_bot
     environment:
       COM_GABBRO_DISCORD_TOKEN: "{{ DISCORD_TOKEN }}"
