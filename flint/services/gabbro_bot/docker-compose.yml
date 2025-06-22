@@ -1,6 +1,6 @@
 services:
   gabbro-bot:
-    image: registry.gitlab.com/haondt/cicd/registry/gabbro-bot:latest
+    image: registry.gitlab.com/haondt/cicd/registry/gabbro-bot:latest@sha256:779305a08ab263c08cefcd6dab9c158c86526b281dfd0a576e5fa26517af7905
     x-tl: +!
     container_name: gabbro_bot
     environment:
