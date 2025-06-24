@@ -1,6 +1,6 @@
 services:
   mimir:
-    image: docker.io/grafana/mimir:2.16.0@sha256:f5850c2fd0d872fc029378558765aa79c4be66a5fca0d8c6bf0fc30971484555
+    image: docker.io/grafana/mimir:2.16.1@sha256:96725973b39bc3e5f81171ccbedd3a4ff4b3674d254838e51c60aec4e54e80df
     x-tl: +:.!!*
     command:
       - '--config.file=/etc/mimir/mimir.yml'
