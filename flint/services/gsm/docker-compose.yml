@@ -1,6 +1,7 @@
 services:
   gsm:
     image: registry.gitlab.com/haondt/cicd/registry/gsm:2.0.2
+    x-tl: x
     container_name: gsm
     networks:
       - nginx
@@ -19,6 +20,7 @@ services:
       - gsm-data:/data
     user: root
     image: alpine
+    x-tl: x
     command: >
       sh -c "
         if [ ! -f /data/.initialized ]; then
