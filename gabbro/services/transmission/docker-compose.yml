@@ -1,0 +1,27 @@
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    x-tl: +!
+    networks:
+      - gabbro_plex
+      - gabbro_nginx
+    ports:
+      - 51413:51413
+      - 51413:51413/udp
+    volumes:
+      - /home/sky/docker-compose/transmission/config:/config
+      - /mnt/b/transmission/downloads:/downloads
+      - /home/sky/docker-compose/transmission/watch:/watch
+
+      - /mnt/celery/gabbro/transmission/config:/config
+      - "{{ media__download_dir}}:/downloads"
+    environment:
+      VIRTUAL_PORT: 9091
+      VIRTUAL_HOST: "transmission.{{ haondt__letsencrypt_host }}"
+      LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
+      HTTPS_METHOD: nohttp
+
+      PUID: "{{ gabbro__puid }}"
+      PGID: "{{ gabbro__pgid }}"
+      USER: transmission
+      PASS: transmission
