@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: docker.io/nginxproxy/nginx-proxy:latest@sha256:04e478c5f347b392d33c4f2b93207abd3f46bf0d8ecdbd5752b2069443e6f7fb
+    image: docker.io/nginxproxy/nginx-proxy:latest@sha256:1322c78a2268803aa1d727944021e1dd9f0ef4a5518b98fe42836f95172c520c
     x-tl: +!
     restart: always
     container_name: nginx
@@ -16,7 +16,7 @@ services:
       - nginx
 
   nginx-acme:
-    image: docker.io/nginxproxy/acme-companion:latest@sha256:18e42de71c171fc666db6fc32e5cbb1b59cb17e23bf236d9d60758f8324e4b4f
+    image: docker.io/nginxproxy/acme-companion:latest@sha256:364f8fb579222315172100604a0cb0b9512d10f7ac6caf22ca1b425755358562
     x-tl: +!
     volumes_from:
       - nginx
