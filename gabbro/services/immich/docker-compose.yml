@@ -49,7 +49,7 @@ services:
       - immich-model-cache:/cache
 
   immich-redis:
-    image: docker.io/redis:6.2-alpine@sha256:03fd052257735b41cd19f3d8ae9782926bf9b704fb6a9dc5e29f9ccfbe8827f0
+    image: docker.io/redis:6.2-alpine@sha256:347c20744e594ba14dd9768363621ac3f3e26d28085dccc01fb3acf757c9b84a
     x-tl: ^!
     networks:
       - immich
