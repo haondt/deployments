@@ -30,8 +30,9 @@ pages:
           !include: twitch.yml
       - size: full
         widgets:
-          !include: youtube.yml
           !include: linktiles.yml
-          !include: serverstates.yml
+          !include: youtube.yml
+          !include: restic.yml
           !include: github-graph.yml
+          !include: serverstates.yml
 
