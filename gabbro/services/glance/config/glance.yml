@@ -21,17 +21,17 @@ pages:
     columns:
       - size: small
         widgets:
-          - type: calendar
-            first-day-of-week: monday
           - type: weather
             location: Edmonton, Canada
             units: metric # alternatively "imperial"
             hour-format: 12h # alternatively "24h"
             hide-location: true
+          !include: github-stats.yml
           !include: twitch.yml
       - size: full
         widgets:
           !include: youtube.yml
           !include: linktiles.yml
           !include: serverstates.yml
+          !include: github-graph.yml
 

@@ -1,0 +1,8 @@
+- src:
+    path: glance-restic.env.yml
+    type: yaml
+    hydrate: true
+  dst:
+    path: elysium.env
+    separator: "_"
+    type: env
