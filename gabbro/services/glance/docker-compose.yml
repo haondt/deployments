@@ -14,7 +14,7 @@ services:
       LETSENCRYPT_HOST: "*.{{ haondt__letsencrypt_host }}"
       HTTPS_METHOD: nohttp
   glance-restic:
-    image: ghcr.io/not-first/restic-glance-extension:latest@sha256:d1ad861ca2e8070721cec08915922aee5da32020516f7a38f970b61e1f610071
+    image: ghcr.io/not-first/restic-glance-extension:latest@sha256:94b64d2cad519595cc4490a5c52ae312892c00464d6d47af0835d02e1facf372
     x-tl: x
     volumes:
       - ./glance/credentials.json:/app/config/credentials.json
