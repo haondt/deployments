@@ -1,0 +1,6 @@
+- type: extension
+  url: http://glance-restic:8675/gsm
+  allow-potentially-dangerous-html: true
+- type: extension
+  url: http://glance-restic:8675/gsm_hz
+  allow-potentially-dangerous-html: true
