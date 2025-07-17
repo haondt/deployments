@@ -3,6 +3,6 @@
     type: yaml
     hydrate: true
   dst:
-    path: elysium.env
+    path: glance-restic.env
     separator: "_"
     type: env
