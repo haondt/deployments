@@ -21,7 +21,7 @@ services:
     networks:
       - glance
     env_file:
-      glance-restic.env
+      - ./glance/glance-restic.env
   glance-github-graph:
     image: haumea/glance-github-graph:0.0.1
     x-tl: x
