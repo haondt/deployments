@@ -1,6 +1,7 @@
 services:
   loki:
-    image: grafana/loki:latest
+    image: grafana/loki:3.5.2
+    x-tl: ^!
     command: -config.file=/etc/loki/local-config.yaml
     networks:
       - rathole
