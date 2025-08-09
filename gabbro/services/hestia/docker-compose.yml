@@ -13,16 +13,16 @@ services:
       - /mnt/celery/gabbro/hestia/hestia__data/:/data
     depends_on:
       - hestia-data-init
-hestia-data-init:
-  labels:
-    dev.haondt.lifecycle: ephemeral
-  volumes:
-    - /mnt/celery/gabbro/hestia/hestia__data/:/data
-  user: root
-  image: alpine
-  x-tl: x
-  command: >
-    sh -c "
-      if [ ! -f /data/.initialized ]; then
-        chgrp -R {{ haondt__pgid }} /data && chmod -R 775 /data && touch /data/.initialized;
-      fi"
+  hestia-data-init:
+    labels:
+      dev.haondt.lifecycle: ephemeral
+    volumes:
+      - /mnt/celery/gabbro/hestia/hestia__data/:/data
+    user: root
+    image: alpine
+    x-tl: x
+    command: >
+      sh -c "
+        if [ ! -f /data/.initialized ]; then
+          chgrp -R {{ haondt__pgid }} /data && chmod -R 775 /data && touch /data/.initialized;
+        fi"
