@@ -1,0 +1,28 @@
+services:
+  hestia:
+    image: registry.gitlab.com/haondt/cicd/registry/hestia:main-4581d590
+    x-tl: x
+    networks:
+      - gabbro_nginx
+    env_file:
+      - ./hestia/hestia.env
+    environment:
+      VIRTUAL_HOST: hestia.gabbro.local.haondt.dev
+      VIRTUAL_PORT: 8080
+    volumes:
+      - /mnt/celery/gabbro/hestia/hestia__data/:/data
+    depends_on:
+      - hestia-data-init
+hestia-data-init:
+  labels:
+    dev.haondt.lifecycle: ephemeral
+  volumes:
+    - /mnt/celery/gabbro/hestia/hestia__data/:/data
+  user: root
+  image: alpine
+  x-tl: x
+  command: >
+    sh -c "
+      if [ ! -f /data/.initialized ]; then
+        chgrp -R {{ haondt__pgid }} /data && chmod -R 775 /data && touch /data/.initialized;
+      fi"

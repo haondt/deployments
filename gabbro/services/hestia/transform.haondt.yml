@@ -1,0 +1,6 @@
+- src:
+    path: hestia.env.yml
+    type: yaml
+  dst:
+    path: hestia.env
+    type: env
