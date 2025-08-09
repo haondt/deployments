@@ -1,6 +1,6 @@
 services:
   hestia:
-    image: registry.gitlab.com/haondt/cicd/registry/hestia:main-4581d590
+    image: registry.gitlab.com/haondt/cicd/registry/hestia:main-66eac973
     x-tl: x
     networks:
       - gabbro_nginx
