@@ -1,6 +1,7 @@
 - src:
     path: hestia.env.yml
     type: yaml
+    hydrate: true
   dst:
     path: hestia.env
     type: env
