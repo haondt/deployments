@@ -1,6 +1,6 @@
 services:
   hestia:
-    image: registry.gitlab.com/haondt/cicd/registry/hestia:main-66eac973
+    image: registry.gitlab.com/haondt/cicd/registry/hestia:main-fbf0ce46
     x-tl: x
     networks:
       - gabbro_nginx
@@ -11,6 +11,7 @@ services:
       VIRTUAL_PORT: 8080
     volumes:
       - /mnt/celery/gabbro/hestia/hestia__data/:/data
+      - ./hestia/credentials.json:/config/gcp_credentials.json
     depends_on:
       - hestia-data-init
   hestia-data-init:
