@@ -1,6 +1,6 @@
 services:
   aeeo-wordpress-db:
-    image: mariadb:12
+    image: docker.io/library/mariadb:12@sha256:b30cc65b57a11a2e791ad5c06284e599fe9f1bf3fe9081a88d85bcf36389be4a
     x-tl: ^!
     command: '--default-authentication-plugin=mysql_native_password'
     networks:
@@ -14,7 +14,7 @@ services:
       MYSQL_PASSWORD: aeeowordpress
 
   aeeo-wordpress:
-    image: wordpress:latest
+    image: docker.io/library/wordpress:latest@sha256:c5f075fe71c9120e769edbf761bcf20bf0b73d72d49dfde042a06aafcdfef08d
     x-tl: +!
     networks:
       - rathole
