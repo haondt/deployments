@@ -25,10 +25,10 @@ services:
       RATHOLE_INCLUDE:
       RATHOLE_VIRTUAL_PORT: 80
       RATHOLE_VIRTUAL_HOST: "{{ aeeo__domain }}"
-      WORDPRESS_DB_HOST: wp-db
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_HOST: aeeo-wordpress-db
+      WORDPRESS_DB_USER: aeeowordpress
+      WORDPRESS_DB_PASSWORD: aeeowordpress
+      WORDPRESS_DB_NAME: aeeowordpress
 
 networks:
   aeeo:
