@@ -1,0 +1,21 @@
+services:
+  healthchecks:
+    build:
+      context: healthchecks
+    x-tl: x
+    networks:
+      - nginx
+    volumes:
+      - healthchecks-data:/data
+    environment:
+      VIRTUAL_PORT: 9090
+      VIRTUAL_HOST: hc.{{ haondt__host }}
+      LETSENCRYPT_HOST: hc.{{ haondt__host }}
+      HTTPS_METHOD: nohttp
+
+      DISCORD_WEBHOOK_URL: "{{ discord__webhook_url }}"
+      PING_TIMEOUT_MS: 300000
+      PING_KEY: "{{ healthchecks__ping_key }}"
+
+volumes:
+  healthchecks-data:

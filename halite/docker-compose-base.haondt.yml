@@ -1,0 +1,3 @@
+services:
+  {{ COM_HAONDT_CONTAINER }}:
+    container_name: "{{ COM_HAONDT_CONTAINER }}"

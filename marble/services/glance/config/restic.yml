@@ -1,0 +1,19 @@
+- type: split-column
+  max-columns: 5
+  widgets:
+    - title: gsm
+      type: extension
+      url: http://glance-restic:8675/gsm
+      allow-potentially-dangerous-html: true
+    - title: gsm_hz
+      type: extension
+      url: http://glance-restic:8675/gsm_hz
+      allow-potentially-dangerous-html: true
+    - title: syncthing
+      type: extension
+      url: http://glance-restic:8675/syncthing
+      allow-potentially-dangerous-html: true
+    - title: syncthing_hz
+      type: extension
+      url: http://glance-restic:8675/syncthing_hz
+      allow-potentially-dangerous-html: true

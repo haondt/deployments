@@ -1,0 +1,2 @@
+key: $HALITE_SSH_KEY
+target: $HALITE_HOST

@@ -1,0 +1,13 @@
+# can arbitrarily change things here
+metadata: # applied to all resources in app
+#   labels:
+#     ...
+#     deployment.haondt.dev/managed-by: haondt-docker-deployer # will be added by pipeline
+#     app.kubernetes.io/managed-by: haondt-docker-deployer # will be added by pipeline
+    # deployment.haondt.dev/name: taken from config.haondt.yml
+  annotations:
+    deployment.haondt.dev/repository: https://gitlab.com/haondt/deployments
+#     ...
+#     deployment.haondt.dev/timestamp: "${TIMESTAMP}" # will be added by pipeline
+#     deployment.haondt.dev/commit: "${CI_COMMIT_SHA}"
+#     deployment.haondt.dev/pipeline: "${CI_PIPELINE_ID}"
