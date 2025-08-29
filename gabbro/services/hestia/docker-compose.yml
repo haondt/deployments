@@ -27,3 +27,4 @@ services:
         if [ ! -f /data/.initialized ]; then
           chgrp -R {{ haondt__pgid }} /data && chmod -R 775 /data && touch /data/.initialized;
         fi"
+
