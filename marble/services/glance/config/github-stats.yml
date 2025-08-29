@@ -1,5 +1,0 @@
-- type: extension
-  url: http://glance-github-graph:8080/stats/haondt
-  allow-potentially-dangerous-html: true
-  parameters:
-    show_quartiles: false

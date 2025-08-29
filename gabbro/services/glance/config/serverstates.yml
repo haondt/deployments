@@ -1,4 +1,0 @@
-- type: extension
-  url: https://jobs.gabbro.local.haondt.dev/api/glance/extensions/server-states
-  allow-potentially-dangerous-html: true
-  cache: 1m

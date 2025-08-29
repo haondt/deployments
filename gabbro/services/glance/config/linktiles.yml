@@ -1,5 +1,0 @@
-- type: extension
-  url: https://linktiles.cloud.haondt.dev/integrations/glance
-  headers:
-    Authorization: "Bearer {{ linktiles__glance_token }}"
-  allow-potentially-dangerous-html: true
