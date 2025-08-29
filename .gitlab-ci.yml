@@ -1,9 +1,9 @@
 include:
   - project: 'haondt/CICD/pipelines'
-    ref: main
+    ref: k8s
     file: 'generate.yml'
 
-workflow:
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "web"
-    - if: $CI_PIPELINE_SOURCE == "push"
+# workflow:
+#   rules:
+#     - if: $CI_PIPELINE_SOURCE == "web"
+#     - if: $CI_PIPELINE_SOURCE == "push"
