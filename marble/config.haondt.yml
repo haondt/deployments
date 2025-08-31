@@ -1,4 +1,4 @@
 type: kubernetes
 kubeconfig: $MARBLE_KUBECONFIG
-context: marble
+context: gitlab-deployments-marble
 name: deployments-marble
