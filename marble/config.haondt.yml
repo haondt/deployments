@@ -1,4 +1,4 @@
 type: kubernetes
 kubeconfig: $MARBLE_KUBECONFIG
-target: marble
+context: marble
 name: deployments-marble
