@@ -1,4 +1,4 @@
 type: kubernetes
 kubeconfig: $MARBLE_KUBECONFIG
-target: 192.168.1.100
+target: marble
 name: deployments-marble

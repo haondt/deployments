@@ -9,17 +9,20 @@
 #    app.haondt.dev/version: will be the docker image tag + sha
 #    app.haondt.dev/image: the docker image minus the tag
 #    will also populate app.kubernetes.io/name, version, component, part-of
-spec:
-  resources:
-    requests:
-      cpu: 10m
-      memory: 16Mi
-    limits:
-      cpu: 100m
-      memory: 64Mi
 
-  networking:
-    ingress:
-      enabled: false
-      tls:
-        enabled: true
+spec:
+  components:
+    {{ COM_HAONDT_COMPONENT }}:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits:
+          cpu: 100m
+          memory: 64Mi
+
+      networking:
+        ingress:
+          enabled: false
+          tls:
+            enabled: true
