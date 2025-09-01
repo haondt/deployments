@@ -82,12 +82,6 @@ spec:
             dest.dir: /app/config
           - src.dir: assets
             dest.dir: /app/assets
-          - src.glob: test*.txt # will be globbed and each file turned into a configmap
-            dest.dir: /mnt/test1
-          - src.dir: test_dir
-            dest.dir: /mnt/test2
-          - src.glob: test_dir/**/*
-            dest.dir: /mnt/test3
     restic:
       metadata:
         component: glance-extension # shorthand for labels:  app.kubernetes.io/component: glance-extension
@@ -101,10 +95,6 @@ spec:
           - src.file: credentials.json
             src.secret: true
             dest.file: /app/config/credentials.json
-          - src.data: |
-              test data
-              here
-            dest.file: /mnt/test.txt
     github-graph:
       metadata:
         component: glance-extension
