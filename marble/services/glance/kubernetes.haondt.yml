@@ -78,10 +78,16 @@ spec:
             - restic
             - github-graph
         volumes:
-          - src.glob: config/** # will be globbed and each file turned into a configmap
+          - src.dir: config
             dest.dir: /app/config
-          - src.glob: assets/** # will be globbed and each file turned into a configmap
+          - src.dir: assets
             dest.dir: /app/assets
+          - src.glob: test*.txt # will be globbed and each file turned into a configmap
+            dest.dir: /mnt/test1
+          - src.dir: test_dir
+            dest.dir: /mnt/test2
+          - src.glob: test_dir/**/*
+            dest.dir: /mnt/test3
     restic:
       metadata:
         component: glance-extension # shorthand for labels:  app.kubernetes.io/component: glance-extension
