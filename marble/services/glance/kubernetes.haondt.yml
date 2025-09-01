@@ -78,44 +78,34 @@ spec:
             - restic
             - github-graph
         volumes:
-          config:
-            path: /app/config
-            configMap:
-              source:
-                glob: config/** # will be globbed and each file turned into a configmap
-          assets:
-            path: /app/config
-            configMap:
-              source:
-                glob: assets/**
+          - src.glob: config/** # will be globbed and each file turned into a configmap
+            dest.dir: /app/config
+          - src.glob: assets/** # will be globbed and each file turned into a configmap
+            dest.dir: /app/assets
     restic:
       metadata:
         component: glance-extension # shorthand for labels:  app.kubernetes.io/component: glance-extension
       spec:
         image: ghcr.io/not-first/restic-glance-extension:latest@sha256:94b64d2cad519595cc4490a5c52ae312892c00464d6d47af0835d02e1facf372
         x-tl: x # talos funcitonality
+        environment:
+          - file: glance-restic.env
+            secret: True
         volumes:
-          credentials:
-            path: /app/config/credentials.json
-            secret: # contents will be uploaded as secrets instead of configmaps
-              source:
-                path: credentials.json
-          environment:
-            env: true
-            secret:
-              source:
-                path: glance-restic.env
+          - src.file: credentials.json
+            src.secret: true
+            dest.file: /app/config/credentials.json
+          - src.data: |
+              test data
+              here
+            dest.file: /mnt/test.txt
     github-graph:
       metadata:
         component: glance-extension
       spec:
         image: haumea/glance-github-graph:0.0.2
         x-tl: x
-        volumes:
-          environment:
-            env: true
-            configMap:
-              source: |
-                CACHE_TYPE=memory
-                CACHE_ENABLED=true
-
+        environment:
+          - raw: 
+              CACHE_ENABLED: true
+              CACHE_TYPE: memory
