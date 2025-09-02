@@ -75,7 +75,7 @@ spec:
           # - bar/baz # namespace=same namespace as this component, app.haondt.dev/name=bar, app.haondt.dev/component=baz
           # - baz # namespace=same namespace as this component, app.haondt.dev/name=same app as this components app, app.haondt.dev/component=baz
             - name: restic
-              port: 8675
+              port: http
             - name: github-graph
               port: http
         volumes:
