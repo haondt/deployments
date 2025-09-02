@@ -69,9 +69,7 @@ spec:
           ingresses:
             - port: http
               host: "glance.{{ haondt__default_host }}"
-              tls:
-                # enabled: true # enabled by default
-                host: "*.{{ haondt__default_host }}"
+              tls.host: "*.{{ haondt__default_host }}"
           dependencies:
           # - foo/bar/baz # namespace=foo, app.haondt.dev/name=bar, app.haondt.dev/component=baz
           # - bar/baz # namespace=same namespace as this component, app.haondt.dev/name=bar, app.haondt.dev/component=baz
