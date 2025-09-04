@@ -76,6 +76,8 @@ spec:
             dest.dir: /app/config
           - src.dir: assets
             dest.dir: /app/assets
+        # observability:
+        #   ...
     restic:
       metadata:
         component: glance-extension # shorthand for labels:  app.kubernetes.io/component: glance-extension
