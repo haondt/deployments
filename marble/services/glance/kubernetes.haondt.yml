@@ -72,9 +72,11 @@ spec:
             - name: github-graph
               port: http
         volumes:
-          - src.dir: config
+          config:
+            src.dir: config
             dest.dir: /app/config
-          - src.dir: assets
+          assets:
+            src.dir: assets
             dest.dir: /app/assets
         # observability:
         #   ...
@@ -91,7 +93,8 @@ spec:
           - file: glance-restic.env
             secret: True
         volumes:
-          - src.file: credentials.json
+          credentials:
+            src.file: credentials.json
             src.secret: true
             dest.file: /app/config/credentials.json
     github-graph:

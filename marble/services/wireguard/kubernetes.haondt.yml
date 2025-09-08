@@ -18,13 +18,16 @@ spec:
               host: "wg-easy.{{ haondt__default_host }}"
               tls.host: "*.{{ haondt__default_host }}"
         volumes:
-          - src.host_dir: /lib/modules
+          modules:
+            src.host_dir: /lib/modules
             dest.dir: /lib/modules
-          - src.pvc.size: 256Mi
+          config:
+            src.pvc.size: 256Mi
             dest.dir: /etc/wireguard
         environment:
           - raw:
               WG_PORT: 51830
+              WG_MTU: "1420"
           - raw:
               WG_HOST: "{{ haondt__cluster_ip }}"
             secret: True
