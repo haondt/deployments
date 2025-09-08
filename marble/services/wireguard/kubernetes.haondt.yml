@@ -7,7 +7,7 @@ spec:
         networking:
           ports:
             udp:
-              port: 51820
+              port: 51830
               protocol: UDP
             http: 51821
           ip_addresses:
@@ -24,7 +24,7 @@ spec:
             dest.dir: /etc/wireguard
         environment:
           - raw:
-              WG_PORT: 51821
+              WG_PORT: 51830
           - raw:
               WG_HOST: "{{ haondt__cluster_ip }}"
             secret: True
