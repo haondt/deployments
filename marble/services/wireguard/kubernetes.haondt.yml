@@ -7,7 +7,7 @@ spec:
         networking:
           ports:
             udp:
-              port: 51820
+              port: 51821
               protocol: UDP
           ip_addresses:
             - ip: 192.168.1.102
@@ -19,7 +19,7 @@ spec:
             dest.dir: /config
         environment:
           - raw:
-              SERVERPORT: 51820
+              SERVERPORT: 51821
               PEERS: 1
           - raw:
               SERVERURL: "{{ haondt__cluster_ip }}"
