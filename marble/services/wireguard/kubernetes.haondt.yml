@@ -7,7 +7,7 @@ spec:
         networking:
           ports:
             udp:
-              port: 51821
+              port: 51820
               protocol: UDP
           ip_addresses:
             - ip: 192.168.1.102
