@@ -9,6 +9,10 @@
 #    app.haondt.dev/version: will be the docker image tag + sha
 #    app.haondt.dev/image: the docker image minus the tag
 #    will also populate app.kubernetes.io/name, version, component, part-of
+defaults:
+  pvc:
+    storage_class: longhorn-default
+    size: 10Gi
 
 spec:
   components:

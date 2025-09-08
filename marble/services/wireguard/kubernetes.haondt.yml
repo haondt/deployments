@@ -1,0 +1,29 @@
+spec:
+  components:
+    primary:
+      spec:
+        image: lscr.io/linuxserver/wireguard:latest@sha256:208ee01a5e0ed7405bff04689ccf4c574cbe705aa1a4d910eea3367ea4334889
+        x-tl: +!
+        networking:
+          ports:
+            udp:
+              port: 51820
+              protocol: UDP
+          ip_addresses:
+            - ip: 192.168.1.102
+              ports: [udp]
+        volumes:
+          - src.host_dir: /lib/modules
+            dest.dir: /lib/modules
+          - src.pvc.size: 2Gi
+            dest.dir: /config
+        environment:
+          - raw:
+              SERVERPORT: 51820
+              PEERS: 1
+          - raw:
+              SERVERURL: "{{ haondt__cluster_ip }}"
+            secret: True
+        security.cap.add:
+          - NET_ADMIN
+          - SYS_MODULE
