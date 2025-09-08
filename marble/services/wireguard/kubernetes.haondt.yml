@@ -2,27 +2,31 @@ spec:
   components:
     primary:
       spec:
-        image: lscr.io/linuxserver/wireguard:latest@sha256:208ee01a5e0ed7405bff04689ccf4c574cbe705aa1a4d910eea3367ea4334889
+        image: ghcr.io/wg-easy/wg-easy
         x-tl: +!
         networking:
           ports:
             udp:
               port: 51820
               protocol: UDP
+            http: 52821
           ip_addresses:
             - ip: 192.168.1.102
               ports: [udp]
+          ingresses:
+            - port: http
+              host: "wg-easy.{{ haondt__default_host }}"
+              tls.host: "*.{{ haondt__default_host }}"
         volumes:
           - src.host_dir: /lib/modules
             dest.dir: /lib/modules
-          - src.pvc.size: 2Gi
-            dest.dir: /config
+          - src.pvc.size: 256Mi
+            dest.dir: /etc/wireguard
         environment:
           - raw:
-              SERVERPORT: 51821
-              PEERS: 1
+              WG_PORT: 51821
           - raw:
-              SERVERURL: "{{ haondt__cluster_ip }}"
+              WG_HOST: "{{ haondt__cluster_ip }}"
             secret: True
         security.cap.add:
           - NET_ADMIN
