@@ -1,0 +1,25 @@
+spec:
+  components:
+    primary:
+      spec:
+        image: ghcr.io/rajnandan1/kener:latest
+        x-tl: +!
+        networking:
+          ports:
+            http: 3000
+          rathole_routes:
+            - port: http
+              host: "status.{{ haondt__default_public_host }}"
+        environment:
+          - raw:
+              KENER_SECRET_KEY: "{{ kener__secret_key }}"
+            secret: true
+          - raw: 
+              ORIGIN: "https://status.{{ haondt__default_public_host }}"
+        volumes:
+          uploads:
+            src.pvc: {}
+            dest.dir: /app/uploads
+          database:
+            src.pvc: {}
+            dest.dir: /app/database
