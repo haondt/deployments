@@ -11,3 +11,9 @@ metadata: # applied to all resources in app
 #     deployment.haondt.dev/timestamp: "${TIMESTAMP}" # will be added by pipeline
 #     deployment.haondt.dev/commit: "${CI_COMMIT_SHA}"
 #     deployment.haondt.dev/pipeline: "${CI_PIPELINE_ID}"
+defaults:
+  pvc:
+    storage_class: longhorn-default
+    size: 10Gi
+  images:
+    startup_tasks_chown: busybox:1.37
