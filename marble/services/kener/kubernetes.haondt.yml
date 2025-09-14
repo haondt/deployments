@@ -27,3 +27,4 @@ components:
       database:
         src.pvc: {}
         dest.dir: /app/database
+
