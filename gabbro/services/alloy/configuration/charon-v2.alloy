@@ -23,14 +23,23 @@ loki.process "charon_v2_process" {
         expression = "^(?P<timestamp>[^ ]+)\\s+.*docker-charon-v2\\[\\d+\\]:\\s+\\[[^]]+\\]\\s+\\[(?P<level>\\S+)\\]\\s+(?P<module>\\S+):\\s+.*$"
     }
 
-    stage.template {
-        source = "has_level"
-        template = "{{ if .level }}true{{ else }}false{{ end }}"
+    stage.regex {
+        expression = "^(?P<syslog_timestamp>[^ ]+)\\s+.*docker-charon-v2\\[\\d+\\]:\\s+(?P<json>.*)$"
     }
 
-    stage.drop {
-        source = "has_level"
-        value = "false"
+    stage.output {
+        source = "json"
+    }
+
+    stage.json {
+        expressions = {
+            timestamp = "time",
+            message = "message",
+            level = "level",
+            error = "charon.error",
+            source_context = "name",
+            name = "charon.name"
+        }
     }
 
     stage.timestamp {
@@ -38,22 +47,22 @@ loki.process "charon_v2_process" {
         format = "RFC3339Nano"
     }
 
-    stage.regex {
-        expression = "^[^ ]+\\s+.*docker-charon-v2\\[\\d+\\]:\\s+\\[[^\\]]+\\]\\s+\\[\\S+\\]\\s+charon\\.restic:\\s+\\[(?P<job>[^\\]]+)\\]\\s+(?P<restic_command>.*)$"
-    }
-
-
     stage.template {
         source = "level"
         template = "{{ ToLower .Value }}"
     }
 
+    stage.structured_metadata {
+        values = {
+            "message" = "",
+            "name" = "",
+        }
+    }
+
     stage.labels {
         values = {
             "level" = "",
-            "module" = "",
-            "job" = "",
-            "restic_command" = "",
+            "source_context" = ""
         }
     }
 
