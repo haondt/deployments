@@ -38,7 +38,7 @@ loki.process "charon_v2_process" {
             level = "level",
             error = "charon.error",
             source_context = "name",
-            name = "charon.name"
+            name = "charon.name",
         }
     }
 
@@ -62,7 +62,7 @@ loki.process "charon_v2_process" {
     stage.labels {
         values = {
             "level" = "",
-            "source_context" = ""
+            "source_context" = "",
         }
     }
 
