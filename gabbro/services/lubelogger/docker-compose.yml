@@ -1,6 +1,6 @@
 services:
   lubelogger:
-    image: ghcr.io/hargata/lubelogger:latest@sha256:44b6ead7489410fb9a6e11e0efee7bfc9fabaa2921a3fc1588fb4615f1e78e17
+    image: ghcr.io/hargata/lubelogger:latest@sha256:619536a35b31d33a34c520025b6a4e45d98819910f46eb22396a18b3502dd0b3
     x-tl: +!
     networks:
       - gabbro_nginx
