@@ -29,14 +29,14 @@ components:
         src.pvc: {}
         dest.dir: /app/database
     charon:
-      # - overlays: [default-gcs, daily]
-        # repository_configs: &charon_repository_configs
-        #   - raw: |-
-        #       backend:
-        #         path: kener-primary
-        # source.volumes: &charon_source
-        #   uploads: [/]
-        #   database: [/]
+      - overlays: [default-gcs, daily]
+        repository_configs: &charon_repository_configs
+          - raw: |-
+              backend:
+                path: kener-primary
+        source.volumes: &charon_source
+          uploads: [/]
+          database: [/]
       - overlays: [default-hzsb]
         repository_configs: *charon_repository_configs
         source.volumes: *charon_source
