@@ -20,7 +20,7 @@ components:
               backend:
                 path: vaultwarden-primary
         source.volumes: &charon_source
-          datuploadsa: [/]
+          data: [/]
       - overlays: [default-hzsb, daily]
         repository_configs: *charon_repository_configs
         source.volumes: *charon_source
