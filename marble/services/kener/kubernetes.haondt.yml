@@ -18,8 +18,9 @@ components:
       limits.cpu: 500m
     startup:
       tasks:
-        - chown.paths: [/app/uploads, /app/database]
-          chown.owner: 1000:1000
+        - chown:
+            paths: [/app/uploads, /app/database]
+            owner: 1000:1000
     volumes:
       uploads:
         src.pvc: {}
@@ -27,3 +28,16 @@ components:
       database:
         src.pvc: {}
         dest.dir: /app/database
+    charon:
+      # - overlays: [default-gcs, daily]
+      - overlays: [default-gcs]
+        repository_configs: &charon_repository_configs
+          - raw: |-
+              backend:
+                path: kener-primary
+        source.volumes: &charon_source
+          uploads: [/]
+          database: [/]
+      # - overlays: [default-hzsb, daily]
+      #   repository_configs: *charon_repository_configs
+      #   source.volumes: *charon_source
