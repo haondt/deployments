@@ -37,6 +37,6 @@ components:
         source.volumes: &charon_source
           uploads: [/]
           database: [/]
-      - overlays: [default-hzsb]
+      - overlays: [default-hzsb, daily]
         repository_configs: *charon_repository_configs
         source.volumes: *charon_source
