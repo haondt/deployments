@@ -1,0 +1,26 @@
+components:
+  primary:
+    image: docker.io/vaultwarden/server:1.34.3
+    x-tl: "+:!!!?"
+    networking:
+      ports:
+        http: 80
+      ingresses:
+        - port: http
+          host: "vaultwarden.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+    volumes:
+      data:
+        src.pvc: {}
+        dest.dir: /data
+    charon:
+      - overlays: [default-gcs, daily]
+        repository_configs: &charon_repository_configs
+          - raw: |-
+              backend:
+                path: vaultwarden-primary
+        source.volumes: &charon_source
+          datuploadsa: [/]
+      - overlays: [default-hzsb, daily]
+        repository_configs: *charon_repository_configs
+        source.volumes: *charon_source
