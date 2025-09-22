@@ -52,6 +52,10 @@ defaults:
               namespace: charon
               name: repository-default
               key: repository
+          - secret:
+              namespace: charon
+              name: repository-default
+              key: repository
           - config_map:
               namespace: charon
               name: repository-hzsb
