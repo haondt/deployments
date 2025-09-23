@@ -7,6 +7,7 @@ defaults:
     size: 10Gi
   images:
     startup_tasks_chown: busybox:1.37
+    startup_tasks_chmod: busybox:1.37
     charon_k8s_job: haumea/charon-k8s-job:0.0.1
   charon:
     overlays:

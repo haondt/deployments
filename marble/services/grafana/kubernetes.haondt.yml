@@ -22,6 +22,11 @@ components:
       grafana-config:
         src.file: grafana/grafana.ini
         dest.file: /etc/grafana/grafana.ini
+    startup:
+      tasks:
+        - chmod:
+            path: /var/lib/grafana
+            mode: '777'
     charon:
       - overlays: [default-gcs, daily]
         repository_configs: &charon_repository_configs
