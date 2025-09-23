@@ -13,13 +13,13 @@ components:
         - name: mimir
           port: http
     volumes:
-      provisioning:
+      grafana-provisioning:
         src.pvc: {}
         dest.dir: /etc/grafana/provisioning
-      storage:
+      grafana-storage:
         src.pvc: {}
         dest.dir: /var/lib/grafana
-      config:
+      grafana-config:
         src.file: grafana/grafana.ini
         dest.file: /etc/grafana/grafana.ini
     charon:
@@ -29,8 +29,8 @@ components:
               backend:
                 path: grafana-grafana
         source.volumes: &charon_source
-          provisioning: [/]
-          storage: [/]
+          grafana-provisioning: [/]
+          grafana-storage: [/]
       - overlays: [default-hzsb, daily]
         repository_configs: *charon_repository_configs
         source.volumes: *charon_source
@@ -51,9 +51,9 @@ components:
           host: "mimir.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
     volumes:
-      data:
+      mimir-data:
         src.pvc: {}
         dest.dir: /mimir
-      config:
+      mimir-config:
         src.file: mimir/mimir.yml
         dest.file: /etc/mimir/mimir.yml
