@@ -1,0 +1,64 @@
+components:
+  grafana:
+    image: docker.io/grafana/grafana:latest@sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d
+    x-tl: +!
+    networking:
+      ports:
+        http: 3000
+      ingresses:
+        - port: http
+          host: "grafana.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+      dependencies:
+        - name: mimir
+          port: http
+    volumes:
+      grafana-provisioning:
+        src.pvc: {}
+        dest.dir: /etc/grafana/provisioning
+      grafana-storage:
+        src.pvc: {}
+        dest.dir: /var/lib/grafana
+      grafana-config:
+        src.file: grafana/grafana.ini
+        dest.file: /etc/grafana/grafana.ini
+    startup:
+      tasks:
+        - chmod:
+            path: /var/lib/grafana
+            mode: '777'
+    charon:
+      - overlays: [default-gcs, daily]
+        repository_configs: &charon_repository_configs
+          - raw: |-
+              backend:
+                path: grafana-grafana
+        source.volumes: &charon_source
+          grafana-provisioning: [/]
+          grafana-storage: [/]
+      - overlays: [default-hzsb, daily]
+        repository_configs: *charon_repository_configs
+        source.volumes: *charon_source
+    environment:
+      - raw:
+          GF_SECURITY_ADMIN_USER: "{{ grafana__init_username }}"
+          GF_SECURITY_ADMIN_PASSWORD: "{{ grafana__init_password }}"
+        secret: true
+  mimir:
+    image: docker.io/grafana/mimir:2.17.0@sha256:614146229384e3dd3367d98cbd9ddc195dffe13fdfb88d77520148f09735fa8f
+    x-tl: +:.!!*
+    args: ['--config.file=/etc/mimir/mimir.yml']
+    networking:
+      ports:
+        http: 8080
+      ingresses:
+        - port: http
+          host: "mimir.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+    volumes:
+      mimir-data:
+        src.pvc: {}
+        dest.dir: /mimir
+      mimir-config:
+        src.file: mimir/mimir.yml
+        dest.file: /etc/mimir/mimir.yml
