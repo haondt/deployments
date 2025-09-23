@@ -47,7 +47,7 @@ components:
   mimir:
     image: docker.io/grafana/mimir:2.17.0@sha256:614146229384e3dd3367d98cbd9ddc195dffe13fdfb88d77520148f09735fa8f
     x-tl: +:.!!*
-    command: ['--config.file=/etc/mimir/mimir.yml']
+    args: ['--config.file=/etc/mimir/mimir.yml']
     networking:
       ports:
         http: 8080
