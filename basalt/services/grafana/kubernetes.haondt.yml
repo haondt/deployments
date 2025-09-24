@@ -48,6 +48,13 @@ components:
     image: docker.io/grafana/mimir:2.17.0@sha256:614146229384e3dd3367d98cbd9ddc195dffe13fdfb88d77520148f09735fa8f
     x-tl: +:.!!*
     args: ['--config.file=/etc/mimir/mimir.yml']
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 256Mi
     networking:
       ports:
         http: 8080
