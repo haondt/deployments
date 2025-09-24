@@ -62,3 +62,4 @@ components:
       mimir-config:
         src.file: mimir/mimir.yml
         dest.file: /etc/mimir/mimir.yml
+
