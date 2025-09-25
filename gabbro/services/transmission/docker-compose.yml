@@ -1,6 +1,6 @@
 services:
   transmission:
-    image: lscr.io/linuxserver/transmission:latest@sha256:fa4904b824a230d6bf222942f16a775adf40102b6455f4a5194843f44eccf73f
+    image: lscr.io/linuxserver/transmission:latest@sha256:991b4aed6213fa04e93701523d6303deba8c13dc3d351b2f8cc7178e823fdd20
     x-tl: +!
     networks:
       - gabbro_plex

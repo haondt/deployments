@@ -1,6 +1,6 @@
 services:
   planka:
-    image: ghcr.io/plankanban/planka:latest@sha256:26706529144928fc232674dd361131060bcd3dfdcf7f4e750860125f3a4cf4f4
+    image: ghcr.io/plankanban/planka:latest@sha256:e469d724985db3f560ef0aa2218d54536212459bf8ecbdbc9fd995fc3cbe29db
     x-tl: +!
     networks:
       - planka
@@ -94,7 +94,7 @@ services:
         condition: service_healthy
 
   planka-postgres:
-    image: docker.io/library/postgres:16-alpine@sha256:8ffca822c1933bdc8be7dbbe9c2330974bdb43f5027f47717772fa35925412b0
+    image: docker.io/library/postgres:16-alpine@sha256:66266770619a23ab310c7fa60043b6d1fa041038cb232ced59d2c509fecd297b
     x-tl: ^!
     networks:
       - planka

@@ -1,6 +1,6 @@
 components:
   grafana:
-    image: docker.io/grafana/grafana:latest@sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d
+    image: docker.io/grafana/grafana:latest@sha256:74144189b38447facf737dfd0f3906e42e0776212bf575dc3334c3609183adf7
     x-tl: +!
     networking:
       ports:
@@ -45,7 +45,7 @@ components:
           GF_SECURITY_ADMIN_PASSWORD: "{{ grafana__init_password }}"
         secret: true
   mimir:
-    image: docker.io/grafana/mimir:2.17.0@sha256:614146229384e3dd3367d98cbd9ddc195dffe13fdfb88d77520148f09735fa8f
+    image: docker.io/grafana/mimir:2.17.1@sha256:f97a1a6885a0c8ee80bc8f14343183dd67e9786cfbc18198d9a4138354fda55e
     x-tl: +:.!!*
     args: ['--config.file=/etc/mimir/mimir.yml']
     resources:
