@@ -1,0 +1,15 @@
+components:
+  primary:
+    image: lscr.io/linuxserver/tautulli:latest@sha256:e59ad4e5ad8ba315696b47944869b84989984e6c335e8df38e5f8bccce31fd18
+    x-tl: +!
+    networking:
+      ports:
+        http: 8181
+      ingresses:
+        - port: http
+          host: "tautulli.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+    volumes:
+      data:
+        src.pvc: {}
+        dest.dir: /config
