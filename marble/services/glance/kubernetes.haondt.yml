@@ -1,0 +1,106 @@
+# metadata:
+#   namespace: glance # defaults to folder name
+#   name: glance # defaults to folder name
+components:
+  primary: # name primary automatically adds "primary" as the component label
+    # metadata:
+    #   labels:
+    #     ...
+      # annotations:
+    #     ...
+        
+    image: docker.io/glanceapp/glance:v0.8.4@sha256:6df86a7e8868d1eda21f35205134b1962c422957e42a0c44d4717c8e8f741b1a
+    x-tl: +!
+    # startup:
+    #   # Dependency coordination
+    #   waitFor:
+    #     - database # shorthand, same format as network mounts
+    #     - service: redis
+    #       timeout: 60s
+    #     - url: http://jackett:9117/health
+    #       timeout: 30s
+    #
+    #   # Pre-startup tasks
+    #   initTasks:
+    #     - name: migrate-db
+    #       image: migrate/migrate
+    #       command: ['migrate', '-path', '/migrations', 'up']
+    #     - name: warm-cache
+    #       command: ['curl', 'http://localhost:8080/warmup']
+    #
+    #   # Startup ordering
+    #   priority: 3  # Higher = starts later
+    #
+    # health:
+    #   startup:
+    #     httpGet:
+    #       path: /health/startup
+    #       port: 8080
+    #     initialDelaySeconds: 10
+    #     periodSeconds: 5
+    #     failureThreshold: 30
+    #
+    #   readiness:
+    #     httpGet:
+    #       path: /health/ready
+    #       port: 8080
+    #     periodSeconds: 10
+    #
+    #   liveness:
+    #     httpGet:
+    #       path: /health/live
+    #       port: 8080
+    #     periodSeconds: 30
+    #     timeoutSeconds: 5
+
+    
+    networking:
+      ports:
+        http: 8080
+      ingresses:
+        - port: http
+          host: "glance.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+      dependencies:
+        - name: restic
+          port: http
+        - name: github-graph
+          port: http
+    volumes:
+      config:
+        src.dir: config
+        dest.dir: /app/config
+      assets:
+        src.dir: assets
+        dest.dir: /app/assets
+    # observability:
+    #   ...
+  restic:
+    metadata:
+      component: glance-extension # shorthand for labels:  app.kubernetes.io/component: glance-extension
+    image: ghcr.io/not-first/restic-glance-extension:latest@sha256:94b64d2cad519595cc4490a5c52ae312892c00464d6d47af0835d02e1facf372
+    networking:
+      ports:
+        http: 8675
+    x-tl: x # talos funcitonality
+    environment:
+      - file: glance-restic.env
+        secret: True
+    volumes:
+      credentials:
+        src.file: credentials.json
+        src.secret: true
+        dest.file: /app/config/credentials.json
+
+  github-graph:
+    metadata:
+      component: glance-extension
+    image: haumea/glance-github-graph:0.0.2
+    networking:
+      ports:
+        http: 8080
+    x-tl: x
+    environment:
+      - raw: 
+          CACHE_ENABLED: true
+          CACHE_TYPE: memory

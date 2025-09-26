@@ -1,6 +1,6 @@
 include:
   - project: 'haondt/CICD/pipelines'
-    ref: main
+    ref: k8s
     file: 'generate.yml'
 
 workflow:

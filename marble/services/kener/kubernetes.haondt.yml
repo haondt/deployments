@@ -1,0 +1,42 @@
+components:
+  primary:
+    image: ghcr.io/rajnandan1/kener:latest
+    x-tl: +!
+    networking:
+      ports:
+        http: 3000
+      rathole_routes:
+        - port: http
+          host: "status.{{ haondt__default_public_host }}"
+    environment:
+      - raw:
+          KENER_SECRET_KEY: "{{ kener__secret_key }}"
+        secret: true
+      - raw:
+          ORIGIN: "https://status.{{ haondt__default_public_host }}"
+    resources:
+      limits.cpu: 500m
+    startup:
+      tasks:
+        - chown:
+            paths: [/app/uploads, /app/database]
+            owner: 1000:1000
+    volumes:
+      uploads:
+        src.pvc: {}
+        dest.dir: /app/uploads
+      database:
+        src.pvc: {}
+        dest.dir: /app/database
+    charon:
+      - overlays: [default-gcs, daily]
+        repository_configs: &charon_repository_configs
+          - raw: |-
+              backend:
+                path: kener-primary
+        source.volumes: &charon_source
+          uploads: [/]
+          database: [/]
+      - overlays: [default-hzsb, daily]
+        repository_configs: *charon_repository_configs
+        source.volumes: *charon_source
