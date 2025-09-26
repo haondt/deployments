@@ -3,5 +3,3 @@ tasks:
     auto:
       - source: push
         branch: main
-      - source: push
-        branch: k8s
