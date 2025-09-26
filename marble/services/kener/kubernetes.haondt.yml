@@ -15,7 +15,7 @@ components:
       - raw:
           ORIGIN: "https://status.{{ haondt__default_public_host }}"
     resources:
-      limits.cpu: 500m
+      limits.cpu: 400m
     startup:
       tasks:
         - chown:
@@ -40,4 +40,3 @@ components:
       - overlays: [default-hzsb, daily]
         repository_configs: *charon_repository_configs
         source.volumes: *charon_source
-
