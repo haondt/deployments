@@ -21,3 +21,4 @@ services:
     privileged: true
 networks:
   alloy:
+
