@@ -35,7 +35,7 @@ components:
         src.pvc: {}
         dest.dir: /data
   redis-insight:
-    image: docker.io/library/redis:latest@sha256:acb90ced0bd769b7c04cb4c32c4494ba7b3e0ee068bdbfff0eeb0d31c2a21078
+    image: docker.io/redis/redisinsight:latest@sha256:b7aa18e73329ebb2e3d9e949b8d35193bf5415ef35c16fd9a50e6f832922b296
     x-tl: +!
     networking:
       ports:
