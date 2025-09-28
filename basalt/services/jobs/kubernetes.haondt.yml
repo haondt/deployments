@@ -1,0 +1,50 @@
+components:
+  primary:
+    image: registry.gitlab.com/haondt/cicd/registry/jobs:0.0.1
+    x-tl: x
+    networking:
+      ports:
+        http: 1880
+      ingresses:
+        - port: http
+          host: "jobs.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+      dependencies:
+        - name: redis
+          port: http
+        - name: redis-insight
+          port: http
+    volumes:
+      node-red-settings:
+        src.file: settings.js
+        dest.file: /data/settings.js
+      node-red-data:
+        src.pvc: {}
+        dest.dir: /data
+    environment:
+      - file: jobs.env
+        secret: true
+  redis:
+    image: docker.io/library/redis:latest@sha256:acb90ced0bd769b7c04cb4c32c4494ba7b3e0ee068bdbfff0eeb0d31c2a21078
+    x-tl: +!
+    networking:
+      ports:
+        http: 6379
+    volumes:
+      redis-data:
+        src.pvc: {}
+        dest.dir: /data
+  redis-insight:
+    image: docker.io/library/redis:latest@sha256:acb90ced0bd769b7c04cb4c32c4494ba7b3e0ee068bdbfff0eeb0d31c2a21078
+    x-tl: +!
+    networking:
+      ports:
+        http: 5540
+      ingresses:
+        - port: http
+          host: "jobs-redis.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+    volumes:
+      redis-insight-data:
+        src.pvc: {}
+        dest.dir: /data
