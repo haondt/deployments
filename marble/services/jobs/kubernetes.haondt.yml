@@ -16,6 +16,11 @@ components:
       node-red-data:
         src.pvc: {}
         dest.dir: /data
+    startup:
+      tasks:
+        - chown:
+            paths: [/data]
+            owner: 1000:1000
     environment:
       - file: jobs.env
         secret: true
