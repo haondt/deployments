@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: docker.io/nginxproxy/nginx-proxy:latest@sha256:7540d87ddbd76d73e915bb0a00a6447e643af3fbfa37fd31cbbb11015699c62a
+    image: docker.io/nginxproxy/nginx-proxy:latest@sha256:31feb446b7a498e902aa89f2e608b304f3bca33a075a35d5d84105fb878beadf
     x-tl: +!
     restart: always
     container_name: nginx
