@@ -1,3 +1,0 @@
-key: $GABBRO_SSH_KEY
-target: gabbro@gabbro
-name: infra
