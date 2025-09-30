@@ -4,6 +4,7 @@ bantime.factor = 1
 # 1m, 5m, 30m, 1h, 8h, 1d, 2d, 1w, 6w
 bantime = 1m
 bantime.multipliers = 1 5 30 60 480 1440 2880 10080 60480
+banaction = iptables-multiport
 
 [sshd]
 enabled = true
