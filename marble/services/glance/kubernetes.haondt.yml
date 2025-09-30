@@ -88,7 +88,7 @@ components:
               twitch_yaml: http://glance-flows-http:8080/twitch/yaml-in-json
         - busybox:
             script: |-
-              cp -rn /app/config-templates/ /app/config/
+              cp -rLn /app/config-templates/* /app/config/
 
     # observability:
     #   ...
