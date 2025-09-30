@@ -81,7 +81,7 @@ components:
             input.file: /app/config/twitch.yml.tmpl
             output.file: /app/config/twitch-2.yml
             data_sources:
-              twitch_yaml: http://glance-flows-http:8080/twitch/yaml
+              twitch_yaml: http://glance-flows-http:8080/twitch/yaml-in-json
 
 
     # observability:
