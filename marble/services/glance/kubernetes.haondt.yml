@@ -86,6 +86,10 @@ components:
             output.file: /app/rendered-config-test/twitch-2.yml
             data_sources:
               twitch_yaml: http://glance-flows-http:8080/twitch/yaml-in-json
+        - busybox:
+            script: |-
+              cp -rn /app/config/ /app/rendered-config-test/
+              echo "all done!"
 
 
     # observability:

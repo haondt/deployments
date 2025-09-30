@@ -6,8 +6,9 @@ defaults:
     storage_class: longhorn-default
     size: 10Gi
   images:
-    startup_tasks_chown: busybox:1.37
-    startup_tasks_chmod: busybox:1.37
+    startup_tasks_busybox: &busybox_image busybox:1.37
+    startup_tasks_chown: *busybox_image
+    startup_tasks_chmod: *busybox_image
     startup_tasks_gomplate: hairyhenderson/gomplate:v4.3.3-alpine
     charon_k8s_job: haumea/charon-k8s-job:0.0.1
   charon:
