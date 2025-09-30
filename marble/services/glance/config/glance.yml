@@ -34,5 +34,4 @@ pages:
           !include: youtube.yml
           !include: restic.yml
           !include: github-graph.yml
-          !include: serverstates.yml
 

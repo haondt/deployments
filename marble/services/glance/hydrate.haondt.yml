@@ -1,4 +1,3 @@
-- config/twitch.yml
 - config/linktiles.yml
 - credentials.json
 - flows.env

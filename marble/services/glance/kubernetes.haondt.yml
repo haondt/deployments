@@ -71,26 +71,24 @@ components:
     volumes:
       config:
         src.dir: config
-        dest.dir: /app/config
+        dest.dir: /app/config-templates
       assets:
         src.dir: assets
         dest.dir: /app/assets
-      templated-config:
+      rendered-config:
         src.scratch.size: 1Mi
-        dest.dir: /app/rendered-config-test
+        dest.dir: /app/config
 
     startup:
       tasks:
         - gomplate:
-            input.file: /app/config/twitch.yml.tmpl
-            output.file: /app/rendered-config-test/twitch-2.yml
+            input.file: /app/config-templates/twitch.yml.tmpl
+            output.file: /app/config/twitch.yml
             data_sources:
               twitch_yaml: http://glance-flows-http:8080/twitch/yaml-in-json
         - busybox:
             script: |-
-              cp -rn /app/config/ /app/rendered-config-test/
-              echo "all done!"
-
+              cp -rn /app/config-templates/ /app/config/
 
     # observability:
     #   ...
