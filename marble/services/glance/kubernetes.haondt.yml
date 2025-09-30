@@ -75,11 +75,15 @@ components:
       assets:
         src.dir: assets
         dest.dir: /app/assets
+      templated-config:
+        src.scratch.size: 1Mi
+        dest.dir: /app/rendered-config-test
+
     startup:
       tasks:
         - gomplate:
-            input.file: /app/config/twitch.yml.tmpl
-            output.file: /app/config/twitch-2.yml
+            input.dir: /app/config/twitch.yml.tmpl
+            output.file: /app/rendered-config-test/twitch-2.yml
             data_sources:
               twitch_yaml: http://glance-flows-http:8080/twitch/yaml-in-json
 
