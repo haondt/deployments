@@ -1,0 +1,28 @@
+components:
+  primary:
+    image: lscr.io/linuxserver/syncthing:latest@sha256:126c0e89ec159b3a184f4ca00a3fb77eb39a2221db4285a8b4cd2f46db1aa72d
+    x-tl: +!
+    networking:
+      ports:
+        http.port: 8384
+        st1.port: 22000
+        st2:
+          port: 22000
+          protocol: udp
+        st3:
+          port: 21027
+          protocol: udp
+      ingresses:
+        - port: http
+          host: "syncthing.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+      ip_addresses:
+        - ip: 192.168.1.103
+          ports: [http,st1,st2,st3]
+    volumes:
+      config:
+        src.pvc.size: 64Mi
+        dest.dir: /config
+      data:
+        src.pvc.size: 1Gi
+        dest.dir: /data
