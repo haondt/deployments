@@ -14,7 +14,7 @@ services:
       MYSQL_PASSWORD: aeeowordpress
 
   aeeo-wordpress:
-    image: docker.io/library/wordpress:latest@sha256:c0d0aedac9254217dbe5a7b7a0d0909583135ab7e8a540720db0e47dcc1f6bb8
+    image: docker.io/library/wordpress:latest@sha256:a842024ba3b5f6caa2a27af7cc4ea737d42a011021ac5f28c357c4af7a332773
     x-tl: +!
     networks:
       - rathole
