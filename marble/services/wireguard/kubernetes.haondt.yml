@@ -18,9 +18,12 @@ components:
       config:
         src.pvc.size: 64Mi
         dest.dir: /config
-    security.cap.add:
-      - NET_ADMIN
-      - SYS_MODULE
+    security:
+      cap.add:
+        - NET_ADMIN
+        - SYS_MODULE
+      sysctls:
+        - net.ipv4.ip_forward
     environment:
       - raw:
           SERVERPORT: 52820
