@@ -94,7 +94,7 @@ services:
         condition: service_healthy
 
   planka-postgres:
-    image: docker.io/library/postgres:16-alpine@sha256:66266770619a23ab310c7fa60043b6d1fa041038cb232ced59d2c509fecd297b
+    image: docker.io/library/postgres:16-alpine@sha256:7bc0121ccbb158ddfcf0a39225aaafbfadd2cd3c71fa823584091e533e1c9073
     x-tl: ^!
     networks:
       - planka
