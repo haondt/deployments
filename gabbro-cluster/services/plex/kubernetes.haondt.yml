@@ -38,7 +38,7 @@ components:
     startup:
       tasks:
         - chown:
-            path: /config
+            paths: [/config,/transcode]
             owner: "{{ media__puid }}:{{ media__pgid }}"
     environment:
       - raw:
