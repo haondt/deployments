@@ -26,3 +26,12 @@ components:
       data:
         src.pvc.size: 1Gi
         dest.dir: /data
+    startup:
+      tasks:
+        - chown:
+            paths: [/data]
+            owner: 1000:1000
+    environment:
+      - raw:
+          PUID: 1000
+          PGID: 1000
