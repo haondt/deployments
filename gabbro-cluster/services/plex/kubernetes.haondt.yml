@@ -1,0 +1,42 @@
+components:
+  plex:
+    image: lscr.io/linuxserver/plex:latest@sha256:57c690bb1a54685e626b730b01d8b40e25ddd468df1cf63374d85b0b16490f5c
+    x-tl: +!
+    resources:
+      requests:
+        memory: 1Gi
+      limits:
+        memory: 4Gi
+        cpu: '2'
+      gpu.enabled: true
+    networking:
+      ports:
+        http: 32400
+      ingresses:
+        - port: http
+          host: "plex.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+    volumes:
+      config:
+        src.pvc: {}
+        dest.dir: /config
+      celery_tv_shows:
+        src.host_dir: "{{ media__host_dirs__celery }}/tv_shows"
+        dest.dir: /mnt/celery/tv_shows
+      celery_movies:
+        src.host_dir: "{{ media__host_dirs__celery }}/movies"
+        dest.dir: /mnt/celery/movies
+      celery_movies_hd:
+        src.host_dir: "{{ media__host_dirs__celery }}/movies_hd"
+        dest.dir: /mnt/celery/movies_hd
+    startup:
+      tasks:
+        - chown:
+            path: /config
+            owner: "{{ media__puid }}:{{ media__pgid }}"
+    environment:
+      - raw:
+          PGID: "{{ media__pgid }}"
+          PUID: "{{ media__puid }}"
+          NVIDIA_VISIBLE_DEVICES: all
+          NVIDIA_DRIVER_CAPABILITIES: compute,video,utility

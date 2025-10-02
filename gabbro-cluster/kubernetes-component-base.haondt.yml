@@ -1,0 +1,9 @@
+components:
+  {{ COM_HAONDT_COMPONENT }}:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 32Mi
+      limits:
+        cpu: 500m
+        memory: 256Mi

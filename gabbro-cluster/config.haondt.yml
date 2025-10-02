@@ -1,0 +1,4 @@
+type: kubernetes
+kubeconfig: $GABBRO_KUBECONFIG
+context: gitlab-deployments-gabbro
+name: deployments

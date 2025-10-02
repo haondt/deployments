@@ -1,0 +1,59 @@
+metadata:
+  annotations:
+    deployment.haondt.dev/repository: https://gitlab.com/haondt/deployments
+defaults:
+  pvc:
+    storage_class: local-path
+    size: 10Gi
+  images:
+    startup_tasks_busybox: &busybox_image busybox:1.37
+    startup_tasks_chown: *busybox_image
+    startup_tasks_chmod: *busybox_image
+    startup_tasks_gomplate: hairyhenderson/gomplate:v4.3.3-alpine
+    charon_k8s_job: haumea/charon-k8s-job:0.0.1
+  charon:
+    overlays:
+      daily:
+        schedule: "0 0 * * *"
+      default-gcs:
+        name: default
+        scale_down_deployment: true
+        repository_configs:
+          - config_map:
+              namespace: charon
+              name: repository-default
+              key: repository
+          - config_map:
+              namespace: charon
+              name: repository-gcs-gabbro
+              key: repository
+          - secret:
+              namespace: charon
+              name: repository-default
+              key: repository
+        volumes:
+          - secret:
+              namespace: charon
+              name: repository-gcs-gabbro
+              key: credentials.json
+            dest.file: /config/gcs/credentials.json
+      default-hzsb:
+        name: default
+        scale_down_deployment: true
+        repository_configs:
+          - config_map:
+              namespace: charon
+              name: repository-default
+              key: repository
+          - secret:
+              namespace: charon
+              name: repository-default
+              key: repository
+          - config_map:
+              namespace: charon
+              name: repository-hzsb
+              key: repository
+          - secret:
+              namespace: charon
+              name: repository-hzsb
+              key: repository
