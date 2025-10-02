@@ -35,3 +35,14 @@ components:
       - raw:
           PUID: 911
           PGID: 1000
+    charon:
+      - overlays: [default-gcs, daily]
+        repository_configs: &charon_repository_configs
+          - raw: |-
+              backend:
+                path: syncthing
+        source.volumes: &charon_source
+          data: [/]
+      - overlays: [default-hzsb, daily]
+        repository_configs: *charon_repository_configs
+        source.volumes: *charon_source
