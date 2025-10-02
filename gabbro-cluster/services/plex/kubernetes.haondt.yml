@@ -20,13 +20,13 @@ components:
       config:
         src.pvc: {}
         dest.dir: /config
-      celery_tv_shows:
+      celery-tv-shows:
         src.host_dir: "{{ media__host_dirs__celery }}/tv_shows"
         dest.dir: /mnt/celery/tv_shows
-      celery_movies:
+      celery-movies:
         src.host_dir: "{{ media__host_dirs__celery }}/movies"
         dest.dir: /mnt/celery/movies
-      celery_movies_hd:
+      celery-movies-hd:
         src.host_dir: "{{ media__host_dirs__celery }}/movies_hd"
         dest.dir: /mnt/celery/movies_hd
     startup:
