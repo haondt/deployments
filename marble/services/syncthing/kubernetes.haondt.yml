@@ -30,8 +30,8 @@ components:
       tasks:
         - chown:
             paths: [/data,/config]
-            owner: 1000:1000
+            owner: 911:1000
     environment:
       - raw:
-          PUID: 1000
+          PUID: 911
           PGID: 1000
