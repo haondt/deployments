@@ -29,7 +29,7 @@ components:
     startup:
       tasks:
         - chown:
-            paths: [/data]
+            paths: [/data,/config]
             owner: 1000:1000
     environment:
       - raw:
