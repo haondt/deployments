@@ -1,0 +1,33 @@
+components:
+  primary:
+    image: lscr.io/linuxserver/sonarr:latest@sha256:328d322af2bb8d7211a9c43a26ff5e658ba3e6f47a695e8fb9ff806bfeab0f04
+    x-tl: +!
+    networking:
+      ports:
+        http: 8989
+      ingresses:
+        - port: http
+          host: "sonarr.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+    volumes:
+      config:
+        src.pvc: {}
+        dest.dir: /config
+      celery-tv-shows:
+        src.host.dir: "{{ media__host_dirs__celery }}/tv_shows"
+        dest.dir: /mnt/celery/tv_shows
+      rhyolite-tv-shows:
+        src.host.dir: "{{ media__host_dirs__rhyolite }}/tv_shows"
+        dest.dir: /mnt/rhyolite/tv_shows
+      downloads:
+        src.host.dir: "{{ media__host_dirs__downloads }}"
+        dest.dir: /downloads
+    startup:
+      tasks:
+        - chown:
+            paths: [/config]
+            owner: "{{ media__puid }}:{{ media__pgid }}"
+    environment:
+      - raw:
+          PGID: "{{ media__pgid }}"
+          PUID: "{{ media__puid }}"
