@@ -14,8 +14,6 @@ components:
         secret: true
       - raw:
           ORIGIN: "https://status.{{ haondt__default_public_host }}"
-    resources:
-      limits.cpu: 400m
     startup:
       tasks:
         - chown:

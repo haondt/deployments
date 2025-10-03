@@ -17,5 +17,4 @@ components:
         cpu: 50m
         memory: 32Mi
       limits:
-        cpu: 500m
         memory: 256Mi

@@ -52,7 +52,6 @@ components:
     args: ['--config.file=/etc/mimir/mimir.yml']
     resources:
       limits:
-        cpu: 500m
         memory: 1Gi
       requests:
         cpu: 100m
