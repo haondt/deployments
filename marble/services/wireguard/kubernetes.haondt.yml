@@ -13,7 +13,7 @@ components:
           ports: [udp]
     volumes:
       modules:
-        src.host_dir: /lib/modules
+        src.host.dir: /lib/modules
         dest.dir: /lib/modules
       config:
         src.pvc.size: 64Mi

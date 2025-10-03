@@ -24,16 +24,19 @@ components:
         src.pvc: {}
         dest.dir: /config
       transcode:
-        src.host_dir: "/mnt/pepper/gabbro_cluster/plex/transcode"
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/plex/transcode"
+          read_only: false
+          create: true
         dest.dir: /transcode
       celery-tv-shows:
-        src.host_dir: "{{ media__host_dirs__celery }}/tv_shows"
+        src.host.dir: "{{ media__host_dirs__celery }}/tv_shows"
         dest.dir: /mnt/celery/tv_shows
       celery-movies:
-        src.host_dir: "{{ media__host_dirs__celery }}/movies"
+        src.host.dir: "{{ media__host_dirs__celery }}/movies"
         dest.dir: /mnt/celery/movies
       celery-movies-hd:
-        src.host_dir: "{{ media__host_dirs__celery }}/movies_hd"
+        src.host.dir: "{{ media__host_dirs__celery }}/movies_hd"
         dest.dir: /mnt/celery/movies_hd
     startup:
       tasks:
