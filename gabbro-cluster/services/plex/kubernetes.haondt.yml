@@ -38,6 +38,15 @@ components:
       celery-movies-hd:
         src.host.dir: "{{ media__host_dirs__celery }}/movies_hd"
         dest.dir: /mnt/celery/movies_hd
+      rhyolite-tv-shows:
+        src.host.dir: "{{ media__host_dirs__rhyolite }}/tv_shows"
+        dest.dir: /mnt/rhyolite/tv_shows
+      rhyolite-movies:
+        src.host.dir: "{{ media__host_dirs__rhyolite }}/movies"
+        dest.dir: /mnt/rhyolite/movies
+      rhyolite-movies-hd:
+        src.host.dir: "{{ media__host_dirs__rhyolite }}/movies_hd"
+        dest.dir: /mnt/rhyolite/movies_hd
     startup:
       tasks:
         - chown:
