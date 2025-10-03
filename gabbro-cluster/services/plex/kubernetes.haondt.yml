@@ -24,7 +24,7 @@ components:
         src.pvc: {}
         dest.dir: /config
       transcode:
-        src.scratch.size: 16Gi
+        src.host_dir: "/mnt/pepper/gabbro_cluster/plex/transcode"
         dest.dir: /transcode
       celery-tv-shows:
         src.host_dir: "{{ media__host_dirs__celery }}/tv_shows"
