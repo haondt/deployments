@@ -1,0 +1,56 @@
+components:
+  primary:
+    image: registry.gitlab.com/haondt/cicd/registry/talos:0.1.0
+    talos: x
+    networking:
+      ports:
+        http: 8080
+      rathole_routes:
+        - port: http
+          host: "api.{{ haondt__default_public_host }}"
+          virtual_path: /talos/
+      dependencies:
+        - name: redis
+          port: http
+    volumes:
+      id-rsa:
+        src.file: id_rsa
+        dest.file: /config/id_rsa
+      git-repositories:
+        src.tmpfs.size: 64Mi
+        dest.dir: /var/talos/git
+    startup:
+      tasks:
+        - chmod:
+            paths: [/var/talos/git]
+            mode: '0777'
+    environment:
+      - file: talos.env
+        secret: true
+  redis:
+    image: docker.io/library/redis:latest@sha256:acb90ced0bd769b7c04cb4c32c4494ba7b3e0ee068bdbfff0eeb0d31c2a21078
+    talos: +!
+    networking:
+      ports:
+        http: 6379
+    volumes:
+      redis-data:
+        src.pvc: {}
+        dest.dir: /data
+  redis-insight:
+    image: docker.io/redis/redisinsight:latest@sha256:b7aa18e73329ebb2e3d9e949b8d35193bf5415ef35c16fd9a50e6f832922b296
+    talos: +!
+    networking:
+      ports:
+        http: 5540
+      ingresses:
+        - port: http
+          host: "talos-redis.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+      dependencies:
+        - name: redis
+          port: http
+    volumes:
+      redis-insight-data:
+        src.pvc.size: 16Mi
+        dest.dir: /data
