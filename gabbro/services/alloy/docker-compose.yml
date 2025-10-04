@@ -8,7 +8,6 @@ services:
       - mimir
       - alloy
       - tempo
-      - talos
     volumes:
       - ./alloy/configuration:/etc/alloy/configuration
       - /var/log:/var/log:ro
