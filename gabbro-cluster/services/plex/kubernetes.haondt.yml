@@ -1,7 +1,7 @@
 components:
   primary:
     image: lscr.io/linuxserver/plex:latest@sha256:57c690bb1a54685e626b730b01d8b40e25ddd468df1cf63374d85b0b16490f5c
-    x-tl: +!
+    talos: +!
     resources:
       requests:
         memory: 1Gi

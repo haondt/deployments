@@ -1,7 +1,7 @@
 components:
   grafana:
     image: docker.io/grafana/grafana:latest@sha256:a1701c2180249361737a99a01bc770db39381640e4d631825d38ff4535efa47d
-    x-tl: +!
+    talos: +!
     resources:
       requests.memory: 128Mi
     networking:
@@ -48,7 +48,7 @@ components:
         secret: true
   mimir:
     image: docker.io/grafana/mimir:2.17.0@sha256:614146229384e3dd3367d98cbd9ddc195dffe13fdfb88d77520148f09735fa8f
-    x-tl: +:.!!*
+    talos: +:.!!*
     args: ['--config.file=/etc/mimir/mimir.yml']
     resources:
       limits:

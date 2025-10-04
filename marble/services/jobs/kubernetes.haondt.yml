@@ -1,7 +1,7 @@
 components:
   primary:
     image: registry.gitlab.com/haondt/cicd/registry/jobs:0.0.1
-    x-tl: x
+    talos: x
     networking:
       ports:
         http: 1880

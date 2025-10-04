@@ -10,7 +10,7 @@ components:
     #     ...
         
     image: docker.io/glanceapp/glance:v0.8.4@sha256:6df86a7e8868d1eda21f35205134b1962c422957e42a0c44d4717c8e8f741b1a
-    x-tl: +!
+    talos: +!
     # startup:
     #   # Dependency coordination
     #   waitFor:
@@ -99,7 +99,7 @@ components:
     networking:
       ports:
         http: 8675
-    x-tl: x # talos funcitonality
+    talos: x # talos funcitonality
     environment:
       - file: glance-restic.env
         secret: True
@@ -116,14 +116,14 @@ components:
     networking:
       ports:
         http: 8080
-    x-tl: x
+    talos: x
     environment:
       - raw: 
           CACHE_ENABLED: true
           CACHE_TYPE: memory
   flows:
     image: registry.gitlab.com/haondt/cicd/registry/jobs:0.0.1
-    x-tl: x
+    talos: x
     networking:
       ports:
         http: 1880
