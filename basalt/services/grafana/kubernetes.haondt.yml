@@ -70,4 +70,28 @@ components:
       mimir-config:
         src.file: mimir/mimir.yml
         dest.file: /etc/mimir/mimir.yml
+  loki:
+    image: docker.io/grafana/loki:3.5.5@sha256:31628519045e7f28692a7ae73b4a3fd293dccb425585ed5d16ceea3b5c9592e6
+    talos: ^!
+    args: ['-config.file=/etc/loki/local-config.yaml']
+    resources:
+      limits:
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    networking:
+      ports:
+        http: 3100
+      ingresses:
+        - port: http
+          host: "loki.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+    volumes:
+      loki-data:
+        src.pvc: {}
+        dest.dir: /loki
+      loki-config:
+        src.file: loki/config.yaml
+        dest.file: /etc/loki/local-config.yaml
 
