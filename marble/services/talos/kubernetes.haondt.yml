@@ -54,3 +54,8 @@ components:
       redis-insight-data:
         src.pvc.size: 16Mi
         dest.dir: /data
+    startup:
+      tasks:
+        - chmod:
+            paths: [/data]
+            mode: '0777'
