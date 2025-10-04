@@ -11,6 +11,7 @@ components:
         - port: http
           host: "api.{{ haondt__default_public_host }}"
           virtual_path: /talos/
+          virtual_dest: /
       dependencies:
         - name: redis
           port: http
