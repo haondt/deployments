@@ -14,6 +14,8 @@ components:
       dependencies:
         - name: mimir
           port: http
+        - name: loki
+          port: http
     volumes:
       grafana-provisioning:
         src.pvc: {}
