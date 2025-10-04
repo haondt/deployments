@@ -12,8 +12,6 @@ components:
       dependencies:
         - name: redis
           port: http
-        - name: redis-insight
-          port: http
     volumes:
       node-red-settings:
         src.file: settings.js

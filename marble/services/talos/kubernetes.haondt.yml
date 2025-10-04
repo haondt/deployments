@@ -2,6 +2,8 @@ components:
   primary:
     image: registry.gitlab.com/haondt/cicd/registry/talos:0.1.0
     talos: x
+    resources:
+      limits.memory: 1Gi
     networking:
       ports:
         http: 8080
