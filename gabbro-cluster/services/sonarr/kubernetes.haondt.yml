@@ -27,6 +27,16 @@ components:
         - chown:
             paths: [/config]
             owner: "{{ media__puid }}:{{ media__pgid }}"
+        - busybox:
+            script: |-
+              set -euo pipefail
+              CONFIG="/config/config.xml"
+
+              if [[ -f "$CONFIG" ]] && grep -q "<AuthenticationMethod>.*</AuthenticationMethod>" "$CONFIG"; then
+                  if ! grep -q "<AuthenticationMethod>External</AuthenticationMethod>" "$CONFIG"; then
+                      sed -i -E 's|<AuthenticationMethod>.*</AuthenticationMethod>|<AuthenticationMethod>External</AuthenticationMethod>|' "$CONFIG"
+                  fi
+              fi
     environment:
       - raw:
           PGID: "{{ media__pgid }}"
