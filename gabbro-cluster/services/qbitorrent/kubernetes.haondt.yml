@@ -1,0 +1,43 @@
+components:
+  primary:
+    # image: lscr.io/linuxserver/qbittorrent:latest@sha256:5f3785f8d8cd27d509cd948a06195306c3d951b1e1e123e46c7be40ecfb6965f
+    image: busybox
+    talos: +!
+    resources:
+      limits.memory: 2Gi
+    networking:
+      ports:
+        http: 8080
+        qb1: 6881
+        qb2:
+          port: 6881
+          protocol: UDP
+      ingresses:
+        - port: http
+          host: "qbittorrent.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+      ip_addresses:
+        - ip: 192.168.1.213
+          ports: [qb1,qb2]
+    volumes:
+      config:
+        src.pvc: {}
+        dest.dir: /config
+      downloads:
+        src.host.dir: "{{ media__host_dirs__downloads }}"
+        dest.dir: /downloads
+      downloading:
+        src.host.dir: "/mnt/celery/gabbro/qbittorrent/incomplete"
+        dest.dir: /downloading
+      migrate:
+        src.host.dir: "/mnt/celery/gabbro/qbittorrent/config"
+        dest.dir: /downloads
+    startup:
+      tasks:
+        - chown:
+            paths: [/config,/downloads,/downloading]
+            owner: "{{ media__puid }}:{{ media__pgid }}"
+    environment:
+      - raw:
+          PGID: "{{ media__pgid }}"
+          PUID: "{{ media__puid }}"
