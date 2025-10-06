@@ -1,7 +1,6 @@
 components:
   primary:
-    # image: lscr.io/linuxserver/qbittorrent:latest@sha256:5f3785f8d8cd27d509cd948a06195306c3d951b1e1e123e46c7be40ecfb6965f
-    image: busybox
+    image: lscr.io/linuxserver/qbittorrent:latest@sha256:5f3785f8d8cd27d509cd948a06195306c3d951b1e1e123e46c7be40ecfb6965f
     talos: +!
     resources:
       limits.memory: 2Gi
@@ -19,7 +18,6 @@ components:
       ip_addresses:
         - ip: 192.168.1.213
           ports: [qb1,qb2]
-    command: [sh,-c,'tail -f /dev/null']
     volumes:
       config:
         src.host:
@@ -37,9 +35,6 @@ components:
           dir: "/mnt/celery/gabbro/qbittorrent/incomplete"
           read_only: false
         dest.dir: /downloading
-      migrate:
-        src.host.dir: "/mnt/celery/gabbro/qbittorrent/config"
-        dest.dir: /config-old
     startup:
       tasks:
         - chown:
