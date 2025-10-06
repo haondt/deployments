@@ -7,9 +7,9 @@ components:
     networking:
       ports:
         http: 8080
-        qb1: 6881
+        qb1: 3577
         qb2:
-          port: 6881
+          port: 3577
           protocol: UDP
       ingresses:
         - port: http
@@ -44,3 +44,4 @@ components:
       - raw:
           PGID: "{{ media__pgid }}"
           PUID: "{{ media__puid }}"
+          WEBUI_PORT: 8080
