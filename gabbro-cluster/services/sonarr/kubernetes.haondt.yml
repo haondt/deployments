@@ -18,10 +18,14 @@ components:
         src.pvc: {}
         dest.dir: /config
       celery-tv-shows:
-        src.host.dir: "{{ media__host_dirs__celery }}/tv_shows"
+        src.host:
+          dir: "{{ media__host_dirs__celery }}/tv_shows"
+          read_only: false
         dest.dir: /mnt/celery/tv_shows
       rhyolite-tv-shows:
-        src.host.dir: "{{ media__host_dirs__rhyolite }}/tv_shows"
+        src.host:
+          dir: "{{ media__host_dirs__rhyolite }}/tv_shows"
+          read_only: false
         dest.dir: /mnt/rhyolite/tv_shows
       downloads:
         src.host.dir: "{{ media__host_dirs__downloads }}"
