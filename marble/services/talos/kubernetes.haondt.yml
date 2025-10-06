@@ -30,6 +30,52 @@ components:
     environment:
       - file: talos.env
         secret: true
+    observability:
+      alloy.logs.process: |
+        stage.output {
+            source = "json"
+        }
+
+        stage.json {
+            expressions = {
+                timestamp = "\"@t\"",
+                dev_haondt_message_template = "\"@mt\"",
+                message = "\"@m\"",
+                trace_id = "\"@tr\"",
+                level = "\"@l\"",
+                exception = "\"@x\"",
+                span_id = "\"@sp\"",
+                source_context = "SourceContext",
+            }
+        }
+
+        stage.template {
+            source = "level"
+            template = "{{ or .Value \"Info\" }}"
+        }
+
+        stage.timestamp {
+            source = "timestamp"
+            format = "RFC3339Nano"
+        }
+
+        stage.structured_metadata {
+            values = {
+                "message" = "",
+                "trace_id" = "",
+                "span_id" = "",
+                "exception" = "",
+                "source_context" = "",
+            }
+        }
+
+        stage.labels {
+            values = {
+                "level" = "",
+                "dev_haondt_message_template" = "",
+            }
+        }
+
   redis:
     image: docker.io/library/redis:latest@sha256:f0957bcaa75fd58a9a1847c1f07caf370579196259d69ac07f2e27b5b389b021
     talos: +!

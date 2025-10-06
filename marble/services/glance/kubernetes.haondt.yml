@@ -1,36 +1,7 @@
-# metadata:
-#   namespace: glance # defaults to folder name
-#   name: glance # defaults to folder name
 components:
-  primary: # name primary automatically adds "primary" as the component label
-    # metadata:
-    #   labels:
-    #     ...
-      # annotations:
-    #     ...
-        
+  primary:
     image: docker.io/glanceapp/glance:v0.8.4@sha256:6df86a7e8868d1eda21f35205134b1962c422957e42a0c44d4717c8e8f741b1a
     talos: +!
-    # startup:
-    #   # Dependency coordination
-    #   waitFor:
-    #     - database # shorthand, same format as network mounts
-    #     - service: redis
-    #       timeout: 60s
-    #     - url: http://jackett:9117/health
-    #       timeout: 30s
-    #
-    #   # Pre-startup tasks
-    #   initTasks:
-    #     - name: migrate-db
-    #       image: migrate/migrate
-    #       command: ['migrate', '-path', '/migrations', 'up']
-    #     - name: warm-cache
-    #       command: ['curl', 'http://localhost:8080/warmup']
-    #
-    #   # Startup ordering
-    #   priority: 3  # Higher = starts later
-    #
     # health:
     #   startup:
     #     httpGet:
@@ -90,8 +61,6 @@ components:
             script: |-
               cp -rLn /app/config-templates/* /app/config/
 
-    # observability:
-    #   ...
   restic:
     metadata:
       component: glance-extension # shorthand for labels:  app.kubernetes.io/component: glance-extension
@@ -121,6 +90,8 @@ components:
       - raw: 
           CACHE_ENABLED: true
           CACHE_TYPE: memory
+    observability:
+      alloy.logs: {}
   flows:
     image: registry.gitlab.com/haondt/cicd/registry/jobs:0.0.1
     talos: x
