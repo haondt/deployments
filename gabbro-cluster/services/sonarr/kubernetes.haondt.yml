@@ -9,6 +9,10 @@ components:
         - port: http
           host: "sonarr.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+      dependencies:
+        - name: primary
+          app: qbittorrent
+          port: http
     volumes:
       config:
         src.pvc: {}
