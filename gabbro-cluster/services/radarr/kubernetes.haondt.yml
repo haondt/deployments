@@ -60,7 +60,7 @@ components:
         http: 7878
       ingresses:
         - port: http
-          host: "radarr-4k.{{ haondt__default_host }}"
+          host: "radarr-hd.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
       dependencies:
         - name: primary
