@@ -19,9 +19,13 @@ components:
       ip_addresses:
         - ip: 192.168.1.213
           ports: [qb1,qb2]
+    command: [sh,-c,'tail -f /dev/null']
     volumes:
       config:
-        src.pvc: {}
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/qbittorrent/config"
+          read_only: false
+          create: true
         dest.dir: /config
       downloads:
         src.host:
