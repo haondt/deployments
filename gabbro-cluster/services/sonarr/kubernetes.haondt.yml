@@ -6,7 +6,11 @@ components:
       limits.memory: 1Gi
       requests.memory: 512Mi
     observability:
-      alloy.logs: {}
+      alloy.logs.process: |
+        stage.regex {
+          expression = "^\\[(?P<level>\\w+)\\]"
+        }
+
     networking:
       ports:
         http: 8989
