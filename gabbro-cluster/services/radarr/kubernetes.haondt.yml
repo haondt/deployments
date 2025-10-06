@@ -1,0 +1,107 @@
+components:
+  primary:
+    image: docker.io/linuxserver/radarr:latest@sha256:19474a623b278f558c9696a19b84640ad4aff3b2959f08904a77ffbad73ed7bd
+    talos: +!
+    networking:
+      ports:
+        http: 7878
+      ingresses:
+        - port: http
+          host: "radarr.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+      dependencies:
+        - name: primary
+          app: qbittorrent
+          port: http
+        - name: primary
+          app: prowlarr
+          port: http
+    volumes:
+      config:
+        src.pvc: {}
+        dest.dir: /config
+      celery-movies:
+        src.host:
+          dir: "{{ media__host_dirs__celery }}/movies"
+          read_only: false
+        dest.dir: /mnt/celery/movies
+      rhyolite-movies:
+        src.host:
+          dir: "{{ media__host_dirs__rhyolite }}/movies"
+          read_only: false
+        dest.dir: /mnt/rhyolite/movies
+      downloads:
+        src.host.dir: "{{ media__host_dirs__downloads }}"
+        dest.dir: /downloads
+    startup:
+      tasks:
+        - chown:
+            paths: [/config]
+            owner: "{{ media__puid }}:{{ media__pgid }}"
+        - busybox:
+            script: |-
+              set -euo pipefail
+              CONFIG="/config/config.xml"
+
+              if [[ -f "$CONFIG" ]] && grep -q "<AuthenticationMethod>.*</AuthenticationMethod>" "$CONFIG"; then
+                  if ! grep -q "<AuthenticationMethod>External</AuthenticationMethod>" "$CONFIG"; then
+                      sed -i -E 's|<AuthenticationMethod>.*</AuthenticationMethod>|<AuthenticationMethod>External</AuthenticationMethod>|' "$CONFIG"
+                  fi
+              fi
+    environment:
+      - raw:
+          PGID: "{{ media__pgid }}"
+          PUID: "{{ media__puid }}"
+  fourk:
+    image: docker.io/linuxserver/radarr:latest@sha256:19474a623b278f558c9696a19b84640ad4aff3b2959f08904a77ffbad73ed7bd
+    talos: +!
+    networking:
+      ports:
+        http: 7878
+      ingresses:
+        - port: http
+          host: "radarr-4k.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+      dependencies:
+        - name: primary
+          app: qbittorrent
+          port: http
+        - name: primary
+          app: prowlarr
+          port: http
+    volumes:
+      config:
+        src.pvc: {}
+        dest.dir: /config
+      celery-movies-hd:
+        src.host:
+          dir: "{{ media__host_dirs__celery }}/movies_hd"
+          read_only: false
+        dest.dir: /mnt/celery/movies
+      rhyolite-movies-hd:
+        src.host:
+          dir: "{{ media__host_dirs__rhyolite }}/movies_hd"
+          read_only: false
+        dest.dir: /mnt/rhyolite/movies
+      downloads:
+        src.host.dir: "{{ media__host_dirs__downloads }}"
+        dest.dir: /downloads
+    startup:
+      tasks:
+        - chown:
+            paths: [/config]
+            owner: "{{ media__puid }}:{{ media__pgid }}"
+        - busybox:
+            script: |-
+              set -euo pipefail
+              CONFIG="/config/config.xml"
+
+              if [[ -f "$CONFIG" ]] && grep -q "<AuthenticationMethod>.*</AuthenticationMethod>" "$CONFIG"; then
+                  if ! grep -q "<AuthenticationMethod>External</AuthenticationMethod>" "$CONFIG"; then
+                      sed -i -E 's|<AuthenticationMethod>.*</AuthenticationMethod>|<AuthenticationMethod>External</AuthenticationMethod>|' "$CONFIG"
+                  fi
+              fi
+    environment:
+      - raw:
+          PGID: "{{ media__pgid }}"
+          PUID: "{{ media__puid }}"
