@@ -24,10 +24,14 @@ components:
         src.pvc: {}
         dest.dir: /config
       downloads:
-        src.host.dir: "{{ media__host_dirs__downloads }}"
+        src.host:
+          dir: "{{ media__host_dirs__downloads }}"
+          read_only: false
         dest.dir: /downloads
       downloading:
-        src.host.dir: "/mnt/celery/gabbro/qbittorrent/incomplete"
+        src.host:
+          dir: "/mnt/celery/gabbro/qbittorrent/incomplete"
+          read_only: false
         dest.dir: /downloading
       migrate:
         src.host.dir: "/mnt/celery/gabbro/qbittorrent/config"
