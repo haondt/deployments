@@ -31,7 +31,7 @@ components:
         dest.dir: /downloading
       migrate:
         src.host.dir: "/mnt/celery/gabbro/qbittorrent/config"
-        dest.dir: /downloads
+        dest.dir: /config-old
     startup:
       tasks:
         - chown:
