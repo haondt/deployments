@@ -3,13 +3,19 @@ components:
     image: lscr.io/linuxserver/sonarr:latest@sha256:328d322af2bb8d7211a9c43a26ff5e658ba3e6f47a695e8fb9ff806bfeab0f04
     talos: +!
     resources:
-      limits.memory: 4Gi
+      limits.memory: 2Gi
     observability:
       alloy.logs.process: |
         stage.regex {
           expression = "^\\[(?P<level>\\w+)\\]"
         }
-
+        stage.template {
+          source = "level"
+          template = "{{ or .Value \"Info\"}}"
+        }
+        stage.labels {
+          values = { "level" = "" }
+        }
     networking:
       ports:
         http: 8989
