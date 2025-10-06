@@ -13,6 +13,12 @@ components:
         - name: primary
           app: sonarr
           port: http
+        - name: primary
+          app: radarr
+          port: http
+        - name: hd
+          app: radarr
+          port: http
     volumes:
       config:
         src.pvc: {}
