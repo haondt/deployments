@@ -90,8 +90,6 @@ components:
       - raw: 
           CACHE_ENABLED: true
           CACHE_TYPE: memory
-    observability:
-      alloy.logs: {}
   flows:
     image: registry.gitlab.com/haondt/cicd/registry/jobs:0.0.1
     talos: x
