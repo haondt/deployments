@@ -1,7 +1,6 @@
 components:
   primary:
-    # image: lscr.io/linuxserver/prowlarr:develop@sha256:c4cafcc2340597ffb3c17d79f4be400f4e3782b94ab776ab60d5333cd24ae808
-    image: busybox
+    image: lscr.io/linuxserver/prowlarr:develop@sha256:c4cafcc2340597ffb3c17d79f4be400f4e3782b94ab776ab60d5333cd24ae808
     talos: +!
     networking:
       ports:
@@ -18,9 +17,6 @@ components:
       config:
         src.pvc: {}
         dest.dir: /config
-      migration:
-        src.host.dir: /mnt/celery/gabbro/prowlarr
-        dest.dir: /config-old
     startup:
       tasks:
         - chown:

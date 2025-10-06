@@ -13,6 +13,9 @@ components:
         - name: primary
           app: qbittorrent
           port: http
+        - name: primary
+          app: prowlarr
+          port: http
     volumes:
       config:
         src.pvc: {}
