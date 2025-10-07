@@ -30,7 +30,9 @@ components:
     security.groups.add: [1000]
     environment:
       - raw:
-          NodeRedSettings__ClientUrl: https://midas-node-red-http:8080
+          NodeRedSettings__ClientUrl: https://midas-node-red.{{ haondt__default_host }}
+      - file: midas.env
+        secret: false
   node-red:
     image: registry.gitlab.com/haondt/cicd/registry/jobs:0.0.1
     talos: x
