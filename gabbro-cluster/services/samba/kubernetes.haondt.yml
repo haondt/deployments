@@ -13,8 +13,10 @@ components:
         src.file: smb.conf
         dest.file: /etc/samba/smb.conf
       storage:
-        src.host.dir: /mnt/celery/gabbro/samba/data:/storage
-        dest.dir: /downloads
+        src.host:
+          dir: /mnt/celery/gabbro/samba/data
+          read_only: false
+        dest.dir: /storage
     environment:
       - raw:
           UID: 1000
