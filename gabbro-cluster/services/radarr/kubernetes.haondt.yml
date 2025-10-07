@@ -12,6 +12,7 @@ components:
         - port: http
           host: "radarr.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+          nginx.proxy_body_size: 128m
       dependencies:
         - name: primary
           app: qbittorrent
@@ -68,6 +69,7 @@ components:
         - port: http
           host: "radarr-hd.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+          nginx.proxy_body_size: 128m
       dependencies:
         - name: primary
           app: qbittorrent
