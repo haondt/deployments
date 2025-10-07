@@ -4,6 +4,7 @@ components:
     talos: +!
     resources:
       limits.memory: 2Gi
+      requests.memory: 256Mi
     observability:
       alloy.logs.process: |
         stage.regex {

@@ -3,6 +3,7 @@ components:
     image: docker.io/linuxserver/radarr:latest@sha256:19474a623b278f558c9696a19b84640ad4aff3b2959f08904a77ffbad73ed7bd
     talos: +!
     resources:
+      requests.memory: 256Mi
       limits.memory: 2Gi
     networking:
       ports:
@@ -59,6 +60,7 @@ components:
     talos: +!
     resources:
       limits.memory: 2Gi
+      requests.memory: 256Mi
     networking:
       ports:
         http: 7878

@@ -1,0 +1,23 @@
+components:
+  primary:
+    image: dockurr/samba:4.20.2
+    talos: x
+    networking:
+      ports:
+        smb: 445
+      ip_addresses:
+        - ip: 192.168.1.214
+          ports: [smb]
+    volumes:
+      config:
+        src.file: smb.conf
+        dest.file: /etc/samba/smb.conf
+      storage:
+        src.host.dir: /mnt/celery/gabbro/samba/data:/storage
+        dest.dir: /downloads
+    environment:
+      - raw:
+          UID: 1000
+          GID: 1000
+          USER: samba
+          PASS: samba
