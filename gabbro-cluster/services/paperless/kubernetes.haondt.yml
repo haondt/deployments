@@ -14,6 +14,7 @@ components:
           port: http
         - name: broker
           port: http
+    resources.limits.memory: 1Gi
     volumes:
       data:
         src.host:
