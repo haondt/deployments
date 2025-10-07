@@ -1,0 +1,83 @@
+components:
+  primary:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest@sha256:3421ebe06ed27662d014046cf5089e612de853aae0c676a2bc72f73b38080e57
+    talos: +!
+    networking:
+      ports:
+        http: 8000
+      ingresses:
+        - port: http
+          host: "paperless.{{ haondt__default_host }}"
+          tls.host: "*.{{ haondt__default_host }}"
+      dependencies:
+        - name: db
+          port: http
+        - name: broker
+          port: http
+    volumes:
+      data:
+        src.host:
+          dir: /mnt/celery/gabbro_cluster/paperless/data
+          read_only: false
+        dest.dir: /usr/src/paperless/data
+      media:
+        src.host:
+          dir: /mnt/celery/gabbro_cluster/paperless/media
+          read_only: false
+        dest.dir: /usr/src/paperless/media
+      export:
+        src.host:
+          dir: /mnt/celery/gabbro_cluster/paperless/export
+          read_only: false
+        dest.dir: /usr/src/paperless/export
+      consume:
+        src.host:
+          dir: /mnt/celery/gabbro_cluster/paperless/consume
+          read_only: false
+        dest.dir: /usr/src/paperless/consume
+    environment:
+      - raw:
+          PAPERLESS_REDIS: redis://paperless-broker-http:8080
+          PAPERLESS_DBENGINE: mariadb
+          PAPERLESS_DBHOST: paperless-db-http
+          PAPERLESS_DBUSER: paperless # only needed if non-default username
+          PAPERLESS_DBPASS: paperless # only needed if non-default password
+          PAPERLESS_DBPORT: 8080
+          PAPERLESS_URL: https://paperless.{{ haondt__default_host }}
+          PAPERLESS_TIME_ZONE: America/Edmonton
+
+          PAPERLESS_ADMIN_USER: "{{ paperless__admin_user }}"
+          PAPERLESS_ADMIN_PASSWORD: "{{ paperless__admin_password }}"
+
+
+  db:
+    image: docker.io/library/mariadb:10@sha256:dbe56e20372fc6d6b8e0e396866ba89c4c7f128c38c4f59aaa54d957db95790c
+    talos: ^!
+    networking:
+      ports:
+        http: 3306
+    volumes:
+      db-data:
+        src.host:
+          dir: /mnt/pepper/gabbro_cluster/paperless/db
+          read_only: false
+        dest.dir: /var/lib/mysql
+    environment:
+      - raw:
+          MARIADB_HOST: paperless
+          MARIADB_DATABASE: paperless
+          MARIADB_USER: paperless
+          MARIADB_PASSWORD: paperless
+          MARIADB_ROOT_PASSWORD: paperless
+  broker:
+    image: docker.io/library/redis:7@sha256:d7432711a2a5c99c2e9dd0e006061cd274d7cb7a9e77f07ffe2ea99e21244677
+    talos: ^!
+    networking:
+      ports:
+        http: 6379
+    volumes:
+      broker-data:
+        src.host:
+          dir: /mnt/pepper/gabbro_cluster/paperless/redis
+          read_only: false
+        dest.dir: /data
