@@ -1,3 +1,0 @@
-key: $FLINT_SSH_KEY
-target: flint@flint
-name: deployments-flint
