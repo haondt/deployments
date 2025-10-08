@@ -1,9 +1,0 @@
-- src:
-    path: gsm.env.yml
-    type: yaml
-    hydrate: true
-  dst:
-    path: gsm.env
-    type: env
-
-
