@@ -12,7 +12,7 @@ services:
     networks:
       - nginx
     volumes:
-      - ./rathole-marble/config.toml:/app/config.toml
+      - ./rathole-gabbro-cluster/config.toml:/app/config.toml
     ports:
       - "{{ rathole__server__port }}:{{ rathole__server__port}}"
     environment:
