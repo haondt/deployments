@@ -6,7 +6,7 @@ services:
     networks:
       - nginx
     volumes:
-      - ./rathole/config.toml:/app/config.toml
+      - ./rathole-aeeo/config.toml:/app/config.toml
     ports:
       - "{{ rathole__server__port }}:{{ rathole__server__port}}"
     environment:
