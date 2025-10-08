@@ -1,0 +1,44 @@
+components:
+  primary:
+    # image: docker.io/library/wordpress:latest@sha256:d34b44296d24686bf1a9c70c435b1640202e8e97d824aad9997fc63a61ac5cbb
+    image: busybox
+    command: [sh, -c, "tail -f /dev/null"]
+    talos: +!
+    networking:
+      ports:
+        http: 80
+      dependencies:
+        - name: db
+          port: http
+      # rathole_routes:
+      #   - port: http
+      #     host: "{{ aeeo__domain }}"
+    volumes:
+      config:
+        src.pvc: {}
+        dest.dir: /var/www/html
+    environment:
+      - raw:
+          WORDPRESS_DB_HOST: aeeo-wordpress-db-http:8080
+          WORDPRESS_DB_USER: aeeowordpress
+          WORDPRESS_DB_PASSWORD: aeeowordpress
+          WORDPRESS_DB_NAME: aeeowordpress
+  db:
+    # image: docker.io/library/mariadb:12@sha256:03a03a6817bb9eaa21e5aed1b734d432ec3f80021f5a2de1795475f158217545
+    image: busybox
+    command: [sh, -c, "tail -f /dev/null"]
+    x-tl: ^!
+    # command: '--default-authentication-plugin=mysql_native_password'
+    networking:
+      ports:
+        http: 3306
+    volumes:
+      db-data:
+        src.pvc: {}
+        dest.dir: /var/lib/mysql
+    environment:
+      - raw: 
+          MYSQL_ROOT_PASSWORD: aeeowordpress
+          MYSQL_DATABASE: aeeowordpress
+          MYSQL_USER: aeeowordpress
+          MYSQL_PASSWORD: aeeowordpress

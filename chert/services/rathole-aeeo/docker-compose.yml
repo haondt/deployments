@@ -1,5 +1,5 @@
 services:
-  rathole-server:
+  rathole-aeeo-server:
     image: rapiz1/rathole:v0.5.0
     x-tl: ^!
     command: --server /app/config.toml 
