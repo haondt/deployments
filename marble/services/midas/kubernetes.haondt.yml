@@ -72,12 +72,12 @@ components:
           MIDAS_API_URL: http://midas-primary-http:8080/
     charon:
       - overlays: [default-gcs, weekly]
-        repository_configs: &charon_repository_configs
+        repository_configs: &charon_node_red_repository_configs
           - raw: |-
               backend:
                 path: midas-node-red
-        source.volumes: &charon_source
+        source.volumes: &charon_node_red_source
           data: [/data]
       - overlays: [default-hzsb, weekly]
-        repository_configs: *charon_repository_configs
-        source.volumes: *charon_source
+        repository_configs: *charon_node_red_repository_configs
+        source.volumes: *charon_node_red_source
