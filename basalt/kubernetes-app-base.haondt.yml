@@ -9,6 +9,14 @@ defaults:
     startup_tasks_chown: busybox:1.37
     startup_tasks_chmod: busybox:1.37
     charon_k8s_job: haumea/charon-k8s-job:0.0.1
+  networking:
+    tls:
+      host.wildcard: true
+      secret.from_host:
+        - host: "*.{{ haondt__default_host }}"
+          value.mirror: cert-manager/haondt-dev-default-tls
+        - host: "*.{{ haondt__default_public_host }}"
+          value.mirror: cert-manager/haondt-dev-default-tls
   charon:
     overlays:
       daily:
