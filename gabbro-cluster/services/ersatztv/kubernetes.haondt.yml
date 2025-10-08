@@ -5,7 +5,6 @@ components:
     resources:
       requests:
         memory: 1Gi
-        cpu: '1'
       limits:
         memory: 4Gi
       gpu.enabled: true
@@ -27,7 +26,7 @@ components:
           dir: "/mnt/pepper/gabbro_cluster/ersatztv/transcode"
           read_only: false
           create: true
-        dest.dir: /cache
+        dest.dir: /root/.local/share/etv-transcode
       celery-tv-shows:
         src.host.dir: "{{ media__host_dirs__celery }}/tv_shows"
         dest.dir: /mnt/celery/tv_shows
@@ -49,7 +48,9 @@ components:
     startup:
       tasks:
         - chmod:
-            paths: [/config,/transcode]
+            paths:
+              - /root/.local/share/ersatztv
+              - /root/.local/share/etv-transcode
             mode: '777'
     environment:
       - raw:
