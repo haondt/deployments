@@ -7,7 +7,7 @@ components:
         memory: 1Gi
         cpu: '1'
       limits:
-        memory: 4Gi
+        memory: 8Gi
       gpu.enabled: true
     networking:
       ports:
@@ -15,7 +15,6 @@ components:
       ingresses:
         - port: http
           host: "jellyfin.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       # rathole_routes:
       #   - port: http
       #     host: "jellyfin.{{ haondt__default_public_host }}"
