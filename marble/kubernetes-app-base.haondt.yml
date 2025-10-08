@@ -23,6 +23,8 @@ defaults:
     overlays:
       daily:
         schedule: "0 0 * * *"
+      weekly:
+        schedule: "0 0 * * 0"
       default-gcs:
         name: default
         scale_down_deployment: true
