@@ -1,0 +1,33 @@
+components:
+  primary:
+    image: registry.gitlab.com/haondt/cicd/registry/gsm:2.0.2
+    talos: x
+    networking:
+      ports:
+        http: 8080
+      ingresses:
+        - port: http
+          host: "gsm.{{ haondt__default_host }}"
+    volumes:
+      data:
+        src.pvc: {}
+        dest.dir: /data
+    startup:
+      tasks:
+        - chmod:
+            path: /data
+            mode: '777'
+    environment:
+      - file: gsm.env
+        secret: true
+    charon:
+      - overlays: [default-gcs, daily]
+        repository_configs: &charon_repository_configs
+          - raw: |-
+              backend:
+                path: gsm
+        source.volumes: &charon_source
+          data: [/data]
+      - overlays: [default-hzsb, daily]
+        repository_configs: *charon_repository_configs
+        source.volumes: *charon_source
