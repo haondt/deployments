@@ -1,0 +1,59 @@
+components:
+  primary:
+    image: lscr.io/linuxserver/emby:latest@sha256:7259ccc4006434c966339434cf8f558aa499b7433e2e64805e316823ba42d791
+    talos: +!
+    resources:
+      requests:
+        memory: 1Gi
+        cpu: '1'
+      limits:
+        memory: 2Gi
+      gpu.enabled: true
+    networking:
+      ports:
+        http: 8096
+      ingresses:
+        - port: http
+          host: "emby.{{ haondt__default_host }}"
+      rathole_routes:
+        - port: http
+          host: "emby.{{ haondt__default_public_host }}"
+    volumes:
+      config:
+        src.pvc: {}
+        dest.dir: /config
+      cache:
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/emby/transcode"
+          read_only: false
+          create: true
+        dest.dir: /transcode
+      celery-tv-shows:
+        src.host.dir: "{{ media__host_dirs__celery }}/tv_shows"
+        dest.dir: /mnt/celery/tv_shows
+      celery-movies:
+        src.host.dir: "{{ media__host_dirs__celery }}/movies"
+        dest.dir: /mnt/celery/movies
+      celery-movies-hd:
+        src.host.dir: "{{ media__host_dirs__celery }}/movies_hd"
+        dest.dir: /mnt/celery/movies_hd
+      rhyolite-tv-shows:
+        src.host.dir: "{{ media__host_dirs__rhyolite }}/tv_shows"
+        dest.dir: /mnt/rhyolite/tv_shows
+      rhyolite-movies:
+        src.host.dir: "{{ media__host_dirs__rhyolite }}/movies"
+        dest.dir: /mnt/rhyolite/movies
+      rhyolite-movies-hd:
+        src.host.dir: "{{ media__host_dirs__rhyolite }}/movies_hd"
+        dest.dir: /mnt/rhyolite/movies_hd
+    startup:
+      tasks:
+        - chown:
+            paths: [/config,/transcode]
+            owner: "{{ media__puid }}:{{ media__pgid }}"
+    environment:
+      - raw:
+          PGID: "{{ media__pgid }}"
+          PUID: "{{ media__puid }}"
+          NVIDIA_VISIBLE_DEVICES: all
+          NVIDIA_DRIVER_CAPABILITIES: compute,video,utility
