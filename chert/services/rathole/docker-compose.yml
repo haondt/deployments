@@ -28,6 +28,7 @@ services:
       VIRTUAL_HOST: "linktiles.cloud.haondt.dev,linkding.cloud.haondt.dev,immich.cloud.haondt.dev,microbin.cloud.haondt.dev"
       VIRTUAL_PORT: 8080
       HTTPS_METHOD: nohttp
+      # aeeo needs its own nginx so it can have its own cf config for domain challenges since its a different domain
       # LETSENCRYPT_HOST: "*.cloud.haondt.dev,{{ aeeo__domain }}"
       LETSENCRYPT_HOST: "*.cloud.haondt.dev"
 
