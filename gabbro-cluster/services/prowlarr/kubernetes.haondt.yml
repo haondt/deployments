@@ -1,6 +1,6 @@
 components:
   primary:
-    image: lscr.io/linuxserver/prowlarr:develop@sha256:c4cafcc2340597ffb3c17d79f4be400f4e3782b94ab776ab60d5333cd24ae808
+    image: lscr.io/linuxserver/prowlarr:develop@sha256:e7d68d139d5f6f0189d2a84586dbdfafc5bd0ab56cd49e08355d332487dfdffa
     talos: +!
     networking:
       ports:
