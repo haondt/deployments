@@ -1,0 +1,24 @@
+services:
+  rathole-server:
+    image: rapiz1/rathole:v0.5.0
+    x-tl: ^!
+    command: --server /app/config.toml 
+    networks:
+      - nginx
+    volumes:
+      - ./rathole/config.toml:/app/config.toml
+    ports:
+      - "{{ rathole__server__port }}:{{ rathole__server__port}}"
+    environment:
+      VIRTUAL_HOST: "{{ aeeo__domain }}"
+      VIRTUAL_PORT: 8080
+      HTTPS_METHOD: nohttp
+      LETSENCRYPT_HOST: "{{ aeeo__domain }}"
+      ACME_CHALLENGE: DNS-01
+      ACMESH_DNS_API_CONFIG: |-
+        DNS_API: dns_cf
+        CF_Token: {{ cloudflare__token }}
+        CF_Zone_ID: {{ cloudflare__zone_id }}
+        CF_Account_ID: {{ cloudflare__account_id }}
+
+
