@@ -1,0 +1,46 @@
+components:
+  # primary:
+  #   image: ghcr.io/plankanban/planka:latest@sha256:e469d724985db3f560ef0aa2218d54536212459bf8ecbdbc9fd995fc3cbe29db
+  #   talos: +!
+  #   networking:
+  #     ports:
+  #       http: 1337
+  #     dependencies:
+  #       - name: db
+  #         port: http
+  #   volumes:
+  #     user-avatars:
+  #       src.pvc.size: 128Mi
+  #       dest.dir: /app/public/user-avatars
+  #     background-images:
+  #       src.pvc.size: 128Mi
+  #       dest.dir: /app/public/project-background-images
+  #     attachments:
+  #       src.pvc.size: 128Mi
+  #       dest.dir: /app/private/attachments
+  #   environment:
+  #     - raw: 
+  #         BASE_URL: "https://planka.{{ haondt__letsencrypt_host }}"
+  #         DATABASE_URL: postgresql://postgres@planka-db-http:8080/planka
+  #         SECRET_KEY: "{{ planka__secret_key }}"
+  #         DEFAULT_ADMIN_EMAIL: planka@example.com # Do not remove if you want to prevent this user from being edited/deleted
+  #         DEFAULT_ADMIN_PASSWORD: planka
+  #         DEFAULT_ADMIN_NAME: "Planka Admin"
+  #         DEFAULT_ADMIN_USERNAME: "planka"
+  #         SHOW_DETAILED_AUTH_ERRORS: true
+  db:
+    # image: docker.io/library/postgres:16-alpine@sha256:16c81787ed91d647abebb72495a20f6d6f3a805ca7003c34e57435292d3fdce2
+    image: alpine
+    command: [sh, -c, tail -f /dev/null]
+    talos: ^!
+    networking:
+      ports:
+        http: 5432
+    volumes:
+      db-data:
+        src.pvc.size: 128Mi
+        dest.dir: /var/lib/postgresql/data
+    environment:
+      - raw: 
+          POSTGRES_DB: planka
+          POSTGRES_HOST_AUTH_METHOD: trust
