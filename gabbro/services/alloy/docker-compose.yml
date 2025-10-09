@@ -7,7 +7,6 @@ services:
       - loki
       - mimir
       - alloy
-      - tempo
     volumes:
       - ./alloy/configuration:/etc/alloy/configuration
       - /var/log:/var/log:ro
