@@ -24,7 +24,7 @@ components:
   db:
     image: docker.io/library/mariadb:12@sha256:03a03a6817bb9eaa21e5aed1b734d432ec3f80021f5a2de1795475f158217545
     x-tl: ^!
-    command: ['--default-authentication-plugin=mysql_native_password']
+    args: ['--default-authentication-plugin=mysql_native_password']
     networking:
       ports:
         http: 3306
