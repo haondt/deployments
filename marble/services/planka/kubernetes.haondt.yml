@@ -8,6 +8,9 @@ components:
       dependencies:
         - name: db
           port: http
+      ingresses:
+        - port: http
+          host: "planka.{{ haondt__default_host }}"
     volumes:
       user-avatars:
         src.pvc.size: 128Mi
