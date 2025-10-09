@@ -1,0 +1,23 @@
+components:
+  primary:
+    image: docker.io/danielszabo99/microbin:2.0.4@sha256:c5bd4643135540a68a2846950fe4f65f3bcc94b62ed7c7644e563dfde6f1732c
+    talos: +!
+    networking:
+      ports:
+        http: 8080
+      rathole_routes:
+        - port: http
+          host: "microbin.{{ haondt__default_cloud_host }}"
+    environment:
+      - raw:
+          MICROBIN_HIDE_LOGO: true
+          MICROBIN_PRIVATE: true
+          MICROBIN_GC_DAYS: 0
+          MICROBIN_QR: true
+          MICROBIN_ETERNAL_PASTA: true
+          MICROBIN_DEFAULT_EXPIRY: 24hour
+          MICROBIN_LIST_SERVER: false
+    volumes:
+      uploads:
+        src.pvc.size: 64Mi
+        dest.dir: /app/microbin_data

@@ -45,3 +45,15 @@ components:
       - raw: 
           POSTGRES_DB: planka
           POSTGRES_HOST_AUTH_METHOD: trust
+    charon:
+      - overlays: [default-gcs, daily]
+        repository_configs: &charon_repository_configs
+          - raw: |-
+              backend:
+                path: planka-db
+        source.volumes: &charon_source
+          db-data: [/var/lib/postgresql/data]
+      - overlays: [default-hzsb, daily]
+        repository_configs: *charon_repository_configs
+        source.volumes: *charon_source
+
