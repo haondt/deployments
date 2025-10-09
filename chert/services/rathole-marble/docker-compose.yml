@@ -20,3 +20,4 @@ services:
       VIRTUAL_PORT: 8080
       HTTPS_METHOD: nohttp
       LETSENCRYPT_HOST: "*.haondt.dev,*.cloud.haondt.dev"
+
