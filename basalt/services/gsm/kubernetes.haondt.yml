@@ -25,7 +25,7 @@ components:
         repository_configs: &charon_repository_configs
           - raw: |-
               backend:
-                path: gsm
+                path: gsm-primary
         source.volumes: &charon_source
           data: [/data]
       - overlays: [default-hzsb, daily]
