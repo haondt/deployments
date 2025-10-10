@@ -65,6 +65,9 @@ components:
         - port: http
           host: "mimir.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+      rathole_routes:
+        - port: http
+          direct: true
     volumes:
       mimir-data:
         src.pvc: {}
@@ -89,6 +92,9 @@ components:
         - port: http
           host: "loki.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+      rathole_routes:
+        - port: http
+          direct: true
     volumes:
       loki-data:
         src.pvc: {}
