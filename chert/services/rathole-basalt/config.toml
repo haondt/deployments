@@ -1,0 +1,15 @@
+[server]
+bind_addr = "0.0.0.0:{{ rathole__server__port }}"
+
+[server.transport]
+type = "noise"
+[server.transport.noise]
+local_private_key = "{{ rathole__server__private_key }}"
+
+[server.services.loki]
+token = "{{ rathole__loki__token }}"
+bind_addr = "0.0.0.0:3100"
+
+[server.services.mimir]
+token = "{{ rathole__mimir__token }}"
+bind_addr = "0.0.0.0:9009"

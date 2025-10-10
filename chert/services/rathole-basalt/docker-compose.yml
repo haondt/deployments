@@ -1,0 +1,13 @@
+services:
+  rathole-basalt-server:
+    image: docker.io/rapiz1/rathole:v0.5.0@sha256:a31b9178e985d4a84f46d4c3af6aa200ee0c5e7f821c7075a1f6669fb77392b1
+    x-tl: ^!
+    command: --server /app/config.toml 
+    networks:
+      - rathole-basalt
+    volumes:
+      - ./rathole-basalt/config.toml:/app/config.toml
+    ports:
+      - "{{ rathole__server__port }}:{{ rathole__server__port}}"
+networks:
+  rathole-basalt:
