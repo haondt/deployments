@@ -38,7 +38,7 @@ components:
               backend:
                 path: midas
         source.volumes: &charon_source
-          data: [/data]
+          data: [/]
       - overlays: [default-hzsb, weekly]
         repository_configs: *charon_repository_configs
         source.volumes: *charon_source
@@ -77,7 +77,7 @@ components:
               backend:
                 path: midas-node-red
         source.volumes: &charon_node_red_source
-          node-red-data: [/data]
+          node-red-data: [/]
       - overlays: [default-hzsb, weekly]
         repository_configs: *charon_node_red_repository_configs
         source.volumes: *charon_node_red_source

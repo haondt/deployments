@@ -40,7 +40,7 @@ components:
         repository_configs: &charon_repository_configs
           - raw: |-
               backend:
-                path: syncthing
+                path: deployments-syncthing
         source.volumes: &charon_source
           data: [/]
       - overlays: [default-hzsb, daily]

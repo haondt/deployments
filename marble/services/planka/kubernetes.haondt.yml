@@ -52,7 +52,7 @@ components:
               backend:
                 path: planka-db
         source.volumes: &charon_source
-          db-data: [/var/lib/postgresql/data]
+          db-data: [/]
       - overlays: [default-hzsb, daily]
         repository_configs: *charon_repository_configs
         source.volumes: *charon_source
