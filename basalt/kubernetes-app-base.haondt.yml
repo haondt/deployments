@@ -8,7 +8,7 @@ defaults:
   images:
     startup_tasks_chown: busybox:1.37
     startup_tasks_chmod: busybox:1.37
-    charon_k8s_job: haumea/charon-k8s-job:0.0.1
+    charon_k8s_job: haumea/charon-k8s-job:0.0.2
   networking:
     tls:
       host.wildcard: true

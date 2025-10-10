@@ -1,0 +1,15 @@
+components:
+  primary:
+    image: registry.gitlab.com/haondt/cicd/registry/plextagger:0.0.3
+    talos: x
+    volumes.data:
+      src.pvc.size: 256Mi
+      dest.dir: /data
+    environment:
+      - raw: 
+          PLEX_URL: https://plex.gabbro.local.haondt.dev/
+          PLEX_TOKEN: "{{ plex_token }}"
+          TMDB_API_KEY: "{{ tmdb_api_key }}"
+          SECTION_BATCH_SIZE: "25"
+          SCHEDULE_MINUTES: "60"
+          DB_PATH: /data
