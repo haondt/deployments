@@ -1,18 +1,22 @@
 loki.write "default" {
     endpoint {
-        url = "http://rathole-basalt-server:3100/loki/a
-
-i/v1/push"
+        url = "http://rathole-basalt-server:3100/loki/api/v1/push"
 
     // basic_auth {
     //  username = "admin"
     //  password = "admin"
     // }
     }
+    external_labels = {
+        dev_haondt_cluster = "chert",
+    }
 }
 
 prometheus.remote_write "mimir" {
     endpoint {
         url = "http://rathole-basalt-server:9009/api/v1/push"
+    }
+    external_labels = {
+        dev_haondt_cluster = "chert",
     }
 }
