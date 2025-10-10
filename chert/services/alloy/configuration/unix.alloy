@@ -22,7 +22,7 @@ prometheus.scrape "unix_scrape" {
 prometheus.relabel "add_instance_label" {
     rule {
         action = "replace"
-        target_label = "dev_haondt_instance"
+        target_label = "instance"
         replacement = "chert"
     }
 
