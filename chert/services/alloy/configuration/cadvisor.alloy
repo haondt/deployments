@@ -18,6 +18,12 @@ prometheus.relabel "cadvisor" {
     }
 
     rule {
+        action = "replace"
+        target_label = "instance"
+        replacement = "chert"
+    }
+
+    rule {
         action = "labeldrop"
         regex = "container_label_com_docker_compose_.*"
     }
