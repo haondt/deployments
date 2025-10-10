@@ -9,7 +9,6 @@ loki.write "default" {
     }
     external_labels = {
         dev_haondt_cluster = "chert",
-        instance = "chert",
     }
 }
 
@@ -19,6 +18,5 @@ prometheus.remote_write "mimir" {
     }
     external_labels = {
         dev_haondt_cluster = "chert",
-        instance = "chert",
     }
 }
