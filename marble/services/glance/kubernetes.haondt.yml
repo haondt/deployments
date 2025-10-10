@@ -122,4 +122,4 @@ components:
               backend:
                 path: glance-flows
         source.volumes:
-          flows-data: [flows.json]
+          flows-data: [/flows.json]
