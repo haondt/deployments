@@ -8,6 +8,9 @@ components:
       rathole_routes:
         - port: http
           host: "linktiles.{{ haondt__default_cloud_host }}"
+      dependencies:
+        - name: redis
+          port: http
     environment:
       - raw:
           LT_DB_ENGINE: redis
