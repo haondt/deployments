@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/cleanuparr/cleanuparr:latest
+    image: ghcr.io/cleanuparr/cleanuparr:latest@sha256:d20efe405d4144e87736c25123cd22992fa4a76c9d80d7467ca5313b92107e4a
     talos: +!
     networking:
       ports:
