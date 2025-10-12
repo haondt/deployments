@@ -1,0 +1,32 @@
+components:
+  primary:
+    # image: registry.gitlab.com/haondt/cicd/registry/hestia:0.1.1
+    image: alpine
+    command: [sh,-c,tail -f /dev/null]
+    x-tl: x
+    networking:
+      ports.http: 8080
+      ingresses:
+        - port: http
+          host: "hestia.{{ haondt__default_host }}"
+    environment:
+      - file: hestia.env
+        secret: true
+    volumes:
+      data:
+        src.pvc.size: 1Gi
+        dest.dir: /data
+      credentials:
+        src:
+          file: credentials.json
+          secret: true
+        dest.file: /config/gcp_credentials.json
+    security.groups.add: [1000]
+    startup:
+      tasks:
+        - chmod:
+            path: /data
+            mode: '775'
+        - chgrp:
+            path: /data
+            group: 1000
