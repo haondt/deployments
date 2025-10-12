@@ -1,0 +1,16 @@
+components:
+  primary:
+    image: ghcr.io/cleanuparr/cleanuparr:latest
+    talos: +!
+    networking:
+      ports:
+        http: 11011
+    volumes:
+      config:
+        src.pvc.size: 128Mi
+        dest.dir: /config
+    environment:
+      - raw: 
+          PORT: 11011
+          PUID: 1000
+          PGID: 1000
