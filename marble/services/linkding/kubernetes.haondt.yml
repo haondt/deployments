@@ -28,3 +28,4 @@ components:
               fi
     environment:
       - file: linkding.env
+
