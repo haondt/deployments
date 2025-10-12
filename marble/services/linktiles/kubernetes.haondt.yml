@@ -1,0 +1,30 @@
+components:
+  primary:
+    image: haumea/linktiles:0.0.6
+    talos: x
+    networking:
+      ports:
+        http: 5001
+      rathole_routes:
+        - port: http
+          host: "linktiles.{{ haondt__default_cloud_host }}"
+    environment:
+      - raw:
+          LT_DB_ENGINE: redis
+          LT_DB_HOST: linktiles-redis-http
+          LT_DB_PORT: 8080
+          LT_SECRET_KEY: "{{ linktiles__secret_key }}"
+          LT_ENABLE_AUTH_PROXY: "true"
+          LT_AUTH_PROXY_USERNAME_HEADER: "HTTP_REMOTE_USER"
+          LT_AUTH_PROXY_LOGOUT_URL: https://auth.haondt.dev/logout
+
+  redis:
+    image: docker.io/library/redis:latest@sha256:f0957bcaa75fd58a9a1847c1f07caf370579196259d69ac07f2e27b5b389b021
+    talos: +!
+    networking:
+      ports:
+        http: 6379
+    volumes:
+      redis-data:
+        src.pvc.size: 64Mi
+        dest.dir: /data
