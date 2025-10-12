@@ -1,8 +1,6 @@
 components:
   primary:
-    # image: ghcr.io/hargata/lubelogger:latest@sha256:619536a35b31d33a34c520025b6a4e45d98819910f46eb22396a18b3502dd0b3
-    image: alpine
-    command: [sh,-c,"tail -f /dev/null"]
+    image: ghcr.io/hargata/lubelogger:latest@sha256:619536a35b31d33a34c520025b6a4e45d98819910f46eb22396a18b3502dd0b3
     talos: +!
     networking:
       ports:
