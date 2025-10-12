@@ -5,6 +5,9 @@ components:
     networking:
       ports:
         http: 11011
+      ingresses:
+        - port: http
+          host: "cleanuparr.{{ haondt__default_host }}"
     volumes:
       config:
         src.pvc.size: 128Mi
