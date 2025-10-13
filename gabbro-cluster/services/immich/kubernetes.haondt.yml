@@ -29,7 +29,9 @@ components:
           max_body_size:  50000m
     volumes:
       upload:
-        src.host.dir: "/mnt/celery/gabbro/immich/upload"
+        src.host:
+          dir: "/mnt/celery/gabbro/immich/upload"
+          read_only: false
         dest.dir: /usr/src/app/upload
     environment:
       - raw:
@@ -103,6 +105,7 @@ components:
           DB_STORAGE_TYPE: HDD
     volumes:
       db-data:
-        src.host.dir: /mnt/celery/gabbro/immich/db
+        src.host:
+          dir: /mnt/celery/gabbro/immich/db
+          read_only: false
         dest.dir: /var/lib/postgresql/data
-        read_only: false
