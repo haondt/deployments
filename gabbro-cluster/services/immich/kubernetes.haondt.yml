@@ -1,0 +1,98 @@
+components:
+  server:
+    image: &immich_image ghcr.io/immich-app/immich-server:v2.0.1@sha256:8286638680f0a38a7cb380be64ed77d1d1cfe6d0e0b843f64bff92b24289078d
+    talos:
+      skip: false
+      bump: Major
+      strategy:
+        digest: Skip
+        patch: Push
+        minor: Push
+        major: Prompt
+    resources:
+      requests:
+        memory: 1Gi
+        cpu: '1'
+      limits:
+        memory: 4Gi
+    networking:
+      ports:
+        http: 2283
+      dependencies:
+        - name: db
+          port: http
+        - name: redis
+          port: http
+      rathole_routes:
+        - port: http
+          host: "immich.{{ haondt__default_cloud_host }}"
+          max_body_size:  50000m
+    volumes:
+      upload:
+        src.host.dir: "/mnt/celery/gabbro/immich/upload"
+        dest.dir: /usr/src/app/upload
+    environment:
+      - raw:
+          DB_PASSWORD: "{{ immich__postgres_password }}"
+          secret: true
+      - raw:
+          DB_USERNAME: postgres
+          DB_DATABASE_NAME: immich
+          DB_HOSTNAME: immich-db-http
+          DB_PORT: 8080
+          REDIS_HOSTNAME: immich-redis-http
+          REDIS_PORT: 8080
+
+  machine-learning:
+    image: *immich_image
+    talos: x
+    networking:
+      ports:
+        http: 3003
+      dependencies:
+        - name: db
+          port: http
+        - name: redis
+          port: http
+    volumes:
+      model-cache:
+        src.pvc: {}
+        dest.dir: /cache
+    environment:
+      - raw:
+          DB_PASSWORD: "{{ immich__postgres_password }}"
+          secret: true
+      - raw:
+          DB_USERNAME: postgres
+          DB_DATABASE_NAME: immich
+          DB_HOSTNAME: immich-db-http
+          DB_PORT: 8080
+          REDIS_HOSTNAME: immich-redis-http
+          REDIS_PORT: 8080
+
+  redis:
+    image: docker.io/redis:6.2-alpine@sha256:77697a75da9f94e9357b61fcaf8345f69e3d9d32e9d15032c8415c21263977dc
+    x-tl: ^!
+    networking:
+      ports:
+        http: 6379
+
+  db:
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
+    talos: "@!"
+    networking:
+      ports:
+        http: 5432
+    environment:
+      - raw:
+          POSTGRES_PASSWORD: "{{ immich__postgres_password }}"
+        secret: true
+      - raw:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: immich
+          POSTGRES_INITDB_ARGS: '--data-checksums'
+          DB_STORAGE_TYPE: HDD
+    volumes:
+      db-data:
+        src.host.dir: /mnt/celery/gabbro/immich/db
+        dest.dir: /var/lib/postgresql/data
