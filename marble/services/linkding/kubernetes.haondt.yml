@@ -1,6 +1,6 @@
 components:
   primary:
-    image: &linkding_image docker.io/sissbruecker/linkding:latest@sha256:f663de3765a89c96af5381e38cfbf8a75cabbb257716653a52163000421ca45a
+    image: &linkding_image docker.io/sissbruecker/linkding:latest@sha256:e4fbafee44388d8555e34ffdc507224302989265009fc82f5f2762b789f0385a
     talos: +!
     networking:
       ports:
