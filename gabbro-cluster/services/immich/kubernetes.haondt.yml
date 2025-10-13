@@ -23,6 +23,8 @@ components:
           port: http
         - name: redis
           port: http
+        - name: machine-learning
+          port: http
       rathole_routes:
         - port: http
           host: "immich.{{ haondt__default_cloud_host }}"

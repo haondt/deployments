@@ -16,7 +16,7 @@ services:
     ports:
       - "{{ rathole__server__port }}:{{ rathole__server__port}}"
     environment:
-      VIRTUAL_HOST: "emby.haondt.dev,jellyfin.haondt.dev"
+      VIRTUAL_HOST: "emby.haondt.dev,jellyfin.haondt.dev,immich.cloud.haondt.dev"
       VIRTUAL_PORT: 8080
       HTTPS_METHOD: nohttp
-      LETSENCRYPT_HOST: "emby.haondt.dev,jellyfin.haondt.dev"
+      LETSENCRYPT_HOST: "emby.haondt.dev,jellyfin.haondt.dev,*.cloud.haondt.dev"
