@@ -10,11 +10,8 @@ components:
         minor: Push
         major: Prompt
     resources:
-      requests:
-        memory: 1Gi
-        cpu: '1'
       limits:
-        memory: 4Gi
+        memory: 1Gi
     networking:
       ports:
         http: 2283
@@ -50,6 +47,11 @@ components:
   machine-learning:
     image: *immich_image
     talos: x
+    resources:
+      requests:
+        memory: 256Mi
+      limits:
+        memory: 2Gi
     networking:
       ports:
         http: 3003
