@@ -76,6 +76,15 @@ components:
     networking:
       ports:
         http: 6379
+    volumes:
+      redis-data:
+        src.pvc: {}
+        dest.dir: /data
+    startup:
+      tasks:
+        - chmod:
+            paths: [/data]
+            mode: '0777'
 
   db:
     image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
@@ -96,3 +105,4 @@ components:
       db-data:
         src.host.dir: /mnt/celery/gabbro/immich/db
         dest.dir: /var/lib/postgresql/data
+        read_only: false
