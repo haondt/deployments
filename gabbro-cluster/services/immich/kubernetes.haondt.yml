@@ -31,7 +31,7 @@ components:
         src.host:
           dir: "/mnt/celery/gabbro/immich/upload"
           read_only: false
-        dest.dir: /usr/src/app/upload
+        dest.dir: /data
     environment:
       - raw:
           DB_PASSWORD: "{{ immich__postgres_password }}"
