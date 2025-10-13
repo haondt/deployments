@@ -1,6 +1,6 @@
 components:
   primary:
-    image: registry.gitlab.com/haondt/cicd/registry/talos:0.1.1
+    image: registry.gitlab.com/haondt/cicd/registry/talos:main-52f25f76
     talos: x
     resources:
       limits.memory: 1Gi
