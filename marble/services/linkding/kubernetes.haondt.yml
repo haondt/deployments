@@ -14,19 +14,19 @@ components:
         src.pvc.size: 1Gi
         dest.dir: /etc/linkding/data
 
-    startup:
-      tasks:
-        - chmod:
-            paths: [/etc/linkding/data]
-            mode: '777'
-        - custom:
-            image: *linkding_image
-            command: [sh, -c]
-            args: |-
-              if [ ! -f /etc/linkding/data/.initialized ]; then
-                python manage.py createsuperuser --noinput --username="{{ superuser__name }}" --email="{{ superuser__email }}" \
-                && touch /etc/linkding/data/.initialized;
-              fi
+    # startup:
+    #   tasks:
+    #     - chmod:
+    #         paths: [/etc/linkding/data]
+    #         mode: '777'
+    #     - custom:
+    #         image: *linkding_image
+    #         command: [sh, -c]
+    #         args: |-
+    #           if [ ! -f /etc/linkding/data/.initialized ]; then
+    #             python manage.py createsuperuser --noinput --username="{{ superuser__name }}" --email="{{ superuser__email }}" \
+    #             && touch /etc/linkding/data/.initialized;
+    #           fi
     environment:
       - file: linkding.env
 
