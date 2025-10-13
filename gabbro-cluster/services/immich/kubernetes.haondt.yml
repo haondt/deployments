@@ -64,6 +64,12 @@ components:
       model-cache:
         src.pvc: {}
         dest.dir: /cache
+      ml-data:
+        src.host:
+          dir: "/mnt/celery/gabbro/immich/machine-learning-data"
+          read_only: false
+          create: true
+        dest.dir: /data
     environment:
       - raw:
           DB_PASSWORD: "{{ immich__postgres_password }}"
