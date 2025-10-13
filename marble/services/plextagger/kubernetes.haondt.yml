@@ -13,3 +13,4 @@ components:
           SECTION_BATCH_SIZE: "25"
           SCHEDULE_MINUTES: "60"
           DB_PATH: /data
+
