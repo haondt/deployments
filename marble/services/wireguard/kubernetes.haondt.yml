@@ -27,7 +27,7 @@ components:
     environment:
       - raw:
           SERVERPORT: 52820
-          PEERS: 1
+          PEERS: 2
       - raw:
           SERVERURL: "{{ haondt__cluster_ip }}"
         secret: true
