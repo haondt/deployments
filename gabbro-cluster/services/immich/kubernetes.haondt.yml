@@ -64,7 +64,7 @@ components:
       model-cache:
         src.pvc: {}
         dest.dir: /cache
-      upload:
+      ml-upload:
         src.host:
           dir: "/mnt/celery/gabbro/immich/upload"
           read_only: false
