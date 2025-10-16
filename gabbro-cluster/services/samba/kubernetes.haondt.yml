@@ -23,3 +23,11 @@ components:
           GID: 1000
           USER: samba
           PASS: samba
+    charon:
+      - overlays: [default-gcs, weekly]
+        repository_configs:
+          - raw: |-
+              backend:
+                path: deployments-sambda-primary
+        source.volumes:
+          storage: [/]
