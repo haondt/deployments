@@ -24,7 +24,7 @@ components:
           USER: samba
           PASS: samba
     charon:
-      - overlays: [default-gcs, weekly]
+      - overlays: [default-hzsb, daily]
         repository_configs:
           - raw: |-
               backend:
