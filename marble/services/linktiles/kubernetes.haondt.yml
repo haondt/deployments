@@ -31,3 +31,7 @@ components:
       redis-data:
         src.pvc.size: 64Mi
         dest.dir: /data
+    startup.tasks:
+        - chmod:
+            paths: [/data]
+            mode: '0777'
