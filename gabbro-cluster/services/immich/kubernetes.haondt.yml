@@ -121,3 +121,4 @@ components:
           dir: /mnt/celery/gabbro/immich/db
           read_only: false
         dest.dir: /var/lib/postgresql/data
+
