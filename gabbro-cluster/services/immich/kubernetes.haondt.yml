@@ -101,6 +101,8 @@ components:
   db:
     image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
     talos: "@!"
+    resources:
+      limits.memory: 1Gi
     networking:
       ports:
         http: 5432
