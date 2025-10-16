@@ -21,10 +21,8 @@ defaults:
           value.mirror: cert-manager/haondt-dev-default-tls
   charon:
     overlays:
-      daily:
-        schedule: "0 0 * * *"
-      weekly:
-        schedule: "0 0 * * 0"
+      daily.schedule: "0 8 * * *"
+      weekly.schedule: "0 8 * * 0"
       default-gcs:
         name: default
         scale_down_deployment: true
