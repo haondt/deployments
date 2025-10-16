@@ -34,6 +34,7 @@ services:
       - ./nginx/microbin-cloud.location.conf:/etc/nginx/vhost.d/microbin.cloud.haondt.dev_location_override
       - ./nginx/linktiles.conf:/etc/nginx/vhost.d/linktiles.cloud.haondt.dev
       - ./nginx/linktiles.location.conf:/etc/nginx/vhost.d/linktiles.cloud.haondt.dev_location_override
+      - ./nginx/immich.conf:/etc/nginx/vhost.d/immich.cloud.haondt.dev
       - ./nginx/snippets:/config/nginx/snippets
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
