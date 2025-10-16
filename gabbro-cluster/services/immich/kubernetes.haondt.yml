@@ -64,11 +64,10 @@ components:
       model-cache:
         src.pvc: {}
         dest.dir: /cache
-      ml-data:
+      upload:
         src.host:
-          dir: "/mnt/celery/gabbro/immich/machine-learning-data"
+          dir: "/mnt/celery/gabbro/immich/upload"
           read_only: false
-          create: true
         dest.dir: /data
     environment:
       - raw:
