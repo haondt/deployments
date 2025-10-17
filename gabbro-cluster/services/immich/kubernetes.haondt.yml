@@ -38,6 +38,14 @@ components:
           dir: "/mnt/celery/gabbro/immich/upload"
           read_only: false
         dest.dir: /data
+    charon:
+      - overlays: [default-hzsb, daily]
+        repository_configs:
+          - raw: |-
+              backend:
+                path: deployments-immich-server
+        source.volumes:
+          upload: [/]
     environment:
       - raw:
           DB_PASSWORD: "{{ immich__postgres_password }}"
