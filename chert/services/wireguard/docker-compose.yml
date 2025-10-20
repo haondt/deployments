@@ -1,6 +1,7 @@
 services:
   wireguard:
     image: lscr.io/linuxserver/wireguard
+    x-tl: +!
     networks:
       - wireguard
     cap_add:

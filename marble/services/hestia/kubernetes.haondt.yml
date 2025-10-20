@@ -1,7 +1,7 @@
 components:
   primary:
     image: registry.gitlab.com/haondt/cicd/registry/hestia:0.1.1
-    x-tl: x
+    talos: x
     networking:
       ports.http: 8080
       ingresses:

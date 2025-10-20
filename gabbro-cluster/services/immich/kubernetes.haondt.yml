@@ -97,7 +97,7 @@ components:
 
   redis:
     image: docker.io/redis:6.2-alpine@sha256:77697a75da9f94e9357b61fcaf8345f69e3d9d32e9d15032c8415c21263977dc
-    x-tl: ^!
+    talos: ^!
     networking:
       ports:
         http: 6379
@@ -113,7 +113,7 @@ components:
 
   db:
     image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
-    talos: "@!"
+    talos: x
     resources:
       limits.memory: 1Gi
     networking:
