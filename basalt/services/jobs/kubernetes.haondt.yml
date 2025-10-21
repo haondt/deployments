@@ -23,7 +23,7 @@ components:
       - file: jobs.env
         secret: true
   redis:
-    image: docker.io/library/redis:latest@sha256:48e2cd000323f73fab10b54ae9a262a2a8460533c3fbc1cbc520bc6464227b96
+    image: docker.io/library/redis:latest@sha256:dbda186a12cf9a780a0991529a4a4007403e2374da22421363c30dc853d4cc1e
     talos: +!
     networking:
       ports:
