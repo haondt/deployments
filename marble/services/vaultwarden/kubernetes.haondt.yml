@@ -9,6 +9,12 @@ components:
         - port: http
           host: "vaultwarden.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+    observability:
+      probes.hc:
+        http_get:
+          port: http
+          path: /alive
+        alloy.blackbox: {}
     volumes:
       data:
         src.pvc: {}
