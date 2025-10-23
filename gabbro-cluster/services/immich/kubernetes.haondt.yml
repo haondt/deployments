@@ -32,6 +32,12 @@ components:
         - port: http
           host: "immich.{{ haondt__default_cloud_host }}"
           max_body_size:  50000m
+    observability:
+      probes.hc:
+        http_get:
+          port: http
+          path: /api/server/ping
+        alloy.blackbox: {}
     volumes:
       upload:
         src.host:
