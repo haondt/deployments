@@ -17,6 +17,11 @@ components:
         stage.labels {
           values = { "level" = "" }
         }
+      probes.hc:
+        http_get:
+          port: http
+          path: /ping
+        alloy.blackbox: {}
     networking:
       ports:
         http: 8989
