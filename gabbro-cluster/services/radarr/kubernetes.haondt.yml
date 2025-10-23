@@ -20,6 +20,23 @@ components:
         - name: primary
           app: prowlarr
           port: http
+    observability: &observability
+      alloy.logs.process: |
+        stage.regex {
+          expression = "^\\[(?P<level>\\w+)\\]"
+        }
+        stage.template {
+          source = "level"
+          template = "{{ or .Value \"Info\"}}"
+        }
+        stage.labels {
+          values = { "level" = "" }
+        }
+      probes.hc:
+        http_get:
+          port: http
+          path: /ping
+        alloy.blackbox: {}
     volumes:
       config:
         src.pvc: {}
@@ -77,6 +94,9 @@ components:
         - name: primary
           app: prowlarr
           port: http
+    observability:
+      <<: *observability
+      probes.hc.alloy.blackbox.labels.dev_haondt_app: radarr-hd
     volumes:
       config-hd:
         src.pvc: {}
