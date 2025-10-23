@@ -1,6 +1,6 @@
 components:
   primary:
-    image: registry.gitlab.com/haondt/cicd/registry/talos:main-52f25f76
+    image: registry.gitlab.com/haondt/cicd/registry/talos:main-50f1f3e3
     talos: x
     resources:
       limits.memory: 1Gi
@@ -75,7 +75,11 @@ components:
                 "dev_haondt_message_template" = "",
             }
         }
-
+      probes.hc:
+        http_get:
+          port: http
+          path: /hc
+        alloy.blackbox: {}
   redis:
     image: docker.io/library/redis:latest@sha256:4521b581dbddea6e7d81f8fe95ede93f5648aaa66a9dacd581611bf6fe7527bd
     talos: +!
