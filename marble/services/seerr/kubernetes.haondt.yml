@@ -2,14 +2,19 @@ components:
   primary:
     image: ghcr.io/fallenbagel/jellyseerr:2.7.3@sha256:9cc9e9ee6cd5cf5a23feb45c37742ba34cfd6314d81d259cddb373a97ac92cdd
     talos: +!
+    resources.limits.memory: 1Gi
     networking:
       ports:
         http: 5055
-      # rathole_routes:
-      #   - port: http
-      #     host: "seerr.{{ haondt__default_public_host }}"
+      rathole_routes:
+        - port: http
+          host: "seerr.{{ haondt__default_public_host }}"
       dependencies:
-        - name: redis
+        - name: primary
+          app: qbittorrent
+          port: http
+        - name: primary
+          app: prowlarr
           port: http
     volumes:
       config:
