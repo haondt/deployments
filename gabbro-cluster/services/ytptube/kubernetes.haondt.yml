@@ -34,3 +34,7 @@ components:
           dir: "{{ media__host_dirs__downloads }}"
           read_only: false
         dest.dir: /downloads
+    startup.tasks:
+      - chown:
+          paths: [/config]
+          owner: "{{ media__puid }}:{{ media__pgid }}"
