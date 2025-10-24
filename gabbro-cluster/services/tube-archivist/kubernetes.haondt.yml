@@ -52,7 +52,7 @@ components:
   redis:
     image: docker.io/library/redis:latest@sha256:4521b581dbddea6e7d81f8fe95ede93f5648aaa66a9dacd581611bf6fe7527bd
     talos: +!
-    networking.ports.http: 9200
+    networking.ports.http: 6379
     volumes.redis-data:
       src.pvc.size: 64Mi
       dest.dir: /data
@@ -63,8 +63,8 @@ components:
   es:
     image: docker.io/bbilly1/tubearchivist-es:latest@sha256:58007d1cf7a3b9f3ae4a8e0d2798b05d9c7dd768877b1fe908fd4142da4c68b6
     talos: +!
-    networking.ports.http: 6379
-    resources.limits.memory: 1Gi
+    networking.ports.http: 9200
+    resources.limits.memory: 4Gi
     volumes:
       es-data:
         src.host:
