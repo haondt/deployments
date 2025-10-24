@@ -38,3 +38,4 @@ components:
       - chown:
           paths: [/config]
           owner: "{{ media__puid }}:{{ media__pgid }}"
+
