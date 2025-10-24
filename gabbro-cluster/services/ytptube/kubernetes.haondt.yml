@@ -26,8 +26,11 @@ components:
           read_only: false
           create: true
         dest.dir: /config
-      tmp:
-        src.tmpfs.size: 64Mi
+      downloading:
+        src.host:
+          dir: "/mnt/celery/gabbro_cluster/ytptube/incomplete"
+          read_only: false
+          create: true
         dest.dir: /tmp
       downloads:
         src.host:
@@ -36,6 +39,6 @@ components:
         dest.dir: /downloads
     startup.tasks:
       - chown:
-          paths: [/config]
+          paths: [/config,/tmp]
           owner: "{{ media__puid }}:{{ media__pgid }}"
 
