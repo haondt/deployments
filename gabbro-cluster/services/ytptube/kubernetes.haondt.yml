@@ -1,0 +1,36 @@
+components:
+  primary:
+    image: ghcr.io/arabcoders/ytptube:latest
+    # talos: +!
+    resources:
+      limits:
+        memory: 2Gi
+    networking:
+      ports:
+        http: 8081
+      ingresses:
+        - port: http
+          host: "ytptube.{{ haondt__default_host }}"
+    observability.probes.hc:
+      http_get:
+        port: http
+        path: /api/ping
+      alloy.blackbox: {}
+    security:
+      user: {{ media__puid }}
+      group: {{ media__pgid }}
+    volumes:
+      config:
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/ytptube/config"
+          read_only: false
+          create: true
+        dest.dir: /config
+      tmp:
+        src.tmpfs.size: 64Mi
+        dest.dir: /tmp
+      downloads:
+        src.host:
+          dir: "{{ media__host_dirs__downloads }}"
+          read_only: false
+        dest.dir: /downloads
