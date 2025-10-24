@@ -1,0 +1,84 @@
+components:
+  primary:
+    image: bbilly1/tubearchivist
+    talos: +!
+    resources:
+      limits:
+        memory: 2Gi
+    networking:
+      ports:
+        http: 8000
+      ingresses:
+        - port: http
+          host: "tube-archivist.{{ haondt__default_host }}"
+      dependencies:
+        - name: redis
+          port: http
+        - name: es
+          port: http
+    observability.probes.hc:
+      http_get:
+        port: http
+        path: /api/health/
+      alloy.blackbox: {}
+    volumes:
+      cache:
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/tube-archivist/cache"
+          read_only: false
+          create: true
+        dest.dir: /cache
+      celery-youtube:
+        src.host:
+          dir: "{{ media__host_dirs__celery }}/youtube"
+          read_only: false
+          create: true
+        dest.dir: /youtube
+    startup:
+      tasks:
+        - chown:
+            paths: [/cache]
+            owner: "{{ media__puid }}:{{ media__pgid }}"
+    environment:
+      - raw:
+          REDIS_CON: redis://tube-archivist-redis-http:8080
+          HOST_UID: "{{ media__pgid }}"
+          HOST_GID: "{{ media__puid }}"
+          TA_HOST: https://tube-archivist.{{ haondt__default_host }}
+          TA_USERNAME: admin
+          TA_PASSWORD: admin
+          ES_URL: http://tube-archivist-es-http:8080
+          ELASTIC_PASSWORD: &elastic_password tubearchivist
+  redis:
+    image: bbilly1/tubearchivist-es
+    talos: +!
+    networking.ports.http: 9200
+    volumes.redis-data:
+      src.pvc.size: 64Mi
+      dest.dir: /data
+    startup.tasks:
+      - chmod:
+          paths: [/data]
+          mode: '0777'
+  es:
+    image: docker.io/library/redis:latest@sha256:4521b581dbddea6e7d81f8fe95ede93f5648aaa66a9dacd581611bf6fe7527bd
+    talos: +!
+    networking.ports.http: 6379
+    volumes:
+      es-data:
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/tube-archivist/es"
+          read_only: false
+          create: true
+        dest.dir: /usr/share/elasticsearch/data
+    startup.tasks:
+      - chown:
+          paths: [/usr/share/elasticsearch/data]
+          owner: 1000:0
+    environment:
+      - raw:
+          ELASTIC_PASSWORD: *elastic_password
+          ES_JAVA_OPTS: -Xms1g -Xmx1g
+          xpack.security.enabled: "true"
+          discovery.type: single-node
+          path.repo: /usr/share/elasticsearch/data/snapshot
