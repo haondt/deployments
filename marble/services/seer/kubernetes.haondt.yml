@@ -1,0 +1,23 @@
+components:
+  primary:
+    image: ghcr.io/fallenbagel/jellyseerr:2.7.3
+    talos: +!
+    networking:
+      ports:
+        http: 5055
+      # rathole_routes:
+      #   - port: http
+      #     host: "seerr.{{ haondt__default_public_host }}"
+      dependencies:
+        - name: redis
+          port: http
+    volumes:
+      config:
+        src.pvc: {}
+        dest.dir: /app/config
+    observability:
+      probes.hc:
+        http_get:
+          port: http
+          path: /api/v1/status
+        alloy.blackbox: {}
