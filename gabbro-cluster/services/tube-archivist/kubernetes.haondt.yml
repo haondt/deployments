@@ -1,6 +1,6 @@
 components:
   primary:
-    image: bbilly1/tubearchivist
+    image: docker.io/bbilly1/tubearchivist:latest@sha256:20ce26849d0bf00db9d85300f8205af24d4cd507dd7ab53b55d48a33544ce5b6
     talos: +!
     resources:
       limits:
@@ -50,7 +50,7 @@ components:
           ES_URL: http://tube-archivist-es-http:8080
           ELASTIC_PASSWORD: &elastic_password tubearchivist
   redis:
-    image: bbilly1/tubearchivist-es
+    image: docker.io/bbilly1/tubearchivist-es:latest@sha256:58007d1cf7a3b9f3ae4a8e0d2798b05d9c7dd768877b1fe908fd4142da4c68b6
     talos: +!
     networking.ports.http: 9200
     volumes.redis-data:
