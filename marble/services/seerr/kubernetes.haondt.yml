@@ -9,13 +9,6 @@ components:
       rathole_routes:
         - port: http
           host: "seerr.{{ haondt__default_public_host }}"
-      dependencies:
-        - name: primary
-          app: qbittorrent
-          port: http
-        - name: primary
-          app: prowlarr
-          port: http
     volumes:
       config:
         src.pvc: {}
