@@ -50,7 +50,7 @@ components:
           ES_URL: http://tube-archivist-es-http:8080
           ELASTIC_PASSWORD: &elastic_password tubearchivist
   redis:
-    image: docker.io/bbilly1/tubearchivist-es:latest@sha256:58007d1cf7a3b9f3ae4a8e0d2798b05d9c7dd768877b1fe908fd4142da4c68b6
+    image: docker.io/library/redis:latest@sha256:4521b581dbddea6e7d81f8fe95ede93f5648aaa66a9dacd581611bf6fe7527bd
     talos: +!
     networking.ports.http: 9200
     volumes.redis-data:
@@ -61,9 +61,10 @@ components:
           paths: [/data]
           mode: '0777'
   es:
-    image: docker.io/library/redis:latest@sha256:4521b581dbddea6e7d81f8fe95ede93f5648aaa66a9dacd581611bf6fe7527bd
+    image: docker.io/bbilly1/tubearchivist-es:latest@sha256:58007d1cf7a3b9f3ae4a8e0d2798b05d9c7dd768877b1fe908fd4142da4c68b6
     talos: +!
     networking.ports.http: 6379
+    resources.limits.memory: 1Gi
     volumes:
       es-data:
         src.host:
