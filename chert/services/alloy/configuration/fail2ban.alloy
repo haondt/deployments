@@ -14,8 +14,7 @@ loki.source.file "fail2ban_scrape" {
 loki.process "fail2ban_process" {
     stage.static_labels {
         values = {
-            instance = "chert",
-            service_name = "fail2ban",
+            dev_haondt_app = "fail2ban",
         }
     }
     

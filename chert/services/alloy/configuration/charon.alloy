@@ -14,8 +14,7 @@ loki.source.file "charon_scrape" {
 loki.process "charon_process" {
     stage.static_labels {
         values = {
-            instance = "chert",
-            service_name = "charon",
+            dev_haondt_app = "charon",
         }
     }
 

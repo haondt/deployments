@@ -14,8 +14,7 @@ loki.source.file "nginx_scrape" {
 loki.process "nginx_process" {
     stage.static_labels {
         values = {
-            instance = "chert",
-            service_name = "nginx",
+            dev_haondt_app = "nginx",
         }
     }
 

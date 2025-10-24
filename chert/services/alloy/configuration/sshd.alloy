@@ -15,8 +15,7 @@ loki.source.file "sshd_scrape" {
 loki.process "sshd_process" {
     stage.static_labels {
         values = {
-            instance = "chert",
-            service_name = "sshd",
+            dev_haondt_app = "sshd",
         }
     }
 
