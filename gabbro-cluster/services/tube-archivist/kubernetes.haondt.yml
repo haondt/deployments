@@ -74,7 +74,7 @@ components:
     startup.tasks:
       - chown:
           paths: [/usr/share/elasticsearch/data]
-          owner: 1000:0
+          owner: "1000:0"
     environment:
       - raw:
           ELASTIC_PASSWORD: *elastic_password
