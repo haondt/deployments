@@ -28,6 +28,7 @@ pages:
             hide-location: true
           !include: github-stats.yml
           !include: twitch.yml
+          !include: epic-games.yml
       - size: full
         widgets:
           !include: linktiles.yml
