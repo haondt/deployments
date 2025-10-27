@@ -21,7 +21,7 @@ components:
     startup:
       tasks:
         - chmod:
-            paths: [/data,/config,/cache]
+            paths: [/var/lib/semaphore,/etc/semaphore,/tmp/semaphore]
             mode: '0777'
     environment:
       - raw:
