@@ -7,7 +7,7 @@ components:
         http: 3000
       ingresses:
         - port: http
-          host: "sempahore.{{ haondt__default_host }}"
+          host: "semaphore.{{ haondt__default_host }}"
     volumes:
       data:
         src.pvc.size: 2Gi
