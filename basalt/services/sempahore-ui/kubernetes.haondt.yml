@@ -1,0 +1,32 @@
+components:
+  primary:
+    image: public.ecr.aws/semaphore/pro/server:v2.16.18
+    talos: '^!'
+    networking:
+      ports:
+        http: 3000
+      ingresses:
+        - port: http
+          host: "sempahore.{{ haondt__default_host }}"
+    volumes:
+      data:
+        src.pvc.size: 2Gi
+        dest.dir: /var/lib/semaphore
+      config:
+        src.pvc.size: 1Gi
+        dest.dir: /etc/semaphore
+      cache:
+        src.pvc.size: 2Gi
+        dest.dir: /tmp/semaphore
+    startup:
+      tasks:
+        - chmod:
+            paths: [/data,/config,/cache]
+            mode: '0777'
+    environment:
+      - raw:
+          SEMAPHORE_DB_DIALECT: sqlite
+          SEMAPHORE_ADMIN: admin
+          SEMAPHORE_ADMIN_PASSWORD: admin
+          SEMAPHORE_ADMIN_NAME: Admin
+          SEMAPHORE_ADMIN_EMAIL: admin@localhost
