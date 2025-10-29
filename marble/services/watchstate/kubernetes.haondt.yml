@@ -1,0 +1,17 @@
+components:
+  primary:
+    image: ghcr.io/arabcoders/watchstate:latest
+    talos: +!
+    networking:
+      ports:
+        http: 8080
+      ingresses:
+        - port: http
+          host: "watchstate.{{ haondt__default_host }}"
+    security:
+      user: 1000
+      group: 1000
+    volumes:
+      config:
+        src.pvc.size: 128Mi
+        dest.dir: /config
