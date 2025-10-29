@@ -15,3 +15,8 @@ components:
       config:
         src.pvc.size: 128Mi
         dest.dir: /config
+    startup:
+      tasks:
+        - chown:
+            paths: [/config]
+            owner: '1000:1000'
