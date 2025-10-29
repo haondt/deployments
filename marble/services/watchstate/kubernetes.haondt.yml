@@ -2,12 +2,18 @@ components:
   primary:
     image: ghcr.io/arabcoders/watchstate:latest
     talos: +!
+    resources.limits.memory: 1Gi
     networking:
       ports:
         http: 8080
       ingresses:
         - port: http
           host: "watchstate.{{ haondt__default_host }}"
+    observability.probes.hc:
+      http_get:
+        port: http
+        path: /v1/api/system/healthcheck
+      alloy.blackbox: {}
     security:
       user: 1000
       group: 1000
