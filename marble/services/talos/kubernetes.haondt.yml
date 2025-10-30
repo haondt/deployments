@@ -110,7 +110,7 @@ components:
           port: http
     volumes:
       redis-insight-data:
-        src.pvc.size: 16Mi
+        src.pvc.size: 64Mi
         dest.dir: /data
     startup:
       tasks:
