@@ -19,7 +19,7 @@ components:
       group: 1000
     volumes:
       config:
-        src.pvc.size: 128Mi
+        src.pvc.size: 1Gi
         dest.dir: /config
     startup:
       tasks:
