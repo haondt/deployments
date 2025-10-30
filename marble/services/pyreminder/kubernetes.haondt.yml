@@ -1,0 +1,16 @@
+components:
+  primary:
+    image: docker.io/haumea/pyreminder:latest@sha256:960b57a4db75fae98e1e075d680614bde3486c3d9648dc075ae31c56807738dc
+    talos: +!
+    volumes:
+      config:
+        src.file: pyreminder.yml
+        dest.file: /config/pyreminder.yml
+      data:
+        src.pvc.size: 16Mi
+        dest.dir: /data
+    startup:
+      tasks:
+        - chmod:
+            path: /data
+            mode: '777'

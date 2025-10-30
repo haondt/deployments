@@ -1,0 +1,18 @@
+checks:
+  - vaultwarden:
+      source:
+        type: github
+        owner: k3s-io
+        repo: k3s
+      destinations:
+        - type: discord
+          webhookURL: "{{ discord_webhook_url }}"
+          color: "1c60dc"
+          template: github-discord
+      meta:
+        name: k3s
+      period: 1d
+templates:
+  github-discord: |
+    Version ${github__tag} of ${meta__name} has been released. [Click here to view the release on GitHub](${github__url}).
+
