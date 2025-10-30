@@ -1,6 +1,6 @@
 components:
   primary:
-    image: public.ecr.aws/semaphore/pro/server:v2.16.36@sha256:c39b27caf2b4a648a8aa38b13622a9deb5b63dca98c87089b1fc51a2ed99a0d8
+    image: public.ecr.aws/semaphore/pro/server:v2.16.37@sha256:22b6fae9ae7e398609000f09a66cc656a3f81a53db383b1ad2644189591ea9c3
     talos: '^!'
     networking:
       ports:
