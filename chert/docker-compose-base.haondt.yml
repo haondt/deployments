@@ -1,6 +1,7 @@
 services:
   {{ COM_HAONDT_CONTAINER }}:
     container_name: "{{ COM_HAONDT_CONTAINER }}"
+    restart: unless-stopped
     labels:
       dev.haondt.host: chert
       dev.haondt.service: "{{ COM_HAONDT_CONTAINER }}"
