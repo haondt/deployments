@@ -19,6 +19,12 @@ components:
       ip_addresses:
         - ip: 192.168.1.103
           ports: [http,st1,st2,st3]
+    observability:
+      probes.hc:
+        http_get:
+          port: http
+          path: /rest/noauth/health
+        alloy.blackbox: {}
     volumes:
       config:
         src.pvc.size: 64Mi

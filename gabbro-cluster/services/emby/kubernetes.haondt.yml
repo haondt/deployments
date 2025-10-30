@@ -18,6 +18,12 @@ components:
       rathole_routes:
         - port: http
           host: "emby.{{ haondt__default_public_host }}"
+    observability:
+      probes.hc:
+        http_get:
+          port: http
+          path: /system/ping
+        alloy.blackbox: {}
     volumes:
       config:
         src.pvc: {}
