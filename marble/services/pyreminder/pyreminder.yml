@@ -12,6 +12,15 @@ checks:
       meta:
         name: k3s
       period: 1d
+  - basalt_updates:
+      source:
+        type: reminder
+      destinations:
+        - type: discord
+          webhookURL: "{{ discord_webhook_url }}"
+          color: 1ABC9C
+          template: "Reminder for basalt update - infrastructure -> cd deploment && make a-deb-update TARGET=basalt"
+      period: 14d
 templates:
   github-discord: |
     Version ${github__tag} of ${meta__name} has been released. [Click here to view the release on GitHub](${github__url}).
