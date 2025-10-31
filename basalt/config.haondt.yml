@@ -2,3 +2,4 @@ type: kubernetes
 kubeconfig: $BASALT_KUBECONFIG
 context: gitlab-deployments-basalt
 name: deployments
+
