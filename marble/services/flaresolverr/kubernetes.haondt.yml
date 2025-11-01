@@ -1,0 +1,16 @@
+components:
+  primary:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    talos: +!
+    resources:
+      limits.memory: 4Gi
+    networking:
+      ports:
+        http: 8191
+      ingresses:
+        - port: http
+          host: "flaresolverr.{{ haondt__default_host }}"
+    volumes:
+      config:
+        src.pvc.size: 128Mi
+        dest.dir: /config
