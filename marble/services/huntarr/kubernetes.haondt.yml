@@ -1,0 +1,16 @@
+components:
+  primary:
+    image: ghcr.io/plexguide/huntarr:latest
+    talos: +!
+    resources:
+      limits.memory: 512Mi
+    networking:
+      ports:
+        http: 9705
+      ingresses:
+        - port: http
+          host: "huntarr.{{ haondt__default_host }}"
+    volumes:
+      config:
+        src.pvc.size: 128Mi
+        dest.dir: /config
