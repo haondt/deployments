@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/flaresolverr/flaresolverr:latest
+    image: ghcr.io/flaresolverr/flaresolverr:latest@sha256:057eedf25a22905685c55be78b2dd70bcd617a921384cd17cb3f4e8901753331
     talos: +!
     resources:
       limits.memory: 4Gi
