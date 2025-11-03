@@ -2,6 +2,7 @@ components:
   primary:
     image: lscr.io/linuxserver/prowlarr:develop@sha256:c6673f97f188dbd60a57fe585bd5b5c9dd369f5f5c837e60397d97ca8e7d7b50
     talos: +!
+    resources.limits.memory: 512Mi
     networking:
       ports:
         http: 9696
