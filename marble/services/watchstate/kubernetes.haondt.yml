@@ -2,7 +2,8 @@ components:
   primary:
     image: ghcr.io/arabcoders/watchstate:latest@sha256:4062c068d044e37ca74ef3c4ffa06279110be88df89f1a3982f62b943eb5a2a9
     talos: +!
-    resources.limits.memory: 1Gi
+    resources.requests.memory: 256Mi
+    resources.limits.memory: 4Gi
     networking:
       ports:
         http: 8080
@@ -19,7 +20,7 @@ components:
       group: 1000
     volumes:
       config:
-        src.pvc.size: 1Gi
+        src.pvc.size: 4Gi
         dest.dir: /config
     startup:
       tasks:
