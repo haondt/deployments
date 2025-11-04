@@ -1,6 +1,6 @@
 components:
   primary:
-    image: docker.io/library/wordpress:latest@sha256:3b89ab18542e90b63e4c150e24d5b590a21c1200c6cebe626a6015e99f498721
+    image: docker.io/library/wordpress:latest@sha256:eff8c70c98f50c05d70c5db86a8a37f59447a426e6bfb906c362f8d961cacbf3
     talos: +!
     networking:
       ports:
