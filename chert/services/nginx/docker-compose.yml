@@ -39,6 +39,24 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
       NO_COLOR: yes
+      LOG_JSON: true
+      LOG_FORMAT: |
+        {
+          "time_local": "$time_iso8601",
+          "real_client_ip": "$real_client_ip",
+          "client_ip": "$http_x_forwarded_for",
+          "remote_addr": "$remote_addr",
+          "request": "$request",
+          "status": "$status",
+          "body_bytes_sent": "$body_bytes_sent",
+          "request_time": "$request_time",
+          "upstream_response_time": "$upstream_response_time",
+          "upstream_addr": "$upstream_addr",
+          "http_referrer": "$http_referer",
+          "http_user_agent": "$http_user_agent",
+          "request_id": "$request_id"
+        }
+
 
   nginx-acme:
     networks:
