@@ -49,11 +49,16 @@ loki.process "nginx_process" {
         values = {
             "client_ip" = "",
             "request" = "",
-            "status_code" = "",
             "user_agent" = "",
-            "host" = "",
             "path" = "",
             "scheme" = "",
+        }
+    }
+
+    stage.labels {
+        values = {
+            "nginx_host" = "host",
+            "nginx_status_code" = "status_code",
         }
     }
 
