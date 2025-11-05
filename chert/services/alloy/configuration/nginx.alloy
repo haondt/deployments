@@ -36,6 +36,7 @@ loki.process "nginx_process" {
             user_agent = "http_user_agent",
             host = "",
             path = "",
+            scheme = "",
         }
     }
 
@@ -48,15 +49,11 @@ loki.process "nginx_process" {
         values = {
             "client_ip" = "",
             "request" = "",
-            "user_agent" = "",
-            "path" = "",
-        }
-    }
-
-    stage.labels {
-        values = {
             "status_code" = "",
+            "user_agent" = "",
             "host" = "",
+            "path" = "",
+            "scheme" = "",
         }
     }
 
