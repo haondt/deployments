@@ -19,7 +19,24 @@ loki.process "nginx_process" {
     }
 
     stage.regex {
-        expression = "^(?P<timestamp>[^ ]+)\\s+.*docker-nginx\\[\\d+\\]: nginx.\\d*\\s+\\|\\s*(?P<proxy_ip>\\S+)\\s+(?P<client_ip>\\S+)\\s+(?P<remote_user>\\S+)\\s+(?P<auth_user>\\S+)\\s+\\[[^\\]]+\\] \"(?P<method>\\S+)(?:\\s+(?P<path>\\S+)(?:\\s+(?P<connection>\\S+))?)?[^\"]*\" (?P<status_code>\\d+)\\s+\\d+\\s+\"(?P<referrer>[^\"]+)+\"\\s+\"(?P<user_agent>[^\"]+)+\"\\s+\"(?P<extra>[^\"]+)+\".*$"
+        expression = "^(?P<timestamp>[^ ]+)\\s+.*docker-nginx\\[\\d+\\]: nginx.\\d*\\s+\\|\\s*(?P<json>.*)\\s*$"
+    }
+
+    stage.output {
+        source = "json"
+    }
+
+    stage.json {
+        drop_malformed = true
+        expressions = {
+            timestamp = "time_local",
+            client_ip = "real_client_ip",
+            request = "",
+            status_code  = "status",
+            user_agent = "http_user_agent",
+            host = "",
+            path = "",
+        }
     }
 
     stage.timestamp {
@@ -30,21 +47,16 @@ loki.process "nginx_process" {
     stage.structured_metadata {
         values = {
             "client_ip" = "",
-            "remote_user" = "",
-            "auth_user" = "",
-            "path" = "",
-            "referrer" = "",
+            "request" = "",
             "user_agent" = "",
-            "extra" = "",
+            "path" = "",
         }
     }
 
     stage.labels {
         values = {
-            "proxy_ip" = "",
-            "method" = "",
-            "connection" = "",
             "status_code" = "",
+            "host" = "",
         }
     }
 
