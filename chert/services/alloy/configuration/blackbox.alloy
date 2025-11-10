@@ -1,0 +1,18 @@
+prometheus.scrape "blackbox_default" {
+  targets    = prometheus.exporter.blackbox.default.targets
+  forward_to = [prometheus.remote_write.mimir.receiver]
+}
+
+prometheus.exporter.blackbox "default" {
+  config = "{ modules: { http_2xx: { prober: http, timeout: 5s } } }"
+  target {
+      name = "authelia_probe_hc"
+      address = "alloy:9091/api/state"
+      module = "http_2xx"
+      labels = {
+          "dev_haondt_app" = "authelia",
+          "dev_haondt_probe" = "hc",
+      }
+  }
+}
+

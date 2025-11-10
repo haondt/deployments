@@ -12,6 +12,7 @@ services:
     networks:
       - authelia
       - nginx
+      - alloy
     environment:
       VIRTUAL_HOST: "auth.haondt.dev"
       VIRTUAL_PORT: 9091

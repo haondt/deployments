@@ -9,6 +9,7 @@ loki.write "default" {
     }
     external_labels = {
         dev_haondt_cluster = "chert",
+        dev_haondt_node = coalesce(sys.env("HOSTNAME"), constants.hostname),
     }
 }
 
@@ -18,5 +19,6 @@ prometheus.remote_write "mimir" {
     }
     external_labels = {
         dev_haondt_cluster = "chert",
+        dev_haondt_node = coalesce(sys.env("HOSTNAME"), constants.hostname),
     }
 }
