@@ -22,7 +22,7 @@ services:
 
   lldap:
     image: lldap/lldap:stable
-    x-tl: x
+    x-tl: +!
     networks:
       - wireguard
       - authelia
