@@ -18,6 +18,10 @@ components:
       ip_addresses:
         - ip: 192.168.1.212
           ports: [http]
+      dependencies:
+        - name: primary
+          app: ersatztv
+          port: http
     observability:
       probes:
         hc:
