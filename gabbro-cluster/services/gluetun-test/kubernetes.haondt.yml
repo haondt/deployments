@@ -13,3 +13,4 @@ components:
     gluetun:
       wireguard.private_key: "{{ gluetun__wireguard_private_key }}"
 
+
