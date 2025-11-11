@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/chrisbenincasa/tunarr:latest@sha256:1116343111c4b97380f103292f8798117a0e5f7e9f11b2fc759898b0c235ec76
+    image: ghcr.io/chrisbenincasa/tunarr:latest@sha256:2b4d3a18c7bb99a6b6ed6ce82d9c907f095ae95d31ee6859c97f99fd5381b4e6
     talos: +!
     resources:
       requests:
