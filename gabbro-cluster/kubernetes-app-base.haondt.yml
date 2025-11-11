@@ -11,6 +11,7 @@ defaults:
     startup_tasks_chmod: *busybox_image
     startup_tasks_gomplate: hairyhenderson/gomplate:v4.3.3-alpine
     charon_k8s_job: haumea/charon-k8s-job:0.0.2
+    gluetun: ghcr.io/qdm12/gluetun:v3.40.0
   networking:
     tls:
       host.wildcard: true

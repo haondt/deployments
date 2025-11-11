@@ -1,0 +1,15 @@
+components:
+  primary:
+    image: curlimages/curl
+    command: ["/bin/sh", "-c"]
+    args:
+      - |
+        trap "exit" TERM
+        while true; do
+          echo "$(date): $(curl -s https://api.ipify.org)"
+          sleep 1
+        done
+
+    gluetun:
+      wireguard.private_key: "{{ gluetun__wireguard_private_key }}"
+
