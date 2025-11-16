@@ -12,7 +12,7 @@ components:
         server: 8266
       ingresses:
         - port: http
-          host: "fileflows.{{ haondt__default_host }}"
+          host: "tdarr.{{ haondt__default_host }}"
     volumes:
       server:
         src.host:
