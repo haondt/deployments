@@ -33,21 +33,27 @@ components:
         dest.dir: /app/common
       celery-tv-shows:
         src.host.dir: "{{ media__host_dirs__celery }}/tv_shows"
+        src.host.read_only: false
         dest.dir: /mnt/celery/tv_shows
       celery-movies:
         src.host.dir: "{{ media__host_dirs__celery }}/movies"
+        src.host.read_only: false
         dest.dir: /mnt/celery/movies
       celery-movies-hd:
         src.host.dir: "{{ media__host_dirs__celery }}/movies_hd"
+        src.host.read_only: false
         dest.dir: /mnt/celery/movies_hd
       rhyolite-tv-shows:
         src.host.dir: "{{ media__host_dirs__rhyolite }}/tv_shows"
+        src.host.read_only: false
         dest.dir: /mnt/rhyolite/tv_shows
       rhyolite-movies:
         src.host.dir: "{{ media__host_dirs__rhyolite }}/movies"
+        src.host.read_only: false
         dest.dir: /mnt/rhyolite/movies
       rhyolite-movies-hd:
         src.host.dir: "{{ media__host_dirs__rhyolite }}/movies_hd"
+        src.host.read_only: false
         dest.dir: /mnt/rhyolite/movies_hd
     startup:
       tasks:
