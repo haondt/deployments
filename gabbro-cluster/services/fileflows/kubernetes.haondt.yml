@@ -1,0 +1,64 @@
+components:
+  primary:
+    image: revenz/fileflows
+    # talos: +!
+    resources:
+      limits:
+        memory: 2Gi
+      gpu.enabled: true
+    networking:
+      ports:
+        http: 5000
+      ingresses:
+        - port: http
+          host: "fileflows.{{ haondt__default_host }}"
+    volumes:
+      config:
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/fileflows/config"
+          read_only: false
+          create: true
+        dest.dir: /app/Data
+      temp:
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/fileflows/temp"
+          read_only: false
+          create: true
+        dest.dir: /temp
+      common:
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/fileflows/common"
+          read_only: false
+          create: true
+        dest.dir: /app/common
+      celery-tv-shows:
+        src.host.dir: "{{ media__host_dirs__celery }}/tv_shows"
+        dest.dir: /mnt/celery/tv_shows
+      celery-movies:
+        src.host.dir: "{{ media__host_dirs__celery }}/movies"
+        dest.dir: /mnt/celery/movies
+      celery-movies-hd:
+        src.host.dir: "{{ media__host_dirs__celery }}/movies_hd"
+        dest.dir: /mnt/celery/movies_hd
+      rhyolite-tv-shows:
+        src.host.dir: "{{ media__host_dirs__rhyolite }}/tv_shows"
+        dest.dir: /mnt/rhyolite/tv_shows
+      rhyolite-movies:
+        src.host.dir: "{{ media__host_dirs__rhyolite }}/movies"
+        dest.dir: /mnt/rhyolite/movies
+      rhyolite-movies-hd:
+        src.host.dir: "{{ media__host_dirs__rhyolite }}/movies_hd"
+        dest.dir: /mnt/rhyolite/movies_hd
+    startup:
+      tasks:
+        - chown:
+            paths: [/app/common,/app/Data]
+            owner: "{{ media__puid }}:{{ media__pgid }}"
+    environment:
+      - raw:
+          PGID: "{{ media__pgid }}"
+          PUID: "{{ media__puid }}"
+          NVIDIA_VISIBLE_DEVICES: all
+          NVIDIA_DRIVER_CAPABILITIES: compute,video,utility
+          TempPathHost: /temp
+          BROWSER_START_DIR: /mnt
