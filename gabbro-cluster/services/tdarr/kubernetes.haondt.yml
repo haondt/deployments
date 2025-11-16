@@ -25,7 +25,7 @@ components:
           dir: "/mnt/pepper/gabbro_cluster/tdarr/configs"
           read_only: false
           create: true
-        dest.dir: /configs
+        dest.dir: /app/configs
       temp:
         src.host:
           dir: "/mnt/pepper/gabbro_cluster/tdarr/temp"
