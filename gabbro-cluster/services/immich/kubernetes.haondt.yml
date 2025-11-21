@@ -41,7 +41,7 @@ components:
     volumes:
       upload:
         src.host:
-          dir: "/mnt/celery/gabbro/immich/upload"
+          dir: "/mnt/carrot/gabbro/immich/upload"
           read_only: false
         dest.dir: /data
     charon:
@@ -137,7 +137,7 @@ components:
     volumes:
       db-data:
         src.host:
-          dir: /mnt/celery/gabbro/immich/db
+          dir: /mnt/pepper/gabbro_cluster/immich/db
           read_only: false
         dest.dir: /var/lib/postgresql/data
 
