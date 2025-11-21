@@ -33,21 +33,27 @@ components:
       config:
         src.pvc: {}
         dest.dir: /config
+      config-new:
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/plex/config"
+          read_only: false
+          create: true
+        dest.dir: /config_new
       transcode:
         src.host:
           dir: "/mnt/pepper/gabbro_cluster/plex/transcode"
           read_only: false
           create: true
         dest.dir: /transcode
-      celery-tv-shows:
-        src.host.dir: "{{ media__host_dirs__celery }}/tv_shows"
-        dest.dir: /mnt/celery/tv_shows
-      celery-movies:
-        src.host.dir: "{{ media__host_dirs__celery }}/movies"
-        dest.dir: /mnt/celery/movies
-      celery-movies-hd:
-        src.host.dir: "{{ media__host_dirs__celery }}/movies_hd"
-        dest.dir: /mnt/celery/movies_hd
+      carrot-tv-shows:
+        src.host.dir: "{{ media__host_dirs__carrot }}/tv_shows"
+        dest.dir: /mnt/carrot/tv_shows
+      carrot-movies:
+        src.host.dir: "{{ media__host_dirs__carrot }}/movies"
+        dest.dir: /mnt/carrot/movies
+      carrot-movies-hd:
+        src.host.dir: "{{ media__host_dirs__carrot }}/movies_hd"
+        dest.dir: /mnt/carrot/movies_hd
       rhyolite-tv-shows:
         src.host.dir: "{{ media__host_dirs__rhyolite }}/tv_shows"
         dest.dir: /mnt/rhyolite/tv_shows
