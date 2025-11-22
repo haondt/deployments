@@ -40,11 +40,11 @@ components:
       config:
         src.pvc: {}
         dest.dir: /config
-      celery-tv-shows:
+      carrot-tv-shows:
         src.host:
-          dir: "{{ media__host_dirs__celery }}/tv_shows"
+          dir: "{{ media__host_dirs__carrot }}/tv_shows"
           read_only: false
-        dest.dir: /mnt/celery/tv_shows
+        dest.dir: /mnt/carrot/tv_shows
       rhyolite-tv-shows:
         src.host:
           dir: "{{ media__host_dirs__rhyolite }}/tv_shows"
