@@ -14,7 +14,7 @@ components:
         dest.file: /etc/samba/smb.conf
       storage:
         src.host:
-          dir: /mnt/celery/gabbro/samba/data
+          dir: /mnt/carrot/gabbro/samba/data
           read_only: false
         dest.dir: /storage
     environment:
