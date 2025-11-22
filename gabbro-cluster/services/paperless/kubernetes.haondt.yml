@@ -18,22 +18,22 @@ components:
     volumes:
       data:
         src.host:
-          dir: /mnt/celery/gabbro_cluster/paperless/data
+          dir: /mnt/pepper/gabbro_cluster/paperless/data
           read_only: false
         dest.dir: /usr/src/paperless/data
       media:
         src.host:
-          dir: /mnt/celery/gabbro_cluster/paperless/media
+          dir: /mnt/carrot/gabbro/paperless/media
           read_only: false
         dest.dir: /usr/src/paperless/media
       export:
         src.host:
-          dir: /mnt/celery/gabbro_cluster/paperless/export
+          dir: /mnt/carrot/gabbro/paperless/export
           read_only: false
         dest.dir: /usr/src/paperless/export
       consume:
         src.host:
-          dir: /mnt/celery/gabbro_cluster/paperless/consume
+          dir: /mnt/carrot/gabbro/paperless/consume
           read_only: false
         dest.dir: /usr/src/paperless/consume
     environment:
