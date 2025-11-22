@@ -41,11 +41,11 @@ components:
       config:
         src.pvc: {}
         dest.dir: /config
-      celery-movies:
+      carrot-movies:
         src.host:
-          dir: "{{ media__host_dirs__celery }}/movies"
+          dir: "{{ media__host_dirs__carrot }}/movies"
           read_only: false
-        dest.dir: /mnt/celery/movies
+        dest.dir: /mnt/carrot/movies
       rhyolite-movies:
         src.host:
           dir: "{{ media__host_dirs__rhyolite }}/movies"
@@ -101,11 +101,11 @@ components:
       config-hd:
         src.pvc: {}
         dest.dir: /config
-      celery-movies-hd:
+      carrot-movies-hd:
         src.host:
-          dir: "{{ media__host_dirs__celery }}/movies_hd"
+          dir: "{{ media__host_dirs__carrot }}/movies_hd"
           read_only: false
-        dest.dir: /mnt/celery/movies
+        dest.dir: /mnt/carrot/movies
       rhyolite-movies-hd:
         src.host:
           dir: "{{ media__host_dirs__rhyolite }}/movies_hd"
