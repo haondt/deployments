@@ -28,7 +28,7 @@ components:
         dest.dir: /config
       downloading:
         src.host:
-          dir: "/mnt/celery/gabbro_cluster/ytptube/incomplete"
+          dir: "/mnt/carrot/gabbro/ytptube/incomplete"
           read_only: false
           create: true
         dest.dir: /tmp
