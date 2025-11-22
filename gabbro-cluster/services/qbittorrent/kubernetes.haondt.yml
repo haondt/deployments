@@ -32,7 +32,7 @@ components:
         dest.dir: /downloads
       downloading:
         src.host:
-          dir: "/mnt/celery/gabbro/qbittorrent/incomplete"
+          dir: "/mnt/carrot/gabbro/qbittorrent/incomplete"
           read_only: false
         dest.dir: /downloading
     startup:
