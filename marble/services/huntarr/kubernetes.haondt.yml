@@ -12,5 +12,5 @@ components:
           host: "huntarr.{{ haondt__default_host }}"
     volumes:
       config:
-        src.pvc.size: 128Mi
+        src.pvc.size: 512Mi
         dest.dir: /config
