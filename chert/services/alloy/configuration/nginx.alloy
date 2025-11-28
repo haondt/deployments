@@ -40,6 +40,12 @@ loki.process "nginx_process" {
         }
     }
 
+    stage.geoip {
+        db = "/mnt/maxmind/GeoLite2-City.mmdb"
+        source = "client_ip"
+        db_type = "city"
+    }
+
     stage.timestamp {
         source = "timestamp"
         format = "RFC3339Nano"
@@ -52,6 +58,9 @@ loki.process "nginx_process" {
             "user_agent" = "",
             "path" = "",
             "scheme" = "",
+            "maxmind_latitude" = "geoip_location_latitude",
+            "maxmind_longitude" = "geoip_location_longitude",
+            "maxmind_country" = "geoip_country_code",
         }
     }
 
