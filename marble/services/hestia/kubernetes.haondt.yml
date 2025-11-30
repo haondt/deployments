@@ -32,3 +32,4 @@ components:
                 path: deployments-hestia
         source.volumes:
           data: [/]
+

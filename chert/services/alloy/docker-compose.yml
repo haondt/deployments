@@ -23,6 +23,7 @@ services:
 
   maxmind:
     image: ghcr.io/maxmind/geoipupdate
+    x-tl: +!
     environment:
       GEOIPUPDATE_ACCOUNT_ID: "{{ maxmind__account_id }}"
       GEOIPUPDATE_LICENSE_KEY: "{{ maxmind__license_key }}"
