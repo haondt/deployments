@@ -22,7 +22,7 @@ services:
     privileged: true
 
   maxmind:
-    image: ghcr.io/maxmind/geoipupdate
+    image: ghcr.io/maxmind/geoipupdate:latest@sha256:faecdca22579730ab0b7dea5aa9af350bb3c93cb9d39845c173639ead30346d2
     x-tl: +!
     environment:
       GEOIPUPDATE_ACCOUNT_ID: "{{ maxmind__account_id }}"
