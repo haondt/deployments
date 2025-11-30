@@ -66,4 +66,3 @@ defaults:
               namespace: charon
               name: repository-hzsb
               key: repository
-
