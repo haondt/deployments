@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/hargata/lubelogger:latest@sha256:4b3baa2a03bcccb9c1c296556a92a7f5644dc92bd732f8c9d9f957c729b631b1
+    image: ghcr.io/hargata/lubelogger:latest@sha256:9fce15cb8c96e5ad36b0dc810b63caf083bb2d66fa2cb6cfb5152bf97fc2a447
     talos: +!
     networking:
       ports:
