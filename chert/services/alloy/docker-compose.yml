@@ -1,6 +1,6 @@
 services:
   alloy:
-    image: docker.io/grafana/alloy:latest@sha256:8c7256f412feb9f5f48f9f6f9394dc97ca887f63dea9304f347970ecc1787669
+    image: docker.io/grafana/alloy:latest@sha256:85e4a706181741dd735d9a69bea81f9e03e16d5349bff46dd9640379f143c007
     x-tl: +!
     command: run --storage.path=/var/lib/alloy/data /etc/alloy/configuration
     networks:
