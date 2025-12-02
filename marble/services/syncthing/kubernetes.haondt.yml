@@ -1,6 +1,6 @@
 components:
   primary:
-    image: lscr.io/linuxserver/syncthing:latest@sha256:57c39e3243c260cf00cba7b311d5931d492f8d4980ad257385af1c7412921155
+    image: lscr.io/linuxserver/syncthing:latest@sha256:a05d4c8d4b35aa58806b05dd45fd7775b5a38a771891127b17f212d693f9668a
     talos: +!
     networking:
       ports:
