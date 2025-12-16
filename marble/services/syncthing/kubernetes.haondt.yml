@@ -42,7 +42,7 @@ components:
           PUID: 911
           PGID: 1000
     charon:
-      overlays: [weekly]
+      overlays: [daily]
       backups:
         - overlays: [default-gcs]
           repository_configs: &charon_repository_configs
