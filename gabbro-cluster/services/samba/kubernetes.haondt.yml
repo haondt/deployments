@@ -24,10 +24,13 @@ components:
           USER: samba
           PASS: samba
     charon:
-      - overlays: [default-hzsb, daily]
-        repository_configs:
-          - raw: |-
-              backend:
-                path: deployments-sambda-primary
-        source.volumes:
-          storage: [/]
+      overlays: [daily]
+      backups:
+        - overlays: [default-hzsb]
+          repository_configs:
+            - raw: |-
+                unlock: true
+                backend:
+                  path: deployments-sambda-primary
+          source.volumes:
+            storage: [/]
