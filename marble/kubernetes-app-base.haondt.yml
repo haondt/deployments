@@ -10,7 +10,8 @@ defaults:
     startup_tasks_chown: *busybox_image
     startup_tasks_chmod: *busybox_image
     startup_tasks_gomplate: hairyhenderson/gomplate:v4.3.3-alpine
-    charon_k8s_job: haumea/charon-k8s-job:0.0.4
+    # charon_k8s_job: haumea/charon-k8s-job:0.0.4
+    charon_k8s_job: registry.gitlab.com/haondt/cicd/registry/charon-k8s-job:main-a6c855e7
   networking:
     tls:
       host.wildcard: true
@@ -20,12 +21,13 @@ defaults:
         - host: "*.{{ haondt__default_public_host }}"
           value.mirror: cert-manager/haondt-dev-default-tls
   charon:
+    scale_down_deployment: true
+    name: default
     overlays:
       daily.schedule: "0 8 * * *"
       weekly.schedule: "0 8 * * 0"
+    backup_overlays:
       default-gcs:
-        name: default
-        scale_down_deployment: true
         repository_configs:
           - config_map:
               namespace: charon
@@ -46,8 +48,6 @@ defaults:
               key: credentials.json
             dest.file: /config/gcs/credentials.json
       default-hzsb:
-        name: default
-        scale_down_deployment: true
         repository_configs:
           - config_map:
               namespace: charon
