@@ -29,7 +29,6 @@ components:
         - overlays: [default-hzsb]
           repository_configs:
             - raw: |-
-                unlock: true
                 backend:
                   path: deployments-sambda-primary
           source.volumes:
