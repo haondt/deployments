@@ -20,13 +20,15 @@ components:
         src.pvc: {}
         dest.dir: /data
     charon:
-      - overlays: [default-gcs, daily]
-        repository_configs: &charon_repository_configs
-          - raw: |-
-              backend:
-                path: vaultwarden-primary
-        source.volumes: &charon_source
-          data: [/]
-      - overlays: [default-hzsb, daily]
-        repository_configs: *charon_repository_configs
-        source.volumes: *charon_source
+      overlays: [daily]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &charon_repository_configs
+            - raw: |-
+                backend:
+                  path: vaultwarden-primary
+          source.volumes: &charon_source
+            data: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *charon_repository_configs
+          source.volumes: *charon_source

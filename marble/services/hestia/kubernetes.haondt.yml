@@ -26,11 +26,13 @@ components:
             path: /data
             mode: '777'
     charon:
-      - overlays: [default-hzsb,weekly]
-        repository_configs:
-          - raw: |-
-              backend:
-                path: deployments-hestia
-        source.volumes:
-          data: [/]
+      overlays: [weekly]
+      backups:
+        - overlays: [default-hzsb]
+          repository_configs:
+            - raw: |-
+                backend:
+                  path: deployments-hestia
+          source.volumes:
+            data: [/]
 

@@ -32,16 +32,18 @@ components:
       - file: midas.env
         secret: false
     charon:
-      - overlays: [default-gcs, weekly]
-        repository_configs: &charon_repository_configs
-          - raw: |-
-              backend:
-                path: midas
-        source.volumes: &charon_source
-          data: [/]
-      - overlays: [default-hzsb, weekly]
-        repository_configs: *charon_repository_configs
-        source.volumes: *charon_source
+      overlays: [weekly]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &charon_repository_configs
+            - raw: |-
+                backend:
+                  path: midas
+          source.volumes: &charon_source
+            data: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *charon_repository_configs
+          source.volumes: *charon_source
   node-red:
     image: registry.gitlab.com/haondt/cicd/registry/jobs:0.0.1
     talos: x
@@ -71,13 +73,15 @@ components:
       - raw:
           MIDAS_API_URL: http://midas-primary-http:8080/
     charon:
-      - overlays: [default-gcs, weekly]
-        repository_configs: &charon_node_red_repository_configs
-          - raw: |-
-              backend:
-                path: midas-node-red
-        source.volumes: &charon_node_red_source
-          node-red-data: [/]
-      - overlays: [default-hzsb, weekly]
-        repository_configs: *charon_node_red_repository_configs
-        source.volumes: *charon_node_red_source
+      overlays: [weekly]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &charon_node_red_repository_configs
+            - raw: |-
+                backend:
+                  path: midas-node-red
+          source.volumes: &charon_node_red_source
+            node-red-data: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *charon_node_red_repository_configs
+          source.volumes: *charon_node_red_source

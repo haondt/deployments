@@ -16,11 +16,13 @@ components:
         src.pvc.size: 128Mi
         dest.dir: /root/.aspnet/DataProtection-Keys
     charon:
-      - overlays: [default-hzsb, weekly]
-        repository_configs:
-          - raw: |-
-              backend:
-                path: deployments-lubelogger
-        source.volumes:
-          data: [/]
-          keys: [/]
+      overlays: [weekly]
+      backups:
+        - overlays: [default-hzsb]
+          repository_configs:
+            - raw: |-
+                backend:
+                  path: deployments-lubelogger
+          source.volumes:
+            data: [/]
+            keys: [/]
