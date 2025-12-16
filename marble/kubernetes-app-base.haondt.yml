@@ -11,7 +11,7 @@ defaults:
     startup_tasks_chmod: *busybox_image
     startup_tasks_gomplate: hairyhenderson/gomplate:v4.3.3-alpine
     # charon_k8s_job: haumea/charon-k8s-job:0.0.4
-    charon_k8s_job: registry.gitlab.com/haondt/cicd/registry/charon-k8s-job:main-a6c855e7
+    charon_k8s_job: registry.gitlab.com/haondt/cicd/registry/charon-k8s-job:main-6d2320ab
   networking:
     tls:
       host.wildcard: true
