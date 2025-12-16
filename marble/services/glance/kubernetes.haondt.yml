@@ -116,10 +116,12 @@ components:
       - file: flows.env
         secret: true
     charon:
-      - overlays: [default-gcs, daily]
-        repository_configs:
-          - raw: |-
-              backend:
-                path: glance-flows
-        source.volumes:
-          flows-data: [/flows.json]
+      overlays: [daily]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs:
+            - raw: |-
+                backend:
+                  path: glance-flows
+          source.volumes:
+            flows-data: [/flows.json]

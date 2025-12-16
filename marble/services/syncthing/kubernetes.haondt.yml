@@ -47,7 +47,6 @@ components:
         - overlays: [default-gcs]
           repository_configs: &charon_repository_configs
             - raw: |-
-                unlock_all: true
                 backend:
                   path: deployments-syncthing
           source.volumes: &charon_source
