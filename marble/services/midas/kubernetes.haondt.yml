@@ -78,7 +78,6 @@ components:
         - overlays: [default-gcs]
           repository_configs: &charon_node_red_repository_configs
             - raw: |-
-                unlock: true
                 backend:
                   path: midas-node-red
           source.volumes: &charon_node_red_source

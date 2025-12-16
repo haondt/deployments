@@ -32,17 +32,19 @@ components:
             path: /var/lib/grafana
             mode: '777'
     charon:
-      - overlays: [default-gcs, daily]
-        repository_configs: &charon_repository_configs
-          - raw: |-
-              backend:
-                path: grafana-grafana
-        source.volumes: &charon_source
-          grafana-provisioning: [/]
-          grafana-storage: [/]
-      - overlays: [default-hzsb, daily]
-        repository_configs: *charon_repository_configs
-        source.volumes: *charon_source
+      overlays: [daily]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &charon_repository_configs
+            - raw: |-
+                backend:
+                  path: grafana-grafana
+          source.volumes: &charon_source
+            grafana-provisioning: [/]
+            grafana-storage: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *charon_repository_configs
+          source.volumes: *charon_source
     environment:
       - raw:
           GF_SECURITY_ADMIN_USER: "{{ grafana__init_username }}"
