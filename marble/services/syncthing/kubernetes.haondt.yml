@@ -54,3 +54,4 @@ components:
         - overlays: [default-hzsb]
           repository_configs: *charon_repository_configs
           source.volumes: *charon_source
+
