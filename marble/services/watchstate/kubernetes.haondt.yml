@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/arabcoders/watchstate:latest@sha256:42a21d1a369154e57cfe7f1b5af6b59d45a282250d3c22829c0de754f7dae491
+    image: ghcr.io/arabcoders/watchstate:latest@sha256:95e6b5e39ebd584d81a6ea375e19727143589359e1cfe60aca9c4a10990b8c8d
     talos: +!
     resources.requests.memory: 256Mi
     resources.limits.memory: 4Gi
