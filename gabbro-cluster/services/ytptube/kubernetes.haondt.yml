@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/arabcoders/ytptube:latest@sha256:43483033ebac4f314dddea336e57b6ea15f3a898de8354dbc5885220dfd42c32
+    image: ghcr.io/arabcoders/ytptube:latest@sha256:64c3395a24313e5eef7d3642dd2536958a69bff86b46e6b890415aea1e6bf852
     talos: +!
     resources:
       limits:
