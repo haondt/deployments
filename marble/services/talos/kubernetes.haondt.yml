@@ -96,7 +96,7 @@ components:
             paths: [/data]
             mode: '0777'
   redis-insight:
-    image: docker.io/redis/redisinsight:latest@sha256:b7aa18e73329ebb2e3d9e949b8d35193bf5415ef35c16fd9a50e6f832922b296
+    image: docker.io/redis/redisinsight:latest@sha256:b2034915b9eeb0cea5a52e8ed06b22761ce2438e93762d66f5320506d56bfc8c
     talos: +!
     networking:
       ports:
