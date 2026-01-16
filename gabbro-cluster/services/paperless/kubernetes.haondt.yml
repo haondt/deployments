@@ -52,7 +52,7 @@ components:
 
 
   db:
-    image: docker.io/library/mariadb:10@sha256:8763a63f00ec980d913c04bf84f7fd5f60aa11ac9033f36d1a77921c065a5988
+    image: docker.io/library/mariadb:10@sha256:85c39719200637250bb8abe3ccd239239d6f175156fc1698141409fcf8e01a38
     talos: ^!
     networking:
       ports:
