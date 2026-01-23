@@ -3,7 +3,7 @@ components:
     image: ghcr.io/plexguide/huntarr:latest@sha256:86a329c72ef50db177890aff87b8d513bd1abdcc61307e9c7771b6fafc2570b2
     talos: +!
     resources:
-      limits.memory: 1Gi
+      limits.memory: 512Mi
     networking:
       ports:
         http: 9705
@@ -12,5 +12,5 @@ components:
           host: "huntarr.{{ haondt__default_host }}"
     volumes:
       config:
-        src.pvc.size: 512Mi
+        src.pvc.size: 1Gi
         dest.dir: /config
