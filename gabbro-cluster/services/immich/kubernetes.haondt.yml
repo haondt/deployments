@@ -61,10 +61,10 @@ components:
       - raw:
           DB_USERNAME: postgres
           DB_DATABASE_NAME: immich
-          DB_HOSTNAME: immich-db-http
-          DB_PORT: 8080
-          REDIS_HOSTNAME: immich-redis-http
-          REDIS_PORT: 8080
+          DB_HOSTNAME: immich-db
+          DB_PORT: 5432
+          REDIS_HOSTNAME: immich-redis
+          REDIS_PORT: 6379
 
   machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:v2.4.1@sha256:b3deefd1826f113824e9d7bc30d905e7f823535887d03f869330946b6db3b44a
@@ -98,10 +98,10 @@ components:
       - raw:
           DB_USERNAME: postgres
           DB_DATABASE_NAME: immich
-          DB_HOSTNAME: immich-db-http
-          DB_PORT: 8080
-          REDIS_HOSTNAME: immich-redis-http
-          REDIS_PORT: 8080
+          DB_HOSTNAME: immich-db
+          DB_PORT: 5432
+          REDIS_HOSTNAME: immich-redis
+          REDIS_PORT: 6379
 
   redis:
     image: docker.io/redis:6.2-alpine@sha256:37e002448575b32a599109664107e374c8709546905c372a34d64919043b9ceb
