@@ -13,6 +13,11 @@ components:
           host: "radarr.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
           nginx.proxy_body_size: 128m
+      gateway.http_routes:
+        - port: http
+          hosts:
+            - "radarr.{{ haondt__default_host }}"
+            - "radarr.marble-kg.local.haondt.dev"
       dependencies:
         - name: primary
           app: qbittorrent
@@ -87,6 +92,11 @@ components:
           host: "radarr-hd.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
           nginx.proxy_body_size: 128m
+      gateway.http_routes:
+        - port: http
+          hosts:
+            - "radarr-hd.{{ haondt__default_host }}"
+            - "radarr-hd.marble-kg.local.haondt.dev"
       dependencies:
         - name: primary
           app: qbittorrent
