@@ -17,7 +17,7 @@ components:
         - port: http
           hosts:
             - "radarr.{{ haondt__default_host }}"
-            - "radarr.marble-kg.local.haondt.dev"
+            - "radarr.gabbro-kg.local.haondt.dev"
       dependencies:
         - name: primary
           app: qbittorrent
@@ -96,7 +96,7 @@ components:
         - port: http
           hosts:
             - "radarr-hd.{{ haondt__default_host }}"
-            - "radarr-hd.marble-kg.local.haondt.dev"
+            - "radarr-hd.gabbro-kg.local.haondt.dev"
       dependencies:
         - name: primary
           app: qbittorrent
