@@ -42,7 +42,7 @@ components:
           PAPERLESS_DBHOST: paperless-db
           PAPERLESS_DBUSER: paperless # only needed if non-default username
           PAPERLESS_DBPASS: paperless # only needed if non-default password
-          PAPERLESS_DBPORT: 8080
+          PAPERLESS_DBPORT: 3306
           PAPERLESS_URL: https://paperless.{{ haondt__default_host }}
           PAPERLESS_TIME_ZONE: America/Edmonton
 
