@@ -15,6 +15,9 @@ components:
       ingresses:
         - port: http
           host: "emby.{{ haondt__default_host }}"
+      gateway.http_routes:
+        - port: http
+          host: "emby.{{ haondt__default_host }}"
       rathole_routes:
         - port: http
           host: "emby.{{ haondt__default_public_host }}"
