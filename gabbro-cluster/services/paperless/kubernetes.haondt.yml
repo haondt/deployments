@@ -37,9 +37,9 @@ components:
         dest.dir: /usr/src/paperless/consume
     environment:
       - raw:
-          PAPERLESS_REDIS: redis://paperless-broker-http:8080
+          PAPERLESS_REDIS: redis://paperless-broker:6379
           PAPERLESS_DBENGINE: mariadb
-          PAPERLESS_DBHOST: paperless-db-http
+          PAPERLESS_DBHOST: paperless-db
           PAPERLESS_DBUSER: paperless # only needed if non-default username
           PAPERLESS_DBPASS: paperless # only needed if non-default password
           PAPERLESS_DBPORT: 8080
