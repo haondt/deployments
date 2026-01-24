@@ -11,10 +11,6 @@ components:
         qb2:
           port: 3577
           protocol: UDP
-      ingresses:
-        - port: http
-          host: "qbittorrent.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       gateway.http_routes:
         - port: http
           host: "qbittorrent.{{ haondt__default_host }}"

@@ -6,10 +6,9 @@ components:
     networking:
       ports:
         http: 9696
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "prowlarr.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       dependencies:
         - name: primary
           app: sonarr

@@ -9,7 +9,7 @@ components:
     networking:
       ports:
         http: 5000
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "fileflows.{{ haondt__default_host }}"
     volumes:

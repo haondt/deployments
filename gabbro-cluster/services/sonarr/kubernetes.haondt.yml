@@ -25,10 +25,9 @@ components:
     networking:
       ports:
         http: 8989
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "sonarr.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       dependencies:
         - name: primary
           app: qbittorrent

@@ -12,7 +12,7 @@ components:
     networking:
       ports:
         http: 32400
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "plex.{{ haondt__default_host }}"
       ip_addresses:

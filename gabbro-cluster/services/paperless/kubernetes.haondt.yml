@@ -5,10 +5,9 @@ components:
     networking:
       ports:
         http: 8000
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "paperless.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       dependencies:
         - name: db
           port: http

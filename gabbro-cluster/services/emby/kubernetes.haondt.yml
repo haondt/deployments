@@ -12,9 +12,6 @@ components:
     networking:
       ports:
         http: 8096
-      ingresses:
-        - port: http
-          host: "emby.{{ haondt__default_host }}"
       gateway.http_routes:
         - port: http
           host: "emby.{{ haondt__default_host }}"

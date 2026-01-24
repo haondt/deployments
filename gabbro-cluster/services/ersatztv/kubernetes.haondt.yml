@@ -11,10 +11,9 @@ components:
     networking:
       ports:
         http: 8409
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "ersatztv.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
     volumes:
       config:
         src.host:

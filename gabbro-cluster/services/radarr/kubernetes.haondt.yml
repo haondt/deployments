@@ -8,16 +8,9 @@ components:
     networking:
       ports:
         http: 7878
-      ingresses:
-        - port: http
-          host: "radarr.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
-          nginx.proxy_body_size: 128m
       gateway.http_routes:
         - port: http
-          hosts:
-            - "radarr.{{ haondt__default_host }}"
-            - "radarr.gabbro-kg.local.haondt.dev"
+          host: "radarr.{{ haondt__default_host }}"
       dependencies:
         - name: primary
           app: qbittorrent
@@ -87,16 +80,9 @@ components:
     networking:
       ports:
         http: 7878
-      ingresses:
-        - port: http
-          host: "radarr-hd.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
-          nginx.proxy_body_size: 128m
       gateway.http_routes:
         - port: http
-          hosts:
-            - "radarr-hd.{{ haondt__default_host }}"
-            - "radarr-hd.gabbro-kg.local.haondt.dev"
+          host: "radarr-hd.{{ haondt__default_host }}"
       dependencies:
         - name: primary
           app: qbittorrent

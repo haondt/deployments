@@ -12,7 +12,7 @@ components:
     networking:
       ports:
         http: 8096
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "jellyfin.{{ haondt__default_host }}"
       rathole_routes:

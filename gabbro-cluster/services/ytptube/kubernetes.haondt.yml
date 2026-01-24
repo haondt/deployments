@@ -8,7 +8,7 @@ components:
     networking:
       ports:
         http: 8081
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "ytptube.{{ haondt__default_host }}"
     observability.probes.hc:
