@@ -15,6 +15,11 @@ components:
         - port: http
           host: "qbittorrent.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+      gateway.http_routes:
+        - port: http
+          hosts:
+            - "qbittorrent.{{ haondt__default_host }}"
+            - "qbittorrent.gabbro-kg.local.haondt.dev"
       ip_addresses:
         - ip: 192.168.1.213
           ports: [qb1,qb2]
