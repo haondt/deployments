@@ -8,10 +8,6 @@ components:
       gateway.http_routes:
         - port: http
           host: "vaultwarden.{{ haondt__default_host }}"
-      ingresses:
-        - port: http
-          host: "vaultwarden.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
     observability:
       probes.hc:
         http_get:

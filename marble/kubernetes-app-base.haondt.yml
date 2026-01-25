@@ -12,13 +12,9 @@ defaults:
     startup_tasks_gomplate: hairyhenderson/gomplate:v4.3.3-alpine
     charon_k8s_job: haumea/charon-k8s-job:0.0.5
   networking:
-    tls:
-      host.wildcard: true
-      secret.from_host:
-        - host: "*.{{ haondt__default_host }}"
-          value.mirror: cert-manager/haondt-dev-default-tls
-        - host: "*.{{ haondt__default_public_host }}"
-          value.mirror: cert-manager/haondt-dev-default-tls
+    gateway:
+      name: haondt-default
+      namespace: kgateway-system
   charon:
     scale_down_deployment: true
     name: default

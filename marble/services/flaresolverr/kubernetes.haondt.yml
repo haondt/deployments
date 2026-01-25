@@ -10,9 +10,6 @@ components:
       gateway.http_routes:
         - port: http
           host: "flaresolverr.{{ haondt__default_host }}"
-      ingresses:
-        - port: http
-          host: "flaresolverr.{{ haondt__default_host }}"
     volumes:
       config:
         src.pvc.size: 128Mi
