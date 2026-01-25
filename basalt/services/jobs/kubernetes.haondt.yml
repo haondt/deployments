@@ -22,6 +22,7 @@ components:
     environment:
       - file: jobs.env
         secret: true
+
   redis:
     image: docker.io/library/redis:latest@sha256:73dad4271642c5966db88db7a7585fae7cf10b685d1e48006f31e0294c29fdd7
     talos: +!
@@ -32,6 +33,7 @@ components:
       redis-data:
         src.pvc: {}
         dest.dir: /data
+
   redis-insight:
     image: docker.io/redis/redisinsight:latest@sha256:b2034915b9eeb0cea5a52e8ed06b22761ce2438e93762d66f5320506d56bfc8c
     talos: +!
