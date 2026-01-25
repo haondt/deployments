@@ -7,10 +7,6 @@ components:
     networking:
       ports:
         http: 3000
-      ingresses:
-        - port: http
-          host: "grafana.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       gateway.http_routes:
         - port: http
           host: "grafana.{{ haondt__default_host }}"
@@ -66,10 +62,6 @@ components:
     networking:
       ports:
         http: 8080
-      ingresses:
-        - port: http
-          host: "mimir.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       gateway.http_routes:
         - port: http
           host: "mimir.{{ haondt__default_host }}"
@@ -96,10 +88,6 @@ components:
     networking:
       ports:
         http: 3100
-      ingresses:
-        - port: http
-          host: "loki.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       gateway.http_routes:
         - port: http
           host: "loki.{{ haondt__default_host }}"
