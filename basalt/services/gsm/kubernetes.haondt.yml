@@ -8,6 +8,9 @@ components:
       ingresses:
         - port: http
           host: "gsm.{{ haondt__default_host }}"
+      gateway.http_routes:
+        - port: http
+          host: "gsm.{{ haondt__default_host }}"
     volumes:
       data:
         src.pvc: {}

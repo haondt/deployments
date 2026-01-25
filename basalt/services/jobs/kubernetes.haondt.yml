@@ -9,6 +9,9 @@ components:
         - port: http
           host: "jobs.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+      gateway.http_routes:
+        - port: http
+          host: "jobs.{{ haondt__default_host }}"
       dependencies:
         - name: redis
           port: http
@@ -44,6 +47,9 @@ components:
         - port: http
           host: "jobs-redis.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+      gateway.http_routes:
+        - port: http
+          host: "jobs-redis.{{ haondt__default_host }}"
       dependencies:
         - name: redis
           port: http

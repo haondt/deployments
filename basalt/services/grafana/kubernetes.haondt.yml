@@ -11,6 +11,9 @@ components:
         - port: http
           host: "grafana.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+      gateway.http_routes:
+        - port: http
+          host: "grafana.{{ haondt__default_host }}"
       dependencies:
         - name: mimir
           port: http
@@ -67,6 +70,9 @@ components:
         - port: http
           host: "mimir.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+      gateway.http_routes:
+        - port: http
+          host: "mimir.{{ haondt__default_host }}"
       rathole_routes:
         - port: http
           direct: true
@@ -94,6 +100,9 @@ components:
         - port: http
           host: "loki.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"
+      gateway.http_routes:
+        - port: http
+          host: "loki.{{ haondt__default_host }}"
       rathole_routes:
         - port: http
           direct: true
