@@ -74,3 +74,6 @@ components:
           PUID: "{{ media__puid }}"
           NVIDIA_VISIBLE_DEVICES: all
           NVIDIA_DRIVER_CAPABILITIES: compute,video,utility
+          # temporary (?) workaround related to nvidia-container-toolkit v1.18.0+
+          # see https://github.com/linuxserver/docker-plex/issues/432 and https://github.com/NVIDIA/nvidia-container-toolkit/issues/1456
+          LD_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu/nvidia/current
