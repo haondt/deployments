@@ -4,10 +4,9 @@ components:
     talos: +!
     networking:
       ports.http: 8181
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "tautulli.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
     volumes:
       data:
         src.pvc: {}

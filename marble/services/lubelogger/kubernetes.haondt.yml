@@ -5,7 +5,7 @@ components:
     networking:
       ports:
         http: 8080
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "lubelogger.{{ haondt__default_host }}"
     volumes:

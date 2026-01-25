@@ -7,7 +7,7 @@ components:
     networking:
       ports:
         http: 9705
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "huntarr.{{ haondt__default_host }}"
     volumes:

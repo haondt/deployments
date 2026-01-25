@@ -12,6 +12,9 @@ components:
         st3:
           port: 21027
           protocol: udp
+      gateway.http_routes:
+        - port: http
+          host: "syncthing.{{ haondt__default_host }}"
       ingresses:
         - port: http
           host: "syncthing.{{ haondt__default_host }}"

@@ -101,10 +101,9 @@ components:
     networking:
       ports:
         http: 5540
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "talos-redis.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       dependencies:
         - name: redis
           port: http

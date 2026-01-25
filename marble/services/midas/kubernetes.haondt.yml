@@ -5,10 +5,9 @@ components:
     networking:
       ports:
         http: 8080
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "midas.{{ haondt__default_host }}"
-          nginx.proxy_body_size: 128m
       dependencies:
         - name: node-red
           port: http
@@ -50,7 +49,7 @@ components:
     networking:
       ports:
         http: 1880
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "midas-node-red.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"

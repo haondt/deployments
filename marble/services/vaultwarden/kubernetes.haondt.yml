@@ -5,6 +5,9 @@ components:
     networking:
       ports:
         http: 80
+      gateway.http_routes:
+        - port: http
+          host: "vaultwarden.{{ haondt__default_host }}"
       ingresses:
         - port: http
           host: "vaultwarden.{{ haondt__default_host }}"

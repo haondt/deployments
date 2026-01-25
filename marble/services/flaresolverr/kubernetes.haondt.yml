@@ -7,6 +7,9 @@ components:
     networking:
       ports:
         http: 8191
+      gateway.http_routes:
+        - port: http
+          host: "flaresolverr.{{ haondt__default_host }}"
       ingresses:
         - port: http
           host: "flaresolverr.{{ haondt__default_host }}"

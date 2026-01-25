@@ -8,7 +8,7 @@ components:
       dependencies:
         - name: db
           port: http
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "planka.{{ haondt__default_host }}"
     volumes:

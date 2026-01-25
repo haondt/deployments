@@ -2,36 +2,12 @@ components:
   primary:
     image: docker.io/glanceapp/glance:v0.8.4@sha256:6df86a7e8868d1eda21f35205134b1962c422957e42a0c44d4717c8e8f741b1a
     talos: +!
-    # health:
-    #   startup:
-    #     httpGet:
-    #       path: /health/startup
-    #       port: 8080
-    #     initialDelaySeconds: 10
-    #     periodSeconds: 5
-    #     failureThreshold: 30
-    #
-    #   readiness:
-    #     httpGet:
-    #       path: /health/ready
-    #       port: 8080
-    #     periodSeconds: 10
-    #
-    #   liveness:
-    #     httpGet:
-    #       path: /health/live
-    #       port: 8080
-    #     periodSeconds: 30
-    #     timeoutSeconds: 5
-
-    
     networking:
       ports:
         http: 8080
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "glance.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       dependencies:
         - name: restic
           port: http
@@ -96,7 +72,7 @@ components:
     networking:
       ports:
         http: 1880
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "glance-flows.{{ haondt__default_host }}"
           tls.host: "*.{{ haondt__default_host }}"

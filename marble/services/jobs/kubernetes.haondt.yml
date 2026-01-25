@@ -5,10 +5,9 @@ components:
     networking:
       ports:
         http: 1880
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "jobs.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
     volumes:
       node-red-settings:
         src.file: settings.js

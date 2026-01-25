@@ -7,7 +7,7 @@ components:
     networking:
       ports:
         http: 8080
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "watchstate.{{ haondt__default_host }}"
     observability.probes.hc:

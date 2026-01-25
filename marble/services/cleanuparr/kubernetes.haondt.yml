@@ -7,7 +7,7 @@ components:
     networking:
       ports:
         http: 11011
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "cleanuparr.{{ haondt__default_host }}"
     volumes:

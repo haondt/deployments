@@ -4,10 +4,9 @@ components:
     talos: x
     networking:
       ports.http: 8080
-      ingresses:
+      gateway.http_routes:
         - port: http
           host: "hestia.{{ haondt__default_host }}"
-          nginx.proxy_body_size: 128m
     environment:
       - file: hestia.env
         secret: true
