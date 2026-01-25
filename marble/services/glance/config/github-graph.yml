@@ -1,5 +1,5 @@
 - type: extension
-  url: http://glance-github-graph-http:8080/graph/haondt
+  url: http://glance-github-graph:8080/graph/haondt
   allow-potentially-dangerous-html: true
   parameters:
     background-color: "#1d2025"

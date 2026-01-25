@@ -56,7 +56,7 @@ components:
             input.file: /app/config-templates/twitch.yml.tmpl
             output.file: /app/config/twitch.yml
             data_sources:
-              twitch_yaml: http://glance-flows-http:8080/twitch/yaml-in-json
+              twitch_yaml: http://glance-flows:1880/twitch/yaml-in-json
         - busybox:
             script: |-
               cp -rLn /app/config-templates/* /app/config/

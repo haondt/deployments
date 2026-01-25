@@ -14,8 +14,8 @@ components:
     environment:
       - raw:
           LT_DB_ENGINE: redis
-          LT_DB_HOST: linktiles-redis-http
-          LT_DB_PORT: 8080
+          LT_DB_HOST: linktiles-redis
+          LT_DB_PORT: 6379
           LT_SECRET_KEY: "{{ linktiles__secret_key }}"
           LT_ENABLE_AUTH_PROXY: "true"
           LT_AUTH_PROXY_USERNAME_HEADER: "HTTP_REMOTE_USER"

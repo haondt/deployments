@@ -17,7 +17,7 @@ components:
         dest.dir: /var/www/html
     environment:
       - raw:
-          WORDPRESS_DB_HOST: aeeo-wordpress-db-http:8080
+          WORDPRESS_DB_HOST: aeeo-wordpress-db:3306
           WORDPRESS_DB_USER: aeeowordpress
           WORDPRESS_DB_PASSWORD: aeeowordpress
           WORDPRESS_DB_NAME: aeeowordpress

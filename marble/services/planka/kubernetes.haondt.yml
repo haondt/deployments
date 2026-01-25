@@ -24,7 +24,7 @@ components:
     environment:
       - raw: 
           BASE_URL: "https://planka.{{ haondt__default_host }}"
-          DATABASE_URL: postgresql://postgres@planka-db-http:8080/planka
+          DATABASE_URL: postgresql://postgres@planka-db:5432/planka
           SECRET_KEY: "{{ planka__secret_key }}"
           DEFAULT_ADMIN_EMAIL: planka@example.com # Do not remove if you want to prevent this user from being edited/deleted
           DEFAULT_ADMIN_PASSWORD: planka

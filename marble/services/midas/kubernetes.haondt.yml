@@ -71,7 +71,7 @@ components:
             owner: 1000:1000
     environment:
       - raw:
-          MIDAS_API_URL: http://midas-primary-http:8080/
+          MIDAS_API_URL: http://midas-primary:8080/
     charon:
       overlays: [weekly]
       backups:

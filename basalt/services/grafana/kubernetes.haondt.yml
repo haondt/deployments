@@ -104,4 +104,3 @@ components:
       loki-config:
         src.file: loki/config.yaml
         dest.file: /etc/loki/local-config.yaml
-
