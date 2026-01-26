@@ -7,16 +7,20 @@ components:
     networking:
       ports:
         http: 8080
-        qb1: 3577
-        qb2:
-          port: 3577
-          protocol: UDP
       gateway.http_routes:
         - port: http
           host: "qbittorrent.{{ haondt__default_host }}"
-      ip_addresses:
-        - ip: 192.168.1.213
-          ports: [qb1,qb2]
+      gluetun:
+        protonvpn:
+          server_countries: [Switzerland, Netherlands, Spain]
+        wireguard.private_key: "{{ gluetun__wireguard__private_key }}"
+        port_forwarding:
+          up_command: |-
+            {{ gluetun__port_forwarding__up_command }}
+          down_command: |-
+            {{ gluetun__port_forwarding__down_command }}
+        dns.upstream_resolvers: [cloudflare,quad9,google]
+        firewall.input_ports: [http]
     volumes:
       config:
         src.host:
@@ -42,10 +46,26 @@ components:
         - busybox:
             script: |-
               set -euo pipefail
+              set -x
 
               CONF_FILE="/config/qBittorrent/qBittorrent.conf"
               SECTION="\\[Preferences\\]"
               KEY="WebUI\\\\HostHeaderValidation"
+              VALUE="false"
+
+              mkdir -p "$(dirname "$CONF_FILE")"
+              if [ ! -f "$CONF_FILE" ]; then
+                  touch "$CONF_FILE"
+                  chown {{ media__puid }}:{{ media__pgid }} "$CONF_FILE"
+              fi
+
+              if grep -q "^$KEY=" "$CONF_FILE"; then
+                  sed -i "s/^$KEY=.*/$KEY=$VALUE/" "$CONF_FILE"
+              else
+                  sed -i "/^$SECTION/a $KEY=$VALUE" "$CONF_FILE"
+              fi
+
+              KEY="WebUI\\\\LocalHostAuth"
               VALUE="false"
 
               if grep -q "^$KEY=" "$CONF_FILE"; then
