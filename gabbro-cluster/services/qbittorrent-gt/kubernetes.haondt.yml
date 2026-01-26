@@ -1,0 +1,78 @@
+components:
+  primary:
+    image: lscr.io/linuxserver/qbittorrent:latest@sha256:b8a08ffba8850e2e71153e153cf5eed2dedbf499ef9b123262735ce924b65586
+    talos: x
+    resources:
+      limits.memory: 2Gi
+    networking:
+      ports:
+        http: 8080
+      gateway.http_routes:
+        - port: http
+          host: "qbittorrent-gt.{{ haondt__default_host }}"
+      gluetun:
+        vpn_service_provider: protonvpn
+        protonvpn:
+          server_countries: [Switzerland, Netherlands, Spain]
+        wireguard.private_key: "{{ gluetun__wireguard__private_key }}"
+        port_forwarding:
+          up_command: |-
+            {{ gluetun__port_forwarding__up_command }}
+          down_command: |-
+            {{ gluetun__port_forwarding__down_command }}
+        dns:
+          upstream_resolvers: [cloudflare,quad9,google]
+        
+    volumes:
+      config:
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/qbittorrent-gt/config"
+          read_only: false
+          create: true
+        dest.dir: /config
+      downloads:
+        src.host:
+          dir: "{{ media__host_dirs__downloads }}"
+          read_only: false
+        dest.dir: /downloads
+      downloading:
+        src.host:
+          dir: "/mnt/carrot/gabbro/qbittorrent/incomplete"
+          read_only: false
+        dest.dir: /downloading
+    startup:
+      tasks:
+        - chown:
+            paths: [/config,/downloads,/downloading]
+            owner: "{{ media__puid }}:{{ media__pgid }}"
+        - busybox:
+            script: |-
+              set -euo pipefail
+
+              CONF_FILE="/config/qBittorrent/qBittorrent.conf"
+              SECTION="\\[Preferences\\]"
+              KEY="WebUI\\\\HostHeaderValidation"
+              VALUE="false"
+
+              if grep -q "^$KEY=" "$CONF_FILE"; then
+                  sed -i "s/^$KEY=.*/$KEY=$VALUE/" "$CONF_FILE"
+              else
+                  sed -i "/^$SECTION/a $KEY=$VALUE" "$CONF_FILE"
+              fi
+
+              KEY="WebUI\\\\LocalHostAuth"
+              VALUE="false"
+
+              if grep -q "^$KEY=" "$CONF_FILE"; then
+                  sed -i "s/^$KEY=.*/$KEY=$VALUE/" "$CONF_FILE"
+              else
+                  sed -i "/^$SECTION/a $KEY=$VALUE" "$CONF_FILE"
+              fi
+    environment:
+      - raw:
+          PGID: "{{ media__pgid }}"
+          PUID: "{{ media__puid }}"
+          WEBUI_PORT: 8080
+          DOCKER_MODS: linuxserver/mods:universal-stdout-logs
+          LOGS_TO_STDOUT: /config/qBittorrent/logs/qbittorrent.log
+
