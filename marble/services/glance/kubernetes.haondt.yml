@@ -75,7 +75,6 @@ components:
       gateway.http_routes:
         - port: http
           host: "glance-flows.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
     volumes:
       flows-settings:
         src.file: settings.js

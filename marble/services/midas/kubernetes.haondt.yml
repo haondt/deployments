@@ -52,7 +52,6 @@ components:
       gateway.http_routes:
         - port: http
           host: "midas-node-red.{{ haondt__default_host }}"
-          tls.host: "*.{{ haondt__default_host }}"
       dependencies:
         - name: primary
           port: http
