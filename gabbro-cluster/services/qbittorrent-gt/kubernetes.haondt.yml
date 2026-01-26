@@ -54,6 +54,12 @@ components:
               KEY="WebUI\\\\HostHeaderValidation"
               VALUE="false"
 
+              mkdir -p "$(dirname "$CONF_FILE")"
+              if [ ! -f "$CONF_FILE" ]; then
+                  touch "$CONF_FILE"
+                  chown {{ media__puid }}:{{ media__pgid }} "$CONF_FILE"
+              fi
+
               if grep -q "^$KEY=" "$CONF_FILE"; then
                   sed -i "s/^$KEY=.*/$KEY=$VALUE/" "$CONF_FILE"
               else
