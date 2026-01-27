@@ -19,7 +19,9 @@ components:
           server_countries: [Switzerland, Netherlands, Spain]
         wireguard.private_key: "{{ gluetun__wireguard__private_key }}"
         dns.upstream_resolvers: [cloudflare,quad9,google]
-        firewall.input_ports: [http,bt1,bt2]
+        firewall:
+          input_ports: [http,bt1,bt2]
+          outbound_subnets: 192.168.1.0/24
       dependencies:
         - name: db
           port: http
