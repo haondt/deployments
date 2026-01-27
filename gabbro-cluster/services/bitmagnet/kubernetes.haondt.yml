@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/bitmagnet-io/bitmagnet:v0.10.0
+    image: ghcr.io/bitmagnet-io/bitmagnet:v0.10.0@sha256:cf2c16fac5b51f1c18e630b4710175d35d7e44b83012cfd05a2b43712feec05e
     talos: +!
     resources:
       limits.memory: 512Mi
