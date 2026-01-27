@@ -4,6 +4,12 @@ components:
     talos: +!
     resources:
       limits.memory: 512Mi
+    observability:
+      probes.hc:
+        http_get:
+          port: http
+          path: /status
+        alloy.blackbox: {}
     networking:
       ports:
         http: 3333
