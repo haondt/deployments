@@ -104,7 +104,7 @@ components:
           REDIS_PORT: 6379
 
   redis:
-    image: docker.io/redis:6.2-alpine@sha256:37e002448575b32a599109664107e374c8709546905c372a34d64919043b9ceb
+    image: docker.io/valkey/valkey:9@sha256:fb8d272e529ea567b9bf1302245796f21a2672b8368ca3fcb938ac334e613c8f
     talos: ^!
     networking:
       ports:
@@ -120,7 +120,7 @@ components:
             mode: '0777'
 
   db:
-    image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.2.0
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0@sha256:bcf63357191b76a916ae5eb93464d65c07511da41e3bf7a8416db519b40b1c23
     talos: x
     resources:
       limits.memory: 1Gi
