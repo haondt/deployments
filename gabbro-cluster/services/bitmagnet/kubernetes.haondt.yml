@@ -1,0 +1,66 @@
+components:
+  primary:
+    image: ghcr.io/bitmagnet-io/bitmagnet:v0.10.0
+    talos: +!
+    resources:
+      limits.memory: 512Mi
+    networking:
+      ports:
+        http: 3333
+        bt1: 3334
+        bt2:
+          port: 3334
+          protocol: udp
+      gateway.http_routes:
+        - port: http
+          host: "bitmagnet.{{ haondt__default_host }}"
+      gluetun:
+        protonvpn:
+          server_countries: [Switzerland, Netherlands, Spain]
+        wireguard.private_key: "{{ gluetun__wireguard__private_key }}"
+        dns.upstream_resolvers: [cloudflare,quad9,google]
+        firewall.input_ports: [http,bt1,bt2]
+      dependencies:
+        - name: db
+          port: http
+    volumes:
+      config:
+        src.host:
+          dir: "/mnt/pepper/gabbro_cluster/bitmagnet/config"
+          read_only: false
+          create: true
+        dest.dir: /root/.config/bitmagnet
+    command:
+      - worker
+      - run
+      - --keys=http_server
+      - --keys=queue_server
+      - --keys=dht_crawler
+    environment:
+      - raw:
+          POSTGRES_HOST: bitmagnet-db:5432
+          POSTGRES_PASSWORD: postgres
+
+  db:
+    image: docker.io/library/postgres:16-alpine@sha256:23e88eb049fd5d54894d70100df61d38a49ed97909263f79d4ff4c30a5d5fca2
+    talos: ^!
+    resources:
+      limits.memory: 1Gi
+    networking:
+      ports:
+        http: 5432
+    volumes:
+      db-data:
+        src.host:
+          dir: /mnt/pepper/gabbro_cluster/bitmagnet/db
+          read_only: false
+          create: true
+        dest.dir: /var/lib/postgresql/data
+      db-dshm:
+        src.tmpfs.size: 1Gi
+        dest.dir: /dev/shm
+    environment:
+      - raw: 
+          POSTGRES_DB: bitmagnet
+          POSTGRES_PASSWORD: postgres
+          PGUSER: postgres
