@@ -23,6 +23,8 @@ components:
       dependencies:
         - name: db
           port: http
+      host_aliases:
+        bitmagnet-db: 192.168.1.211
     volumes:
       config:
         src.host:
@@ -31,6 +33,7 @@ components:
           create: true
         dest.dir: /root/.config/bitmagnet
     command:
+      - bitmagnet
       - worker
       - run
       - --keys=http_server
@@ -49,6 +52,10 @@ components:
     networking:
       ports:
         http: 5432
+      ip_addresses:
+        - ip: 192.168.1.211
+          ports: [http]
+          network_policy.create: false
     volumes:
       db-data:
         src.host:
