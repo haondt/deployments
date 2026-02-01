@@ -1,0 +1,16 @@
+components:
+  primary:
+    image: agregarr/agregarr:v2.3.0
+    talos: +!
+    resources:
+      limits.memory: 512Mi
+    networking:
+      ports:
+        http: 7171
+      gateway.http_routes:
+        - port: http
+          host: "agregarr.{{ haondt__default_host }}"
+    volumes:
+      config:
+        src.pvc.size: 128Mi
+        dest.dir: /app/config
