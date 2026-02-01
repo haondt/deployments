@@ -5,15 +5,7 @@
       type: extension
       url: http://glance-restic:8675/vaultwarden
       allow-potentially-dangerous-html: true
-    - title: vaultwarden_hz
+    - title: immich
       type: extension
-      url: http://glance-restic:8675/vaultwarden_hz
-      allow-potentially-dangerous-html: true
-    - title: syncthing
-      type: extension
-      url: http://glance-restic:8675/syncthing
-      allow-potentially-dangerous-html: true
-    - title: syncthing_hz
-      type: extension
-      url: http://glance-restic:8675/syncthing_hz
+      url: http://glance-restic:8675/immich
       allow-potentially-dangerous-html: true
