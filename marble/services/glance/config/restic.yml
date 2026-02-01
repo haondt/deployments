@@ -1,13 +1,13 @@
 - type: split-column
   max-columns: 5
   widgets:
-    - title: gsm
+    - title: vaultwarden
       type: extension
-      url: http://glance-restic:8675/gsm
+      url: http://glance-restic:8675/vaultwarden
       allow-potentially-dangerous-html: true
-    - title: gsm_hz
+    - title: vaultwarden_hz
       type: extension
-      url: http://glance-restic:8675/gsm_hz
+      url: http://glance-restic:8675/vaultwarden_hz
       allow-potentially-dangerous-html: true
     - title: syncthing
       type: extension

@@ -39,12 +39,12 @@ components:
 
   restic:
     metadata:
-      component: glance-extension # shorthand for labels:  app.kubernetes.io/component: glance-extension
+      component: glance-extension
     image: ghcr.io/not-first/restic-glance-extension:latest@sha256:94b64d2cad519595cc4490a5c52ae312892c00464d6d47af0835d02e1facf372
     networking:
       ports:
         http: 8675
-    talos: x # talos funcitonality
+    talos: x
     environment:
       - file: glance-restic.env
         secret: True
