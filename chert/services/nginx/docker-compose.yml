@@ -45,7 +45,7 @@ services:
   nginx-acme:
     networks:
       - nginx
-    image: docker.io/nginxproxy/acme-companion:latest@sha256:f2410c7c63770e3b746403a8b6f19134ac9316ad8ac0499d858036785510a4af
+    image: docker.io/nginxproxy/acme-companion:latest@sha256:75c5ba3971fa9648421fc0e386d282c47561edb1101ce538a542b27469fefe8a
     x-tl: +!
     volumes_from:
       - nginx
