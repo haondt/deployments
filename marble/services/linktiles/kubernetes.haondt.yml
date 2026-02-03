@@ -2,6 +2,22 @@ components:
   primary:
     image: haumea/linktiles:0.0.6
     talos: x
+    observability:
+      alloy.logs.process: |
+        stage.regex {
+          expression = "^\\[(?P<timestamp>[^]]+)\\] \\[(?P<pid>\\d+)\\] \\[(?P<level>\\w+)\\]"
+        }
+        stage.template {
+          source = "level"
+          template = "{{ or .Value \"Info\"}}"
+        }
+        stage.timestamp {
+            source = "timestamp"
+            format = "2006-01-02 15:04:05 -0700"
+        }
+        stage.labels {
+          values = { "level" = "" }
+        }
     networking:
       ports:
         http: 5001
