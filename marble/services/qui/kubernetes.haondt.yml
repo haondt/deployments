@@ -1,0 +1,14 @@
+components:
+  primary:
+    image: ghcr.io/autobrr/qui:latest
+    talos: +!
+    networking:
+      ports:
+        http: 7476
+      gateway.http_routes:
+        - port: http
+          host: "qui.{{ haondt__default_host }}"
+    volumes:
+      config:
+        src.pvc.size: 128Mi
+        dest.dir: /config
