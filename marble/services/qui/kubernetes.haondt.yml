@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/autobrr/qui:latest
+    image: ghcr.io/autobrr/qui:latest@sha256:05b9badae10d21f54722464e8b51abc9487ba93f9bb2fff649fbc09944d0d111
     talos: +!
     networking:
       ports:
