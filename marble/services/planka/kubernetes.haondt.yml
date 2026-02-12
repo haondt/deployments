@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/plankanban/planka:latest@sha256:e469d724985db3f560ef0aa2218d54536212459bf8ecbdbc9fd995fc3cbe29db
+    image: ghcr.io/plankanban/planka:latest@sha256:f82726333b953bd0d11184fa95a4fe4b068bab0e43e49254cf2963ad91b7c21a
     talos: +!
     networking:
       ports:
