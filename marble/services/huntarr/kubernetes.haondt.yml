@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/plexguide/huntarr:latest@sha256:121d10ce379f5ce77d0091606192a7a603ffd97078eb196226f810b6f6bad00d
+    image: ghcr.io/plexguide/huntarr:latest@sha256:4dbab192dd25b68d31c445cf186113b910e527e0ac58552eacd16d4554a4c249
     talos: +!
     resources:
       limits.memory: 512Mi
