@@ -1,6 +1,6 @@
 components:
   primary:
-    image: registry.gitlab.com/haondt/cicd/registry/plextagger:0.0.3
+    image: registry.gitlab.com/haondt/cicd/registry/plextagger:0.0.4
     talos: x
     volumes.data:
       src.pvc.size: 256Mi
