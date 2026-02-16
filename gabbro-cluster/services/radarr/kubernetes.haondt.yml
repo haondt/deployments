@@ -1,6 +1,6 @@
 components:
   primary:
-    image: docker.io/linuxserver/radarr:latest@sha256:f08dda38e7d12e5a722d9a5cb6e54acaf63c8598fefeefec88effe0c0d0038dd
+    image: docker.io/linuxserver/radarr:latest@sha256:6d3e68474ea146f995af98d3fb2cb1a14e2e4457ddaf035aa5426889e2f9249c
     talos: +!
     resources:
       requests.memory: 256Mi
@@ -72,7 +72,7 @@ components:
           PGID: "{{ media__pgid }}"
           PUID: "{{ media__puid }}"
   hd:
-    image: docker.io/linuxserver/radarr:latest@sha256:f08dda38e7d12e5a722d9a5cb6e54acaf63c8598fefeefec88effe0c0d0038dd
+    image: docker.io/linuxserver/radarr:latest@sha256:6d3e68474ea146f995af98d3fb2cb1a14e2e4457ddaf035aa5426889e2f9249c
     talos: +!
     resources:
       limits.memory: 2Gi
