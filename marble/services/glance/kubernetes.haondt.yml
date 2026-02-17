@@ -100,4 +100,3 @@ components:
                   path: glance-flows
           source.volumes:
             flows-data: [/flows.json]
-
