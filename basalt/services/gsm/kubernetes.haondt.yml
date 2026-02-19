@@ -1,6 +1,6 @@
 components:
   primary:
-    image: registry.gitlab.com/haondt/cicd/registry/gsm:2.0.2
+    image: registry.gitlab.com/haondt/cicd/registry/gsm:main-0f341dbc
     talos: x
     networking:
       ports:
@@ -8,6 +8,12 @@ components:
       gateway.http_routes:
         - port: http
           host: "gsm.{{ haondt__default_host }}"
+    observability:
+      probes.hc:
+        http_get:
+          port: http
+          path: /hc
+        alloy.blackbox: {}
     volumes:
       data:
         src.pvc: {}
