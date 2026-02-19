@@ -1,6 +1,6 @@
 components:
   primary:
-    image: registry.gitlab.com/haondt/cicd/registry/gsm:main-0f341dbc
+    image: registry.gitlab.com/haondt/cicd/registry/gsm:v2.0.4
     talos: x
     networking:
       ports:
