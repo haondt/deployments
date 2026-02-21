@@ -1,10 +1,10 @@
 checks:
-  - vaultwarden:
+  - k3s:
       source:
         type: github
         owner: k3s-io
         repo: k3s
-      destinations:
+      destinations: &github_discord_dest
         - type: discord
           webhookURL: "{{ discord_webhook_url }}"
           color: "1c60dc"
@@ -19,8 +19,35 @@ checks:
         - type: discord
           webhookURL: "{{ discord_webhook_url }}"
           color: 1ABC9C
-          template: "Reminder for basalt update - infrastructure -> cd deploment && make a-deb-update TARGET=basalt"
+          template: "Reminder for basalt update - infrastructure -> cd deployment && make a-deb-update TARGET=basalt"
       period: 14d
+  - k8s_gateway_api:
+      source:
+        type: github
+        owner: kubernetes-sigs
+        repo: gateway-api
+      destinations: *github_discord_dest
+      meta:
+        name: gateway-api
+      period: 1d
+  - kgateway:
+      source:
+        type: github
+        owner: kgateway-dev
+        repo: kgateway
+      destinations: *github_discord_dest
+      meta:
+        name: kgateway
+      period: 1d
+  - cert_manager:
+      source:
+        type: github
+        owner: cert-manager
+        repo: cert-manager
+      destinations: *github_discord_dest
+      meta:
+        name: cert-manager
+      period: 1d
 templates:
   github-discord: |
     Version ${github__tag} of ${meta__name} has been released. [Click here to view the release on GitHub](${github__url}).
