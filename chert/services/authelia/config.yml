@@ -54,7 +54,6 @@ identity_providers:
         algorithm: 'RS256'
         use: 'sig'
         key: {{ secret "/config/secrets/oidc/jwks/authelia.key" | mindent 10 "|" | msquote }}
-        certificate_chain: {{ secret "/config/secrets/oidc/jwks/authelia.crt" | mindent 10 "|" | msquote }}
     cors:
       allowed_origins:
         - 'https://immich.cloud.haondt.dev'

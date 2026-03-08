@@ -5,7 +5,6 @@ services:
     volumes:
       - /srv/data/authelia:/config
       - ./authelia/config.yml:/config/configuration.yml
-      - ./authelia/oidc-jwks-certificate.crt:/config/secrets/oidc/jwks/authelia.crt
       - ./authelia/oidc-jwks-certificate.key:/config/secrets/oidc/jwks/authelia.key
     networks:
       - authelia
