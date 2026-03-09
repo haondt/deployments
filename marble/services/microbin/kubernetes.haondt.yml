@@ -10,13 +10,13 @@ components:
           host: "microbin.{{ haondt__default_cloud_host }}"
     environment:
       - raw:
-          MICROBIN_HIDE_LOGO: true
-          MICROBIN_PRIVATE: true
-          MICROBIN_GC_DAYS: 0
-          MICROBIN_QR: true
-          MICROBIN_ETERNAL_PASTA: true
-          MICROBIN_DEFAULT_EXPIRY: 24hour
-          MICROBIN_LIST_SERVER: false
+          MICROBIN_HIDE_LOGO: 'true'
+          MICROBIN_PRIVATE: 'true'
+          MICROBIN_GC_DAYS: '0'
+          MICROBIN_QR: 'true'
+          MICROBIN_ETERNAL_PASTA: 'true'
+          MICROBIN_DEFAULT_EXPIRY: '24hour'
+          MICROBIN_LIST_SERVER: 'false'
     volumes:
       uploads:
         src.pvc.size: 64Mi
