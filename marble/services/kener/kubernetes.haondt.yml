@@ -47,7 +47,7 @@ components:
   redis:
     image: redis:7-alpine
     talos: ^!
-    command: redis-server --appendonly yes
+    command: ['redis-server','--appendonly','yes']
     networking:
       ports:
         http: 6379
