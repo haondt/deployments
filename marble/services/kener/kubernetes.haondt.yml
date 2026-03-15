@@ -8,12 +8,16 @@ components:
       rathole_routes:
         - port: http
           host: "status.{{ haondt__default_public_host }}"
+      dependencies:
+        - name: redis
+          port: http
     environment:
       - raw:
           KENER_SECRET_KEY: "{{ kener__secret_key }}"
         secret: true
       - raw:
           ORIGIN: "https://status.{{ haondt__default_public_host }}"
+          REDIS_URL: redis://kener-redis:6379
     startup:
       tasks:
         - chown:
@@ -40,3 +44,20 @@ components:
         - overlays: [default-hzsb]
           repository_configs: *charon_repository_configs
           source.volumes: *charon_source
+  redis:
+    image: redis:7-alpine
+    talos: ^!
+    command: redis-server --appendonly yes
+    networking:
+      ports:
+        http: 6379
+    volumes:
+      redis-data:
+        src.pvc: {}
+        dest.dir: /data
+    startup:
+      tasks:
+        - chmod:
+            paths: [/data]
+            mode: '0777'
+
