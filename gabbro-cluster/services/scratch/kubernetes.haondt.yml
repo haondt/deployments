@@ -5,9 +5,9 @@ components:
     networking:
       ports:
         http: 5432
-      gateway.http_routes:
-        - port: http
-          host: "scratch-pg.{{ haondt__default_host }}"
+      ip_addresses:
+        - ip: 192.168.2.1
+          ports: [http]
     resources:
       limits.memory: 1Gi
     volumes:
