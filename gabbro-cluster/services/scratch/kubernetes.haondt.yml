@@ -6,7 +6,7 @@ components:
       ports:
         http: 5432
       ip_addresses:
-        - ip: 192.168.2.1
+        - ip: 192.168.1.213
           ports: [http]
     resources:
       limits.memory: 1Gi
