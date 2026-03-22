@@ -1,0 +1,21 @@
+components:
+  postgres:
+    image: postgres:18-alpine
+    talos: ^!
+    networking:
+      ports:
+        http: 5432
+      gateway.http_routes:
+        - port: http
+          host: "scratch-pg.{{ haondt__default_host }}"
+    resources:
+      limits.memory: 1Gi
+    volumes:
+      db-data:
+        src.tmpfs.size: 256Mi
+        dest.dir: /var/lib/postgresql/data
+    environment:
+      - raw:
+          POSTGRES_DB: haondt
+          POSTGRES_PASSWORD: postgres
+          PGUSER: postgres
