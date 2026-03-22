@@ -1,6 +1,6 @@
 components:
   postgres:
-    image: postgres:18-alpine
+    image: docker.io/library/postgres:18-alpine@sha256:4da1a4828be12604092fa55311276f08f9224a74a62dcb4708bd7439e2a03911
     talos: ^!
     networking:
       ports:
