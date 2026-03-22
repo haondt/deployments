@@ -13,7 +13,7 @@ components:
     volumes:
       db-data:
         src.tmpfs.size: 256Mi
-        dest.dir: /var/lib/postgresql/data
+        dest.dir: /var/lib/postgresql
     environment:
       - raw:
           POSTGRES_DB: haondt
