@@ -1,0 +1,35 @@
+components:
+  primary:
+    image: gotson/komga:1.24.3
+    talos: +!
+    resources.limits.memory: 1Gi
+    networking:
+      ports:
+        http: 25600
+      gateway.http_routes:
+        - port: http
+          host: "komga.{{ haondt__default_host }}"
+    security:
+      user: "{{ media__puid }}"
+      group: "{{ media__pgid }}"
+    volumes:
+      config:
+        src.host:
+          dir: /mnt/pepper/gabbro_cluster/komga/config
+          read_only: false
+          create: true
+        dest.dir: /config
+      data:
+        src.host:
+          dir: /mnt/carrot/gabbro/komga/data
+          create: true
+          read_only: false
+        dest.dir: /data
+    startup.tasks:
+      - chown:
+          paths: [/data,/config]
+          owner: "{{ media__puid }}:{{ media__pgid }}"
+    environment:
+      - raw:
+          # process memory limit
+          JAVA_TOOL_OPTIONS: Xmx1g
