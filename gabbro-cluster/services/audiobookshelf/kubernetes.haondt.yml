@@ -17,11 +17,13 @@ components:
           create: true
         dest.dir: /config
       metadata:
-        src.host:
-          dir: /mnt/pepper/gabbro_cluster/audiobookshelf/metadata
-          read_only: false
-          create: true
-        dest.dir: /metadata
+        src:
+          host:
+            dir: /mnt/pepper/gabbro_cluster/audiobookshelf/metadata
+            read_only: false
+            create: true
+        dest:
+          dir: /metadata
       audiobooks:
         src.host:
           dir: /mnt/carrot/gabbro/audiobookshelf/audiobooks
