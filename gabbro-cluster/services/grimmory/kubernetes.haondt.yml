@@ -55,6 +55,7 @@ components:
       db-data:
         src.host:
           dir: /mnt/pepper/gabbro_cluster/grimmory/db
+          create: true
           read_only: false
         dest.dir: /var/lib/mysql
     environment:
