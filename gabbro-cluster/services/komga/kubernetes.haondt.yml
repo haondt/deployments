@@ -2,7 +2,7 @@ components:
   primary:
     image: gotson/komga:1.24.3
     talos: +!
-    resources.limits.memory: 1Gi
+    resources.limits.memory: 4Gi
     networking:
       ports:
         http: 25600
@@ -29,7 +29,7 @@ components:
       - chown:
           paths: [/data,/config]
           owner: "{{ media__puid }}:{{ media__pgid }}"
-    environment:
-      - raw:
-          # process memory limit
-          JAVA_TOOL_OPTIONS: -Xmx1g
+    # environment:
+    #   - raw:
+    #       # process memory limit
+    #       JAVA_TOOL_OPTIONS: -Xmx1g
