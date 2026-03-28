@@ -2,7 +2,7 @@ components:
   primary:
     image: gotson/komga:1.24.3
     talos: +!
-    resources.limits.memory: 4Gi
+    resources.limits.memory: 8Gi
     networking:
       ports:
         http: 25600
