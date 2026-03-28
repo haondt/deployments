@@ -48,6 +48,7 @@ components:
   db:
     image: docker.io/library/mariadb:11.4.5
     talos: ^!
+    resources.limits.memory: 1Gi
     networking:
       ports:
         http: 3306
