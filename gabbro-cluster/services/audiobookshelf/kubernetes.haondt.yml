@@ -1,0 +1,42 @@
+components:
+  primary:
+    image:  ghcr.io/advplyr/audiobookshelf:2.33.1
+    talos: +!
+    resources.limits.memory: 1Gi
+    networking:
+      ports:
+        http: 13378
+      gateway.http_routes:
+        - port: http
+          host: "audiobookshelf.{{ haondt__default_host }}"
+    volumes:
+      config:
+        src.host:
+          dir: /mnt/pepper/gabbro_cluster/audiobookshelf/config
+          read_only: false
+          create: true
+        dest.dir: /config
+      metadata:
+        src.host:
+          dir: /mnt/pepper/gabbro_cluster/audiobookshelf/metadata
+          read_only: false
+          create: true
+        dest.dir: /metadata
+      audiobooks:
+        src.host:
+          dir: /mnt/carrot/gabbro/audiobookshelf/audiobooks
+          create: true
+          read_only: false
+        dest.dir: /audiobooks
+      books:
+        src.host:
+          dir: /mnt/carrot/gabbro/audiobookshelf/books
+          create: true
+          read_only: false
+        dest.dir: /books
+      podcasts:
+        src.host:
+          dir: /mnt/carrot/gabbro/audiobookshelf/podcasts
+          create: true
+          read_only: false
+        dest.dir: /podcasts
