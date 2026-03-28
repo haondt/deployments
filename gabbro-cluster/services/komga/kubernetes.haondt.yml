@@ -32,4 +32,4 @@ components:
     environment:
       - raw:
           # process memory limit
-          JAVA_TOOL_OPTIONS: Xmx1g
+          JAVA_TOOL_OPTIONS: -Xmx1g
