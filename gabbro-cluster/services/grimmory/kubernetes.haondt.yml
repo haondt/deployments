@@ -11,7 +11,7 @@ components:
           port: http
       gateway.http_routes:
         - port: http
-          host: "audiobookshelf.{{ haondt__default_host }}"
+          host: "grimmory.{{ haondt__default_host }}"
     volumes:
       config:
         src.host:
