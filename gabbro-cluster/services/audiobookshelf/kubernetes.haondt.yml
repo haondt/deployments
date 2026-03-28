@@ -5,7 +5,7 @@ components:
     resources.limits.memory: 1Gi
     networking:
       ports:
-        http: 13378
+        http: 80
       gateway.http_routes:
         - port: http
           host: "audiobookshelf.{{ haondt__default_host }}"
