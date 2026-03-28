@@ -41,7 +41,7 @@ components:
           USER_ID: "{{ media__pgid }}"
           GROUP_ID: "{{ media__puid }}"
           BOOKLORE_PORT: "6060"
-          DATABASE_URL: mariadb://grimmory-db:3306/grimmory
+          DATABASE_URL: jdbc:mariadb://grimmory-db:3306/grimmory
           DATABASE_USERNAME: grimmory
           DATABASE_PASSWORD: grimmory
 
