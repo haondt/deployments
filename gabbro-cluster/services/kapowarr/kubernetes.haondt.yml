@@ -1,0 +1,39 @@
+components:
+  primary:
+    image: mrcas/kapowarr:v1.3.0
+    talos: +!
+    resources.limits.memory: 1Gi
+    networking:
+      ports:
+        http: 5656
+      gateway.http_routes:
+        - port: http
+          host: "kapowarr.{{ haondt__default_host }}"
+      dependencies:
+        - name: primary
+          app: qbittorrent
+          port: http
+    volumes:
+      db:
+        src.host:
+          dir: /mnt/pepper/gabbro_cluster/kapowarr/db
+          read_only: false
+          create: true
+        dest.dir: /app/db
+      comics:
+        src.host:
+          dir: /mnt/carrot/gabbro/komga/data/comics
+          create: true
+          read_only: false
+        dest.dir: /comics
+      downloads:
+        src.host.dir: "{{ media__host_dirs__downloads }}"
+        dest.dir: /app/temp_downloads
+    startup.tasks:
+      - chown:
+          paths: [/app/db]
+          owner: "{{ media__puid }}:{{ media__pgid }}"
+    environment:
+      - raw:
+          PUID: "{{ media__puid }}"
+          PGID: "{{ media__pgid }}"
