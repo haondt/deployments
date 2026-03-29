@@ -23,15 +23,20 @@ components:
       comics:
         src.host:
           dir: /mnt/carrot/gabbro/komga/data/comics
-          create: true
           read_only: false
         dest.dir: /comics
       downloads:
         src.host.dir: "{{ media__host_dirs__downloads }}"
+        dest.dir: /downloads
+      temp_downloads:
+        src.host:
+          dir: /mnt/carrot/gabbro/kapowarr/temp_downloads
+          create: true
+          readonly: false
         dest.dir: /app/temp_downloads
     startup.tasks:
       - chown:
-          paths: [/app/db]
+          paths: [/app/db,/app/temp_downloads]
           owner: "{{ media__puid }}:{{ media__pgid }}"
     environment:
       - raw:
