@@ -32,7 +32,7 @@ components:
         src.host:
           dir: /mnt/carrot/gabbro/kapowarr/temp_downloads
           create: true
-          readonly: false
+          read_only: false
         dest.dir: /app/temp_downloads
     startup.tasks:
       - chown:
