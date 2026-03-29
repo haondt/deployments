@@ -28,7 +28,7 @@ components:
       downloads:
         src.host.dir: "{{ media__host_dirs__downloads }}"
         dest.dir: /downloads
-      temp_downloads:
+      temp-downloads:
         src.host:
           dir: /mnt/carrot/gabbro/kapowarr/temp_downloads
           create: true
