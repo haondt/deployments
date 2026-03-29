@@ -13,6 +13,11 @@ components:
         - name: primary
           app: qbittorrent
           port: http
+      gluetun:
+        protonvpn: {}
+        wireguard.private_key: "{{ gluetun__wireguard__private_key }}"
+        dns.upstream_resolvers: [cloudflare,quad9,google]
+        firewall.input_ports: [http]
     volumes:
       db:
         src.host:
