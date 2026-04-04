@@ -1,6 +1,6 @@
 components:
   primary:
-    image: lscr.io/linuxserver/prowlarr:develop@sha256:edaa930c72b3e9edfd88dbb785e9a253da0a5d438a08646d26e7de4a3fbd6d2c
+    image: lscr.io/linuxserver/prowlarr:develop@sha256:d3a0705669be9be2ecd3123a334c530541f85ad4f0d424b895dfa47b8b00243b
     talos: +!
     resources.limits.memory: 512Mi
     networking:
