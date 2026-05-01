@@ -1,6 +1,6 @@
 services:
   fail2ban:
-    image: lscr.io/linuxserver/fail2ban:latest@sha256:daca3be4b7e1660c7a19b48a3dc192301b25fab8098c55d5e34b1e1062ab71ef
+    image: lscr.io/linuxserver/fail2ban:latest@sha256:fd026cc9b79636ce0fba52d22fffe9173c35426e07f3d4d386251d291c76bbb0
     x-tl: +!
     cap_add:
       - NET_ADMIN
