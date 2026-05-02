@@ -1,6 +1,6 @@
 components:
   primary:
-    image: lscr.io/linuxserver/tautulli:latest@sha256:08620c01fbf69fc385a173e6959a4665ec48191acc73ada3a14329a9a2874153
+    image: lscr.io/linuxserver/tautulli:latest@sha256:d044c3eb1157acacdffdfbb311407d37c0283c570c9c9591b9638e5aaba81750
     talos: +!
     networking:
       ports.http: 8181
