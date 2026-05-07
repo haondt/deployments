@@ -1,0 +1,46 @@
+components:
+  primary:
+    image: ghcr.io/miniflux/miniflux:2.2.19
+    talos: +!
+    networking:
+      ports:
+        http: 8080
+      gateway.http_routes:
+        - port: http
+          host: "miniflux.{{ haondt__default_host }}"
+    environment:
+      - raw:
+          DATABASE_URL: postgresql://miniflux:miniflux@miniflux-db/miniflux?sslmode=disable
+          RUN_MIGRATIONS: 1
+          CREATE_ADMIN: 1
+          ADMIN_USERNAME: miniflux
+          ADMIN_PASSWORD: miniflux
+  db:
+    image: docker.io/library/postgres:18-alpine
+    talos: ^!
+    networking:
+      ports:
+        http: 5432
+    volumes:
+      db-data:
+        src.pvc.size: 128Mi
+        dest.dir: /var/lib/postgresql
+    environment:
+      - raw: 
+          POSTGRES_USER: miniflux
+          POSTGRES_PASSWORD: miniflux
+          POSTGRES_DB: miniflux
+    charon:
+      overlays: [daily]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &charon_repository_configs
+            - raw: |-
+                backend:
+                  path: miniflux-db
+          source.volumes: &charon_source
+            db-data: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *charon_repository_configs
+          source.volumes: *charon_source
+
