@@ -1,0 +1,21 @@
+components:
+  primary:
+    image: freshrss/freshrss:1.28.1
+    talos: +!
+    networking:
+      ports:
+        http: 8080
+      gateway.http_routes:
+        - port: http
+          host: "freshrss.{{ haondt__default_host }}"
+    volumes:
+      primary-data:
+        src.pvc.size: 128Mi
+        dest.dir: /var/www/FreshRSS/data
+      primary-extensions:
+        src.pvc.size: 128Mi
+        dest.dir: /var/www/FreshRSS/extensions
+    environment:
+      - raw:
+          TZ: America/Edmonton
+          CRON_MIN: '1,31'
