@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/miniflux/miniflux:2.2.19
+    image: ghcr.io/miniflux/miniflux:2.2.19@sha256:8810dfe7f4d9979f9dc1385607695c116f049daa586c635a9a1fb3c58936b074
     talos: +!
     networking:
       ports:
@@ -19,7 +19,7 @@ components:
           ADMIN_USERNAME: miniflux
           ADMIN_PASSWORD: miniflux
   db:
-    image: docker.io/library/postgres:18-alpine
+    image: docker.io/library/postgres:18-alpine@sha256:54451ecb8ab38c24c3ec123f2fd501303a3a1856a5c66e98cecf2460d5e1e9d7
     talos: ^!
     networking:
       ports:
