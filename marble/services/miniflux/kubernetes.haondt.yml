@@ -5,6 +5,9 @@ components:
     networking:
       ports:
         http: 8080
+      dependencies:
+        - name: db
+          port: http
       gateway.http_routes:
         - port: http
           host: "miniflux.{{ haondt__default_host }}"
