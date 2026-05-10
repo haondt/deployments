@@ -4,6 +4,7 @@ components:
     talos: +!
     resources:
       requests.memory: 128Mi
+      limits.memory: 512Mi
     networking:
       ports:
         http: 3000
