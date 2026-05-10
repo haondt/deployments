@@ -19,3 +19,17 @@ components:
       - raw:
           TZ: America/Edmonton
           CRON_MIN: '1,31'
+    charon:
+      overlays: [daily]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &charon_repository_configs
+            - raw: |-
+                backend:
+                  path: freshrss-data
+          source.volumes: &charon_source
+            primary-data: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *charon_repository_configs
+          source.volumes: *charon_source
+

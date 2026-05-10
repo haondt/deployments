@@ -1,0 +1,82 @@
+components:
+  primary:
+    image: &tag ghcr.io/tt-rss/tt-rss:latest
+    talos: +!
+    networking:
+      ports:
+        http:
+          port: 80
+          container: nginx
+      dependencies:
+        - name: db
+          port: http
+      gateway.http_routes:
+        - port: http
+          host: "ttrss.{{ haondt__default_host }}"
+    volumes:
+      primary-data:
+        src.pvc.size: 128Mi
+        dest.dir: /var/www/html
+    environment:
+      - raw: &env
+          TTRSS_DB_USER: postgres
+          TTRSS_DB_NAME: postgres
+          TTRSS_DB_PASS: postgres
+          TTRSS_DB_HOST: ttrss-db
+          HTTP_PORT: 8280
+          APP_WEB_ROOT: /var/www/html/tt-rss
+          APP_BASE: ""
+          APP_UPSTREAM: localhost
+          RESOLVER: kube-dns.kube-system.svc.cluster.local
+    sidecars:
+      updater:
+        image: *tag
+        talos: x
+        command: [/opt/tt-rss/updater.sh]
+        volumes:
+          primary-data:
+            src.volume.name: primary-data
+            dest.dir: /var/www/html
+        environment:
+          - raw: *env
+      nginx:
+        image: ghcr.io/tt-rss/tt-rss-web-nginx:latest
+        talos: +!
+        volumes:
+          primary-data:
+            src.volume.name: primary-data
+            dest:
+              read_only: true
+              dir: /var/www/html
+        environment:
+          - raw: *env
+
+  db:
+    image: docker.io/library/postgres:18-alpine@sha256:54451ecb8ab38c24c3ec123f2fd501303a3a1856a5c66e98cecf2460d5e1e9d7
+    talos: ^!
+    networking:
+      ports:
+        http: 5432
+    volumes:
+      db-data:
+        src.pvc.size: 128Mi
+        dest.dir: /var/lib/postgresql
+    environment:
+      - raw: 
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+    charon:
+      overlays: [daily]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &charon_repository_configs
+            - raw: |-
+                backend:
+                  path: ttrss-db
+          source.volumes: &charon_source
+            db-data: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *charon_repository_configs
+          source.volumes: *charon_source
+
