@@ -48,8 +48,7 @@ components:
           repository_configs: *charon_repository_configs
           source.volumes: *charon_source
   drip:
-    # image: haumea/drip:0.1.0
-    image: registry.gitlab.com/haondt/cicd/registry/drip:main-c117370e
+    image: haumea/drip:0.1.1
     talos: x
     networking:
       ports:
