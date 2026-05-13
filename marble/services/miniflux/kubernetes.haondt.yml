@@ -47,4 +47,32 @@ components:
         - overlays: [default-hzsb]
           repository_configs: *charon_repository_configs
           source.volumes: *charon_source
-
+  drip:
+    image: haumea/drip:0.1.0
+    talos: x
+    networking:
+      ports:
+        http: 5001
+      gateway.http_routes:
+        - port: http
+          host: "drip.{{ haondt__default_host }}"
+    volumes:
+      drip-data:
+        src.pvc.size: 128Mi
+        dest.dir: /data
+    environment:
+      - raw:
+          DRIP_BASE_URL: "https://drip.{{ haondt__default_host }}"
+    charon:
+      overlays: [daily]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &charon_repository_configs
+            - raw: |-
+                backend:
+                  path: miniflux-drip
+          source.volumes: &charon_source
+            db-data: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *charon_repository_configs
+          source.volumes: *charon_source
