@@ -67,12 +67,12 @@ components:
       overlays: [daily]
       backups:
         - overlays: [default-gcs]
-          repository_configs: &charon_repository_configs
+          repository_configs: &drip_charon_repository_configs
             - raw: |-
                 backend:
                   path: miniflux-drip
-          source.volumes: &charon_source
-            db-data: [/]
+          source.volumes: &drip_charon_source
+            drip-data: [/]
         - overlays: [default-hzsb]
-          repository_configs: *charon_repository_configs
-          source.volumes: *charon_source
+          repository_configs: *drip_charon_repository_configs
+          source.volumes: *drip_charon_source
