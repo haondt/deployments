@@ -46,8 +46,7 @@ components:
           POSTGRES_DB: planka
           POSTGRES_HOST_AUTH_METHOD: trust
     charon:
-      # overlays: [daily]
-      mode: 'revert'
+      overlays: [daily]
       backups:
         - overlays: [default-gcs]
           repository_configs: &charon_repository_configs
@@ -56,7 +55,7 @@ components:
                   path: planka-db
           source.volumes: &charon_source
             db-data: [/]
-      #  - overlays: [default-hzsb]
-      #    repository_configs: *charon_repository_configs
-      #    source.volumes: *charon_source
+        - overlays: [default-hzsb]
+          repository_configs: *charon_repository_configs
+          source.volumes: *charon_source
 
