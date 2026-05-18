@@ -37,23 +37,6 @@ components:
           DEFAULT_ADMIN_NAME: "Planka Admin"
           DEFAULT_ADMIN_USERNAME: "planka"
           SHOW_DETAILED_AUTH_ERRORS: true
-    startup:
-      tasks:
-        - custom:
-            image: *planka_image
-            command: [sh, -c]
-            security.user: 0
-            args: |-
-              npm run db:upgrade
-              mkdir -p \
-                /app/data/protected \
-                /app/data/private && \
-                for folder in user-avatars background-images; do \
-                  cp -av \
-                    /app/public/$folder \
-                    /app/data/protected; \
-                done && \
-                cp -av /app/private/attachments /app/data/private
   db:
     image: docker.io/library/postgres:16-alpine@sha256:16bc17c64a573ef34162af9298258d1aec548232985b33ed7b1eac33ba35c229
     talos: ^!
