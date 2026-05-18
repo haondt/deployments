@@ -43,11 +43,6 @@ components:
             image: *planka_image
             command: [sh, -c]
             security.user: 0
-            args: |
-              chown -R node:node /app/data
-        - custom:
-            image: *planka_image
-            command: [sh, -c]
             args: |-
               npm run db:upgrade
               mkdir -p \
