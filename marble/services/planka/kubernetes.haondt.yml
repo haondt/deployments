@@ -1,7 +1,7 @@
 components:
   primary:
-    image: ghcr.io/plankanban/planka:latest@sha256:e469d724985db3f560ef0aa2218d54536212459bf8ecbdbc9fd995fc3cbe29db
-    talos: x
+    image: &planka_image ghcr.io/plankanban/planka:2.1.1
+    talos: +:!!!*
     networking:
       ports:
         http: 1337
@@ -12,17 +12,23 @@ components:
         - port: http
           host: "planka.{{ haondt__default_host }}"
     volumes:
-      user-avatars:
-        src.pvc.size: 128Mi
-        dest.dir: /app/public/user-avatars
       background-images:
         src.pvc.size: 128Mi
         dest.dir: /app/public/project-background-images
+      background-images-2:
+        src.pvc.size: 128Mi
+        dest.dir: /app/public/background-images
+      user-avatars:
+        src.pvc.size: 128Mi
+        dest.dir: /app/public/user-avatars
       attachments:
         src.pvc.size: 128Mi
         dest.dir: /app/private/attachments
+      data:
+        src.pvc.size: 128Mi
+        dest.dir: /app/data
     environment:
-      - raw: 
+      - raw:
           BASE_URL: "https://planka.{{ haondt__default_host }}"
           DATABASE_URL: postgresql://postgres@planka-db:5432/planka
           SECRET_KEY: "{{ planka__secret_key }}"
@@ -31,6 +37,28 @@ components:
           DEFAULT_ADMIN_NAME: "Planka Admin"
           DEFAULT_ADMIN_USERNAME: "planka"
           SHOW_DETAILED_AUTH_ERRORS: true
+    startup:
+      tasks:
+        - custom:
+            image: *planka_image
+            command: [sh, -c]
+            security.user: 0
+            args: |
+              cp -av /app/public/project-background-images/. /app/public/background-images && chown -R node:node /app/public/background-images
+        - custom:
+            image: *planka_image
+            command: [sh, -c]
+            args: |-
+              npm run db:upgrade
+              mkdir -p \
+                /app/data/protected \
+                /app/data/private && \
+                for folder in user-avatars background-images; do \
+                  cp -av \
+                    /app/public/$folder \
+                    /app/data/protected; \
+                done && \
+                cp -av /app/private/attachments /app/data/private
   db:
     image: docker.io/library/postgres:16-alpine@sha256:16bc17c64a573ef34162af9298258d1aec548232985b33ed7b1eac33ba35c229
     talos: ^!
