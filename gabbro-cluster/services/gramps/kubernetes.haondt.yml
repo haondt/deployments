@@ -2,6 +2,7 @@ components:
   primary:
     image: &gramps_image ghcr.io/gramps-project/grampsweb:26.5.1
     talos: "+:!!!?"
+    resources.limits.memory: 1Gi
     networking:
       dependencies: &gramps_net_deps
         - name: redis
@@ -60,12 +61,16 @@ components:
           read_only: false
           create: true
         dest.dir: /tmp
-    environment:
-      - raw: &gramps_env
+    environment: &gramps_env
+      - raw:
           GRAMPSWEB_TREE: "Gramps Web"
           GRAMPSWEB_CELERY_CONFIG__broker_url: "redis://gramps-redis:6379/0"
           GRAMPSWEB_CELERY_CONFIG__result_backend: "redis://gramps-redis:6379/0"
           GRAMPSWEB_RATELIMIT_STORAGE_URI: redis://gramps-redis:6379/1
+          GRAMPSWEB_BASE_URL: "https://gramps.{{ haondt__default_host }}"
+      - secret: true
+        raw:
+          GRAMPSWEB_SECRET_KEY: "{{ gramps__secret_key }}"
   worker:
     image: *gramps_image
     talos: x
