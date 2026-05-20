@@ -24,7 +24,7 @@ components:
           read_only: false
           create: true
         dest.dir: /app/indexdir
-      thumb_cache:
+      thumb-cache:
         src.host:
           dir: "/mnt/carrot/gabbro/gramps/thumb_cache"
           read_only: false
