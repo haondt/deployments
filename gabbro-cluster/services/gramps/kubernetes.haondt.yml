@@ -87,6 +87,6 @@ components:
     environment: *gramps_env
 
   redis:
-    image: docker.io/valkey/valkey:8-alpine
+    image: docker.io/valkey/valkey:8-alpine@sha256:b027235326507cfdade9b6684056ec1d0b0c0757412e628245129b5d7b788618
     talos: ^!
     networking.ports.http: 6379
