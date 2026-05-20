@@ -83,8 +83,7 @@ components:
       - '--loglevel=INFO'
       - '--concurrency=2'
     volumes: *gramps_volumes
-    environment:
-      - raw: *gramps_env
+    environment: *gramps_env
 
   redis:
     image: docker.io/valkey/valkey:8-alpine
