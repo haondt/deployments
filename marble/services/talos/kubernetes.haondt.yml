@@ -81,7 +81,7 @@ components:
           path: /hc
         alloy.blackbox: {}
   redis:
-    image: docker.io/library/redis:latest@sha256:4d25e2fe601f7ffaeb4437cb6ced3518bc36edf34ebe98863c80836943d94529
+    image: docker.io/library/redis:latest@sha256:b0c748fcaf5c012f1793788b274980cc18d546a890cf24eb809f5610ec0232f2
     talos: +!
     networking:
       ports:
