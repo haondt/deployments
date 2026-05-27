@@ -23,7 +23,7 @@ components:
         secret: true
 
   redis:
-    image: docker.io/library/redis:latest@sha256:b0c748fcaf5c012f1793788b274980cc18d546a890cf24eb809f5610ec0232f2
+    image: docker.io/library/redis:latest@sha256:f4104a06888b913545b999840715813e5444fb8717b26d2c84d935ef2c71cd6c
     talos: +!
     networking:
       ports:
