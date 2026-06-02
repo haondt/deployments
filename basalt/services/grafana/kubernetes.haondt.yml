@@ -51,7 +51,7 @@ components:
           GF_SECURITY_ADMIN_PASSWORD: "{{ grafana__init_password }}"
         secret: true
   mimir:
-    image: docker.io/grafana/mimir:3.0.6@sha256:5c880f5a897304100ea4d003f97f65f6791271fb4375a0c9d2f59090222d74ae
+    image: docker.io/grafana/mimir:3.1.0@sha256:804c94deebdcbfdd1b01a3d79a26bcb2a54923b3c0b293031183008a257f99c5
     talos: +:.!!*
     args: ['--config.file=/etc/mimir/mimir.yml']
     resources:
