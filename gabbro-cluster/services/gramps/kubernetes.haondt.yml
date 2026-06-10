@@ -1,6 +1,6 @@
 components:
   primary:
-    image: &gramps_image ghcr.io/gramps-project/grampsweb:26.6.0@sha256:07b3b561e86f1f0f97a985b0f15a97dcc32afebebb7c997cd435b9f5e70ffb3b
+    image: &gramps_image ghcr.io/gramps-project/grampsweb:26.6.1@sha256:563d05ebb788fd42695ab4f5ec05efbfb86aa73d25901e6428fa9b0aab763551
     talos: "+:!!!?"
     resources.limits.memory: 2Gi
     networking:
