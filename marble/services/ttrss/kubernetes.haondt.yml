@@ -1,6 +1,6 @@
 components:
   primary:
-    image: &tag ghcr.io/tt-rss/tt-rss:latest@sha256:9a5267f94c0d83ea81b4a77e2109f9cb16b6dcfd0f3eba2dbf0e99d1020a52ac
+    image: &tag ghcr.io/tt-rss/tt-rss:latest@sha256:e579ff22945038ca58aeec9a9b9fb61787756d8f6c544505a1fd7e60a0ac82a0
     talos: +!
     networking:
       ports:
