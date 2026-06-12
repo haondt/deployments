@@ -1,6 +1,6 @@
 components:
   primary:
-    image: lscr.io/linuxserver/emby:latest@sha256:e9ec0591ca9a74b93aeb6b1106963400cd2fe5e924d57520520fed393a731a32
+    image: lscr.io/linuxserver/emby:latest@sha256:4bcc9f8f62565ae503eacea598bf30b6f564327836d470941f46587fb544c52a
     talos: +!
     resources:
       requests:
