@@ -32,7 +32,6 @@ components:
             - raw: |-
                 backend:
                   path: deployments-hestia
-                unlock: true
           source.volumes:
             data: [/]
 
