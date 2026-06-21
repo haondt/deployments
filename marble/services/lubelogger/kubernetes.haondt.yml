@@ -23,6 +23,7 @@ components:
             - raw: |-
                 backend:
                   path: deployments-lubelogger
+                unlock: true
           source.volumes:
             data: [/]
             keys: [/]
