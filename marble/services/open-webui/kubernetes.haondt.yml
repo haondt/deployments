@@ -1,0 +1,18 @@
+components:
+  primary:
+    image: ghcr.io/open-webui/open-webui:v0.9.6
+    talos: +!
+    resources.limits.memory: 4Gi
+    networking:
+      ports:
+        http: 8080
+      gateway.http_routes:
+        - port: http
+          host: "open-webui.{{ haondt__default_host }}"
+    volumes:
+      config:
+        src.host:
+          dir: /mnt/pepper/gabbro_cluster/open-webui/data
+          read_only: false
+          create: true
+        dest.dir: /app/backend/data
