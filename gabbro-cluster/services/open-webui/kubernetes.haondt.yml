@@ -16,3 +16,10 @@ components:
           read_only: false
           create: true
         dest.dir: /app/backend/data
+    environment:
+      - raw:
+          OPENAI_API_BASE_URLs: https://opencode.ai/zen/go/v1
+      - secret: true
+        raw:
+          WEBUI_SECRET_KEY: "{{ open_webui__secret_key }}"
+          OPENAI_API_KEYS: "{{ opencode__api_key }}"
