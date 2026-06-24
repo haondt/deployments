@@ -1,0 +1,14 @@
+components:
+  primary:
+    image: ghcr.io/open-webui/open-webui:v0.9.6
+    talos: +!
+    networking:
+      ports:
+        http: 8080
+      gateway.http_routes:
+        - port: http
+          host: "open-webui.{{ haondt__default_host }}"
+    volumes:
+      config:
+        src.pvc.size: 128Mi
+        dest.dir: /app/backend/data
