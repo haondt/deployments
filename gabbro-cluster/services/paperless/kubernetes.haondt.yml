@@ -70,7 +70,7 @@ components:
           MARIADB_PASSWORD: paperless
           MARIADB_ROOT_PASSWORD: paperless
   broker:
-    image: docker.io/library/redis:7@sha256:68d5960737091a28de5759e5a2624d26e60f59f704d9e3ef9f609bbf969add9c
+    image: docker.io/library/redis:7@sha256:a8f08480e1f88f2647fed492d1178c06abb0d0c1fbf02c682a61e2f483fb3954
     talos: ^!
     networking:
       ports:
