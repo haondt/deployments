@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/cleanuparr/cleanuparr:latest@sha256:6564af85578254728a9b06ded12836d2773e56f0da703c317cb589b176c4e215
+    image: ghcr.io/cleanuparr/cleanuparr:latest@sha256:98463b1116142887767cf90dde3375e7e43718aa623fe737677372023ffb7ebe
     talos: +!
     resources:
       limits.memory: 512Mi
