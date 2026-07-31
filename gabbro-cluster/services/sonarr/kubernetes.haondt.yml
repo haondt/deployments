@@ -28,6 +28,7 @@ components:
       gateway.http_routes:
         - port: http
           host: "sonarr.{{ haondt__default_host }}"
+          timeout: 60s
       dependencies:
         - name: primary
           app: qbittorrent
