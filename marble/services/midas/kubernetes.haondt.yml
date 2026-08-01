@@ -1,6 +1,6 @@
 components:
   primary:
-    image: registry.gitlab.com/haondt/cicd/registry/midas:fixes-f75b3132
+    image: registry.gitlab.com/haondt/cicd/registry/midas:0.3.0
     talos: x
     networking:
       ports:
