@@ -77,7 +77,7 @@ components:
         src.file: mimir/mimir.yml
         dest.file: /etc/mimir/mimir.yml
   loki:
-    image: docker.io/grafana/loki:3.7.5@sha256:f968164e718f9cbe9f5b0f967f3bb6f9cad5d95cf7ffcaf968cce06c941aed62
+    image: docker.io/grafana/loki:3.7.6@sha256:efd47c67f9bac88ca29bcf8cb997d9ab29d1848bd0aff579282295542a745952
     talos: ^!
     args: ['-config.file=/etc/loki/local-config.yaml']
     resources:
