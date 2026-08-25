@@ -44,7 +44,6 @@ components:
         src.host:
           dir: "{{ media__host_dirs__carrot }}/music"
           read_only: false
-          create: true
         dest.dir: /mnt/carrot/music
       downloads:
         src.host.dir: "{{ media__host_dirs__downloads }}"

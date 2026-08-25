@@ -45,6 +45,9 @@ components:
           read_only: false
           create: true
         dest.dir: /transcode
+      carrot-music:
+        src.host.dir: "{{ media__host_dirs__carrot }}/music"
+        dest.dir: /mnt/carrot/music
       carrot-tv-shows:
         src.host.dir: "{{ media__host_dirs__carrot }}/tv_shows"
         dest.dir: /mnt/carrot/tv_shows
