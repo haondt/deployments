@@ -1,0 +1,60 @@
+components:
+  primary:
+    image: lscr.io/linuxserver/lidarr:latest
+    talos: +!
+    resources:
+      limits.memory: 3Gi
+      requests.memory: 256Mi
+#   observability:
+#     alloy.logs.process: |
+#       stage.regex {
+#         expression = "^\\[(?P<level>\\w+)\\]"
+#       }
+#       stage.template {
+#         source = "level"
+#         template = "{{ or .Value \"Info\"}}"
+#       }
+#       stage.labels {
+#         values = { "level" = "" }
+#       }
+#     probes.hc:
+#       http_get:
+#         port: http
+#         path: /ping
+#       alloy.blackbox: {}
+    networking:
+      ports:
+        http: 8686
+      gateway.http_routes:
+        - port: http
+          host: "lidarr.{{ haondt__default_host }}"
+          timeout: 60s
+      dependencies:
+        - name: primary
+          app: qbittorrent
+          port: http
+        - name: primary
+          app: prowlarr
+          port: http
+    volumes:
+      config:
+        src.pvc: {}
+        dest.dir: /config
+      carrot-music:
+        src.host:
+          dir: "{{ media__host_dirs__carrot }}/music"
+          read_only: false
+          create: true
+        dest.dir: /mnt/carrot/music
+      downloads:
+        src.host.dir: "{{ media__host_dirs__downloads }}"
+        dest.dir: /downloads
+    startup:
+      tasks:
+        - chown:
+            paths: [/config]
+            owner: "{{ media__puid }}:{{ media__pgid }}"
+    environment:
+      - raw:
+          PGID: "{{ media__pgid }}"
+          PUID: "{{ media__puid }}"
