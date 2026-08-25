@@ -71,6 +71,7 @@ components:
             - raw: |-
                 backend:
                   path: miniflux-drip
+                unlock: true
           source.volumes: &drip_charon_source
             drip-data: [/]
         - overlays: [default-hzsb]
