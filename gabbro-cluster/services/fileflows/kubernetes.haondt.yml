@@ -55,6 +55,9 @@ components:
         src.host.dir: "{{ media__host_dirs__rhyolite }}/movies_hd"
         src.host.read_only: false
         dest.dir: /mnt/rhyolite/movies_hd
+      downloads:
+        src.host.dir: "{{ media__host_dirs__downloads }}"
+        dest.dir: /downloads
     startup:
       tasks:
         - chown:
