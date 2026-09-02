@@ -70,8 +70,7 @@ components:
           repository_configs: &drip_charon_repository_configs
             - raw: |-
                 backend:
-                  path: miniflux-drip
-                unlock_all: true
+                  path: miniflux-drip-v2
           source.volumes: &drip_charon_source
             drip-data: [/]
         - overlays: [default-hzsb]
