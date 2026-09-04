@@ -20,7 +20,7 @@ components:
         dest.file: /etc/nginx/nginx.conf
     sidecars:
       git-sync:
-        image: ubuntu/git-sync
+        image: registry.gitlab.com/haondt/cicd/registry/git-sync:4.7.1
         #talos: +!
         args:
           - --repo=https://github.com/kubernetes/git-sync
