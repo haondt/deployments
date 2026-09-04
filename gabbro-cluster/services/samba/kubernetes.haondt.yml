@@ -17,6 +17,12 @@ components:
           dir: /mnt/carrot/gabbro/samba/data
           read_only: false
         dest.dir: /storage
+      pages:
+        src.host:
+          dir: /mnt/carrot/gabbro/samba/pages
+          read_only: false
+          create: true
+        dest.dir: /mnt/pages
     environment:
       - raw:
           UID: 1000
