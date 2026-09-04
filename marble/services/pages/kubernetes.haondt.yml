@@ -1,7 +1,7 @@
 components:
   primary:
     image: nginx:mainline
-    #talos: +!
+    talos: +!
     networking:
       ports:
         http: 8080
@@ -21,7 +21,7 @@ components:
     sidecars:
       git-sync:
         image: registry.gitlab.com/haondt/cicd/registry/git-sync:4.7.1
-        #talos: +!
+        talos: +!
         environment:
           - raw:
               GITSYNC_USERNAME: gitlab+deploy-token-15481128
