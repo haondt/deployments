@@ -1,0 +1,33 @@
+components:
+  primary:
+    image: docker.io/library/nginx:mainline@sha256:05b8cb60c354a44ab824ea6e7dc69b46d50762cdbe728a347a5b656e6fb3d7c4
+    talos: +!
+    networking:
+      ports:
+        http: 8080
+        ingest: 8081
+      gateway.http_routes:
+        - port: http
+          host: "pages.{{ haondt__default_host }}"
+        - port: ingest
+          host: "pages-ingest.{{ haondt__default_host }}"
+    volumes:
+      nginx-html:
+        src.host:
+          dir: /mnt/carrot/gabbro/pages/nginx-html
+          read_only: false
+          create: true
+        dest.dir: /usr/share/nginx
+      nginx-conf:
+        src.file: nginx.conf
+        dest.file: /etc/nginx/conf.d/nginx.conf
+    sidecars:
+      ingest:
+        image: rclone/rclone:latest
+        talos: +!
+        command: [serve]
+        args: [s3, /data, --addr 0.0.0.0:8081, --user pages, --pass pages]
+        volumes:
+          nginx-html:
+            src.volume.name: nginx-html
+            dest.dir: /data
