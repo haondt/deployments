@@ -5,13 +5,13 @@ components:
     networking:
       ports:
         http: 8080
+        ingest: 8081
       gateway.http_routes:
         - port: http
           host: "pages.{{ haondt__default_host }}"
+        - port: http
+          host: "pages-ingest.{{ haondt__default_host }}"
     volumes:
-      git:
-        src.scratch.size: 1Gi
-        dest.dir: /git
       nginx-html:
         src.scratch.size: 1Mi
         dest.dir: /usr/share/nginx
@@ -19,24 +19,15 @@ components:
         src.file: nginx.conf
         dest.file: /etc/nginx/conf.d/nginx.conf
     sidecars:
-      git-sync:
-        image: registry.gitlab.com/haondt/cicd/registry/git-sync:4.7.1
-        talos: +!
-        environment:
-          - raw:
-              GITSYNC_USERNAME: gitlab+deploy-token-15481128
-              GITSYNC_REPO: https://gitlab.com/haondt/pages.git
-              GITSYNC_REF: main
-              GITSYNC_ROOT: /git
-              GITSYNC_LINK: /usr/share/nginx/html
-              GITSYNC_PERIOD: 1h
-          - raw:
-              GITSYNC_PASSWORD: "{{ gitlab__deploy_token }}"
-            secret: true
+      ingest:
+        image: rclone/rclone:latest
+        # talos: +!
+        command: >
+          serve s3 /data
+          --addr 0.0.0.0:8081
+          --user pages
+          --pass pages
         volumes:
-          git:
-            src.volume.name: git
-            dest.dir: /git
           nginx-html:
             src.volume.name: nginx-html
-            dest.dir: /usr/share/nginx
+            dest.dir: /data
