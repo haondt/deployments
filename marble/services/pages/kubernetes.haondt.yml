@@ -9,7 +9,7 @@ components:
       gateway.http_routes:
         - port: http
           host: "pages.{{ haondt__default_host }}"
-        - port: http
+        - port: ingest
           host: "pages-ingest.{{ haondt__default_host }}"
     volumes:
       nginx-html:
