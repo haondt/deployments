@@ -22,12 +22,17 @@ components:
       git-sync:
         image: registry.gitlab.com/haondt/cicd/registry/git-sync:4.7.1
         #talos: +!
-        args:
-          - --repo=https://github.com/kubernetes/git-sync
-          - --ref=master
-          - --root=/git
-          - --link=/usr/share/nginx/html
-          - --period=120s
+        environment:
+          - raw:
+              GITSYNC_USERNAME: gitlab+deploy-token-15481128
+              GITSYNC_REPO: https://gitlab.com/haondt/pages.git
+              GITSYNC_REF: main
+              GITSYNC_ROOT: /git
+              GITSYNC_LINK: /usr/share/nginx/html
+              GITSYNC_PERIOD: 1h
+          - raw:
+              GITSYNC_PASSWORD: "{{ gitlab__deploy_token }}"
+            secret: true
         volumes:
           git:
             src.volume.name: git
