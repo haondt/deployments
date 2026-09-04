@@ -25,8 +25,14 @@ components:
       ingest:
         image: rclone/rclone:latest
         talos: +!
-        command: [serve]
-        args: [s3, /data, --addr 0.0.0.0:8081, --user pages, --pass pages]
+        args:
+          - "serve"
+          - "s3"
+          - "/data"
+          - "--addr"
+          - "0.0.0.0:8081"
+          - "--auth-key"
+          - "pages,pages"
         volumes:
           nginx-html:
             src.volume.name: nginx-html
