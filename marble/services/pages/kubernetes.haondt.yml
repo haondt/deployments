@@ -18,13 +18,3 @@ components:
       nginx-conf:
         src.file: nginx.conf
         dest.file: /etc/nginx/conf.d/nginx.conf
-    sidecars:
-      ingest:
-        image: rclone/rclone:latest
-        # talos: +!
-        command: [serve, s3]
-        args: [/data, --addr 0.0.0.0:8081, --user pages, --pass pages]
-        volumes:
-          nginx-html:
-            src.volume.name: nginx-html
-            dest.dir: /data
