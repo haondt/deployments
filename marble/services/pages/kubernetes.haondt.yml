@@ -1,0 +1,37 @@
+components:
+  primary:
+    image: nginx:mainline
+    #talos: +!
+    networking:
+      ports:
+        http: 8080
+      gateway.http_routes:
+        - port: http
+          host: "pages.{{ haondt__default_host }}"
+    volumes:
+      git:
+        src.scratch.size: 1Gi
+        dest.dir: /git
+      nginx-html:
+        src.scratch.size: 1Mi
+        dest.dir: /usr/share/nginx/html
+      nginx-conf:
+        src.file: nginx.conf
+        dest.file: /etc/nginx/nginx.conf
+    sidecars:
+      git-sync:
+        image: dhi.io/git-sync
+        #talos: +!
+        args:
+          - --repo=https://github.com/kubernetes/git-sync
+          - --ref=master
+          - --root=/git
+          - --link=/usr/share/nginx/html
+          - --period=120s
+        volumes:
+          git:
+            src.volume.name: git
+            dest.dir: /git
+          nginx-html:
+            src.volume.name: nginx-html
+            dest.dir: /usr/share/nginx/html
