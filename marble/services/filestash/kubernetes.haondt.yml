@@ -11,10 +11,6 @@ components:
       dependencies:
         - name: wopi
           port: http
-    volumes:
-      config:
-        src.pvc.size: 128Mi
-        dest.dir: /app/data/state
     environment:
       - raw:
           APPLICATION_URL: "https://filestash.{{ haondt__default_host }}"
@@ -22,9 +18,20 @@ components:
           OFFICE_URL: "http://filestash-wopi:9980"
           OFFICE_FILESTASH_URL: "http://filestash-primary:8334"
           OFFICE_REWRITE_URL: "https://filestash-wopi.{{ haondt__default_host }}"
+    volumes:
+      state:
+        src.pvc.size: 128Mi
+        dest.dir: /app/data/state
+    startup:
+      tasks:
+        - chown:
+            paths: [/app/data/state]
+            owner: 1000:1000
 
   wopi:
     image: collabora/code:24.04.10.2.1
+    resources:
+      limits.memory: 512Mi
     networking:
       ports:
         http: 9980
