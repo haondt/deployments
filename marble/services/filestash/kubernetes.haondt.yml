@@ -13,7 +13,7 @@ components:
           port: http
     environment:
       - raw:
-          APPLICATION_URL: "https://filestash.{{ haondt__default_host }}"
+          APPLICATION_URL: "filestash.{{ haondt__default_host }}"
           CANARY: true
           OFFICE_URL: "http://filestash-wopi:9980"
           OFFICE_FILESTASH_URL: "http://filestash-primary:8334"
