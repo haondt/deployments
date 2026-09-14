@@ -17,7 +17,7 @@ services:
       NO_COLOR: yes
 
   nginx-acme:
-    image: docker.io/nginxproxy/acme-companion:latest@sha256:d25350d8e4d8518eb5b0759b440b9c1ac40abe33546b0dcf63b225244af35b01
+    image: docker.io/nginxproxy/acme-companion:latest@sha256:658b5c47281da4a1c2ca067df12c71a619dc3a2075ab835d4a5bb5f18b21c955
     x-tl: +!
     networks:
       - nginx
