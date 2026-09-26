@@ -1,6 +1,6 @@
 components:
   server:
-    image: ghcr.io/immich-app/immich-server:v2.6.2@sha256:1521a1c8c1727ec240e57585db7bf90a3b067066d4847baeb80f353d721f4d5a
+    image: ghcr.io/immich-app/immich-server:v3.2.2
     talos:
       skip: false
       bump: Major
@@ -67,7 +67,7 @@ components:
           REDIS_PORT: 6379
 
   machine-learning:
-    image: ghcr.io/immich-app/immich-machine-learning:v2.6.2@sha256:2d2d56d12d32b904a86952dd048224d117251d10ed10a4d75279e080e79002b7
+    image: ghcr.io/immich-app/immich-machine-learning:v3.2.2
     talos:
       skip: false
       sync:
