@@ -8,6 +8,7 @@ components:
       rathole_routes:
         - port: http
           host: "microbin.{{ haondt__default_cloud_host }}"
+          max_body_size:  100m
     environment:
       - raw:
           MICROBIN_HIDE_LOGO: 'true'
