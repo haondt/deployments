@@ -22,7 +22,7 @@ components:
           WORDPRESS_DB_PASSWORD: aeeowordpress
           WORDPRESS_DB_NAME: aeeowordpress
   db:
-    image: docker.io/library/mariadb:12@sha256:faae028e4d73efc946526ae1d5ba57181d4f162d64e60b6482c85095da31a084
+    image: docker.io/library/mariadb:12@sha256:99c125f103f5d081ebbc9ffe064e63daf7f688ac33a5f7f29af2d7260a96debf
     talos: ^!
     args: ['--default-authentication-plugin=mysql_native_password']
     networking:
