@@ -21,6 +21,13 @@ components:
       nginx-conf:
         src.file: nginx.conf
         dest.file: /etc/nginx/conf.d/nginx.conf
+    startup:
+      tasks:
+        - busybox:
+            script: |-
+              set -euo pipefail
+              mkdir -p /usr/share/nginx/html/state
+              chmod 777 /usr/share/nginx/html/state
     sidecars:
       ingest:
         image: rclone/rclone:latest
