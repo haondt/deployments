@@ -1,6 +1,6 @@
 components:
   primary:
-    image: ghcr.io/rajnandan1/kener:latest@sha256:6f1f97edc0fe2076ffea6b12940bede2dac7edf31cacc03fb0d65463a8f86b65
+    image: ghcr.io/rajnandan1/kener:latest@sha256:6c1e0fccaacd9f5bff8bf32643c004a28e1276838cf34397b32d1218bf539e3b
     talos: +!
     networking:
       ports:
