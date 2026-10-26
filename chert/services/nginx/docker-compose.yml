@@ -2,7 +2,7 @@ services:
   nginx:
     networks:
       - nginx
-    image: docker.io/nginxproxy/nginx-proxy:latest@sha256:9c4a30bd01b139a81466d0246856103daf25e5844b9a7d654a5f4b1a7e2991eb
+    image: docker.io/nginxproxy/nginx-proxy:latest@sha256:39c263cc518ef0a336faddbeeb1e4d736920526f32addf3747ebe331d2d7b361
     x-tl: +!
     ports:
       - 443:443
