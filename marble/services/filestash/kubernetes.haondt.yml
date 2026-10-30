@@ -1,6 +1,6 @@
 components:
   primary:
-    image: docker.io/machines/filestash:latest@sha256:0734f71803f411d1473d897b0a0a16e8781acf8b2ca8d4ad97237ab682495af0
+    image: docker.io/machines/filestash:latest@sha256:aaa4f6e05d6277996047ba3a9edd267db3d87ed8fbe979cc4aaf3ed43239f636
     talos: +!
     networking:
       ports:
