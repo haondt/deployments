@@ -1,0 +1,117 @@
+components:
+  mosquitto:
+    image: docker.io/library/eclipse-mosquitto:2.1.2
+    talos: ^!
+    networking:
+      ports:
+        mqtt: 1883
+    volumes:
+      config:
+        src.file: mosquitto.conf
+        dest.file: /mosquitto/config/mosquitto.conf
+
+  zigbee2mqtt:
+    image: ghcr.io/koenkk/zigbee2mqtt:2.14.2
+    talos: ^!
+    networking:
+      ports:
+        http: 8080
+      dependencies:
+        - name: mosquitto
+          port: mqtt
+      gateway.http_routes:
+        - port: http
+          host: "home-automation-zigbee2mqtt.{{ haondt__default_host }}"
+    volumes:
+      z2m-data:
+        src.pvc.size: 256Mi
+        dest.dir: /app/data
+      config-seed:
+        src.file: zigbee2mqtt.yaml
+        dest.file: /app/config-seed/configuration.yaml
+    startup:
+      tasks:
+        # z2m rewrites configuration.yaml at runtime, so only seed it if missing
+        - busybox:
+            script: |-
+              cp -Ln /app/config-seed/configuration.yaml /app/data/configuration.yaml
+    charon:
+      overlays: [weekly]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &z2m_charon_repository_configs
+            - raw: |-
+                backend:
+                  path: home-automation-zigbee2mqtt
+          source.volumes: &z2m_charon_source
+            z2m-data: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *z2m_charon_repository_configs
+          source.volumes: *z2m_charon_source
+
+  node-red:
+    image: registry.gitlab.com/haondt/cicd/registry/jobs:0.0.3
+    talos: x
+    networking:
+      ports:
+        http: 1880
+      dependencies:
+        - name: mosquitto
+          port: mqtt
+      gateway.http_routes:
+        - port: http
+          host: "home-automation-node-red.{{ haondt__default_host }}"
+    volumes:
+      node-red-data:
+        src.pvc: {}
+        dest.dir: /data
+    startup:
+      tasks:
+        - chown:
+            paths: [/data]
+            owner: 1000:1000
+    charon:
+      overlays: [daily]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &node_red_charon_repository_configs
+            - raw: |-
+                backend:
+                  path: home-automation-node-red
+          source.volumes: &node_red_charon_source
+            node-red-data: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *node_red_charon_repository_configs
+          source.volumes: *node_red_charon_source
+
+  redis:
+    image: docker.io/library/redis:latest
+    talos: +!
+    networking:
+      ports:
+        http: 6379
+    volumes:
+      redis-data:
+        src.pvc.size: 64Mi
+        dest.dir: /data
+    startup.tasks:
+        - chmod:
+            paths: [/data]
+            mode: '0777'
+
+  redis-insight:
+    image: docker.io/redis/redisinsight:latest
+    talos: +!
+    networking:
+      ports:
+        http: 5540
+      gateway.http_routes:
+        - port: http
+          host: "home-automation-redis.{{ haondt__default_host }}"
+      dependencies:
+        - name: redis
+          port: http
+    volumes:
+      redis-insight-data:
+        src.pvc: {}
+        dest.dir: /data
