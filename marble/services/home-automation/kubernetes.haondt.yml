@@ -99,7 +99,7 @@ components:
             mode: '0777'
 
   redis-insight:
-    image: docker.io/redis/redisinsight:latest
+    image: docker.io/redis/redisinsight:latest@sha256:b5e19ee240abef6edb435871b90ff8a210995422e8e018ab61c0339d318a1f84
     talos: +!
     networking:
       ports:
