@@ -1,6 +1,6 @@
 components:
   mosquitto:
-    image: docker.io/library/eclipse-mosquitto:2.1.2
+    image: docker.io/library/eclipse/mosquitto:2.1.2
     talos: ^!
     networking:
       ports:
@@ -115,3 +115,8 @@ components:
       redis-insight-data:
         src.pvc: {}
         dest.dir: /data
+    startup:
+      tasks:
+        - chmod:
+            paths: [/data]
+            mode: '0777'
