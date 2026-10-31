@@ -1,6 +1,6 @@
 components:
   mosquitto:
-    image: eclipse-mosquitto:2.1.2-alpine
+    image: docker.io/library/eclipse-mosquitto:2.1.2-alpine@sha256:860aeb5d63ce509508f6dcfb2bc8a1c1dd2bc60555b562b45ce90e52d8dabb0f
     talos: ^!
     networking:
       ports:
@@ -11,7 +11,7 @@ components:
         dest.file: /mosquitto/config/mosquitto.conf
 
   zigbee2mqtt:
-    image: ghcr.io/koenkk/zigbee2mqtt:2.14.2
+    image: ghcr.io/koenkk/zigbee2mqtt:2.14.2@sha256:addbfb08fcef2e4477de1535636118241e10d13e898fbe4d9faba8a4d7396311
     talos: ^!
     networking:
       ports:
@@ -85,7 +85,7 @@ components:
           source.volumes: *node_red_charon_source
 
   redis:
-    image: docker.io/library/redis:latest
+    image: docker.io/library/redis:latest@sha256:4764ce37931aac77c0d033680b339b19b4a4a81772204d268947cb851212d0ac
     talos: +!
     networking:
       ports:
