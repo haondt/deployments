@@ -1,6 +1,6 @@
 components:
   mosquitto:
-    image: docker.io/library/eclipse/mosquitto:2.1.2
+    image: eclipse-mosquitto:2.1.2-alpine
     talos: ^!
     networking:
       ports:
