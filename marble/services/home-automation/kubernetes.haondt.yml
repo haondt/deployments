@@ -10,44 +10,43 @@ components:
         src.file: mosquitto.conf
         dest.file: /mosquitto/config/mosquitto.conf
 
-  zigbee2mqtt:
-    image: ghcr.io/koenkk/zigbee2mqtt:2.14.2@sha256:addbfb08fcef2e4477de1535636118241e10d13e898fbe4d9faba8a4d7396311
-    talos: ^!
-    networking:
-      ports:
-        http: 8080
-      dependencies:
-        - name: mosquitto
-          port: mqtt
-      gateway.http_routes:
-        - port: http
-          host: "home-automation-zigbee2mqtt.{{ haondt__default_host }}"
-    volumes:
-      z2m-data:
-        src.pvc.size: 256Mi
-        dest.dir: /app/data
-      config-seed:
-        src.file: zigbee2mqtt.yaml
-        dest.file: /app/config-seed/configuration.yaml
-    startup:
-      tasks:
-        # z2m rewrites configuration.yaml at runtime, so only seed it if missing
-        - busybox:
-            script: |-
-              cp -Ln /app/config-seed/configuration.yaml /app/data/configuration.yaml
-    charon:
-      overlays: [weekly]
-      backups:
-        - overlays: [default-gcs]
-          repository_configs: &z2m_charon_repository_configs
-            - raw: |-
-                backend:
-                  path: home-automation-zigbee2mqtt
-          source.volumes: &z2m_charon_source
-            z2m-data: [/]
-        - overlays: [default-hzsb]
-          repository_configs: *z2m_charon_repository_configs
-          source.volumes: *z2m_charon_source
+# zigbee2mqtt:
+#   image: ghcr.io/koenkk/zigbee2mqtt:2.14.2@sha256:addbfb08fcef2e4477de1535636118241e10d13e898fbe4d9faba8a4d7396311
+#   talos: ^!
+#   networking:
+#     ports:
+#       http: 8080
+#     dependencies:
+#       - name: mosquitto
+#         port: mqtt
+#     gateway.http_routes:
+#       - port: http
+#         host: "home-automation-zigbee2mqtt.{{ haondt__default_host }}"
+#   volumes:
+#     z2m-data:
+#       src.pvc.size: 256Mi
+#       dest.dir: /app/data
+#     z2m-config-seed:
+#       src.file: zigbee2mqtt.yaml
+#       dest.file: /app/config-seed/configuration.yaml
+#   startup:
+#     tasks:
+#       - busybox:
+#           script: |-
+#             cp -Ln /app/config-seed/configuration.yaml /app/data/configuration.yaml
+#   charon:
+#     overlays: [weekly]
+#     backups:
+#       - overlays: [default-gcs]
+#         repository_configs: &z2m_charon_repository_configs
+#           - raw: |-
+#               backend:
+#                 path: home-automation-zigbee2mqtt
+#         source.volumes: &z2m_charon_source
+#           z2m-data: [/]
+#       - overlays: [default-hzsb]
+#         repository_configs: *z2m_charon_repository_configs
+#         source.volumes: *z2m_charon_source
 
   node-red:
     image: registry.gitlab.com/haondt/cicd/registry/jobs:0.0.3

@@ -8,3 +8,4 @@ advanced:
     - console
 serial:
   adapter: zstack
+  port: "tcp://127.0.0.1:6638" # placeholder
