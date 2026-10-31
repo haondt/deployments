@@ -6,3 +6,5 @@ frontend:
 advanced:
   log_output:
     - console
+serial:
+  adapter: zstack
