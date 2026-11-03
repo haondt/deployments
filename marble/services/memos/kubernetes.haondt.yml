@@ -1,0 +1,32 @@
+components:
+  primary:
+    image: neosmemo/memos:26.11.0
+    talos: !
+    networking:
+      ports:
+        http: 5230
+      gateway.http_routes:
+        - port: http
+          host: "memos.{{ haondt__default_host }}"
+    volumes:
+      data:
+        src.pvc.size: 128Mi
+        dest.dir: /var/opt/memos
+    environment:
+      - raw:
+          MEMOS_PORT: 5230
+          MEMOS_DRIVER: sqlite
+          MEMOS_INSTANCE_URL: "https://memos.{{ haondt__default_host }}"
+    charon:
+      overlays: [daily]
+      backups:
+        - overlays: [default-gcs]
+          repository_configs: &charon_repo
+            - raw: |-
+                backend:
+                  path: memos
+          source.volumes: &charon_source
+            data: [/]
+        - overlays: [default-hzsb]
+          repository_configs: *charon_repo
+          source.volumes: *charon_source
