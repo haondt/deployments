@@ -6,6 +6,9 @@ frontend:
 advanced:
   log_output:
     - console
+  transmit_power: 20
 serial:
   adapter: zstack
-  port: "tcp://127.0.0.1:6638" # placeholder
+  port: "tcp://192.168.1.154:6638" # mica
+  baudrate: 115200
+  disable_led: false
