@@ -9,6 +9,25 @@ components:
       config:
         src.file: mosquitto.conf
         dest.file: /mosquitto/config/mosquitto.conf
+  mqtt-explorer:
+    image: ghcr.io/thomasnordquist/mqtt-explorer:latest
+    talos: +!
+    networking:
+      ports:
+        http: 3000
+      dependencies:
+        - name: mosquitto
+          port: mqtt
+      gateway.http_routes:
+        - port: http
+          host: "home-automation-mqtt-explorer.{{ haondt__default_host }}"
+    volumes:
+      mqtt-explorer-data:
+        src.pvc.size: 128Mi
+        dest.dir: /app/data
+    environment:
+      - raw:
+          MQTT_EXPLORER_SKIP_AUTH: 'true'
 
   zigbee2mqtt:
     image: ghcr.io/koenkk/zigbee2mqtt:2.14.2@sha256:addbfb08fcef2e4477de1535636118241e10d13e898fbe4d9faba8a4d7396311
