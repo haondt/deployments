@@ -76,6 +76,8 @@ components:
       dependencies:
         - name: mosquitto
           port: mqtt
+        - name: redis
+          port: http
       gateway.http_routes:
         - port: http
           host: "home-automation-node-red.{{ haondt__default_host }}"
